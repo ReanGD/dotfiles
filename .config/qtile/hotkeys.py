@@ -4,17 +4,6 @@ from dmenu import DMenu
 from pulseaudio import inc_volume, dec_volume
 
 
-def hide_show_bar(qtile):
-    bar = qtile.currentScreen.top
-    if bar.size == 0:
-        bar.size = 30
-        bar.window.unhide()
-    else:
-        bar.size = 0
-        bar.window.hide()
-    qtile.currentGroup.layoutAll()
-
-
 def get_keyboard_hotkey(mod):
     return [
         Key([mod], "k",
@@ -39,6 +28,8 @@ def get_keyboard_hotkey(mod):
             lazy.function(lambda qtile: DMenu().run(True))),
         Key([mod, "shift"], "r",
             lazy.function(lambda qtile: DMenu().run(False))),
+        Key([mod, "control"], "r",
+            lazy.spawncmd()),
         Key([mod], "equal",
             lazy.function(inc_volume)),
         Key([mod], "minus",
@@ -52,7 +43,7 @@ def get_keyboard_hotkey(mod):
         Key([mod, "shift", "control"], "q",
             lazy.shutdown()),
         Key([mod, "shift"], "d",
-            lazy.function(hide_show_bar)),
+            lazy.hide_show_bar()),
     ]
 
 
