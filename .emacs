@@ -25,19 +25,11 @@
 
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
 
-;; python begin
-;;(autoload 'python-mode "python-mode.el" "Python mode." t)
-;;(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
-;; python end
-
-
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   )
-
-
 
 (require 'cl)
  
@@ -50,39 +42,19 @@
         finally (return t)))
  
 (unless (my-packages-installed-p)
-  ;; check for new packages (package versions)
   (package-refresh-contents)
-  ;; install the missing packages
   (dolist (p my-packages)
     (when (not (package-installed-p p))
       (package-install p))))
 
-
-; (defvar prelude-packages
-  ; '(auto-complete python-environment))
-; 
-; (defun prelude-packages-installed-p ()
-  ; (loop for p in prelude-packages
-        ; when (not (package-installed-p p)) do (return nil)
-        ; finally (return t)))
-; 
-; (unless (prelude-packages-installed-p)
-  ; check for new packages (package versions)
-  ; (message "%s" "Emacs Prelude is now refreshing its package database...")
-  ; (package-refresh-contents)
-  ; (message "%s" " done.")
-  ; install the missing packages
-  ; (dolist (p prelude-packages)
-    ; (when (not (package-installed-p p))
-      ; (package-install p))))
-; 
-; (provide 'prelude-packages)
-
 (if (not (package-installed-p 'jedi))
-    (progn
-      (package-refresh-contents)
-      (package-install 'jedi)
-      (jedi:install-server)))
+   (progn
+     (package-refresh-contents)
+     (package-install 'jedi)
+     (setq jedi:environment-virtualenv
+       (list "virtualenv2" "--system-site-packages"))
+     (jedi:install-server)))
+
 
 ;; built-in
 (require 'ido)
@@ -98,15 +70,10 @@
       '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
 
 ;; jedi
+(setq jedi:environment-virtualenv
+  (list "virtualenv2" "--system-site-packages"))
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
-
-;;(when (not package-archive-contents)
-;;  (package-refresh-contents))
-
-;;python
-;;(elpy-enable)
-;;python
 
 ;;(require 'projectile)
 ;;(projectile-global-mode)
