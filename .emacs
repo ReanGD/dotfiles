@@ -14,6 +14,10 @@
 (menu-bar-mode -1)
 ;; disable tool-bar
 (tool-bar-mode -1)
+;; disable beep
+(setq visible-bell t)
+;; auto-ident
+(electric-indent-mode +1)
 
 ;;(setq make-backup-files         nil) ; Don't want any backup files
 ;;(setq auto-save-list-file-name  nil) ; Don't want any .saves files
@@ -34,7 +38,7 @@
 (require 'cl)
  
 (defvar my-packages
-  '(auto-complete python-environment))
+  '(auto-complete python-environment autopair flycheck))
  
 (defun my-packages-installed-p ()
   (loop for p in my-packages
@@ -74,6 +78,11 @@
   (list "virtualenv2" "--system-site-packages"))
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(require 'autopair)
+(autopair-global-mode) 
 
 ;;(require 'projectile)
 ;;(projectile-global-mode)
@@ -233,23 +242,3 @@
 (global-set-key (kbd "C-o") 'ido-find-file)            ;; C-x C-f
 (global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
 ;;(global-set-key (kbd "C-p") 'bs-show)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
