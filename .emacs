@@ -1,7 +1,11 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-;; Построчная прокрутка
-(setq scroll-step 1)
+;; smooth-scrolling
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
 ;; select current line
 (global-hl-line-mode 1)
 ;; cursor |
@@ -14,6 +18,8 @@
 (menu-bar-mode -1)
 ;; disable tool-bar
 (tool-bar-mode -1)
+;; disable scroll-bar
+(scroll-bar-mode -1)
 ;; disable beep
 (setq visible-bell t)
 ;; auto-ident
@@ -38,7 +44,8 @@
 (require 'cl)
  
 (defvar my-packages
-  '(auto-complete python-environment autopair flycheck))
+  '(solarized-theme yascroll powerline powerline-evil auto-complete python-environment autopair
+    flycheck flycheck-color-mode-line))
  
 (defun my-packages-installed-p ()
   (loop for p in my-packages
@@ -73,16 +80,47 @@
 (setq bs-configurations
       '(("files" "^\\*scratch\\*" nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)))
 
+;; solarized theme
+(setq solarized-distinct-fringe-background t)
+(setq solarized-high-contrast-mode-line t)
+;;(setq solarized-use-less-bold t)
+(setq solarized-use-more-italic t)
+;;(setq solarized-emphasize-indicators nil)
+(setq x-underline-at-descent-line t)
+(load-theme 'solarized-dark t)
+
+;; yascroll
+(global-yascroll-bar-mode 1)
+(setq yascroll:delay-to-hide nil)
+;; Don't hide scrollbar when editing
+(defadvice yascroll:before-change (around always-show-bar activate) ())
+
+;; powerline
+(require 'powerline-evil)
+(powerline-evil-vim-color-theme)
+
 ;; jedi
 (setq jedi:environment-virtualenv
   (list "virtualenv2" "--system-site-packages"))
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-flake8rc "/home/rean/.config/python/flake8.cfg")
+(setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc))
 
+;; flycheck-color-mode-line
+(require 'flycheck-color-mode-line)
+(eval-after-load "flycheck"
+  '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+;; autopair
 (require 'autopair)
-(autopair-global-mode) 
+(autopair-global-mode)
+
+
+
 
 ;;(require 'projectile)
 ;;(projectile-global-mode)
@@ -201,14 +239,17 @@
 ;; Transform
 (global-unset-key (kbd "M-w"))
 (global-unset-key (kbd "C-y"))
+(global-unset-key (kbd "C-q"))
 
 ;; Search
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-r"))
+(global-unset-key (kbd "C-x b"))
 
 ;; File
 (global-unset-key (kbd "C-x C-f"))
 (global-unset-key (kbd "C-x C-s"))
+(global-unset-key (kbd "C-x C-c"))
 
 
 ;; Move
@@ -233,12 +274,14 @@
 (global-set-key (kbd "C-S-v") 'yank)                   ;; C-y
 
 ;; Search
-(global-set-key (kbd "C-f") 'isearch-forward)          ;; C-s
+(global-set-key (kbd "C-f") 'isearch-forward)                          ;; C-s
 (define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)     ;; C-s
 (define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)  ;; C-r
 (define-key isearch-mode-map (kbd "<return>") 'isearch-repeat-forward) ;; C-s
 
 ;; File
-(global-set-key (kbd "C-o") 'ido-find-file)            ;; C-x C-f
-(global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
+(global-set-key (kbd "C-o") 'ido-find-file)              ;; C-x C-f
+(global-set-key (kbd "C-s") 'save-buffer)                ;; C-x C-s
+(global-set-key (kbd "C-p") 'ido-switch-buffer)          ;; C-x b
+(global-set-key (kbd "C-q") 'save-buffers-kill-terminal) ;; C-x C-c
 ;;(global-set-key (kbd "C-p") 'bs-show)
