@@ -45,7 +45,7 @@
  
 (defvar my-packages
   '(solarized-theme yascroll powerline powerline-evil auto-complete python-environment autopair
-    flycheck flycheck-color-mode-line))
+    flycheck flycheck-color-mode-line nose))
  
 (defun my-packages-installed-p ()
   (loop for p in my-packages
@@ -67,6 +67,21 @@
      (jedi:install-server)))
 
 
+;; Ignoring electric indentation
+(defun electric-indent-ignore-python (char)
+  "Ignore electric indentation for python-mode"
+  (if (equal major-mode 'python-mode)
+      `no-indent'
+    nil))
+(add-hook 'electric-indent-functions 'electric-indent-ignore-python)
+
+;; Enter key executes newline-and-indent
+(defun set-newline-and-indent ()
+  "Map the return key with `newline-and-indent'"
+  (local-set-key (kbd "RET") 'newline-and-indent))
+
+(add-hook 'python-mode-hook 'set-newline-and-indent)
+
 ;; built-in
 (require 'ido)
 (ido-mode t)
@@ -87,7 +102,8 @@
 (setq solarized-use-more-italic t)
 ;;(setq solarized-emphasize-indicators nil)
 (setq x-underline-at-descent-line t)
-(load-theme 'solarized-dark t)
+;;(load-theme 'solarized-dark t)
+(load-theme 'solarized-light t)
 
 ;; yascroll
 (global-yascroll-bar-mode 1)
@@ -114,6 +130,11 @@
 (require 'flycheck-color-mode-line)
 (eval-after-load "flycheck"
   '(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+;; nosetests
+(require 'nose)
+(setq nose-global-name "nosetests2")
+(add-hook 'python-mode-hook (lambda () (nose-mode t)))
 
 ;; autopair
 (require 'autopair)
@@ -240,6 +261,7 @@
 (global-unset-key (kbd "M-w"))
 (global-unset-key (kbd "C-y"))
 (global-unset-key (kbd "C-q"))
+(global-unset-key (kbd "M-c"))
 
 ;; Search
 (global-unset-key (kbd "C-s"))
@@ -285,3 +307,7 @@
 (global-set-key (kbd "C-p") 'ido-switch-buffer)          ;; C-x b
 (global-set-key (kbd "C-q") 'save-buffers-kill-terminal) ;; C-x C-c
 ;;(global-set-key (kbd "C-p") 'bs-show)
+
+;; Nosetests
+(define-key nose-mode-map (kbd "M-c n m") 'nosetests-module)
+(define-key nose-mode-map (kbd "M-c n .") 'nosetests-one)
