@@ -44,8 +44,8 @@
 (require 'cl)
  
 (defvar my-packages
-  '(solarized-theme yascroll powerline powerline-evil auto-complete python-environment autopair
-    flycheck flycheck-color-mode-line nose))
+  '(solarized-theme move-dup yascroll powerline powerline-evil auto-complete python-environment autopair
+    flycheck flycheck-color-mode-line nose helm))
  
 (defun my-packages-installed-p ()
   (loop for p in my-packages
@@ -105,6 +105,9 @@
 ;;(load-theme 'solarized-dark t)
 (load-theme 'solarized-light t)
 
+;; move-dup
+(require 'move-dup)
+
 ;; yascroll
 (global-yascroll-bar-mode 1)
 (setq yascroll:delay-to-hide nil)
@@ -140,7 +143,8 @@
 (require 'autopair)
 (autopair-global-mode)
 
-
+;; helm
+(helm-mode 1)
 
 
 ;;(require 'projectile)
@@ -204,48 +208,6 @@
     (when input-method
       (activate-input-method current))))
 
-(reverse-input-method 'russian-computer)
-
-(defun duplicate-line (arg)
-  "Duplicate current line, leaving point in lower line."
-  (interactive "*p")
-  ;; save the point for undo
-  (setq buffer-undo-list (cons (point) buffer-undo-list))
-  ;; local variables for start and end of line
-  (let ((bol (save-excursion (beginning-of-line) (point)))
-        eol)
-    (save-excursion
-      ;; don't use forward-line for this, because you would have
-      ;; to check whether you are at the end of the buffer
-      (end-of-line)
-      (setq eol (point))
-      ;; store the line and disable the recording of undo information
-      (let ((line (buffer-substring bol eol))
-            (buffer-undo-list t)
-            (count arg))
-        ;; insert the line arg times
-        (while (> count 0)
-          (newline)         ;; because there is no newline in 'line'
-          (insert line)
-          (setq count (1- count)))
-        )
-      ;; create the undo information
-      (setq buffer-undo-list (cons (cons eol (point)) buffer-undo-list)))
-    ) ; end-of-let
-  ;; put the point in the lowest line and return
-  (next-line arg))
-
-(defun move-line-up ()
-  (interactive)
-  (transpose-lines 1)
-  (forward-line -2))
-
-(defun move-line-down ()
-  (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1))
-
 ;; Move
 (global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-n"))
@@ -284,9 +246,9 @@
 (global-set-key (kbd "M-u") 'move-beginning-of-line)   ;; C-a
 (global-set-key (kbd "M-o") 'move-end-of-line)         ;; C-e
 (global-set-key (kbd "C-a") 'mark-whole-buffer)        ;; C-x h
-(global-set-key (kbd "C-S-d") 'duplicate-line)
-(global-set-key (kbd "C-S-i") 'move-line-up)
-(global-set-key (kbd "C-S-k") 'move-line-down)
+(global-set-key (kbd "C-S-d") 'md/duplicate-down)
+(global-set-key (kbd "C-S-i") 'md/move-lines-up)
+(global-set-key (kbd "C-S-k") 'md/move-lines-down)
 
 ;; Cursor
 (global-set-key (kbd "C-S-l") 'mc/edit-lines)
@@ -311,3 +273,5 @@
 ;; Nosetests
 (define-key nose-mode-map (kbd "M-c n m") 'nosetests-module)
 (define-key nose-mode-map (kbd "M-c n .") 'nosetests-one)
+
+(reverse-input-method 'russian-computer)
