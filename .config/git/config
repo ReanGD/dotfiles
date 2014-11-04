@@ -1,0 +1,17 @@
+[alias]
+	ci = commit
+	st = status
+	df = difftool --dir-diff
+	mt = mergetool -t meld
+[diff]
+	tool = meld
+[difftool "meld"]
+	cmd = meld $LOCAL $REMOTE
+[mergetool "meld"]
+    prompt = false
+    keepBackup = true
+    keepTemporaries = false
+    cmd = meld.exe $LOCAL $BASE $REMOTE --output=$MERGED
+[user]
+	email = reangd@yandex.ru
+	name = ReanGD
