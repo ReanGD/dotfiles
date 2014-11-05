@@ -1,6 +1,8 @@
 [alias]
     ci = commit
     st = status
+    co = checkout
+    br = branch
     df = difftool --dir-diff
     mt = mergetool -t meld
 [diff]
@@ -14,6 +16,8 @@
     keepBackup = true
     keepTemporaries = false
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output="$MERGED"
+[core]
+    autocrlf = false
 [user]
     email = reangd@yandex.ru
     name = ReanGD
