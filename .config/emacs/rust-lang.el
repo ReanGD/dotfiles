@@ -1,7 +1,7 @@
 (provide 'rust-lang)
 
 (defun rust-lang-packages ()
-  '(rust-mode flycheck-rust flymake-rust))
+  '(rust-mode flycheck-rust company))
 ;; melpa: flymake-rust
 
 ;; http://emacs.stackexchange.com/questions/2137/press-f5-to-save-compile-and-run-current-rust-file
@@ -15,9 +15,17 @@
         (buffer-file-name)
         (file-name-sans-extension (buffer-file-name))))))
 
+(defun auto-complite ()
+  (setq racer-rust-src-path "/home/rean/tmp/rust/src")
+  (setq racer-cmd "/usr/bin/racer")
+  ;; (add-to-list 'load-path "<path-to-racer>/editors")
+  (eval-after-load "rust-mode" '(require 'racer))
+  )
+
 (defun rust-lang-init ()
   (autoload 'rust-mode "rust-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+  (auto-complite)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
   (add-hook 'rust-mode-hook
 	    (lambda ()

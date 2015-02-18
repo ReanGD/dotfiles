@@ -10,8 +10,13 @@
 (require 'cl)
 
 (setq base-package
-  '(solarized-theme move-dup yascroll powerline powerline-evil auto-complete python-environment autopair
-    flycheck flycheck-color-mode-line nose helm python-mode))
+  '(move-dup auto-complete python-environment autopair flycheck flycheck-color-mode-line nose python-mode))
+
+(require 'ui-config)
+(setq base-package (append base-package (ui-config-packages)))
+
+(require 'menu-config)
+(setq base-package (append base-package (menu-config-packages)))
 
 (require 'rust-lang)
 (setq base-package (append base-package (rust-lang-packages)))
