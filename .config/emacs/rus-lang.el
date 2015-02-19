@@ -1,5 +1,9 @@
 (provide 'rus-lang)
 
+(defun rus-lang-packages()
+  '())
+
+
 ;; Горячие клавиши в других раскладках
 (defun reverse-input-method (input-method)
   "Build the reverse mapping of single letters from INPUT-METHOD."
@@ -23,3 +27,6 @@
     (vector (append mod (list to)))))))))
     (when input-method
       (activate-input-method current))))
+
+(defun rus-lang-init()
+  (reverse-input-method 'russian-computer))

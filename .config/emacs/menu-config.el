@@ -1,11 +1,13 @@
 (provide 'menu-config)
 
 (defun menu-config-packages ()
-  '(helm ido-vertical-mode ido-ubiquitous smex))
+  '(ido-vertical-mode ido-ubiquitous smex))
 
+;; helm - аналог ido
+;; ido-hacks, flx-ido - посмотреть
+;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
 
 (defun helm-config()
-  ;;(helm-mode 1)
   (require 'helm-config)
   (helm-mode t)
   (global-set-key (kbd "M-x") 'helm-M-x)
@@ -25,6 +27,7 @@
 
 (defun ido-keys ()
   (global-set-key (kbd "C-o") 'ido-find-file)       ;; C-x C-f
+  (global-unset-key (kbd "C-p"))
   (global-set-key (kbd "C-p") 'ido-switch-buffer)   ;; C-x b
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands))

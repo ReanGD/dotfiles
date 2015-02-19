@@ -16,7 +16,11 @@
 
 (defun cursor-settings ()
   ;; cursor |
-  (set-default 'cursor-type 'bar))
+  (set-default 'cursor-type 'bar)
+  ;; select current line
+  (global-hl-line-mode t)
+  ;; disable beep
+  (setq visible-bell t))
 
 
 (defun theme-settings ()
