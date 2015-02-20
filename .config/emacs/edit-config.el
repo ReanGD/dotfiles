@@ -7,7 +7,8 @@
 
 (defun session-settings ()
   (desktop-save-mode t)
-  (setq initial-scratch-message t ;; disable welcome screen
+  (setq initial-scratch-message ""
+	inhibit-startup-screen t
 	desktop-path '("~/.local/share/emacs/")
 	desktop-dirname "~/.local/share/emacs/"
 	desktop-enable t)
@@ -21,7 +22,7 @@
   )
 
 
-(defun edit-settings()
+(defun edit-settings ()
   ;; move with shift
   (setq shift-select-mode t)
   (put 'upcase-region 'disabled nil)
@@ -35,7 +36,7 @@
   (electric-indent-mode +1))
 
 
-(defun move-dup-settings()
+(defun move-dup-settings ()
   (require 'move-dup)
   (global-set-key (kbd "C-S-d") 'md/duplicate-down)
   (global-set-key (kbd "C-S-i") 'md/move-lines-up)
@@ -44,7 +45,8 @@
 
 (defun smartparens-settings()
   (require 'smartparens-config)
-  (smartparens-global-mode t))
+  (smartparens-global-mode t)
+  )
 
 
 (defun edit-config-init ()
