@@ -4,6 +4,7 @@
   auto-save-list-file-prefix "~/.local/share/emacs/auto-save-list/.saves")
 
 (add-to-list 'load-path "~/.config/emacs/")
+(add-to-list 'load-path "~/.config/emacs/lib/")
 
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
 (when (>= emacs-major-version 24)
@@ -13,17 +14,20 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t))
 
 (require 'cl)
+(require 'lib-package)
+
+(setq user-package '("ui-config"
+		     "edit-config"
+		     "menu-config"
+		     "python-lang"
+		     "rust-lang"
+		     "org-config"
+		     "hotkeys"
+		     "rus-lang"))
+
+(lib-package--string-list-require user-package)
 
 (setq base-package '())
-
-(require 'ui-config)
-(require 'edit-config)
-(require 'menu-config)
-(require 'python-lang)
-(require 'rust-lang)
-(require 'org-config)
-(require 'hotkeys)
-(require 'rus-lang)
 
 (ui-config-on-load)
 (edit-config-on-load)
