@@ -13,5 +13,9 @@
   (setq org-agenda-files (list "~/doc/task/new.org")))
 
 
+(defun org-config-on-load ()
+  )
+
+
 (defun org-config-init ()
   (org-mode-settings))

@@ -22,6 +22,11 @@
   (eval-after-load "rust-mode" '(require 'racer))
   )
 
+
+(defun rust-lang-on-load ()
+  )
+
+
 (defun rust-lang-init ()
   (autoload 'rust-mode "rust-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
@@ -31,5 +36,3 @@
 	    (lambda ()
 	      (define-key rust-mode-map (kbd "<f5>") 'rust-save-compile-and-run)))
   )
-
-

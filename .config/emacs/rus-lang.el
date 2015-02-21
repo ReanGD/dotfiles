@@ -28,5 +28,10 @@
     (when input-method
       (activate-input-method current))))
 
+
+(defun rus-lang-on-load ()
+  )
+
+
 (defun rus-lang-init()
   (reverse-input-method 'russian-computer))

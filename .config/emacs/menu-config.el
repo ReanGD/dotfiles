@@ -24,21 +24,31 @@
   (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
   (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match))
 
-(defcustom ido-find-file-ex-hook nil
-  "ido-find-file-ex-hook"
+(defcustom my-file-open-hook nil
+  "after file open hook"
   :type 'hook
-  :group 'ido)
+  :group 'my-config)
 
-(defun ido-find-file-ex ()
+(defun my-file-open ()
   (interactive)
   (ido-find-file)
-  (run-hooks 'ido-find-file-ex-hook))
+  (run-hooks 'my-file-open-hook))
+
+(defcustom my-buffer-switch-hook nil
+  "after buffer switch hook"
+  :type 'hook
+  :group 'my-config)
+
+(defun my-buffer-switch ()
+  (interactive)
+  (ido-switch-buffer)
+  (run-hooks 'my-buffer-switch-hook))
 
 
 (defun ido-keys ()
-  (global-set-key (kbd "C-o") 'ido-find-file-ex)       ;; C-x C-f
+  (global-set-key (kbd "C-o") 'my-file-open)       ;; C-x C-f
   (global-unset-key (kbd "C-p"))
-  (global-set-key (kbd "C-p") 'ido-switch-buffer)   ;; C-x b
+  (global-set-key (kbd "C-p") 'my-buffer-switch)   ;; C-x b
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands))
 
@@ -57,6 +67,10 @@
 	ido-case-fold t
 	ido-enable-flex-matching t
 	ido-auto-merge-work-directories-length -1)
+  )
+
+
+(defun menu-config-on-load ()
   )
 
 

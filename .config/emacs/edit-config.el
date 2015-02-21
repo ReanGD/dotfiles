@@ -1,9 +1,17 @@
 (provide 'edit-config)
 
+
 (defun edit-config-packages ()
   '(smartparens move-dup undo-tree))
 
 ;; autopair - менее функциональная замена smartparens
+
+
+(defun autosave-settings ()
+  ;;(setq make-backup-files         nil) ; Don't want any backup files
+  ;;(setq auto-save-list-file-name  nil) ; Don't want any .saves files
+  ;;(setq auto-save-default         nil) ; Don't want any auto saving
+  )
 
 
 (defun session-settings ()
@@ -17,23 +25,11 @@
   (delete-directory "~/.emacs.d"))
 
 
-(defun autosave-settings ()
-  ;;(setq make-backup-files         nil) ; Don't want any backup files
-  ;;(setq auto-save-list-file-name  nil) ; Don't want any .saves files
-  ;;(setq auto-save-default         nil) ; Don't want any auto saving
-  )
-
-
 (defun undo-settings ()
   (require 'undo-tree)
-  (setq global-undo-tree-mode t
-	undo-tree-auto-save-history t
-	undo-tree-mode-lighter " Undo"
-	undo-tree-history-directory-alist '((".*" . "~/.local/share/emacs/undo")))
-  (add-hook 'ido-find-file-ex-hook 'undo-tree-load-history-hook)
-  (global-unset-key (kbd "M-z"))
-  (global-set-key (kbd "M-Z") 'undo-tree-redo)
-  (global-set-key (kbd "M-z") 'undo-tree-undo))
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history nil
+	undo-tree-mode-lighter " Undo"))
 
 
 (defun edit-settings ()
@@ -62,9 +58,13 @@
   (smartparens-global-mode t))
 
 
+(defun edit-config-on-load ()
+  (defvar undo-tree-map t))		
+
+
 (defun edit-config-init ()
-  (session-settings)
   (autosave-settings)
+  (session-settings)
   (undo-settings)
   (edit-settings)
   (ident-settings)

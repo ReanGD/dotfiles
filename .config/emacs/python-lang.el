@@ -49,6 +49,10 @@
   (define-key nose-mode-map (kbd "M-c n .") 'nosetests-one))
 
 
+(defun python-lang-on-load ()
+  )
+
+
 (defun python-lang-init ()
   (python-settings)
   (jedi-settings)

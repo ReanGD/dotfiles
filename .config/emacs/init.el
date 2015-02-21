@@ -17,27 +17,30 @@
 (setq base-package '())
 
 (require 'ui-config)
-(setq base-package (append base-package (ui-config-packages)))
-
 (require 'edit-config)
-(setq base-package (append base-package (edit-config-packages)))
-
 (require 'menu-config)
-(setq base-package (append base-package (menu-config-packages)))
-
 (require 'python-lang)
-(setq base-package (append base-package (python-lang-packages)))
-
 (require 'rust-lang)
-(setq base-package (append base-package (rust-lang-packages)))
-
 (require 'org-config)
-(setq base-package (append base-package (org-config-packages)))
-
 (require 'hotkeys)
-(setq base-package (append base-package (hotkeys-packages)))
-
 (require 'rus-lang)
+
+(ui-config-on-load)
+(edit-config-on-load)
+(menu-config-on-load)
+(python-lang-on-load)
+(rust-lang-on-load)
+(org-config-on-load)
+(hotkeys-on-load)
+(rus-lang-on-load)
+
+(setq base-package (append base-package (ui-config-packages)))
+(setq base-package (append base-package (edit-config-packages)))
+(setq base-package (append base-package (menu-config-packages)))
+(setq base-package (append base-package (python-lang-packages)))
+(setq base-package (append base-package (rust-lang-packages)))
+(setq base-package (append base-package (org-config-packages)))
+(setq base-package (append base-package (hotkeys-packages)))
 (setq base-package (append base-package (rus-lang-packages)))
 
 

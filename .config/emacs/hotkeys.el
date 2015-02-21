@@ -5,7 +5,18 @@
   '())
 
 
+(defun hotkeys-on-load ()
+  )
+
+
 (defun hotkeys-init ()
+  ;; File
+  (global-unset-key (kbd "M-z"))
+  (global-unset-key (kbd "C-x u"))
+  (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+  (global-set-key (kbd "M-Z") 'undo-tree-redo)
+  (global-set-key (kbd "M-z") 'undo-tree-undo)
+
   ;; Move
   (global-unset-key (kbd "C-f"))
   (global-unset-key (kbd "C-n"))

@@ -102,6 +102,9 @@
 	scroll-preserve-screen-position 'always))
 
 
+(defun ui-config-on-load ()
+  )
+
 (defun ui-config-init ()
   (bar-settings)
   (cursor-settings)
