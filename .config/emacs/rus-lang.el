@@ -30,11 +30,11 @@
 (defun rus-lang-packages()
   '())
 
-(defun rus-lang-on-load ()
+(defun rus-lang-pre-load ()
   )
 
-(defun rus-lang-on-configure()
+(defun rus-lang-load()
   (reverse-input-method 'russian-computer))
 
-(defun rus-lang-on-exit ()
+(defun rus-lang-post-load ()
   (reverse-input-method 'russian-computer))

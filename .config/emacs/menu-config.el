@@ -68,13 +68,13 @@
 ;; ido-hacks, flx-ido - посмотреть
 ;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
 
-(defun menu-config-on-load ()
+(defun menu-config-pre-load ()
   )
 
-(defun menu-config-on-configure()
+(defun menu-config-load()
   ;;(helm-config)
   (ido-config)
   )
 
-(defun menu-config-on-exit ()
+(defun menu-config-post-load ()
   )

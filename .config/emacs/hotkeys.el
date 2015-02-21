@@ -63,11 +63,11 @@
 (defun hotkeys-packages()
   '())
 
-(defun hotkeys-on-load ()
+(defun hotkeys-pre-load ()
   )
 
-(defun hotkeys-on-configure ()
+(defun hotkeys-load ()
   (hotkeys-settings))
 
-(defun hotkeys-on-exit ()
+(defun hotkeys-post-load ()
   )

@@ -51,13 +51,14 @@
 (defun python-lang-packages ()
   '(python-environment flycheck flycheck-color-mode-line nose python-mode (jedi install-jedi)))
 
-;(list jedi 'install-jedi)
+(defun python-lang-pre-load ()
+  )
 
-(defun python-lang-on-configure ()
+(defun python-lang-load ()
   (python-settings)
   (jedi-settings)
   (flycheck-settings)
   (nose-settings))
 
-(defun python-lang-on-exit ()
+(defun python-lang-post-load ()
   )

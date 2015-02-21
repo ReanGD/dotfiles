@@ -13,11 +13,11 @@
 (defun org-config-packages ()
   '())
 
-(defun org-config-on-load ()
+(defun org-config-pre-load ()
   )
 
-(defun org-config-on-configure ()
+(defun org-config-load ()
   (org-mode-settings))
 
-(defun org-config-on-exit ()
+(defun org-config-post-load ()
   )

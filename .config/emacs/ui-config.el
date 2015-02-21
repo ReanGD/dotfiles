@@ -97,10 +97,10 @@
 ;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
 ;; rich-minority - изменение списка режимов
 
-(defun ui-config-on-load ()
+(defun ui-config-pre-load ()
   )
 
-(defun ui-config-on-configure ()
+(defun ui-config-load ()
   (bar-settings)
   (cursor-settings)
   (theme-settings)
@@ -108,5 +108,5 @@
   (yascroll-settings)
   (smooth-scroll-settings))
 
-(defun ui-config-on-exit ()
+(defun ui-config-post-load ()
   )

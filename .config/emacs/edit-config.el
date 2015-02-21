@@ -51,10 +51,10 @@
   '(smartparens move-dup undo-tree))
 ;; autopair - менее функциональная замена smartparens
 
-(defun edit-config-on-load ()
-  (defvar undo-tree-map t))		
+(defun edit-config-pre-load ()
+  (defvar undo-tree-map t))
 
-(defun edit-config-on-configure ()
+(defun edit-config-load ()
   (autosave-settings)
   (session-settings)
   (undo-settings)
@@ -63,5 +63,5 @@
   (move-dup-settings)
   (smartparens-settings))
 
-(defun edit-config-on-exit ()
+(defun edit-config-post-load ()
   )		

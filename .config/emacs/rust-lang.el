@@ -25,10 +25,10 @@
   '(rust-mode flycheck-rust company))
 ;; melpa: flymake-rust
 
-(defun rust-lang-on-load ()
+(defun rust-lang-pre-load ()
   )
 
-(defun rust-lang-on-configure ()
+(defun rust-lang-load ()
   (autoload 'rust-mode "rust-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
   (auto-complite)
@@ -38,5 +38,5 @@
 	      (define-key rust-mode-map (kbd "<f5>") 'rust-save-compile-and-run)))
   )
 
-(defun rust-lang-on-exit ()
+(defun rust-lang-post-load ()
   )
