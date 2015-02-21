@@ -24,9 +24,19 @@
   (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
   (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match))
 
+(defcustom ido-find-file-ex-hook nil
+  "ido-find-file-ex-hook"
+  :type 'hook
+  :group 'ido)
+
+(defun ido-find-file-ex ()
+  (interactive)
+  (ido-find-file)
+  (run-hooks 'ido-find-file-ex-hook))
+
 
 (defun ido-keys ()
-  (global-set-key (kbd "C-o") 'ido-find-file)       ;; C-x C-f
+  (global-set-key (kbd "C-o") 'ido-find-file-ex)       ;; C-x C-f
   (global-unset-key (kbd "C-p"))
   (global-set-key (kbd "C-p") 'ido-switch-buffer)   ;; C-x b
   (global-set-key (kbd "M-x") 'smex)
