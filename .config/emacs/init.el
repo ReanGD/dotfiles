@@ -27,8 +27,6 @@
 
 (lib-package--string-list-require user-package)
 
-(setq base-package '())
-
 (ui-config-on-load)
 (edit-config-on-load)
 (menu-config-on-load)
@@ -38,17 +36,7 @@
 (hotkeys-on-load)
 (rus-lang-on-load)
 
-(setq base-package (append base-package (ui-config-packages)))
-(setq base-package (append base-package (edit-config-packages)))
-(setq base-package (append base-package (menu-config-packages)))
-(setq base-package (append base-package (python-lang-packages)))
-(setq base-package (append base-package (rust-lang-packages)))
-(setq base-package (append base-package (org-config-packages)))
-(setq base-package (append base-package (hotkeys-packages)))
-(setq base-package (append base-package (rus-lang-packages)))
-
-
-(defvar my-packages base-package)
+(defvar my-packages (lib-package--get-all-packages user-package))
  
 (defun my-packages-installed-p ()
   (loop for p in my-packages
