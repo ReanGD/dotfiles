@@ -1,10 +1,6 @@
 (provide 'org-config)
 
 
-(defun org-config-packages ()
-  '())
-
-
 (defun org-mode-settings ()
   (require 'org-install)
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -12,10 +8,16 @@
   (setq org-log-done t)
   (setq org-agenda-files (list "~/doc/task/new.org")))
 
+;; -------------------- hooks --------------------
+
+(defun org-config-packages ()
+  '())
 
 (defun org-config-on-load ()
   )
 
-
-(defun org-config-init ()
+(defun org-config-on-configure ()
   (org-mode-settings))
+
+(defun org-config-on-exit ()
+  )

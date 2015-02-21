@@ -1,11 +1,5 @@
 (provide 'menu-config)
 
-(defun menu-config-packages ()
-  '(ido-vertical-mode ido-ubiquitous smex))
-
-;; helm - аналог ido
-;; ido-hacks, flx-ido - посмотреть
-;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
 
 (defun helm-config()
   (require 'helm-config)
@@ -14,7 +8,6 @@
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (setq helm-M-x-fuzzy-match t)
   )
-
 
 (defun ido-match-keys ()
   (define-key ido-completion-map (kbd "M-k") 'ido-next-match)
@@ -44,14 +37,12 @@
   (ido-switch-buffer)
   (run-hooks 'my-buffer-switch-hook))
 
-
 (defun ido-keys ()
   (global-set-key (kbd "C-o") 'my-file-open)       ;; C-x C-f
   (global-unset-key (kbd "C-p"))
   (global-set-key (kbd "C-p") 'my-buffer-switch)   ;; C-x b
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands))
-
 
 (defun ido-config()
   (require 'ido)
@@ -69,12 +60,21 @@
 	ido-auto-merge-work-directories-length -1)
   )
 
+;; -------------------- hooks --------------------
+
+(defun menu-config-packages ()
+  '(ido-vertical-mode ido-ubiquitous smex))
+;; helm - аналог ido
+;; ido-hacks, flx-ido - посмотреть
+;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
 
 (defun menu-config-on-load ()
   )
 
-
-(defun menu-config-init()
+(defun menu-config-on-configure()
   ;;(helm-config)
   (ido-config)
+  )
+
+(defun menu-config-on-exit ()
   )

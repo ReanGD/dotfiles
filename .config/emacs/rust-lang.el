@@ -1,8 +1,5 @@
 (provide 'rust-lang)
 
-(defun rust-lang-packages ()
-  '(rust-mode flycheck-rust company))
-;; melpa: flymake-rust
 
 ;; http://emacs.stackexchange.com/questions/2137/press-f5-to-save-compile-and-run-current-rust-file
 (defun rust-save-compile-and-run ()
@@ -22,12 +19,16 @@
   (eval-after-load "rust-mode" '(require 'racer))
   )
 
+;; -------------------- hooks --------------------
+
+(defun rust-lang-packages ()
+  '(rust-mode flycheck-rust company))
+;; melpa: flymake-rust
 
 (defun rust-lang-on-load ()
   )
 
-
-(defun rust-lang-init ()
+(defun rust-lang-on-configure ()
   (autoload 'rust-mode "rust-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
   (auto-complite)
@@ -35,4 +36,7 @@
   (add-hook 'rust-mode-hook
 	    (lambda ()
 	      (define-key rust-mode-map (kbd "<f5>") 'rust-save-compile-and-run)))
+  )
+
+(defun rust-lang-on-exit ()
   )

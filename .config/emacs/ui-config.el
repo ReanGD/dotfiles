@@ -1,18 +1,11 @@
 (provide 'ui-config)
 
-(defun ui-config-packages ()
-  '(solarized-theme yascroll smart-mode-line))
-
-;; smooth-scrolling, sublimity, smooth-scroll - не подходит
-;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
-;; rich-minority - изменение списка режимов
 
 (defun bar-settings ()
   ;; disable menu
   (menu-bar-mode -1)
   ;; disable tool-bar
   (tool-bar-mode -1))
-
 
 (defun cursor-settings ()
   ;; cursor |
@@ -21,7 +14,6 @@
   (global-hl-line-mode t)
   ;; disable beep
   (setq visible-bell t))
-
 
 (defun theme-settings ()
   (setq x-underline-at-descent-line t
@@ -34,7 +26,6 @@
   ;;(load-theme 'solarized-dark t)
   (load-theme 'solarized-light t)
   )
-
 
 (defun set-mode-line-format ()
   (setq default-mode-line-format
@@ -61,7 +52,6 @@
 	  mode-line-end-spaces))
   (setq mode-line-format default-mode-line-format))
 
-
 (defun smart-mode-line-settings ()
   (set-mode-line-format)
   (setq sml/order-of-line-and-column nil
@@ -81,7 +71,6 @@
   (sml/setup)
   (sml/apply-theme 'automatic))
 
-
 (defun yascroll-settings ()
   ;; disable scroll-bar
   (scroll-bar-mode -1)
@@ -89,7 +78,6 @@
   (setq yascroll:delay-to-hide nil)
   ;; Don't hide scrollbar when editing
   (defadvice yascroll:before-change (around always-show-bar activate) ()))
-
 
 (defun smooth-scroll-settings ()
   (setq redisplay-dont-pause t
@@ -101,14 +89,24 @@
 	scroll-down-aggressively nil
 	scroll-preserve-screen-position 'always))
 
+;; -------------------- hooks --------------------
+
+(defun ui-config-packages ()
+  '(solarized-theme yascroll smart-mode-line))
+;; smooth-scrolling, sublimity, smooth-scroll - не подходит
+;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
+;; rich-minority - изменение списка режимов
 
 (defun ui-config-on-load ()
   )
 
-(defun ui-config-init ()
+(defun ui-config-on-configure ()
   (bar-settings)
   (cursor-settings)
   (theme-settings)
   (smart-mode-line-settings)
   (yascroll-settings)
   (smooth-scroll-settings))
+
+(defun ui-config-on-exit ()
+  )

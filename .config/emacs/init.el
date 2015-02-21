@@ -7,61 +7,20 @@
 (add-to-list 'load-path "~/.config/emacs/lib/")
 
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t))
-
-(require 'cl)
 (require 'lib-package)
 
-(setq user-package '("ui-config"
-		     "edit-config"
-		     "menu-config"
-		     "python-lang"
-		     "rust-lang"
-		     "org-config"
-		     "hotkeys"
-		     "rus-lang"))
+(setq user-module '("ui-config"
+		    "edit-config"
+		    "menu-config"
+		    "python-lang"
+		    "rust-lang"
+		    "org-config"
+		    "hotkeys"
+		    "rus-lang"))
 
-(lib-package--string-list-require user-package)
-
-(ui-config-on-load)
-(edit-config-on-load)
-(menu-config-on-load)
-(python-lang-on-load)
-(rust-lang-on-load)
-(org-config-on-load)
-(hotkeys-on-load)
-(rus-lang-on-load)
-
-(defvar my-packages (lib-package--get-all-packages user-package))
- 
-(defun my-packages-installed-p ()
-  (loop for p in my-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
- 
-(unless (my-packages-installed-p)
-  (package-refresh-contents)
-  (dolist (p my-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
-
-(if (not (package-installed-p 'jedi))
-   (progn
-     (package-refresh-contents)
-     (package-install 'jedi)
-     (setq jedi:environment-virtualenv
-       (list "virtualenv2" "--system-site-packages"))
-     (jedi:install-server)))
-
-(ui-config-init)
-(edit-config-init)
-(menu-config-init)
-(python-lang-init)
-(rust-lang-init)
-(org-config-init)
-(hotkeys-init)
-(rus-lang-init)
+(lib-package--initialize)
+(lib-package--string-list-require user-module)
+(lib-package--on-load-list user-module)
+(lib-package--install-packages user-module)
+(lib-package--on-configure-list user-module)
+(lib-package--on-exit-list user-module)

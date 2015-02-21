@@ -1,8 +1,5 @@
 (provide 'rus-lang)
 
-(defun rus-lang-packages()
-  '())
-
 
 ;; Горячие клавиши в других раскладках
 (defun reverse-input-method (input-method)
@@ -28,10 +25,16 @@
     (when input-method
       (activate-input-method current))))
 
+;; -------------------- hooks --------------------
+
+(defun rus-lang-packages()
+  '())
 
 (defun rus-lang-on-load ()
   )
 
+(defun rus-lang-on-configure()
+  (reverse-input-method 'russian-computer))
 
-(defun rus-lang-init()
+(defun rus-lang-on-exit ()
   (reverse-input-method 'russian-computer))
