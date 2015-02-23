@@ -3,3 +3,6 @@
 
 # python
 *.pyc
+
+# qtile
+**/qtile/*.db
