@@ -5,6 +5,7 @@ import shelve
 from subprocess import Popen, PIPE
 from itertools import chain
 
+
 class DMenu:
     def __init__(self):
         self._db_path = os.getenv("HOME") + "/.config/qtile/files_rating.db"
@@ -47,12 +48,12 @@ class DMenu:
 
     def _get_program_data(self):
         env_path = [path for path in os.environ['PATH'].split(':') if os.path.isdir(path)]
-        return chain.from_iterable([os.listdir(it) for it in env_path])
+        return list(set(chain.from_iterable([os.listdir(it) for it in env_path])))
 
     def _run_program(self, output):
         if len(output) != 0:
             Popen(output, shell=True)
-    
+
     def _get_virtual_data(self):
         return self._virtual_commands.keys()
 
@@ -68,7 +69,7 @@ class DMenu:
         else:
             self._run_virtual(self._run_dmenu(self._get_virtual_data(), is_program))
 
-        self._close_db()        
+        self._close_db()
 
 
 if __name__ == '__main__':
