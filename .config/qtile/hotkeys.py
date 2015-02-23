@@ -36,6 +36,8 @@ def get_keyboard_hotkey(mod):
             lazy.function(dec_volume)),
         Key([mod], "Return",
             lazy.spawn("urxvt")),
+        Key([mod], "e",
+            lazy.spawn("emacs")),
         Key([mod, "shift"], "q",
             lazy.window.kill()),
         Key([mod, "shift", "control"], "r",
