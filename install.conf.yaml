@@ -1,0 +1,18 @@
+- link:
+    ~/.config/bin:
+      create: true
+      path: .config/bin/
+      force: true
+    ~/.config/zsh:
+      create: true
+      path: .config/zsh/
+      force: true
+    ~/.config/firefox:
+      create: true
+      path: .config/firefox/
+      force: true
+    ~/.config/git:
+      create: true
+      path: .config/git/
+      force: true
+
