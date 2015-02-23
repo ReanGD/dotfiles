@@ -1,7 +1,9 @@
-(provide 'lib/packages)
+(provide 'sys/packages)
 
 (require 'cl)
 (require 'package)
+
+(require 'sys/hooks)
 
 (defun lcl:string-require (name)
   (setq full-name (concat "(require '" name ")"))
