@@ -3,6 +3,14 @@
       create: true
       path: .config/bin/
       force: true
+    ~/.config/emacs:
+      create: true
+      path: .config/emacs/
+      force: true
+    ~/.config/qtile:
+      create: true
+      path: .config/qtile/
+      force: true
     ~/.config/zsh:
       create: true
       path: .config/zsh/
