@@ -5,14 +5,16 @@
 
 (add-to-list 'load-path "~/.config/emacs/")
 (add-to-list 'load-path "~/.config/emacs/lib/")
+;(add-to-list 'load-path "/usr/share/emacs/site-lisp/cedet/")
 
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
-(require 'lib-package)
-(lib-package-init '("ui-config"
-		    "edit-config"
-		    "menu-config"
-		    "python-lang"
-		    "rust-lang"
-		    "org-config"
-		    "hotkeys"
-		    "rus-lang"))
+(require 'lib/packages)
+(cfg:init '("ui-config"
+	    "edit-config"
+	    "menu-config"
+	    ;;"cedet-config"
+	    "python-lang"
+	    "rust-lang"
+	    "org-config"
+	    "hotkeys"
+	    "rus-lang"))
