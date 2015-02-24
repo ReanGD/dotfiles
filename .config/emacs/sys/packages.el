@@ -3,7 +3,10 @@
 (require 'cl)
 (require 'package)
 
+(require 'sys/groups)
 (require 'sys/hooks)
+(require 'sys/vars)
+(require 'sys/funcs)
 
 (defun lcl:string-require (name)
   (setq full-name (concat "(require '" name ")"))
@@ -54,5 +57,10 @@
   (mapcar 'lcl:string-require name-list)
   (mapcar (lambda (name) (lcl:string-call name "pre-load")) name-list)
   (lcl:install-packages name-list)
+  (run-hooks 'cfg-hook:ui)
+  (run-hooks 'cfg-hook:mode)
+  (run-hooks 'cfg-hook:settings)
+  (run-hooks 'cfg-hook:session)
+  (run-hooks 'cfg-hook:hotkey)
   (mapcar (lambda (name) (lcl:string-call name "load")) name-list)
   (mapcar (lambda (name) (lcl:string-call name "post-load")) name-list))

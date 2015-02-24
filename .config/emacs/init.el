@@ -7,7 +7,13 @@
 
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
 (require 'sys/packages)
-(cfg:init '("ui-config"
+
+(setq cfg-var:theme "light") ;; TODO: test after load session
+(setq cfg-var:find-file 'ido-find-file)
+(setq cfg-var:find-buffer 'ido-switch-buffer)
+
+
+(cfg:init '("ui-config" ;;!!
 	    "edit-config"
 	    "menu-config"
 	    ;;"cedet-config"
