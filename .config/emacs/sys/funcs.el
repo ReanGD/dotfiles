@@ -11,3 +11,10 @@
   (interactive)
   (call-interactively cfg-var:find-buffer))
 
+(defun cfg-func:find-command ()
+  (interactive)
+  (call-interactively cfg-var:find-command))
+
+(defun cfg-func:find-major-command ()
+  (interactive)
+  (call-interactively cfg-var:find-major-command))

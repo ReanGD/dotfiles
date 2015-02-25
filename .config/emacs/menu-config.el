@@ -1,15 +1,16 @@
 (provide 'menu-config)
 
 
-(defun helm-config()
+;; package "helm" - аналог ido
+(defun cfg:helm ()
   (require 'helm-config)
   (helm-mode t)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (setq helm-M-x-fuzzy-match t)
-  )
+  (setq helm-M-x-fuzzy-match t))
+;; (add-hook 'cfg-hook:mode 'cfg:helm)
 
-(defun ido-match-keys ()
+(defun cfg:ido-keys-hook ()
   (define-key ido-completion-map (kbd "M-k") 'ido-next-match)
   (define-key ido-completion-map (kbd "M-i") 'ido-prev-match)
   (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
@@ -17,64 +18,28 @@
   (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
   (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match))
 
-(defcustom my-file-open-hook nil
-  "after file open hook"
-  :type 'hook
-  :group 'my-config)
-
-(defun my-file-open ()
-  (interactive)
-  (ido-find-file)
-  (run-hooks 'my-file-open-hook))
-
-(defcustom my-buffer-switch-hook nil
-  "after buffer switch hook"
-  :type 'hook
-  :group 'my-config)
-
-(defun my-buffer-switch ()
-  (interactive)
-  (ido-switch-buffer)
-  (run-hooks 'my-buffer-switch-hook))
-
-(defun ido-keys ()
-  (global-set-key (kbd "C-o") 'my-file-open)       ;; C-x C-f
-  (global-unset-key (kbd "C-p"))
-  (global-set-key (kbd "C-p") 'my-buffer-switch)   ;; C-x b
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands))
-
-(defun ido-config()
+(defun cfg:ido ()
   (require 'ido)
-  (ido-mode t)
-  (require 'ido-vertical-mode)
-  (ido-vertical-mode t)
-  (require 'smex)
-  (smex-initialize)
-  (add-hook 'ido-setup-hook 'ido-match-keys)
-  (ido-keys)
   (setq ido-everywhere t
 	ido-use-filename-at-point nil
 	ido-case-fold t
 	ido-enable-flex-matching t
 	ido-auto-merge-work-directories-length -1)
-  )
+  (add-hook 'ido-setup-hook 'cfg:ido-keys-hook)
+  (ido-mode t)
+  (require 'ido-vertical-mode)
+  (ido-vertical-mode t)
+  (require 'smex)
+  (smex-initialize))
+(add-hook 'cfg-hook:mode 'cfg:ido)
 
 ;; -------------------- hooks --------------------
 
 (defun menu-config-packages ()
-  '(ido-vertical-mode ido-ubiquitous smex))
-;; helm - аналог ido
-;; ido-hacks, flx-ido - посмотреть
+  '(ido-vertical-mode smex))
+;; ido-hacks, flx-ido, ido-ubiquitous - посмотреть
 ;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
 
-(defun menu-config-pre-load ()
-  )
-
-(defun menu-config-load()
-  ;;(helm-config)
-  (ido-config)
-  )
-
-(defun menu-config-post-load ()
-  )
+(defun menu-config-pre-load ())
+(defun menu-config-load())
+(defun menu-config-post-load ())

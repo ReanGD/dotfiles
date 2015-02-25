@@ -15,3 +15,13 @@
   "function call for buffer find"
   :type 'function
   :group 'local-config)
+
+(defcustom cfg-var:find-command 'execute-extended-command
+  "function call for command find"
+  :type 'function
+  :group 'local-config)
+
+(defcustom cfg-var:find-major-command 'execute-extended-command
+  "function call for major mode command find"
+  :type 'function
+  :group 'local-config)

@@ -2,6 +2,18 @@
 
 
 (defun hotkeys-settings ()
+  ;; Menu
+  (global-unset-key (kbd "C-x C-f"))
+  (global-unset-key (kbd "C-o"))
+  (global-set-key (kbd "C-o") 'cfg-func:find-file)       ;; C-x C-f
+  (global-unset-key (kbd "C-x b"))
+  (global-unset-key (kbd "C-p"))
+  (global-set-key (kbd "C-p") 'cfg-func:find-buffer)     ;; C-x b
+  (global-unset-key (kbd "M-x"))
+  (global-unset-key (kbd "M-X"))
+  (global-set-key (kbd "M-x") 'cfg-func:find-command)
+  (global-set-key (kbd "M-X") 'cfg-func:find-major-command)
+
   ;; File
   (global-unset-key (kbd "M-z"))
   (global-unset-key (kbd "C-x u"))
@@ -28,11 +40,7 @@
   ;; Search
   (global-unset-key (kbd "C-s"))
   (global-unset-key (kbd "C-r"))
-  (global-unset-key (kbd "C-x b"))
 
-  ;; File
-  (global-unset-key (kbd "C-x C-f"))
-  
   ;; Move
   (global-set-key (kbd "M-l") 'forward-char)             ;; C-f
   (global-set-key (kbd "M-k") 'next-line)                ;; C-n

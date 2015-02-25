@@ -1,21 +1,23 @@
 (provide 'ui-config)
 
 
-(defun bar-settings ()
+(defun cfg:bar ()
   ;; disable menu
   (menu-bar-mode -1)
   ;; disable tool-bar
   (tool-bar-mode -1))
+(add-hook 'cfg-hook:ui 'cfg:bar)
 
-(defun cursor-settings ()
+(defun cfg:cursor ()
   ;; cursor |
   (set-default 'cursor-type 'bar)
   ;; select current line
   (global-hl-line-mode t)
   ;; disable beep
   (setq visible-bell t))
+(add-hook 'cfg-hook:ui 'cfg:cursor)
 
-(defun theme-settings ()
+(defun cfg:theme ()
   (setq x-underline-at-descent-line t
 	solarized-distinct-fringe-background nil ;;t
 	solarized-high-contrast-mode-line t
@@ -23,11 +25,13 @@
 	solarized-use-more-italic t
 	solarized-emphasize-indicators t
 	solarized-scale-org-headlines nil)
-  ;;(load-theme 'solarized-dark t)
-  (load-theme 'solarized-light t)
-  )
+  (if (equal cfg-var:theme "light")
+      (load-theme 'solarized-light t))
+  (if (equal cfg-var:theme "dark")
+      (load-theme 'solarized-dark t)))
+(add-hook 'cfg-hook:ui 'cfg:theme)
 
-(defun set-mode-line-format ()
+(defun lcl:set-mode-line-format ()
   (setq default-mode-line-format
 	'("%e"
 	  ;; buffer name
@@ -52,8 +56,8 @@
 	  mode-line-end-spaces))
   (setq mode-line-format default-mode-line-format))
 
-(defun smart-mode-line-settings ()
-  (set-mode-line-format)
+(defun cfg:mode-line ()
+  (lcl:set-mode-line-format)
   (setq sml/order-of-line-and-column nil
 	sml/line-number-format "%3l"
 	sml/numbers-separator ","
@@ -70,16 +74,10 @@
   (setq sml/no-confirm-load-theme t)
   (sml/setup)
   (sml/apply-theme 'automatic))
+(add-hook 'cfg-hook:ui 'cfg:mode-line)
 
-(defun yascroll-settings ()
-  ;; disable scroll-bar
-  (scroll-bar-mode -1)
-  (global-yascroll-bar-mode 1)
-  (setq yascroll:delay-to-hide nil)
-  ;; Don't hide scrollbar when editing
-  (defadvice yascroll:before-change (around always-show-bar activate) ()))
-
-(defun smooth-scroll-settings ()
+(defun cfg:scroll ()
+  ;; smooth scroll settings
   (setq redisplay-dont-pause t
 	auto-window-vscroll nil
 	scroll-step 0
@@ -87,7 +85,14 @@
 	scroll-conservatively most-positive-fixnum
 	scroll-up-aggressively nil
 	scroll-down-aggressively nil
-	scroll-preserve-screen-position 'always))
+	scroll-preserve-screen-position 'always)
+  ;; disable scroll-bar
+  (scroll-bar-mode -1)
+  (global-yascroll-bar-mode 1)
+  (setq yascroll:delay-to-hide nil)
+  ;; Don't hide scrollbar when editing
+  (defadvice yascroll:before-change (around always-show-bar activate) ()))
+(add-hook 'cfg-hook:ui 'cfg:scroll)
 
 ;; -------------------- hooks --------------------
 
@@ -97,16 +102,6 @@
 ;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
 ;; rich-minority - изменение списка режимов
 
-(defun ui-config-pre-load ()
-  )
-
-(defun ui-config-load ()
-  (bar-settings)
-  (cursor-settings)
-  (theme-settings)
-  (smart-mode-line-settings)
-  (yascroll-settings)
-  (smooth-scroll-settings))
-
-(defun ui-config-post-load ()
-  )
+(defun ui-config-pre-load ())
+(defun ui-config-load ())
+(defun ui-config-post-load ())
