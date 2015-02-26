@@ -1,7 +1,6 @@
 (provide 'sys/packages)
 
 (require 'cl)
-(require 'package)
 
 (require 'sys/groups)
 (require 'sys/hooks)
@@ -50,7 +49,26 @@
 	(if func (funcall func)))))
   )
 
+(defun lcl:init-dir ()
+  (setq delete-dir nil)
+
+  (if (eq cfg-var:work-dir nil)
+      (setq cfg-var:work-dir user-emacs-directory)
+    (setq delete-dir user-emacs-directory))
+  
+  (setq backup-dir (concat (file-name-as-directory cfg-var:work-dir) "backup")
+	auto-save-dir (concat (file-name-as-directory cfg-var:work-dir) "auto-save"))
+
+  (setq user-emacs-directory cfg-var:work-dir
+	backup-directory-alist `(("." . ,backup-dir))
+	auto-save-list-file-prefix auto-save-dir)
+
+  (if (not (eq delete-dir nil))
+      (delete-directory delete-dir t)))
+
 (defun cfg:init (name-list)
+  (lcl:init-dir)
+  (require 'package)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize)

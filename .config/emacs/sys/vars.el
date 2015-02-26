@@ -1,6 +1,11 @@
 (provide 'sys/vars)
 
 
+(defcustom cfg-var:work-dir nil
+  "set new user-emacs-directory or nill for default"
+  :type 'string
+  :group 'local-config)
+
 (defcustom cfg-var:theme "light"
   "Theme name (now light/dark)"
   :type 'string

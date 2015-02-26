@@ -1,13 +1,8 @@
-(setq
-  user-emacs-directory "~/.local/share/emacs"
-  backup-directory-alist `(("." . "~/.local/share/emacs/backup"))
-  auto-save-list-file-prefix "~/.local/share/emacs/auto-save-list/.saves")
-
-(add-to-list 'load-path "~/.config/emacs/")
-
 ;; (setq url-proxy-services '(("http" . "172.16.1.130:8080")))
+(add-to-list 'load-path "~/.config/emacs/")
 (require 'sys/packages)
 
+(setq cfg-var:work-dir "~/.local/share/emacs")
 (setq cfg-var:theme "light") ;; TODO: test after load session
 (setq cfg-var:find-file 'ido-find-file)
 (setq cfg-var:find-buffer 'ido-switch-buffer)
