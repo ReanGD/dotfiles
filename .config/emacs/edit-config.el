@@ -9,13 +9,10 @@
 
 (defun session-settings ()
   (desktop-save-mode t)
-  (setq initial-scratch-message ""
-	inhibit-startup-screen t
-	desktop-path '("~/.local/share/emacs/")
-	desktop-dirname "~/.local/share/emacs/"
+  (setq desktop-path (list cfg-var:work-dir)
+	desktop-dirname cfg-var:work-dir
 	desktop-enable t)
-  (desktop-read)
-  (delete-directory "~/.emacs.d"))
+  (desktop-read))
 
 (defun undo-settings ()
   (require 'undo-tree)
@@ -24,8 +21,9 @@
 	undo-tree-mode-lighter " Undo"))
 
 (defun edit-settings ()
-  ;; move with shift
-  (setq shift-select-mode t)
+  (setq shift-select-mode t     ;; move with shift
+	delete-selection-mode t ;; delete selection
+	)
   (put 'upcase-region 'disabled nil)
   (put 'downcase-region 'disabled nil)
 
@@ -42,6 +40,7 @@
   (global-set-key (kbd "C-S-k") 'md/move-lines-down))
 
 (defun smartparens-settings()
+  (setq electric-pair-mode -1)
   (require 'smartparens-config)
   (smartparens-global-mode t))
 

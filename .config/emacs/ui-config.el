@@ -1,6 +1,12 @@
 (provide 'ui-config)
 
 
+(defun cfg:screen ()
+  (setq initial-scratch-message ""
+	inhibit-startup-screen t
+	inhibit-splash-screen t))
+(add-hook 'cfg-hook:ui 'cfg:screen)
+
 (defun cfg:bar ()
   ;; disable menu
   (menu-bar-mode -1)
