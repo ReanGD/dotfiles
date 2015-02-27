@@ -9,9 +9,11 @@
 (setq cfg-var:find-command 'smex)
 (setq cfg-var:find-major-command 'smex-major-mode-commands)
 
+(require 'minor/ido-cfg)
+;;(require 'minor/helm-cfg)
+
 (require 'ui-config)
 (require 'edit-config)
-(require 'menu-config)
 ;;(require 'cedet-config)
 (require 'python-lang)
 (require 'rust-lang)
