@@ -16,5 +16,5 @@
 	    "python-lang"
 	    "rust-lang";;!!
 	    "org-config";;!!
-	    "hotkeys"
+	    "hotkeys";;!!
 	    "rus-lang"))

@@ -1,7 +1,7 @@
 (provide 'hotkeys)
 
 
-(defun hotkeys-settings ()
+(defun cfg:hotkeys ()
   ;;(global-unset-key (kbd "M-z"))
   ;;(global-unset-key (kbd "C-x u"))
   (global-unset-key (kbd "C-x C-f"))
@@ -67,17 +67,12 @@
   (define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)  ;; C-r
   (define-key isearch-mode-map (kbd "<return>") 'isearch-repeat-forward) ;; C-s
   )
-
+(add-hook 'cfg-hook:hotkey 'cfg:hotkeys)
 ;; -------------------- hooks --------------------
 
 (defun hotkeys-packages()
   '())
 
-(defun hotkeys-pre-load ()
-  )
-
-(defun hotkeys-load ()
-  (hotkeys-settings))
-
-(defun hotkeys-post-load ()
-  )
+(defun hotkeys-pre-load ())
+(defun hotkeys-load ())
+(defun hotkeys-post-load ())
