@@ -10,7 +10,7 @@
 (setq cfg-var:find-major-command 'smex-major-mode-commands)
 
 (cfg:init '("ui-config" ;;!!
-	    "edit-config"
+	    "edit-config";;!!
 	    "menu-config";;!!
 	    ;;"cedet-config"
 	    "python-lang"

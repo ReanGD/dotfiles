@@ -66,6 +66,13 @@
   (if (not (eq delete-dir nil))
       (delete-directory delete-dir t)))
 
+(defun lcl:init-session ()
+  (desktop-save-mode t)
+  (setq desktop-path (list cfg-var:work-dir)
+	desktop-dirname cfg-var:work-dir
+	desktop-enable t)
+  (desktop-read))
+
 (defun cfg:init (name-list)
   (lcl:init-dir)
   (require 'package)
@@ -78,6 +85,7 @@
   (run-hooks 'cfg-hook:ui)
   (run-hooks 'cfg-hook:minor-mode)
   (run-hooks 'cfg-hook:major-mode)
+  (lcl:init-session)
   (run-hooks 'cfg-hook:session)
   (run-hooks 'cfg-hook:hotkey)
   (mapcar (lambda (name) (lcl:string-call name "load")) name-list)
