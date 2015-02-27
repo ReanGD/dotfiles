@@ -29,10 +29,7 @@
 (add-hook 'cfg-hook:ui 'cfg:edit)
 
 (defun cfg:move-dup ()
-  (require 'move-dup)
-  (global-set-key (kbd "C-S-d") 'md/duplicate-down)
-  (global-set-key (kbd "C-S-i") 'md/move-lines-up)
-  (global-set-key (kbd "C-S-k") 'md/move-lines-down))
+  (require 'move-dup))
 (add-hook 'cfg-hook:minor-mode 'cfg:move-dup)
 
 (defun cfg:smartparens ()
