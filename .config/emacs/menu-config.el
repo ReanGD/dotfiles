@@ -8,7 +8,7 @@
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (setq helm-M-x-fuzzy-match t))
-;; (add-hook 'cfg-hook:mode 'cfg:helm)
+;; (add-hook 'cfg-hook:minor-mode 'cfg:helm)
 
 (defun cfg:ido-keys-hook ()
   (define-key ido-completion-map (kbd "M-k") 'ido-next-match)
@@ -31,7 +31,7 @@
   (ido-vertical-mode t)
   (require 'smex)
   (smex-initialize))
-(add-hook 'cfg-hook:mode 'cfg:ido)
+(add-hook 'cfg-hook:minor-mode 'cfg:ido)
 
 ;; -------------------- hooks --------------------
 

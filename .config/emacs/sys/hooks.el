@@ -6,18 +6,18 @@
   :type 'hook
   :group 'local-config)
 
-(defcustom cfg-hook:mode nil
-  "common mode load (autocomplete and etc.)"
+(defcustom cfg-hook:minor-mode nil
+  "minor-mode load"
   :type 'hook
   :group 'local-config)
 
-(defcustom cfg-hook:settings nil
-  "settings load (c++ settings and etc.)"
+(defcustom cfg-hook:major-mode nil
+  "major-mode load"
   :type 'hook
   :group 'local-config)
 
 (defcustom cfg-hook:session nil
-  "session load"
+  "after init session load"
   :type 'hook
   :group 'local-config)
 
