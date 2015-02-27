@@ -18,12 +18,4 @@
 (require 'org-config)
 (require 'hotkeys)
 
-
-(cfg:init '("ui-config"
-	    "edit-config"
-	    "menu-config"
-	    ;;"cedet-config"
-	    "python-lang"
-	    "rust-lang"
-	    "org-config"
-	    "hotkeys"))
+(cfg:init)

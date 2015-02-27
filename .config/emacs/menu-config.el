@@ -33,9 +33,7 @@
   (smex-initialize))
 (add-hook 'cfg-hook:minor-mode 'cfg:ido)
 
-;; -------------------- hooks --------------------
-
-(defun menu-config-packages ()
-  '(ido-vertical-mode smex))
+(cfg:add-package 'ido-vertical-mode)
+(cfg:add-package 'smex)
 ;; ido-hacks, flx-ido, ido-ubiquitous - посмотреть
 ;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer

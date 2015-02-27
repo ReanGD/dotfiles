@@ -8,42 +8,22 @@
 (require 'sys/funcs)
 (require 'sys/remap)
 
-(defun lcl:one-lvl (ls)
-  (if ls (append (car ls) (lcl:one-lvl (cdr ls)))))
-
-(defun lcl:string-call (base postfix)
-  (setq full-name (concat base "-" postfix))
-  (setq func (car (read-from-string full-name)))
-  (if (functionp func)
-      (funcall func)
-    (message "WARNING: can't find function '%s'" full-name)))
-
-(defun lcl:fill-post-func (v)
-  (if (not (listp v)) (list v nil) v))
-
-(defun lcl:get-all-packages (name-list)
-  (setq raw-list (mapcar (lambda (name) (lcl:string-call name "packages")) name-list))
-  (mapcar 'lcl:fill-post-func
-	  (lcl:one-lvl raw-list)))
-
-(defun lcl:need-install-package (package-list)
-  (loop for p in package-list
+(defun lcl:need-install-package ()
+  (loop for p in cfg-var:packages
         when (not (package-installed-p (car p)))
 	do (return t)
         finally (return nil)))
 
-(defun lcl:install-packages (name-list)
-  (setq all-packages (lcl:get-all-packages name-list))
-  (when (lcl:need-install-package all-packages)
+(defun lcl:install-packages ()
+  (when (lcl:need-install-package)
     (message "%s" "Emacs is now refreshing its package database...")
     (package-refresh-contents)
     (message "%s" " done.")
-    (dolist (p all-packages)
+    (dolist (p cfg-var:packages)
       (when (not (package-installed-p (car p)))
 	(package-install (car p))
-	(setq func (car (cdr p)))
-	(if func (funcall func)))))
-  )
+	(setq func (cdr p))
+	(if func (funcall func))))))
 
 (defun lcl:init-dir ()
   (setq delete-dir nil)
@@ -69,13 +49,16 @@
 	desktop-enable t)
   (desktop-read))
 
-(defun cfg:init (name-list)
+(defun cfg:add-package (name &optional func)
+  (add-to-list 'cfg-var:packages (cons name func)))
+
+(defun cfg:init ()
   (lcl:init-dir)
   (require 'package)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize)
-  (lcl:install-packages name-list)
+  (lcl:install-packages)
   (run-hooks 'cfg-hook:ui)
   (run-hooks 'cfg-hook:minor-mode)
   (run-hooks 'cfg-hook:major-mode)

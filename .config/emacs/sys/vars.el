@@ -6,6 +6,11 @@
   :type 'string
   :group 'local-config)
 
+(defcustom cfg-var:packages '()
+  "list packages for install"
+  :type '(list (cons symbol function))
+  :group 'local-config)
+
 (defcustom cfg-var:theme "light"
   "Theme name (now light/dark)"
   :type 'string

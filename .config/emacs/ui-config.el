@@ -100,11 +100,9 @@
   (defadvice yascroll:before-change (around always-show-bar activate) ()))
 (add-hook 'cfg-hook:ui 'cfg:scroll)
 
-;; -------------------- hooks --------------------
-
-(defun ui-config-packages ()
-  '(solarized-theme yascroll smart-mode-line))
+(cfg:add-package 'solarized-theme)
+(cfg:add-package 'yascroll)
+(cfg:add-package 'smart-mode-line)
 ;; smooth-scrolling, sublimity, smooth-scroll - не подходит
 ;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
 ;; rich-minority - изменение списка режимов
-

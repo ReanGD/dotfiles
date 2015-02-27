@@ -68,7 +68,3 @@
   (define-key isearch-mode-map (kbd "<return>") 'isearch-repeat-forward) ;; C-s
   )
 (add-hook 'cfg-hook:hotkey 'cfg:hotkeys)
-;; -------------------- hooks --------------------
-
-(defun hotkeys-packages()
-  '())

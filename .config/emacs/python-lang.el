@@ -50,7 +50,9 @@
 	(list "virtualenv2" "--system-site-packages"))
   (jedi:install-server))
 
-;; -------------------- hooks --------------------
-
-(defun python-lang-packages ()
-  '(python-environment flycheck flycheck-color-mode-line nose python-mode (jedi cfg:install-jedi)))
+(cfg:add-package 'python-environment)
+(cfg:add-package 'flycheck)
+(cfg:add-package 'flycheck-color-mode-line)
+(cfg:add-package 'nose)
+(cfg:add-package 'python-mode)
+(cfg:add-package 'jedi 'cfg:install-jedi)

@@ -25,7 +25,6 @@
 	      (define-key rust-mode-map (kbd "<f5>") 'lcl:rust-save-compile-and-run))))
 (add-hook 'cfg-hook:major-mode 'cfg:rust)
 
-;; -------------------- hooks --------------------
-
-(defun rust-lang-packages ()
-  '(rust-mode flycheck-rust company))
+(cfg:add-package 'rust-mode)
+(cfg:add-package 'flycheck-rust)
+(cfg:add-package 'company)

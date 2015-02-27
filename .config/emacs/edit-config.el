@@ -38,8 +38,7 @@
   (smartparens-global-mode t))
 (add-hook 'cfg-hook:minor-mode 'cfg:smartparens)
 
-;; -------------------- hooks --------------------
-
-(defun edit-config-packages ()
-  '(smartparens move-dup undo-tree))
+(cfg:add-package 'smartparens)
+(cfg:add-package 'move-dup)
+(cfg:add-package 'undo-tree)
 ;; autopair - менее функциональная замена smartparens
