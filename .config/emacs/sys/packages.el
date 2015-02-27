@@ -6,6 +6,7 @@
 (require 'sys/hooks)
 (require 'sys/vars)
 (require 'sys/funcs)
+(require 'sys/remap)
 
 (defun lcl:string-require (name)
   (setq full-name (concat "(require '" name ")"))
@@ -89,4 +90,5 @@
   (run-hooks 'cfg-hook:session)
   (run-hooks 'cfg-hook:hotkey)
   (mapcar (lambda (name) (lcl:string-call name "load")) name-list)
-  (mapcar (lambda (name) (lcl:string-call name "post-load")) name-list))
+  (mapcar (lambda (name) (lcl:string-call name "post-load")) name-list)
+  (cfg:reverse-input-method 'russian-computer))

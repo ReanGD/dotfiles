@@ -17,4 +17,4 @@
 	    "rust-lang";;!!
 	    "org-config";;!!
 	    "hotkeys";;!!
-	    "rus-lang"))
+	    ))

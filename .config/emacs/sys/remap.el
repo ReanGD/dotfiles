@@ -1,8 +1,8 @@
-(provide 'rus-lang)
+(provide 'sys/remap)
 
 
 ;; Горячие клавиши в других раскладках
-(defun reverse-input-method (input-method)
+(defun cfg:reverse-input-method (input-method)
   "Build the reverse mapping of single letters from INPUT-METHOD."
   (interactive
    (list (read-input-method-name "Use input method (default current): ")))
@@ -24,17 +24,3 @@
     (vector (append mod (list to)))))))))
     (when input-method
       (activate-input-method current))))
-
-;; -------------------- hooks --------------------
-
-(defun rus-lang-packages()
-  '())
-
-(defun rus-lang-pre-load ()
-  )
-
-(defun rus-lang-load()
-  (reverse-input-method 'russian-computer))
-
-(defun rus-lang-post-load ()
-  (reverse-input-method 'russian-computer))
