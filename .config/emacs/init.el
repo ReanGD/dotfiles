@@ -14,7 +14,7 @@
 	    "menu-config";;!!
 	    ;;"cedet-config"
 	    "python-lang"
-	    "rust-lang"
+	    "rust-lang";;!!
 	    "org-config"
 	    "hotkeys"
 	    "rus-lang"))
