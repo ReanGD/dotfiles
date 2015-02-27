@@ -39,7 +39,3 @@
   '(ido-vertical-mode smex))
 ;; ido-hacks, flx-ido, ido-ubiquitous - посмотреть
 ;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
-
-(defun menu-config-pre-load ())
-(defun menu-config-load())
-(defun menu-config-post-load ())

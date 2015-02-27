@@ -72,7 +72,3 @@
 
 (defun hotkeys-packages()
   '())
-
-(defun hotkeys-pre-load ())
-(defun hotkeys-load ())
-(defun hotkeys-post-load ())

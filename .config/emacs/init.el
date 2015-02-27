@@ -9,6 +9,16 @@
 (setq cfg-var:find-command 'smex)
 (setq cfg-var:find-major-command 'smex-major-mode-commands)
 
+(require 'ui-config)
+(require 'edit-config)
+(require 'menu-config)
+;;(require 'cedet-config)
+(require 'python-lang)
+(require 'rust-lang)
+(require 'org-config)
+(require 'hotkeys)
+
+
 (cfg:init '("ui-config"
 	    "edit-config"
 	    "menu-config"

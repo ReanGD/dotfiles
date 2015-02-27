@@ -43,7 +43,3 @@
 (defun edit-config-packages ()
   '(smartparens move-dup undo-tree))
 ;; autopair - менее функциональная замена smartparens
-
-(defun edit-config-pre-load ())
-(defun edit-config-load ())
-(defun edit-config-post-load ())		

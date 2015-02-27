@@ -108,6 +108,3 @@
 ;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная
 ;; rich-minority - изменение списка режимов
 
-(defun ui-config-pre-load ())
-(defun ui-config-load ())
-(defun ui-config-post-load ())

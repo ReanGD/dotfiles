@@ -8,11 +8,6 @@
 (require 'sys/funcs)
 (require 'sys/remap)
 
-(defun lcl:string-require (name)
-  (setq full-name (concat "(require '" name ")"))
-  (setq func (car (read-from-string full-name)))
-  (eval func))
-
 (defun lcl:one-lvl (ls)
   (if ls (append (car ls) (lcl:one-lvl (cdr ls)))))
 
@@ -80,8 +75,6 @@
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize)
-  (mapcar 'lcl:string-require name-list)
-  (mapcar (lambda (name) (lcl:string-call name "pre-load")) name-list)
   (lcl:install-packages name-list)
   (run-hooks 'cfg-hook:ui)
   (run-hooks 'cfg-hook:minor-mode)
@@ -89,6 +82,4 @@
   (lcl:init-session)
   (run-hooks 'cfg-hook:session)
   (run-hooks 'cfg-hook:hotkey)
-  (mapcar (lambda (name) (lcl:string-call name "load")) name-list)
-  (mapcar (lambda (name) (lcl:string-call name "post-load")) name-list)
   (cfg:reverse-input-method 'russian-computer))

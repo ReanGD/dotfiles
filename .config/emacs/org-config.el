@@ -13,6 +13,3 @@
 
 (defun org-config-packages ()
   '())
-(defun org-config-pre-load ())
-(defun org-config-load ())
-(defun org-config-post-load ())

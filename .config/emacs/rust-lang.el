@@ -29,7 +29,3 @@
 
 (defun rust-lang-packages ()
   '(rust-mode flycheck-rust company))
-
-(defun rust-lang-pre-load ())
-(defun rust-lang-load ())
-(defun rust-lang-post-load ())
