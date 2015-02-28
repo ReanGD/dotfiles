@@ -8,9 +8,12 @@
 (setq cfg-var:find-buffer 'ido-switch-buffer)
 (setq cfg-var:find-command 'smex)
 (setq cfg-var:find-major-command 'smex-major-mode-commands)
+(setq cfg-var:autocomplete 'company-complete-common)
 
 (require 'minor/ido-cfg)
 ;;(require 'minor/helm-cfg)
+;;(require 'minor/auto-complete-cfg)
+(require 'minor/company-cfg)
 
 (require 'ui-config)
 (require 'edit-config)

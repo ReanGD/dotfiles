@@ -51,6 +51,10 @@
   (global-set-key (kbd "C-S-d") 'md/duplicate-down)
   (global-set-key (kbd "C-S-c") 'kill-ring-save)         ;; M-w
   (global-set-key (kbd "C-S-v") 'yank)                   ;; C-y
+
+  ;; Others
+  (if cfg-var:autocomplete
+      (global-set-key (kbd "C-SPC") cfg-var:autocomplete))
   
 
   ;; Transform

@@ -35,3 +35,8 @@
   "function call for major mode command find"
   :type 'function
   :group 'local-config)
+
+(defcustom cfg-var:autocomplete nil
+  "function call for autocomplete"
+  :type 'function
+  :group 'local-config)

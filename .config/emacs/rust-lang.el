@@ -27,4 +27,3 @@
 
 (cfg:add-package 'rust-mode)
 (cfg:add-package 'flycheck-rust)
-(cfg:add-package 'company)
