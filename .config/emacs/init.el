@@ -9,11 +9,14 @@
 (setq cfg-var:find-command 'smex)
 (setq cfg-var:find-major-command 'smex-major-mode-commands)
 (setq cfg-var:autocomplete 'company-complete-common)
+(setq cfg-var:use-irony t)
 
 (require 'minor/ido-cfg)
 ;;(require 'minor/helm-cfg)
 ;;(require 'minor/auto-complete-cfg)
 (require 'minor/company-cfg)
+(if cfg-var:use-irony
+    (require 'minor/irony-cfg))
 
 (require 'ui-config)
 (require 'edit-config)

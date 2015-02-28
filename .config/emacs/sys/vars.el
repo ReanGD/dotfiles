@@ -40,3 +40,8 @@
   "function call for autocomplete"
   :type 'function
   :group 'local-config)
+
+(defcustom cfg-var:use-irony nil
+  "is use irony-mode"
+  :type 'boolean
+  :group 'local-config)
