@@ -2,26 +2,29 @@
 
 
 (defun cfg:hotkeys ()
-  ;;(global-unset-key (kbd "M-z"))
   ;;(global-unset-key (kbd "C-x u"))
   (global-unset-key (kbd "C-x C-f"))
-  ;;(global-unset-key (kbd "C-o"))
+  (global-unset-key (kbd "C-x C-s"))
+  (global-unset-key (kbd "C-x h"))
   (global-unset-key (kbd "C-x b"))
+  ;;(global-unset-key (kbd "C-o"))
   ;;(global-unset-key (kbd "C-p"))
   ;;(global-unset-key (kbd "C-n"))
   ;;(global-unset-key (kbd "C-f"))
+  ;;(global-unset-key (kbd "C-a"))
+  ;;(global-unset-key (kbd "C-s"))
   (global-unset-key (kbd "C-b"))
-  ;;(global-unset-key (kbd "M-x"))
-  ;;(global-unset-key (kbd "M-X"))
+  (global-unset-key (kbd "C-e"))
+  (global-unset-key (kbd "C-y"))
+  ;;(global-unset-key (kbd "M-z"))
+  (global-unset-key (kbd "M-x"))
+  (global-unset-key (kbd "M-X"))
   (global-unset-key (kbd "M-f"))
   (global-unset-key (kbd "M-b"))
-  ;; (global-unset-key (kbd "C-a"))
-  (global-unset-key (kbd "C-x h"))
-  (global-unset-key (kbd "C-e"))
   (global-unset-key (kbd "M-w"))
-  (global-unset-key (kbd "C-y"))
   
   ;; File
+  (global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
   (global-set-key (kbd "C-x u") 'undo-tree-visualize)
   (global-set-key (kbd "M-Z") 'undo-tree-redo)
   (global-set-key (kbd "M-z") 'undo-tree-undo)
@@ -29,8 +32,8 @@
   ;; Menu
   (global-set-key (kbd "C-o") 'cfg-func:find-file)       ;; C-x C-f
   (global-set-key (kbd "C-p") 'cfg-func:find-buffer)     ;; C-x b
-  (global-set-key (kbd "M-x") 'cfg-func:find-command)
-  (global-set-key (kbd "M-X") 'cfg-func:find-major-command)
+  (global-set-key (kbd "C-S-p") 'cfg-func:find-command)  ;; M-x
+  (global-set-key (kbd "M-P") 'cfg-func:find-major-command)
 
   ;; Move
   (global-set-key (kbd "M-i") 'previous-line)            ;; C-p
@@ -63,7 +66,6 @@
   (global-unset-key (kbd "M-c"))
 
   ;; Search
-  (global-unset-key (kbd "C-s"))
   (global-unset-key (kbd "C-r"))
 
   ;; Search
