@@ -53,6 +53,7 @@
   (global-set-key (kbd "C-S-v") 'yank)                   ;; C-y
 
   ;; Others
+  (global-set-key (kbd "<f5>") 'cfg-func:compile)
   (if cfg-var:autocomplete
       (global-set-key (kbd "C-SPC") cfg-var:autocomplete))
   
