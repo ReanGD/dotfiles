@@ -12,6 +12,7 @@
 (setq cfg-var:use-irony t)
 
 (require 'major/cmake-cfg)
+(require 'major/cpp-cfg)
 
 (require 'minor/ido-cfg)
 ;;(require 'minor/helm-cfg)
@@ -20,6 +21,7 @@
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/cpputils-cmake-cfg)
+;;(require 'minor/cmake-ide-cfg)
 
 (require 'ui-config)
 (require 'edit-config)
