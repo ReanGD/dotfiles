@@ -11,12 +11,15 @@
 (setq cfg-var:autocomplete 'company-complete-common)
 (setq cfg-var:use-irony t)
 
+(require 'major/cmake-cfg)
+
 (require 'minor/ido-cfg)
 ;;(require 'minor/helm-cfg)
 ;;(require 'minor/auto-complete-cfg)
 (require 'minor/company-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
+;;(require 'minor/cpputils-cmake-cfg)
 
 (require 'ui-config)
 (require 'edit-config)
