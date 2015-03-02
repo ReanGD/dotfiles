@@ -24,6 +24,7 @@ of FILE in the current directory, suitable for creation"
        (format "make --no-print-directory -C %s" make-dir)))
 
 (defun cfg:cpp ()
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-hook 'c-mode-common-hook 'lcl:cpp-hook)
   (add-hook 'c-mode-common-hook 'lcl:cpp-compile-hook)
   )
