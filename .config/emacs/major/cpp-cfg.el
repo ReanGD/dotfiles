@@ -14,10 +14,10 @@ of FILE in the current directory, suitable for creation"
 			return nil))))
 
 (defun lcl:cpp-hook ()
-  (setq c-default-style "bsd"   ;; code-slyle
-	indent-tabs-mode nil    ;; отступы делаются пробелами	
-	tab-width 4             ;; default tab width
-	c-basic-offset 4        ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width	
+  (setq c-default-style "Ellemtel" ;; code-slyle bsd
+	indent-tabs-mode nil       ;; отступы делаются пробелами	
+	tab-width 4                ;; default tab width
+	c-basic-offset 4           ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width	
 	)
   (local-unset-key (kbd "M-j"))
   (local-unset-key (kbd "C-M-j")))

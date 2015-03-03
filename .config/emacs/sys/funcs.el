@@ -24,3 +24,8 @@
   (save-buffer)
   (setq-local compilation-read-command nil)
   (call-interactively 'compile))
+
+(defun cfg:format-buffer ()
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))

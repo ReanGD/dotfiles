@@ -3,7 +3,7 @@
 
 (defun cfg:hotkeys ()
   ;;(global-unset-key (kbd "C-x u"))
-  (global-unset-key (kbd "C-x C-f"))
+  ;;(global-unset-key (kbd "C-x C-f"))
   (global-unset-key (kbd "C-x C-s"))
   (global-unset-key (kbd "C-x h"))
   (global-unset-key (kbd "C-x b"))
@@ -59,6 +59,9 @@
   (global-set-key (kbd "<f5>") 'cfg-func:compile)
   (if cfg-var:autocomplete
       (global-set-key (kbd "C-SPC") cfg-var:autocomplete))
+
+  ;; My extensions
+  (global-set-key (kbd "C-x C-f") 'cfg:format-buffer)
   
 
   ;; Transform
