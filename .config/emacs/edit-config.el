@@ -19,6 +19,11 @@
 (defun cfg:edit ()
   (setq shift-select-mode t     ;; move with shift
 	delete-selection-mode t ;; delete selection
+	indent-tabs-mode nil    ;; отступы делаются пробелами
+	tab-width 2             ;; default tab width
+	c-basic-offset 2        ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width
+	js-indent-level 2       ;; indentation level in JS mode
+	css-indent-offset 2     ;; indentation level in CSS mode
 	)
   (put 'upcase-region 'disabled nil)
   (put 'downcase-region 'disabled nil)
