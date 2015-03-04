@@ -18,6 +18,7 @@
 ;;(require 'minor/helm-cfg)
 ;;(require 'minor/auto-complete-cfg)
 (require 'minor/company-cfg)
+(require 'minor/projectile-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/cpputils-cmake-cfg)
