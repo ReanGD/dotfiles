@@ -46,4 +46,5 @@
 (cfg:add-package 'smartparens)
 (cfg:add-package 'move-dup)
 (cfg:add-package 'undo-tree)
+(cfg:add-package 'comment-dwim-2)
 ;; autopair - менее функциональная замена smartparens

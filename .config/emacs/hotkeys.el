@@ -13,10 +13,14 @@
   ;;(global-unset-key (kbd "C-f"))
   ;;(global-unset-key (kbd "C-a"))
   ;;(global-unset-key (kbd "C-s"))
-  (global-unset-key (kbd "C-b"))
+  ;;(global-unset-key (kbd "C-b"))
+  ;;(global-unset-key (kbd "C-/"))
+  (global-unset-key (kbd "C-q"))
   (global-unset-key (kbd "C-e"))
+  (global-unset-key (kbd "C-r"))
   (global-unset-key (kbd "C-y"))
   ;;(global-unset-key (kbd "M-z"))
+  (global-unset-key (kbd "M-c"))
   (global-unset-key (kbd "M-x"))
   (global-unset-key (kbd "M-X"))
   (global-unset-key (kbd "M-f"))
@@ -54,9 +58,10 @@
   (global-set-key (kbd "C-S-d") 'md/duplicate-down)
   (global-set-key (kbd "C-S-c") 'kill-ring-save)         ;; M-w
   (global-set-key (kbd "C-S-v") 'yank)                   ;; C-y
+  (global-set-key (kbd "C-/")   'comment-dwim-2)
 
   ;; Others
-  (global-set-key (kbd "<f5>") 'cfg-func:compile)
+  (global-set-key (kbd "C-b") 'cfg-func:compile)
   (if cfg-var:autocomplete
       (global-set-key (kbd "C-SPC") cfg-var:autocomplete))
 
@@ -64,13 +69,7 @@
   (global-set-key (kbd "C-x C-f") 'cfg:format-buffer)
   
 
-  ;; Transform
-  (global-unset-key (kbd "C-q"))
-  (global-unset-key (kbd "M-c"))
-
-  ;; Search
-  (global-unset-key (kbd "C-r"))
-
+  
   ;; Search
   (global-set-key (kbd "C-f") 'isearch-forward)                          ;; C-s
   (define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)     ;; C-s
