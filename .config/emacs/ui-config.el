@@ -3,6 +3,7 @@
 
 (defun cfg:screen ()
   (setq initial-scratch-message ""
+	initial-major-mode 'text-mode
 	inhibit-startup-screen t
 	inhibit-splash-screen t))
 (add-hook 'cfg-hook:ui 'cfg:screen)
