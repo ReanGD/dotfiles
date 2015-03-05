@@ -17,8 +17,8 @@
 (add-hook 'cfg-hook:minor-mode 'cfg:undo)
 
 (defun cfg:edit ()
+  (delete-selection-mode t)
   (setq shift-select-mode t     ;; move with shift
-	delete-selection-mode t ;; delete selection
 	indent-tabs-mode nil    ;; отступы делаются пробелами
 	tab-width 2             ;; default tab width
 	c-basic-offset 2        ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width
