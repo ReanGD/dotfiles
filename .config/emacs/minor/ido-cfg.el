@@ -10,6 +10,10 @@
   (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match))
 (add-hook 'ido-setup-hook 'cfg:ido-keys-hook)
 
+(defun lcl:imenu ()
+  (setq imenu-auto-rescan t)
+  (autoload 'idomenu "idomenu" nil t))
+
 (defun cfg:ido ()
   (require 'ido)
   (setq ido-everywhere t
@@ -21,10 +25,14 @@
   (require 'ido-vertical-mode)
   (ido-vertical-mode t)
   (require 'smex)
-  (smex-initialize))
+  (smex-initialize)
+  (lcl:imenu))
 (add-hook 'cfg-hook:minor-mode 'cfg:ido)
 
 (cfg:add-package 'ido-vertical-mode)
 (cfg:add-package 'smex)
+(cfg:add-package 'idomenu)
+(cfg:add-package 'imenu-anywhere)
+
 ;; ido-hacks, flx-ido, ido-ubiquitous - посмотреть
 ;; встроенный плагин bs возможно будет хорошим аналогом ido-switch-buffer
