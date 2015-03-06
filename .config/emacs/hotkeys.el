@@ -7,25 +7,29 @@
   (global-unset-key (kbd "C-x C-s"))
   (global-unset-key (kbd "C-x h"))
   (global-unset-key (kbd "C-x b"))
-  ;;(global-unset-key (kbd "C-o"))
-  ;;(global-unset-key (kbd "C-p"))
+  ;;(global-unset-key (kbd "C-a"))
+  ;;(global-unset-key (kbd "C-b"))
   ;;(global-unset-key (kbd "C-n"))
   ;;(global-unset-key (kbd "C-f"))
-  ;;(global-unset-key (kbd "C-a"))
+  ;;(global-unset-key (kbd "C-o"))
+  ;;(global-unset-key (kbd "C-p"))
   ;;(global-unset-key (kbd "C-s"))
-  ;;(global-unset-key (kbd "C-b"))
+  ;;(global-unset-key (kbd "C-v"))
   ;;(global-unset-key (kbd "C-/"))
-  (global-unset-key (kbd "C-q"))
   (global-unset-key (kbd "C-e"))
-  (global-unset-key (kbd "C-r"))
+  (global-unset-key (kbd "C-q"))
+  ;;(global-unset-key (kbd "C-r"))
   (global-unset-key (kbd "C-y"))
   ;;(global-unset-key (kbd "M-z"))
+  ;;(global-unset-key (kbd "M-v"))
   (global-unset-key (kbd "M-c"))
   (global-unset-key (kbd "M-x"))
   (global-unset-key (kbd "M-X"))
   (global-unset-key (kbd "M-f"))
   (global-unset-key (kbd "M-b"))
   (global-unset-key (kbd "M-w"))
+  ;;(global-unset-key (kbd "<prior>"))
+  ;;(global-unset-key (kbd "<next>"))
   
   ;; File
   (global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
@@ -38,6 +42,8 @@
   (global-set-key (kbd "C-p") 'cfg-func:find-buffer)     ;; C-x b
   (global-set-key (kbd "C-S-p") 'cfg-func:find-command)  ;; M-x
   (global-set-key (kbd "M-P") 'cfg-func:find-major-command)
+  (global-set-key (kbd "C-r") 'idomenu)
+  (global-set-key (kbd "C-S-r") 'imenu-anywhere)
 
   ;; Move
   (global-set-key (kbd "M-i") 'previous-line)            ;; C-p
@@ -50,9 +56,13 @@
   (global-set-key (kbd "M-o") 'move-end-of-line)         ;; C-e
   (global-set-key (kbd "C-S-i") 'md/move-lines-up)
   (global-set-key (kbd "C-S-k") 'md/move-lines-down)
+  (global-set-key (kbd "M-v") 'cfg:scroll-up)            ;; M-v
+  (global-set-key (kbd "<next>") 'cfg:scroll-up)         ;; next
+  (global-set-key (kbd "C-v") 'cfg:scroll-down)          ;; C-v
+  (global-set-key (kbd "<prior>") 'cfg:scroll-down)      ;; prior
 
   ;; Select
-  (global-set-key (kbd "C-a")   'mark-whole-buffer)        ;; C-x h
+  (global-set-key (kbd "C-a")   'mark-whole-buffer)      ;; C-x h
   
   ;; Edit
   (global-set-key (kbd "C-S-d") 'md/duplicate-down)

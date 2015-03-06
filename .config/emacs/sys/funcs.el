@@ -29,3 +29,13 @@
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
+
+(defun cfg:scroll-up ()
+  (interactive)
+  (condition-case nil (scroll-up)
+      (end-of-buffer (goto-char (point-max)))))
+
+(defun cfg:scroll-down ()
+  (interactive)
+  (condition-case nil (scroll-down)
+      (beginning-of-buffer (goto-char (point-min)))))
