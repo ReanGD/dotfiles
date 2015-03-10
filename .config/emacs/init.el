@@ -22,6 +22,7 @@
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/cpputils-cmake-cfg)
+(require 'minor/test-cfg)
 
 (require 'ui-config)
 (require 'edit-config)
