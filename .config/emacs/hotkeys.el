@@ -17,19 +17,23 @@
   ;;(global-unset-key (kbd "C-v"))
   ;;(global-unset-key (kbd "C-/"))
   (global-unset-key (kbd "C-e"))
+  (global-unset-key (kbd "C-d"))
   (global-unset-key (kbd "C-q"))
   ;;(global-unset-key (kbd "C-r"))
   (global-unset-key (kbd "C-y"))
+  (global-unset-key (kbd "C-z"))
   ;;(global-unset-key (kbd "M-z"))
   ;;(global-unset-key (kbd "M-v"))
+  ;;(global-unset-key (kbd "M-f"))
+  ;;(global-unset-key (kbd "M-d"))
   (global-unset-key (kbd "M-c"))
   (global-unset-key (kbd "M-x"))
   (global-unset-key (kbd "M-X"))
-  (global-unset-key (kbd "M-f"))
   (global-unset-key (kbd "M-b"))
   (global-unset-key (kbd "M-w"))
   ;;(global-unset-key (kbd "<prior>"))
   ;;(global-unset-key (kbd "<next>"))
+  ;;(global-unset-key (kbd "<backspace>"))
   
   ;; File
   (global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
@@ -63,12 +67,17 @@
 
   ;; Select
   (global-set-key (kbd "C-a")   'mark-whole-buffer)      ;; C-x h
-  
+
   ;; Edit
+  (global-set-key (kbd "M-d") 'cfg:backspace-soft-tab-once)
+  (global-set-key (kbd "<backspace>") 'cfg:backspace-soft-tab-once)
+  (global-set-key (kbd "M-f") 'delete-char)              ;; C-d
+  (global-set-key (kbd "<delete>") 'delete-char)
   (global-set-key (kbd "C-S-d") 'md/duplicate-down)
   (global-set-key (kbd "C-S-c") 'kill-ring-save)         ;; M-w
   (global-set-key (kbd "C-S-v") 'yank)                   ;; C-y
   (global-set-key (kbd "C-/")   'comment-dwim-2)
+  (global-set-key (kbd "<f12>") 'whitespace-mode)
 
   ;; Others
   (global-set-key (kbd "C-b") 'cfg-func:compile)
