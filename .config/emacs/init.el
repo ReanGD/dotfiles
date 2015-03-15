@@ -13,6 +13,7 @@
 
 (require 'major/cmake-cfg)
 (require 'major/cpp-cfg)
+(require 'major/markdown-cfg)
 
 (require 'minor/ido-cfg)
 ;;(require 'minor/helm-cfg)
