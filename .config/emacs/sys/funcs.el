@@ -40,6 +40,21 @@
   (condition-case nil (scroll-down)
     (beginning-of-buffer (goto-char (point-min)))))
 
+(defun cfg:delete-word (arg)
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun cfg:backward-delete-word (arg)
+  (interactive "p")
+  (cfg:delete-word (- arg)))
+
+(defun cfg:delete-line ()
+  (interactive)
+  (delete-region
+   (point)
+   (save-excursion (move-end-of-line 1) (point)))
+  (delete-char 1))
+
 (defun cfg:backspace-soft-tab-once ()
   (interactive)
   "Backspace one \"soft\" tab, or a tab made of spaces."
@@ -48,14 +63,14 @@
       (delete-backward-char 1)
     ;; Get the last tab-width characters before the cursor's location
     (let ((prev-string (buffer-substring (- (point) tab-width)
-					 (point))))
+                                         (point))))
       ;; If the current column is a multiple of tab-width, and the
       ;; last tab-width chars were all spaces, delete all of
       ;; them. Otherwise, just delete one character.
       (if (and (zerop (% (current-column) tab-width))
-	       (null (remove-if (lambda (x)
-				  (eql ?\s x))
-				(coerce prev-string
-					'list))))
-	  (delete-backward-char tab-width)
-	(delete-backward-char 1)))))
+               (null (remove-if (lambda (x)
+                                  (eql ?\s x))
+                                (coerce prev-string
+                                        'list))))
+          (delete-backward-char tab-width)
+        (delete-backward-char 1)))))
