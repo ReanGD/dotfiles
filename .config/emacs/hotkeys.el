@@ -30,6 +30,7 @@
   ;;(global-unset-key (kbd "M-e"))
   ;;(global-unset-key (kbd "M-r"))
   ;;(global-unset-key (kbd "M-g"))
+  (global-unset-key (kbd "M-m"))
   (global-unset-key (kbd "M-c"))
   (global-unset-key (kbd "M-x"))
   (global-unset-key (kbd "M-X"))

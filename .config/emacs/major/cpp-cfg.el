@@ -20,6 +20,7 @@ of FILE in the current directory, suitable for creation"
 	c-basic-offset 4           ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width	
 	)
   (local-unset-key (kbd "M-j"))
+  (local-unset-key (kbd "M-e"))
   (local-unset-key (kbd "C-M-j")))
 
 (defun lcl:cpp-compile-hook ()
