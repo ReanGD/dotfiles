@@ -30,6 +30,28 @@
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
 
+(defun cfg:scroll-screen (arg)
+  (interactive)
+  (let ((pos (point))
+        (col (current-column)))
+    (scroll-up arg)
+    (if (pos-visible-in-window-p pos)
+        (goto-char pos)
+      (if (or (eq last-command 'next-line)
+              (eq last-command 'previous-line))
+          (move-to-column temporary-goal-column)
+        (move-to-column col)
+        (setq temporary-goal-column col))
+      (setq this-command 'next-line))))
+
+(defun cfg:scroll-screen-up ()
+  (interactive)
+  (cfg:scroll-screen -1))
+
+(defun cfg:scroll-screen-down ()
+  (interactive)
+  (cfg:scroll-screen 1))
+
 (defun cfg:scroll-up ()
   (interactive)
   (condition-case nil (scroll-up)

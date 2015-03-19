@@ -16,8 +16,9 @@
   ;;(global-unset-key (kbd "C-s"))
   ;;(global-unset-key (kbd "C-v"))
   ;;(global-unset-key (kbd "C-/"))
+  ;;(global-unset-key (kbd "C-k"))
+  ;;(global-unset-key (kbd "C-i"))
   (global-unset-key (kbd "C-e"))
-  (global-unset-key (kbd "C-k"))
   (global-unset-key (kbd "C-d"))
   (global-unset-key (kbd "C-q"))
   ;;(global-unset-key (kbd "C-r"))
@@ -42,6 +43,8 @@
   ;;(global-unset-key (kbd "<backspace>"))
   ;;(global-unset-key (kbd "<C-delete>"))
   ;;(global-unset-key (kbd "<C-backspace>"))
+  ;;(global-unset-key (kbd "<C-up>"))
+  ;;(global-unset-key (kbd "<C-down>"))
   
   ;; File
   (global-set-key (kbd "C-s") 'save-buffer)              ;; C-x C-s
@@ -72,7 +75,11 @@
   (global-set-key (kbd "<next>") 'cfg:scroll-up)         ;; next
   (global-set-key (kbd "C-v") 'cfg:scroll-down)          ;; C-v
   (global-set-key (kbd "<prior>") 'cfg:scroll-down)      ;; prior
-
+  (global-set-key (kbd "C-i") 'cfg:scroll-screen-up)
+  (global-set-key (kbd "<C-up>") 'cfg:scroll-screen-up)
+  (global-set-key (kbd "C-k") 'cfg:scroll-screen-down)
+  (global-set-key (kbd "<C-down>") 'cfg:scroll-screen-down)
+  
   ;; Select
   (global-set-key (kbd "C-a")   'mark-whole-buffer)      ;; C-x h
 
