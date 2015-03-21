@@ -19,6 +19,7 @@
 ;;(require 'minor/helm-cfg)
 ;;(require 'minor/auto-complete-cfg)
 (require 'minor/company-cfg)
+(require 'minor/yasnippet-cfg)
 (require 'minor/projectile-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
