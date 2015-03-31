@@ -67,8 +67,8 @@
   (lcl:set-mode-line-format)
   (custom-set-faces '(mode-line ((t :foreground nil :background nil :inverse-video nil))))
   (require 'smart-mode-line)
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'automatic
+  (setq sml/no-confirm-load-theme t
+        sml/theme 'automatic
         sml/order-of-line-and-column nil
         sml/line-number-format "%3l"
         sml/numbers-separator ","
