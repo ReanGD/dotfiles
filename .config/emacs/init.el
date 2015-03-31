@@ -15,23 +15,24 @@
 (require 'major/cpp-cfg)
 (require 'major/markdown-cfg)
 
+(require 'minor/cfg-cfg)
 (require 'minor/ido-cfg)
-;;(require 'minor/helm-cfg)
-;;(require 'minor/auto-complete-cfg)
 (require 'minor/company-cfg)
 (require 'minor/yasnippet-cfg)
 (require 'minor/projectile-cfg)
+(require 'minor/test-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
+;;(require 'minor/helm-cfg)
+;;(require 'minor/auto-complete-cfg)
 ;;(require 'minor/cpputils-cmake-cfg)
-(require 'minor/test-cfg)
 
 (require 'ui-config)
 (require 'edit-config)
-;;(require 'cedet-config)
 (require 'python-lang)
 (require 'rust-lang)
 (require 'org-config)
 (require 'hotkeys)
+;;(require 'cedet-config)
 
 (cfg:init)

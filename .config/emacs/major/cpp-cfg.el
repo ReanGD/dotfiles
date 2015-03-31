@@ -31,10 +31,7 @@
         indent-tabs-mode nil       ;; отступы делаются пробелами	
         tab-width 4                ;; default tab width
         c-basic-offset 4           ;; tab-width for cpp-lang (js, php, c++, java) can be eq tab-width	
-        )
-  (local-unset-key (kbd "M-j"))
-  (local-unset-key (kbd "M-e"))
-  (local-unset-key (kbd "C-M-j")))
+        ))
 
 (defun lcl:cpp-compile-hook ()
   (require 'compile)

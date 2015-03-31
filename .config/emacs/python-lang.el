@@ -8,14 +8,13 @@
       `no-indent'
     nil))
 
-;; Enter key executes newline-and-indent
-(defun lcl:set-newline-and-indent ()
-  "Map the return key with `newline-and-indent'"
-  (local-set-key (kbd "RET") 'newline-and-indent))
+(defun lcl:python-hotkeys ()
+  (local-set-key (kbd "RET") 'newline-and-indent) ;; py-newline-and-indent
+  )
 
 (defun cfg:python ()
   (add-hook 'electric-indent-functions 'lcl:electric-indent-ignore-python)
-  (add-hook 'python-mode-hook 'lcl:set-newline-and-indent)
+  (add-hook 'python-mode-hook 'lcl:python-hotkeys)
   (autoload 'python-mode "python-mode" "Python Mode." t)
   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
   (add-to-list 'interpreter-mode-alist '("python" . python-mode)))
