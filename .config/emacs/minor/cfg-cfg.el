@@ -91,7 +91,7 @@
   (define-key map (kbd "C-x C-f") 'cfg:format-buffer)
 
   ;; Search
-  (global-set-key (kbd "C-f") 'isearch-forward)          ;; C-s
+  (define-key map (kbd "C-f") 'isearch-forward)          ;; C-s
   )
 
 (defun cfg:cfg ()
