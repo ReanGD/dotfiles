@@ -21,6 +21,7 @@
 (require 'minor/yasnippet-cfg)
 (require 'minor/projectile-cfg)
 (require 'minor/test-cfg)
+(require 'minor/search-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/helm-cfg)
