@@ -52,15 +52,15 @@
   (interactive)
   (cfg:scroll-screen 1))
 
-(defun cfg:scroll-up ()
-  (interactive)
-  (condition-case nil (scroll-up)
-    (end-of-buffer (goto-char (point-max)))))
-
-(defun cfg:scroll-down ()
+(defun cfg:page-up ()
   (interactive)
   (condition-case nil (scroll-down)
     (beginning-of-buffer (goto-char (point-min)))))
+
+(defun cfg:page-down ()
+  (interactive)
+  (condition-case nil (scroll-up)
+    (end-of-buffer (goto-char (point-max)))))
 
 (defun cfg:delete-word (arg)
   (interactive "p")

@@ -54,10 +54,8 @@
   (define-key map (kbd "M-o") 'move-end-of-line)         ;; C-e
   (define-key map (kbd "C-S-i") 'md/move-lines-up)
   (define-key map (kbd "C-S-k") 'md/move-lines-down)
-  (define-key map (kbd "M-v") 'cfg:scroll-up)            ;; M-v
-  (define-key map (kbd "<next>") 'cfg:scroll-up)         ;; next
-  (define-key map (kbd "C-v") 'cfg:scroll-down)          ;; C-v
-  (define-key map (kbd "<prior>") 'cfg:scroll-down)      ;; prior
+  (define-key map (kbd "<prior>") 'cfg:page-up)          ;; prior/M-v
+  (define-key map (kbd "<next>") 'cfg:page-down)         ;; next/C-v
   (define-key map (kbd "C-i") 'cfg:scroll-screen-up)
   (define-key map (kbd "<C-up>") 'cfg:scroll-screen-up)
   (define-key map (kbd "C-k") 'cfg:scroll-screen-down)
