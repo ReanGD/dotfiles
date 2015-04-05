@@ -1,0 +1,26 @@
+(provide 'minor/window-num-cfg)
+
+(defun cfg:get-window-number ()
+  (let* ((num (window-numbering-get-number)))
+    (cond
+     ((equal num 1)  " ➊ ")
+     ((equal num 2)  " ➋ ")
+     ((equal num 3)  " ➌ ")
+     ((equal num 4)  " ➍ ")
+     ((equal num 5)  " ➎ ")
+     ((equal num 6)  " ❻ ")
+     ((equal num 7)  " ➐ ")
+     ((equal num 8)  " ➑ ")
+     ((equal num 9)  " ➒ ")
+     ((equal num 0)  " ➓ "))))
+
+(defun cfg:window-numbering ()
+  (require 'window-numbering)
+  (defun window-numbering-install-mode-line (&optional position))
+  (defun window-numbering-clear-mode-line (&optional position))
+  ;; (setq window-numbering-auto-assign-0-to-minibuffer nil)
+  (window-numbering-mode t)
+  )
+(add-hook 'cfg-hook:minor-mode 'cfg:window-numbering)
+
+(cfg:add-package 'window-numbering)
