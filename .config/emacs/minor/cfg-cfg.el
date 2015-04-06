@@ -17,12 +17,10 @@
 (ad-activate 'load)
 
 (defun turn-on-cfg-mode ()
-  "Turns on my-mode."
   (interactive)
   (cfg-mode t))
 
 (defun turn-off-cfg-mode ()
-  "Turns off my-mode."
   (interactive)
   (cfg-mode -1))
 
