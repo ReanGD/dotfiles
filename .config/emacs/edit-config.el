@@ -12,8 +12,7 @@
   (defvar undo-tree-map t)
   (require 'undo-tree)
   (global-undo-tree-mode)
-  (setq undo-tree-auto-save-history nil
-        undo-tree-mode-lighter " Undo"))
+  (setq undo-tree-auto-save-history nil))
 (add-hook 'cfg-hook:minor-mode 'cfg:undo)
 
 (defun cfg:edit ()

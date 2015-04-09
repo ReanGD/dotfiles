@@ -16,6 +16,8 @@
 (require 'major/markdown-cfg)
 
 (require 'minor/cfg-cfg)
+(require 'minor/mode-line-cfg)
+(require 'minor/window-num-cfg)
 (require 'minor/ido-cfg)
 (require 'minor/company-cfg)
 (require 'minor/yasnippet-cfg)
