@@ -3,6 +3,10 @@
       create: true
       path: .config/bin/
       force: true
+    ~/.config/awesome:
+      create: true
+      path: .config/awesome/
+      force: true
     ~/.config/emacs:
       create: true
       path: .config/emacs/
