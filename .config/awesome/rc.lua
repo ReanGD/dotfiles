@@ -5,6 +5,7 @@ awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
+local lain = require("lain")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -37,13 +38,21 @@ end
 -- }}}
 
 -- {{{ Variable definitions
--- beautiful.init("/usr/share/awesome/themes/default/sky.lua")
+os.setlocale(os.getenv("LANG"))
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 terminal = "urxvt"
 editor = os.getenv("EDITOR") or "subl3"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
+-- theme.taglist_font = "Ubuntu Mono 12"
+-- theme.taglist_font = "Source Code Pro 11"
+theme.font = "Ubuntu 11"
+theme.taglist_font = "Ubuntu 11"
+theme.bg_focus     = theme.bg_normal
+theme.taglist_squares_sel = nil
+theme.taglist_squares_unsel = nil
+theme.tasklist_disable_icon = true
 local layouts =
 {
     awful.layout.suit.floating,      -- 1
@@ -61,22 +70,15 @@ local layouts =
 }
 -- }}}
 
--- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
--- }}}
-
--- {{{ !Tags
+-- {{{ !Tags + Wallpaper
  tags = {
    names  = { "web", "doc", "devel", "cmdr", "media", "custom" },
    layout = { layouts[4], layouts[3], layouts[4], layouts[4], layouts[1], layouts[3] }
  }
  for s = 1, screen.count() do
-     tags[s] = awful.tag(tags.names, s, tags.layout)
- end
+    tags[s] = awful.tag(tags.names, s, tags.layout)
+    gears.wallpaper.maximized("/usr/share/slim/themes/wave/background.jpg", s, true)
+ end 
 -- }}}
 
 
@@ -106,6 +108,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
+-- mytextbox = awful.widget({ type = "textbox", name = "mytextbox" })
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -172,7 +175,7 @@ for s = 1, screen.count() do
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
-    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
+    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, mytasklist.buttons)
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
@@ -292,6 +295,11 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q",      function (c) c:kill()                         end),
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ modkey,           }, "m",
+        function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c.maximized_vertical   = not c.maximized_vertical
+        end),
 
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
@@ -302,11 +310,6 @@ clientkeys = awful.util.table.join(
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
-        end),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
         end)
 )
 
@@ -374,8 +377,8 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
-                     buttons = clientbuttons,
-                     size_hints_honor = false -- разрывы
+                     buttons = clientbuttons
+                     -- size_hints_honor = false -- разрывы
                      } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
@@ -383,6 +386,9 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { },
+      properties = { },
+      callback = awful.client.setslave },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
