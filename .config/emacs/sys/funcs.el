@@ -77,22 +77,12 @@
    (save-excursion (move-end-of-line 1) (point)))
   (delete-char 1))
 
-(defun cfg:backspace-soft-tab-once ()
+(defun cfg:backward-delete-tab-whitespace ()
   (interactive)
-  "Backspace one \"soft\" tab, or a tab made of spaces."
-  ;; If we're at the beginning of the buffer, just delete a char
-  (if (<= (point) tab-width)
-      (delete-backward-char 1)
-    ;; Get the last tab-width characters before the cursor's location
-    (let ((prev-string (buffer-substring (- (point) tab-width)
-                                         (point))))
-      ;; If the current column is a multiple of tab-width, and the
-      ;; last tab-width chars were all spaces, delete all of
-      ;; them. Otherwise, just delete one character.
-      (if (and (zerop (% (current-column) tab-width))
-               (null (remove-if (lambda (x)
-                                  (eql ?\s x))
-                                (coerce prev-string
-                                        'list))))
-          (delete-backward-char tab-width)
-        (delete-backward-char 1)))))
+  (let ((p (point)))
+    (if (and (eq indent-tabs-mode nil)
+             (>= p tab-width)
+             (eq (% (current-column) tab-width) 0)
+             (string-match "^\\s-+$" (buffer-substring-no-properties (- p tab-width) p)))
+        (delete-backward-char tab-width)
+      (delete-backward-char 1))))

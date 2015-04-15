@@ -8,7 +8,7 @@
   :lighter " cfg"
   cfg-mode-map)
 
-(defadvice load (after give-my-keybindings-priority)
+(defadvice load (after cfg-keybindings-priority)
   (if (not (eq (car (car minor-mode-map-alist)) 'cfg-mode))
       (let ((mykeys (assq 'cfg-mode minor-mode-map-alist)))
         (assq-delete-all 'cfg-mode minor-mode-map-alist)
@@ -59,8 +59,8 @@
    ;; Select
    (list "C-a"   'mark-whole-buffer)      ;; C-x h
    ;; Edit
-   (list "M-d" 'cfg:backspace-soft-tab-once)
-   (list "<backspace>" 'cfg:backspace-soft-tab-once)
+   (list "M-d" 'cfg:backward-delete-tab-whitespace)
+   (list "<backspace>" 'cfg:backward-delete-tab-whitespace)
    (list "M-f" 'delete-char)              ;; C-d
    (list "<delete>" 'delete-char)
    (list "M-e" 'cfg:backward-delete-word)
