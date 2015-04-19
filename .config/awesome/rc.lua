@@ -6,6 +6,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local vicious = require("vicious")
+local orglendar = require('orglendar')
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -110,6 +111,10 @@ memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\">  <span color=\"#9CC646\"><b>$1% | $2MB</b></span> &gt;  </span>", 10)
 datewidget = wibox.widget.textbox()
 vicious.register(datewidget, vicious.widgets.date, "<span font=\"Ubuntu 11\" color=\"#C7D0CC\">%a. %B %d,  <span color=\"#D7E0DC\">%H:%M</span>   </span>", 60)
+orglendar.files = { "/home/rean/doc/task/cal.org"}
+orglendar.font = "Ubuntu Mono 11"
+orglendar.font_task = "Ubuntu 11"
+orglendar.register(datewidget)
 
 kbdwidget = wibox.widget.textbox()
 kbdwidget.border_width = 1
