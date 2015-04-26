@@ -34,6 +34,10 @@
   (show-paren-mode 2))
 (add-hook 'cfg-hook:ui 'cfg:edit)
 
+(defun cfg:compile ()
+  (setq-default compilation-read-command nil))
+(add-hook 'cfg-hook:ui 'cfg:compile)
+
 (defun cfg:move-dup ()
   (require 'move-dup))
 (add-hook 'cfg-hook:minor-mode 'cfg:move-dup)

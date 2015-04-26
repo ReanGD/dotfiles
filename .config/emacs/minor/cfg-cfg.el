@@ -74,7 +74,7 @@
    (list "C-/"   'comment-dwim-2)
    (list "<f12>" 'whitespace-mode)
    ;; Others
-   (list "C-b" 'cfg-func:compile)
+   (list "C-b" 'compile)
    (if cfg-var:autocomplete
        (list "C-SPC" cfg-var:autocomplete))
    ;; My extensions

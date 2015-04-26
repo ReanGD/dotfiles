@@ -19,12 +19,6 @@
   (interactive)
   (call-interactively cfg-var:find-major-command))
 
-(defun cfg-func:compile ()
-  (interactive)
-  (save-buffer)
-  (setq-local compilation-read-command nil)
-  (call-interactively 'compile))
-
 (defun cfg:format-buffer ()
   (interactive)
   (save-excursion
