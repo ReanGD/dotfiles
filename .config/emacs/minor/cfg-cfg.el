@@ -70,8 +70,12 @@
    (list "M-g" 'cfg:delete-line)          ;; C-k
    (list "C-S-d" 'md/duplicate-down)
    (list "C-S-c" 'kill-ring-save)         ;; M-w
+   (list "M-c" 'kill-ring-save)           ;; M-w
    (list "C-S-v" 'yank)                   ;; C-y
-   (list "C-/"   'comment-dwim-2)
+   (list "M-v" 'yank)                     ;; C-y
+   (list "C-S-x" 'kill-region)            ;; C-w
+   (list "M-x" 'kill-region)              ;; C-w
+   (list "C-/" 'comment-dwim-2)
    (list "<f12>" 'whitespace-mode)
    ;; Others
    (list "C-b" 'compile)
