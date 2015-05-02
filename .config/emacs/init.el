@@ -14,6 +14,7 @@
 (require 'major/cmake-cfg)
 (require 'major/cpp-cfg)
 (require 'major/markdown-cfg)
+(require 'major/lua-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
