@@ -38,66 +38,6 @@
       (load-theme 'solarized-dark t)))
 (add-hook 'cfg-hook:ui 'cfg:theme)
 
-(defun lcl:set-mode-line-format ()
-  (setq default-mode-line-format
-        '("%e"
-          ;; buffer name
-          mode-line-buffer-identification
-          mode-line-client
-          mode-line-remote
-          mode-line-frame-identification
-          "   "
-          (vc-mode vc-mode)
-          "  "
-          mode-line-modes
-          mode-line-misc-info
-          ;; cursor position
-          "|" mode-line-front-space
-          ;; encode
-          mode-line-mule-info
-          ;; is modified and etc.
-          mode-line-modified
-          ;; not use
-          mode-line-position
-          ;; end spaces
-          mode-line-end-spaces))
-  (setq mode-line-format default-mode-line-format))
-
-(defun cfg:mode-line ()
-  (lcl:set-mode-line-format)
-  (custom-set-faces '(mode-line ((t :foreground nil :background nil :inverse-video nil))))
-  (require 'smart-mode-line)
-  (setq sml/no-confirm-load-theme t
-        sml/theme 'automatic
-        sml/order-of-line-and-column nil
-        sml/line-number-format "%3l"
-        sml/numbers-separator ","
-        sml/col-number-format "%2c"
-        sml/position-percentage-format nil
-        sml/mule-info "%z"
-        sml/modified-char "*"
-        sml/pre-minor-modes-separator ""
-        sml/pos-minor-modes-separator ""
-        line-number-mode t
-        column-number-mode t
-        size-indication-mode nil)
-  (sml/setup)
-  (sml/apply-theme 'automatic)
-  ;; (setq mode-line-format t)
-  )
-(add-hook 'cfg-hook:ui 'cfg:mode-line)
-
-(defun cfg:rich-minority ()
-  (require 'rich-minority)
-  (setq rm-blacklist
-        (format "^ \\(%s\\)$"
-                (mapconcat #'identity
-                           '("Projectile.*"
-                             "Undo")
-                           "\\|")))
-  (rich-minority-mode 1))
-(add-hook 'cfg-hook:ui 'cfg:rich-minority)
-
 (defun cfg:scroll ()
   ;; smooth scroll settings
   (setq redisplay-dont-pause t
@@ -118,7 +58,4 @@
 
 (cfg:add-package 'solarized-theme)
 (cfg:add-package 'yascroll)
-(cfg:add-package 'smart-mode-line)
-(cfg:add-package 'rich-minority)
 ;; smooth-scrolling, sublimity, smooth-scroll - не подходит
-;; powerline powerline-evil - альтернатива smart-mode-line но вроде менее функциональная

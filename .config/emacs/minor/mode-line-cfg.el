@@ -248,5 +248,3 @@ mouse-3: Toggle minor modes"
                           (format-mode-line (lcl:mode-line-right))))))
   )
 (add-hook 'cfg-hook:ui 'cfg:mode-line)
-
-(cfg:add-package 'powerline)
