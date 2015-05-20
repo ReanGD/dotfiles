@@ -38,7 +38,7 @@ end
 -- }}}
 
 -- {{{ Variable definitions
-os.setlocale(os.getenv("LANG"))
+-- os.setlocale(os.getenv("LANG"))
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 -- beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
 terminal = "urxvt"
