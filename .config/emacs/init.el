@@ -16,6 +16,7 @@
 (require 'major/markdown-cfg)
 (require 'major/lua-cfg)
 (require 'major/yaml-cfg)
+(require 'major/python-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
@@ -34,7 +35,6 @@
 
 (require 'ui-config)
 (require 'edit-config)
-(require 'python-lang)
 (require 'rust-lang)
 (require 'org-config)
 (require 'hotkeys)

@@ -1,4 +1,4 @@
-(provide 'python-lang)
+(provide 'major/python-cfg)
 
 
 (defun cfg:python ()
