@@ -17,6 +17,7 @@
 (require 'major/lua-cfg)
 (require 'major/yaml-cfg)
 (require 'major/python-cfg)
+(require 'major/rust-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
@@ -27,6 +28,7 @@
 (require 'minor/projectile-cfg)
 (require 'minor/test-cfg)
 (require 'minor/search-cfg)
+(require 'minor/ispell-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/helm-cfg)
@@ -35,7 +37,6 @@
 
 (require 'ui-config)
 (require 'edit-config)
-(require 'rust-lang)
 (require 'org-config)
 (require 'hotkeys)
 ;;(require 'cedet-config)

@@ -1,4 +1,4 @@
-(provide 'rust-lang)
+(provide 'major/rust-cfg)
 
 (defun lcl:rust-compile-hook ()
   (require 'compile)
