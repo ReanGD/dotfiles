@@ -1,5 +1,4 @@
-(provide 'org-config)
-
+(provide 'major/org-cfg)
 
 (defun cfg:org-mode ()
   ;; (require 'org-install)

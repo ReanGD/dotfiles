@@ -15,6 +15,7 @@
 (require 'major/cpp-cfg)
 (require 'major/markdown-cfg)
 (require 'major/lua-cfg)
+(require 'major/org-cfg)
 (require 'major/yaml-cfg)
 (require 'major/python-cfg)
 (require 'major/rust-cfg)
@@ -37,7 +38,6 @@
 
 (require 'ui-config)
 (require 'edit-config)
-(require 'org-config)
 (require 'hotkeys)
 ;;(require 'cedet-config)
 
