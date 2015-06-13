@@ -46,5 +46,6 @@
   ;;(global-unset-key (kbd "<C-backspace>"))
   ;;(global-unset-key (kbd "<C-up>"))
   ;;(global-unset-key (kbd "<C-down>"))
+  ;;(global-unset-key (kbd "<f11>"))
   )
 (add-hook 'cfg-hook:hotkey 'cfg:hotkeys)

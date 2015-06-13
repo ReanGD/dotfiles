@@ -77,6 +77,8 @@
    (list "M-x" 'kill-region)              ;; C-w
    (list "C-/" 'comment-dwim-2)
    (list "<f12>" 'whitespace-mode)
+   ;; Spelling
+   (list "<f11>" 'wcheck-mode)
    ;; Others
    (list "C-b" 'compile)
    (if cfg-var:autocomplete

@@ -18,6 +18,11 @@
   (cons (cons "[Add to dictionary]" 'lcl:spelling-add-to-dictionary)
         (wcheck-parser-ispell-suggestions)))
 
+(defun lcl:spelling-hotkeys ()
+  (define-key wcheck-mode-map (kbd "M-s RET") 'wcheck-actions)
+  (define-key wcheck-mode-map (kbd "M-s l") 'wcheck-jump-forward)
+  (define-key wcheck-mode-map (kbd "M-s j") 'wcheck-jump-backward))
+
 (defun cfg:spelling ()
   (require 'wcheck-mode)
   (defun wcheck--choose-action-minibuffer (actions)
@@ -36,7 +41,8 @@
        ((emacs-lisp-mode c-mode c++-mode python-mode)
         read font-lock-comment-face)
        (nil))
-      ))))
+      )))
+  (lcl:spelling-hotkeys))
 (add-hook 'cfg-hook:minor-mode 'cfg:spelling)
 
 (cfg:add-package 'wcheck-mode)
