@@ -25,12 +25,18 @@
      (assoc
       (ido-completing-read "Choose " (mapcar #'car actions))
       actions)))
-  (setq-default wcheck-language "All"
-        wcheck-language-data
-        '(("All"
-           (program . "~/.config/emacs/bin/spell_check_text.sh")
-           (action-program . "~/.config/emacs/bin/spell_check_word.sh")
-           (action-parser . lcl:spelling-action-menu)))))
+  (setq-default
+   wcheck-language "All"
+   wcheck-language-data
+   '(("All"
+      (program . "~/.config/emacs/bin/spell_check_text.sh")
+      (action-program . "~/.config/emacs/bin/spell_check_word.sh")
+      (action-parser . lcl:spelling-action-menu)
+      (read-or-skip-faces
+       ((emacs-lisp-mode c-mode c++-mode python-mode)
+        read font-lock-comment-face)
+       (nil))
+      ))))
 (add-hook 'cfg-hook:minor-mode 'cfg:spelling)
 
 (cfg:add-package 'wcheck-mode)
