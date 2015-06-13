@@ -29,7 +29,7 @@
 (require 'minor/projectile-cfg)
 (require 'minor/test-cfg)
 (require 'minor/search-cfg)
-(require 'minor/ispell-cfg)
+(require 'minor/spelling-cfg)
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/helm-cfg)
