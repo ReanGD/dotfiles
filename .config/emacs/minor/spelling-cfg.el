@@ -62,6 +62,8 @@
       (read-or-skip-faces
        ((emacs-lisp-mode c-mode c++-mode python-mode)
         read font-lock-comment-face)
+       (org-mode
+        skip org-block-begin-line org-block-end-line org-meta-line org-link)
        (nil))
       )))
   (lcl:spelling-hotkeys))

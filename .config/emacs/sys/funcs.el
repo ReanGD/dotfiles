@@ -80,3 +80,9 @@
              (string-match "^\\s-+$" (buffer-substring-no-properties (- p tab-width) p)))
         (delete-backward-char tab-width)
       (delete-backward-char 1))))
+
+(defun cfg:what-face (pos)
+  (interactive "d")
+  (let ((face (or (get-char-property (point) 'read-face-name)
+                  (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
