@@ -4,4 +4,4 @@
   )
 (add-hook 'cfg-hook:minor-mode 'cfg:test)
 
-(cfg:add-package 'window-numbering)
+;; (cfg:add-package 'langtool)

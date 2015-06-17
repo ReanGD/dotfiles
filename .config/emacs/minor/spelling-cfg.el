@@ -44,7 +44,7 @@
   (define-key wcheck-mode-map (kbd "M-s l") 'wcheck-jump-forward)
   (define-key wcheck-mode-map (kbd "M-s j") 'wcheck-jump-backward))
 
-(defun cfg:spelling ()
+(defun lcl:wcheck ()
   (require 'wcheck-mode)
   (defun wcheck--choose-action-minibuffer (actions)
     (cdr
@@ -67,6 +67,17 @@
        (nil))
       )))
   (lcl:spelling-hotkeys))
+
+(defun lcl:langtool ()
+  (require 'langtool)
+  (setq langtool-default-language "ru"
+        langtool-mother-tongue "ru"
+        langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
+
+(defun cfg:spelling ()
+  (lcl:wcheck)
+  (lcl:langtool))
 (add-hook 'cfg-hook:minor-mode 'cfg:spelling)
 
 (cfg:add-package 'wcheck-mode)
+(cfg:add-package 'langtool)
