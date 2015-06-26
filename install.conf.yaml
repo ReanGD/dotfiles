@@ -7,6 +7,10 @@
       create: true
       path: .config/awesome/
       force: true
+    ~/.config/enchant:
+      create: true
+      path: .config/enchant/
+      force: true      
     ~/.config/emacs:
       create: true
       path: .config/emacs/
