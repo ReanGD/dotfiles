@@ -72,7 +72,14 @@
   (require 'langtool)
   (setq langtool-default-language "ru"
         langtool-mother-tongue "ru"
+        langtool-disabled-rules "MORFOLOGIK_RULE_RU_RU"
         langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
+
+(defun cfg:langtool-check ()
+  (interactive)
+  (if langtool-mode-line-message
+      (langtool-check-done)
+    (langtool-check-buffer)))
 
 (defun cfg:spelling ()
   (lcl:wcheck)

@@ -78,6 +78,8 @@
    (list "C-/" 'comment-dwim-2)
    (list "<f12>" 'whitespace-mode)
    ;; Spelling
+   (list "<f10>" 'cfg:langtool-check)
+   (list "<C-f10>" 'langtool-correct-buffer)
    (list "<f11>" 'wcheck-mode)
    ;; Others
    (list "C-b" 'compile)
