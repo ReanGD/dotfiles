@@ -24,6 +24,16 @@
   (setq visible-bell t))
 (add-hook 'cfg-hook:ui 'cfg:cursor)
 
+(defun cfg:whitespace ()
+  (setq whitespace-style '(face trailing lines empty space-mark tab-mark newline-mark)
+        whitespace-line-column 80
+        whitespace-display-mappings
+        '((space-mark 32 [183] [46])
+          (space-mark 160 [164] [95])
+          (newline-mark 10 [182 10])
+          (tab-mark 9 [187 9] [92 9]))))
+(add-hook 'cfg-hook:ui 'cfg:whitespace)
+
 (defun cfg:theme ()
   (setq x-underline-at-descent-line t
         solarized-distinct-fringe-background nil ;;t
