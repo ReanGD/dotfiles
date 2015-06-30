@@ -26,7 +26,7 @@
 
 (defun cfg:whitespace ()
   (setq whitespace-style '(face trailing lines empty space-mark tab-mark newline-mark)
-        whitespace-line-column 80
+        whitespace-line-column 100
         whitespace-display-mappings
         '((space-mark 32 [183] [46])
           (space-mark 160 [164] [95])
