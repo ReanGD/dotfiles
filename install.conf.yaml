@@ -3,6 +3,10 @@
       create: true
       path: .config/bin/
       force: true
+    ~/.config/ansible:
+      create: true
+      path: .config/ansible/
+      force: true
     ~/.config/awesome:
       create: true
       path: .config/awesome/
