@@ -17,6 +17,7 @@
 (require 'major/lua-cfg)
 (require 'major/org-cfg)
 (require 'major/yaml-cfg)
+(require 'major/json-cfg)
 (require 'major/python-cfg)
 (require 'major/rust-cfg)
 
