@@ -36,6 +36,9 @@ pkgs += ["python",
 # text editors
 pkgs += ["emacs", "vim", "sublime-text-nightly"]
 
+# file managers
+pkgs += ["doublecmd-gtk2"]
+
 # git
 pkgs += ["git", "meld"]
 
