@@ -9,3 +9,11 @@
 
 # qtile
 **/qtile/*.db
+
+#double commander
+**/doublecmd/doublecmd.err
+**/doublecmd/history.xml
+**/doublecmd/pixmaps.cache
+**/doublecmd/pwd.ini
+**/doublecmd/session.ini
+**/doublecmd/doublecmd.xml

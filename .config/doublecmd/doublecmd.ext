@@ -1,0 +1,4 @@
+[mp3]
+Name=mp3
+Open=/usr/bin/deadbeef %f
+
