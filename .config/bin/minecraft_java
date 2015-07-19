@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ARGS=()
+for var in "$@"; do
+    # Ignore known bad arguments
+    [ "$var" != '--demo' ] && ARGS+=("$var")
+done
+
+/usr/lib/jvm/java-7-openjdk/jre/bin/java "${ARGS[@]}"
