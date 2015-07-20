@@ -16,7 +16,9 @@
             (lambda ()
               (setq indent-tabs-mode nil)
               (setq tab-width 4)
-              (setq rust-indent-offset 4)))
+              (setq rust-indent-offset 4)
+              (racer-activate)
+              ))
 
   (setq racer-rust-src-path "~/.local/share/rust_src/src")
   (setq racer-cmd "/usr/bin/racer")
