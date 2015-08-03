@@ -104,12 +104,16 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
+openwidget = wibox.widget.textbox()
+openwidget:set_markup("<span font=\"Ubuntu 10\"> &lt; </span>")
+closewidget = wibox.widget.textbox()
+closewidget:set_markup("<span font=\"Ubuntu 10\"> &gt;  </span>")
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span font=\"Ubuntu 10\"> &lt; <span color=\"#3CAA3C\"><b>$1%</b></span> </span>")
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>$1%</b></span>")
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\">  <span color=\"#9CC646\"><b>$1% | $2MB</b></span> &gt;  </span>", 10)
+vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\" color=\"#9CC646\"><b>  $1% | $2MB</b></span>", 10)
 batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\">  <span color=\"#9CC646\"><b>$1$2</b></span> &gt;  </span>", 10, 'CMB0')
+vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>  $1$2% ($3)</b></span>", 120, 'BAT0')
 datewidget = wibox.widget.textbox()
 vicious.register(datewidget, vicious.widgets.date, "<span font=\"Ubuntu 11\" color=\"#C7D0CC\">%a. %B %d,  <span color=\"#D7E0DC\">%H:%M</span>   </span>", 60)
 
@@ -129,6 +133,7 @@ dbus.connect_signal("ru.gentoo.kbdd", function(...)
     kbdwidget:set_markup(kbdstrings[layout])
     end
 )
+hostname = io.popen("uname -n"):read()
 
 
 mytasklist = {}
@@ -162,9 +167,15 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
 
+
     right_layout:add(kbdwidget)
+    right_layout:add(openwidget)
     right_layout:add(cpuwidget)
     right_layout:add(memwidget)
+    if hostname == "archmini" then
+       right_layout:add(batwidget)
+    end
+    right_layout:add(closewidget)
     right_layout:add(datewidget)
     -- right_layout:add(mylayoutbox[s])
 
