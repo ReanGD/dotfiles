@@ -25,3 +25,7 @@
 **/shutter/.shutter/settings.xml
 **/shutter/.config/gtk-2.0/gtkfilechooser.ini
 **/shutter/.cache/shutter/unsaved/*.png
+
+# yandex-disk
+**/yandex-disk/iid
+**/yandex-disk/passwd
