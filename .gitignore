@@ -21,5 +21,7 @@
 # shutter
 **/shutter/.thumbnails
 **/shutter/.shutter/session.xml
+**/shutter/.shutter/drawingtool.xml
+**/shutter/.shutter/settings.xml
+**/shutter/.config/gtk-2.0/gtkfilechooser.ini
 **/shutter/.cache/shutter/unsaved/*.png
-
