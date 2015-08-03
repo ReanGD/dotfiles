@@ -7,6 +7,7 @@ export PATH=$HOME/.config/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
 export MPLAYER_HOME=$HOME/.config/mplayer
 export CARGO_HOME=$HOME/.local/share/cargo
+export GNUPGHOME=$HOME/.config/gnupg
 
 # AUTOLOAD
 xrdb ~/.config/.Xresources
