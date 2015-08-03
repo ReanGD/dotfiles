@@ -108,6 +108,8 @@ cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, "<span font=\"Ubuntu 10\"> &lt; <span color=\"#3CAA3C\"><b>$1%</b></span> </span>")
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\">  <span color=\"#9CC646\"><b>$1% | $2MB</b></span> &gt;  </span>", 10)
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\">  <span color=\"#9CC646\"><b>$1$2</b></span> &gt;  </span>", 10, 'CMB0')
 datewidget = wibox.widget.textbox()
 vicious.register(datewidget, vicious.widgets.date, "<span font=\"Ubuntu 11\" color=\"#C7D0CC\">%a. %B %d,  <span color=\"#D7E0DC\">%H:%M</span>   </span>", 60)
 
