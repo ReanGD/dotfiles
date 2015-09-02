@@ -1,2 +1,2 @@
 #!/bin/bash
-HOME=$HOME/.local/share/firefox /usr/bin/firefox
+HOME=$HOME/.local/share/firefox /usr/bin/firefox "$@"
