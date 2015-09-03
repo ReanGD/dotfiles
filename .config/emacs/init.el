@@ -25,6 +25,7 @@
 (require 'minor/mode-line-cfg)
 (require 'minor/window-num-cfg)
 (require 'minor/ido-cfg)
+(require 'minor/flycheck-cfg)
 (require 'minor/company-cfg)
 (require 'minor/yasnippet-cfg)
 (require 'minor/projectile-cfg)

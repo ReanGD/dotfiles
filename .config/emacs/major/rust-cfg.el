@@ -23,12 +23,7 @@
   (setq racer-rust-src-path "~/.local/share/rust_src/src")
   (setq racer-cmd "/usr/bin/racer")
   (eval-after-load "rust-mode" '(require 'racer))
-
-  (eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
   (add-hook 'rust-mode-hook 'lcl:rust-compile-hook))
 (add-hook 'cfg-hook:major-mode 'cfg:rust)
 
 (cfg:add-package 'rust-mode)
-(cfg:add-package 'flycheck-rust)
