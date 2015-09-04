@@ -31,6 +31,7 @@
 
   (electric-indent-mode +1)
   (setq show-paren-style 'expression)
+  (global-auto-revert-mode 1)
   (show-paren-mode 2))
 (add-hook 'cfg-hook:ui 'cfg:edit)
 
