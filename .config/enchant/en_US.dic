@@ -15,3 +15,7 @@ sudo
 stackoverflow
 runtime
 readme
+rasterization
+simd
+specular
+lod
