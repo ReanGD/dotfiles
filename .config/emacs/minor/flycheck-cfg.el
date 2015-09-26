@@ -25,6 +25,6 @@
   (add-to-list 'flycheck-checkers 'cargo-rust)
   (add-hook 'rust-mode-hook 'flycheck-mode)
 )
-;; (add-hook 'cfg-hook:minor-mode 'cfg:flycheck)
+(add-hook 'cfg-hook:minor-mode 'cfg:flycheck)
 
 (cfg:add-package 'flycheck)
