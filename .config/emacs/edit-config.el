@@ -26,6 +26,7 @@
         css-indent-offset 2     ;; indentation level in CSS mode
         backward-delete-char-untabify-method 'untabify ;; hungry - delete all whitespace, both tabs and spaces
         )
+  (fset 'yes-or-no-p 'y-or-n-p)
   (put 'upcase-region 'disabled nil)
   (put 'downcase-region 'disabled nil)
 
