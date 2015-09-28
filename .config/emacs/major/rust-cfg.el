@@ -1,12 +1,44 @@
 (provide 'major/rust-cfg)
 
-(defun lcl:rust-compile-hook ()
+(defun lcl:rust-cargo (arg)
   (require 'compile)
-  (set (make-local-variable 'compile-command)
-       (if (locate-dominating-file (buffer-file-name) "Cargo.toml")
-           "cargo run"
-         (format "rustc %s && %s" (buffer-file-name)
-                 (file-name-sans-extension (buffer-file-name))))))
+  (compile (format "cargo %s" arg)))
+
+(defun lcl:rust-defun-compile (name arg)
+  `(defun ,name ()
+     (interactive)
+     (lcl:rust-cargo ,arg)))
+
+(defvar cfg:rust-compile-list '(("rust-run-release" . "run --release")
+                                ("rust-run-debug" . "run")
+                                ("rust-run-test" . "test")))
+
+(defmacro lcl:rust-compile-func-generator ()
+  `(progn ,@(mapcar
+             (lambda (x) (lcl:rust-defun-compile (intern (car x)) (cdr x)))
+             cfg:rust-compile-list)))
+
+(lcl:rust-compile-func-generator)
+
+(defadvice compile (around lcl:rust-before-compile (command &optional comint))
+  (message "!!!my defadvice")
+  (setq rust-compile-command command)
+  ad-do-it
+  (setq rust-compile-command nil)
+  )
+
+(defun lcl:rust-compile-command ()
+  (if rust-compile-command
+      rust-compile-command
+    (format "cargo %s" (cdr
+                        (assoc
+                         (ido-completing-read "action: " (mapcar #'car cfg:rust-compile-list))
+                         cfg:rust-compile-list))))
+  )
+
+(defun lcl:rust-compile ()
+  (set (make-local-variable 'rust-compile-command) nil)
+  (set (make-local-variable 'compile-command) '(lcl:rust-compile-command)))
 
 (defun cfg:rust ()
   (autoload 'rust-mode "rust-mode" nil t)
@@ -14,16 +46,24 @@
 
   (add-hook 'rust-mode-hook
             (lambda ()
-              (setq indent-tabs-mode nil)
-              (setq tab-width 4)
-              (setq rust-indent-offset 4)
-              (racer-activate)
+              (setq indent-tabs-mode nil
+                    tab-width 4
+                    rust-indent-offset 4
+                    rustfmt-bin "/home/rean/tmp/rustfmt/target/release/rustfmt")
               ))
 
-  (setq racer-rust-src-path "~/.local/share/rust_src/src")
+  (setq racer-rust-src-path "/usr/src/rust/src")
   (setq racer-cmd "/usr/bin/racer")
-  (eval-after-load "rust-mode" '(require 'racer))
-  (add-hook 'rust-mode-hook 'lcl:rust-compile-hook))
+
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'rust-mode-hook #'lcl:rust-compile)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+
+  (add-hook 'racer-mode-hook #'company-mode)
+  (setq company-tooltip-align-annotations t)
+  )
 (add-hook 'cfg-hook:major-mode 'cfg:rust)
 
 (cfg:add-package 'rust-mode)
+(cfg:add-package 'racer)
+;; (cfg:add-package 'rustfmt)
