@@ -33,6 +33,8 @@
 (require 'minor/test-cfg)
 (require 'minor/search-cfg)
 (require 'minor/spelling-cfg)
+(require 'minor/multi-compile-cfg)
+
 (if cfg-var:use-irony
     (require 'minor/irony-cfg))
 ;;(require 'minor/helm-cfg)

@@ -82,7 +82,7 @@
    (list "<C-f10>" 'langtool-correct-buffer)
    (list "<f11>" 'wcheck-mode)
    ;; Others
-   (list "C-b" 'compile)
+   (list "C-b" 'multi-compile-run)
    (if cfg-var:autocomplete
        (list "C-SPC" cfg-var:autocomplete))
    ;; My extensions

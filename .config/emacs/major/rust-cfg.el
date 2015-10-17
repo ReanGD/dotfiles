@@ -1,44 +1,20 @@
 (provide 'major/rust-cfg)
 
-(defun lcl:rust-cargo (arg)
-  (require 'compile)
-  (compile (format "cargo %s" arg)))
+;; (defun lcl:rust-cargo (arg)
+;;   (require 'compile)
+;;   (compile (format "cargo %s" arg)))
 
-(defun lcl:rust-defun-compile (name arg)
-  `(defun ,name ()
-     (interactive)
-     (lcl:rust-cargo ,arg)))
+;; (defun lcl:rust-defun-compile (name arg)
+;;   `(defun ,name ()
+;;      (interactive)
+;;      (lcl:rust-cargo ,arg)))
 
-(defvar cfg:rust-compile-list '(("rust-run-release" . "run --release")
-                                ("rust-run-debug" . "run")
-                                ("rust-run-test" . "test")))
+;; (defmacro lcl:rust-compile-func-generator ()
+;;   `(progn ,@(mapcar
+;;              (lambda (x) (lcl:rust-defun-compile (intern (car x)) (cdr x)))
+;;              cfg:rust-compile-list)))
 
-(defmacro lcl:rust-compile-func-generator ()
-  `(progn ,@(mapcar
-             (lambda (x) (lcl:rust-defun-compile (intern (car x)) (cdr x)))
-             cfg:rust-compile-list)))
-
-(lcl:rust-compile-func-generator)
-
-(defadvice compile (around lcl:rust-before-compile (command &optional comint))
-  (message "!!!my defadvice")
-  (setq rust-compile-command command)
-  ad-do-it
-  (setq rust-compile-command nil)
-  )
-
-(defun lcl:rust-compile-command ()
-  (if rust-compile-command
-      rust-compile-command
-    (format "cargo %s" (cdr
-                        (assoc
-                         (ido-completing-read "action: " (mapcar #'car cfg:rust-compile-list))
-                         cfg:rust-compile-list))))
-  )
-
-(defun lcl:rust-compile ()
-  (set (make-local-variable 'rust-compile-command) nil)
-  (set (make-local-variable 'compile-command) '(lcl:rust-compile-command)))
+;; (lcl:rust-compile-func-generator)
 
 (defun cfg:rust ()
   (autoload 'rust-mode "rust-mode" nil t)
