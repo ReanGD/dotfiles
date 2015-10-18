@@ -23,6 +23,7 @@
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
+(require 'minor/wrapline-cfg)
 (require 'minor/window-num-cfg)
 (require 'minor/ido-cfg)
 (require 'minor/flycheck-cfg)
