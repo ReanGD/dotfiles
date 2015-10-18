@@ -78,7 +78,7 @@ local layouts =
  for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
     gears.wallpaper.maximized("/usr/share/slim/themes/wave/background.jpg", s, true)
- end 
+ end
 -- }}}
 
 
@@ -224,8 +224,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "l", function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h", function () awful.tag.incmwfact(-0.05)    end),
   -- standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),    
-    awful.key({ modkey,           }, "e", function () awful.util.spawn("emacs") end),    
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "e", function () awful.util.spawn("emacs") end),
     awful.key({ modkey,           }, "r", function () awful.util.spawn("rofi -show run") end),
     awful.key({ modkey, "Shift"   }, "r", function () awful.util.spawn(awful.util.getdir("config") .. "/run_menu.sh") end),
   -- awesome
@@ -342,6 +342,8 @@ awful.rules.rules = {
     { rule = { class = "Firefox" },
       properties = { tag = tags[1][1] } },
     { rule = { class = "MPlayer" },
+      properties = { floating = true } },
+    { rule = { class = "open3d" },
       properties = { floating = true } },
     { rule = { class = "Pyorgcalendar" },
       properties = { floating = true } },
