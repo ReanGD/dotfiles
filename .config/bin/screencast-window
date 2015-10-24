@@ -1,0 +1,15 @@
+#!/bin/bash
+xwininfo=$(xwininfo)
+
+getnum()
+{
+    echo "$xwininfo" | grep "$1" | tr -cd [:digit:]
+}
+
+x=$(getnum "Absolute upper-left X:")
+y=$(getnum "Absolute upper-left Y:")
+w=$(getnum "Width:")
+h=$(getnum "Height:")
+
+byzanz-record --cursor=false --exec="sleep 5m" -x $x -y $y -w $w -h $h ~/tmp/image-$(date --iso-8601=s).gif
+notify-send -u 'normal' 'Screencast-window' 'Finish'

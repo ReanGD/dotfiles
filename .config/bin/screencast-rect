@@ -1,0 +1,4 @@
+#!/bin/bash
+ARGUMENTS=$(xrectsel "--x=%x --y=%y --width=%w --height=%h") || exit -1
+byzanz-record --cursor=false --exec="sleep 5m" ${ARGUMENTS} ~/tmp/image-$(date --iso-8601=s).gif
+notify-send -u 'normal' 'Screencast-rect' 'Finish'
