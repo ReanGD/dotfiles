@@ -228,6 +228,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "e", function () awful.util.spawn("emacs") end),
     awful.key({ modkey,           }, "r", function () awful.util.spawn("rofi -show run") end),
     awful.key({ modkey, "Shift"   }, "r", function () awful.util.spawn(awful.util.getdir("config") .. "/run_menu.sh") end),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.util.spawn("pkill sleep") end),
   -- awesome
     awful.key({ modkey, "Shift", "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift", "Control" }, "q", awesome.quit),
