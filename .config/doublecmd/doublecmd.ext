@@ -2,3 +2,7 @@
 Name=mp3
 Open=/usr/bin/deadbeef %f
 
+[png|bmp|gif|jpeg|jpg|tga|tif|tiff|svg]
+Name=image
+Open=/usr/bin/viewnior %f
+

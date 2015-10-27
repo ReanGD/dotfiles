@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.6.4 beta">
+<doublecmd DCVersion="0.6.6 beta">
   <Hotkeys Version="20">
     <Form Name="Main">
       <Hotkey>
@@ -74,10 +74,6 @@
       <Hotkey>
         <Shortcut>Ctrl+P</Shortcut>
         <Command>cm_AddPathToCmdLine</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>Ctrl+Q</Shortcut>
-        <Command>cm_QuickView</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+S</Shortcut>
@@ -204,7 +200,7 @@
         <Command>cm_OperationsViewer</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Alt+X</Shortcut>
+        <Shortcut>Ctrl+Q</Shortcut>
         <Command>cm_Exit</Command>
       </Hotkey>
       <Hotkey>
