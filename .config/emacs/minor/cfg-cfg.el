@@ -88,7 +88,7 @@
    ;; My extensions
    (list "C-x C-f" 'cfg:format-buffer)
    ;; Search
-   (list "C-f" 'isearch-forward)          ;; C-s
+   (list "C-f" 'swiper)          ;; C-s
    ))
 
 (defun cfg:cfg-hotheys (map)
