@@ -17,10 +17,11 @@ eval $(ssh-agent)
 setxkbmap -option 'ctrl:nocaps' &
 # urxvt &
 # subl3 &
-# firefox &
 # doublecmd &
+firefox &
 kbdd &
 start-pulseaudio-x11 &
+volumeicon &
 ssh-add ~/.ssh/github &
 ssh-add ~/.ssh/gitlab &
 awesome
