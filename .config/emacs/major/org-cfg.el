@@ -10,6 +10,10 @@
   (setq org-src-fontify-natively 't)
   (global-font-lock-mode 1)
   (setq org-log-done t)
+  (global-set-key "\C-ca" 'org-agenda)
+  (setq org-agenda-custom-commands
+        '(("е" "List of all TODO entries"
+         ((call-interactively 'org-todo-list)))))
   (setq org-agenda-files (quote ("~/doc/task"))))
 (add-hook 'cfg-hook:major-mode 'cfg:org-mode)
 
