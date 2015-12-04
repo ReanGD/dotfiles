@@ -20,6 +20,7 @@
 (require 'major/json-cfg)
 (require 'major/python-cfg)
 (require 'major/rust-cfg)
+(require 'major/go-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
