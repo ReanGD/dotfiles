@@ -2,6 +2,7 @@
 
 
 (defun cfg:go ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
   )
 (add-hook 'cfg-hook:major-mode 'cfg:go)
 
