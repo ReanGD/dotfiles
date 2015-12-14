@@ -12,7 +12,7 @@
           elpy-module-yasnippet))
   (elpy-enable)
   )
-(add-hook 'cfg-hook:major-mode 'cfg:python)
+;; (add-hook 'cfg-hook:major-mode 'cfg:python)
 
 (defun cfg:python3 ()
   (interactive)

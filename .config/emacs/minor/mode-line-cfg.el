@@ -73,7 +73,6 @@ mouse-3: Toggle minor modes"
 (defun lcl:filer-minor-mode (mode)
   (if (or (string/starts-with mode "Projectile")
           (equal mode "cfg")  ;; local mode for hotkeys
-          (equal mode "Anzu") ;; search-plugin
           )
       nil
     t))
@@ -86,12 +85,10 @@ mouse-3: Toggle minor modes"
 (defun lcl:get-minor-mode-display-name (mode)
   (if (equal mode "yas") ;; YASnippet
       "YAS"
-    (if (equal mode "company") ;; autocomplete Company-mode
-        "CO"
-      (if (equal mode "SP") ;; smartparens mode
-          "(S)"
-        mode
-        ))))
+    (if (equal mode "SP") ;; smartparens mode
+        "(S)"
+      mode
+      )))
 
 (defun lcl:ml-mouse-event (click-type string)
   (cond ((eq click-type 'menu)
@@ -189,7 +186,7 @@ mouse-3: Toggle minor modes"
 (add-hook 'dired-mode-hook 'lcl:set-buffer-id)
 (eval-after-load "projectile" '(setq lcl:projectile-loaded-p t))
 
-(eval-after-load "vc-hooks" 
+(eval-after-load "vc-hooks"
   '(defadvice vc-mode-line (after sml/after-vc-mode-line-advice () activate)
      (when (stringp vc-mode)
        (let ((backend (replace-regexp-in-string (format "^ %s" (vc-backend buffer-file-name)) " " vc-mode)))
