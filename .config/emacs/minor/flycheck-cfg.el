@@ -24,6 +24,7 @@
     :modes rust-mode)
   (add-to-list 'flycheck-checkers 'cargo-rust)
   (add-hook 'rust-mode-hook 'flycheck-mode)
+  (add-hook 'go-mode-hook 'flycheck-mode)
 )
 (add-hook 'cfg-hook:minor-mode 'cfg:flycheck)
 
