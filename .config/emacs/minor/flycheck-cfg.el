@@ -1,8 +1,7 @@
 (provide 'minor/flycheck-cfg)
 
 
-(defun cfg:flycheck ()
-  (require 'flycheck)
+(defun cfg:flycheck-rust ()
   (flycheck-define-checker cargo-rust
     "cargo-rust"
     :command ("cargo" "rustc" "--" "-Z" "no-trans")
@@ -23,9 +22,17 @@
            (message) line-end))
     :modes rust-mode)
   (add-to-list 'flycheck-checkers 'cargo-rust)
-  (add-hook 'rust-mode-hook 'flycheck-mode)
-  (add-hook 'go-mode-hook 'flycheck-mode)
-)
+  (add-hook 'rust-mode-hook 'flycheck-mode))
+
+(defun cfg:flycheck-go ()
+  (add-hook 'go-mode-hook 'flycheck-mode))
+
+
+(defun cfg:flycheck ()
+  (require 'flycheck)
+  (cfg:flycheck-rust)
+  (cfg:flycheck-go)
+  )
 (add-hook 'cfg-hook:minor-mode 'cfg:flycheck)
 
 (cfg:add-package 'flycheck)

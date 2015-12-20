@@ -2,7 +2,9 @@
 
 (defun cfg:yasnippet ()
   (require 'yasnippet)
-  (yas-global-mode 1))
+  (yas-reload-all)
+  (add-hook 'go-mode-hook #'yas-minor-mode)
+  )
 
 (add-hook 'cfg-hook:minor-mode 'cfg:yasnippet)
 

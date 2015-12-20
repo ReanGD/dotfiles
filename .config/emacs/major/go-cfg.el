@@ -1,6 +1,8 @@
 (provide 'major/go-cfg)
 
 
+;; flycheck
+;; yasnippet
 (defun cfg:go ()
   (add-hook 'before-save-hook 'gofmt-before-save)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
