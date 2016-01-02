@@ -4,26 +4,27 @@
 export ZDOTDIR=$HOME/.config/zsh
 export MPLAYER_HOME=$HOME/.config/mplayer
 export CARGO_HOME=$HOME/.local/share/cargo
-export GOPATH=$HOME/.local/share/go
+export GOPATH_BASE=$HOME/.local/share/go
+export GOPATH=$GOPATH_BASE:$HOME/projects/git/go:$HOME/projects/temp/go
 export GNUPGHOME=$HOME/.config/gnupg
 export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
 
 # LOCAL PATHS
-export PATH=$HOME/.config/bin:$PATH:$GOPATH/bin
+export PATH=$HOME/.config/bin:$PATH:$GOPATH_BASE/bin
 
 # AUTOLOAD
+autoload () {
+	/usr/bin/xmodmap ~/.Xmodmap &
+	setxkbmap -option 'ctrl:nocaps' &
+	kbdd
+	# urxvt &
+	(sleep 5 && firefox & subl3 & doublecmd) &
+	(sleep 10 && volumeicon) &
+	(sleep 15 && ssh-add ~/.ssh/github & ssh-add ~/.ssh/gitlab) &
+	(sleep 25 && ~/.config/bin/dropbox)
+}
+
+# START
 xrdb ~/.config/.Xresources
 eval $(ssh-agent)
-
-/usr/bin/xmodmap ~/.Xmodmap &
-setxkbmap -option 'ctrl:nocaps' &
-# urxvt &
-# subl3 &
-# doublecmd &
-firefox &
-kbdd &
-start-pulseaudio-x11 &
-volumeicon &
-ssh-add ~/.ssh/github &
-ssh-add ~/.ssh/gitlab &
-awesome
+autoload & awesome
