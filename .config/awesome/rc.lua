@@ -73,7 +73,7 @@ local layouts =
 -- {{{ !Tags + Wallpaper
  tags = {
    names  = { "web", "doc", "devel", "cmdr", "media", "custom" },
-   layout = { layouts[3], layouts[2], layouts[3], layouts[3], layouts[2], layouts[2] }
+   layout = { layouts[3], layouts[1], layouts[3], layouts[3], layouts[2], layouts[2] }
  }
  for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
@@ -339,9 +339,13 @@ awful.rules.rules = {
     { rule = { },
       properties = { },
       callback = awful.client.setslave },
-    -- Set Firefox to always map on tags number 1 of screen 1.
+    -- screen=1, tag=1
     { rule = { class = "Firefox" },
       properties = { tag = tags[1][1] } },
+    { rule = { class = "Subl3" },
+      properties = { tag = tags[1][2] } },
+    { rule = { class = "Doublecmd" },
+      properties = { tag = tags[1][4] } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "open3d" },
