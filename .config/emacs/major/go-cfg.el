@@ -10,7 +10,7 @@
   (add-hook 'go-mode-hook (lambda ()
                             (set (make-local-variable 'company-backends) '(company-go))
                             (company-mode)))
-  (load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
+  (load-file "$GOPATH_BASE/src/golang.org/x/tools/cmd/oracle/oracle.el")
   )
 (add-hook 'cfg-hook:major-mode 'cfg:go)
 
