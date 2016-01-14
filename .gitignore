@@ -29,3 +29,7 @@
 # yandex-disk
 **/yandex-disk/iid
 **/yandex-disk/passwd
+
+# pulseaudio
+**/pulse/*
+!**/pulse/default.pa
