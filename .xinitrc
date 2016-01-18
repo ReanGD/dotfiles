@@ -10,6 +10,7 @@ export GNUPGHOME=$HOME/.config/gnupg
 export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
 export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv
 export CUDA_CACHE_PATH=$HOME/.cache/nv
+export KDEHOME=$HOME/.local/share/kde
 
 # LOCAL PATHS
 export PATH=$HOME/.config/bin:$PATH:$GOPATH_BASE/bin
