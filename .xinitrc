@@ -12,6 +12,7 @@ export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
 export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv
 export CUDA_CACHE_PATH=$HOME/.cache/nv
 export KDEHOME=$HOME/.local/share/kde
+export LESSHISTFILE=$HOME/.cache/.lesshst
 export PYTHON_EGG_CACHE=$HOME/.cache/python-eggs
 
 # LOCAL PATHS
