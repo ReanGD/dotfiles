@@ -4,6 +4,7 @@
     co = checkout
     br = branch
     df = difftool --dir-diff
+    dfc = icdiff
     mt = mergetool -t meld
 [diff]
     tool = meld
