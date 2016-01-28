@@ -2,5 +2,5 @@
 ARGUMENTS=$(xrectsel "--x=%x --y=%y --width=%w --height=%h") || exit -1
 path=~/tmp/image-$(date +%FT%H-%M-%S).gif
 byzanz-record --cursor=false --exec="sleep 5m" ${ARGUMENTS} $path
-printf $path | xsel -ib
+printf $path | xsel -ib --logfile $HOME/.cache/xsel.log
 notify-send -u 'normal' 'Screencast-rect' 'Finish'
