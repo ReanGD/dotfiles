@@ -27,11 +27,14 @@
 (defun cfg:flycheck-go ()
   (add-hook 'go-mode-hook 'flycheck-mode))
 
+(defun cfg:flycheck-emacs-lisp ()
+  (add-hook 'emacs-lisp-mode-hook 'flycheck-mode))
 
 (defun cfg:flycheck ()
   (require 'flycheck)
   (cfg:flycheck-rust)
   (cfg:flycheck-go)
+  (cfg:flycheck-emacs-lisp)
   )
 (add-hook 'cfg-hook:minor-mode 'cfg:flycheck)
 
