@@ -11,6 +11,10 @@
 (setq cfg-var:autocomplete 'company-complete-common)
 (setq cfg-var:use-irony t)
 
+(cfg:pre-init)
+
+(require 'major/go-cfg)
+;; warnings:
 (require 'major/cmake-cfg)
 (require 'major/cpp-cfg)
 (require 'major/markdown-cfg)
@@ -20,7 +24,6 @@
 (require 'major/json-cfg)
 (require 'major/python-cfg)
 (require 'major/rust-cfg)
-(require 'major/go-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
@@ -47,4 +50,4 @@
 (require 'hotkeys)
 ;;(require 'cedet-config)
 
-(cfg:init)
+(cfg:post-init)

@@ -25,7 +25,7 @@
   (if (eq cfg-var:work-dir nil)
       (setq cfg-var:work-dir user-emacs-directory)
     (setq delete-dir user-emacs-directory))
-  
+
   (setq backup-dir (concat (file-name-as-directory cfg-var:work-dir) "backup")
         auto-save-dir (concat (file-name-as-directory cfg-var:work-dir) "auto-save"))
 
@@ -46,12 +46,15 @@
 (defun cfg:add-package (name &optional func)
   (add-to-list 'cfg-var:packages (cons name func)))
 
-(defun cfg:init ()
+(defun cfg:pre-init ()
   (lcl:init-dir)
   (require 'package)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize)
+  (setq-default flycheck-emacs-lisp-load-path load-path))
+
+(defun cfg:post-init ()
   (lcl:install-packages)
   (run-hooks 'cfg-hook:ui)
   (run-hooks 'cfg-hook:minor-mode)
