@@ -14,10 +14,10 @@
 (cfg:pre-init)
 
 (require 'major/go-cfg)
+(require 'major/markdown-cfg)
 ;; warnings:
 (require 'major/cmake-cfg)
 (require 'major/cpp-cfg)
-(require 'major/markdown-cfg)
 (require 'major/lua-cfg)
 (require 'major/org-cfg)
 (require 'major/yaml-cfg)

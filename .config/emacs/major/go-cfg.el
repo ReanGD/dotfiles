@@ -26,5 +26,4 @@
 (cfg:add-package 'company-go)
 
 (provide 'major/go-cfg)
-
 ;;; go-cfg.el ends here
