@@ -16,9 +16,9 @@
 (require 'major/go-cfg)
 (require 'major/markdown-cfg)
 (require 'major/cmake-cfg)
+(require 'major/lua-cfg)
 ;; warnings:
 (require 'major/cpp-cfg)
-(require 'major/lua-cfg)
 (require 'major/org-cfg)
 (require 'major/yaml-cfg)
 (require 'major/json-cfg)

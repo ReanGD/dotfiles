@@ -29,6 +29,7 @@
 
 (defun cfg:flycheck ()
   (require 'flycheck)
+  (setq-default flycheck-emacs-lisp-load-path load-path)
   (cfg:flycheck-rust)
   (cfg:flycheck-emacs-lisp)
   )

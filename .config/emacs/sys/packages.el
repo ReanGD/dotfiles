@@ -51,8 +51,7 @@
   (require 'package)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (package-initialize)
-  (setq-default flycheck-emacs-lisp-load-path load-path))
+  (package-initialize))
 
 (defun cfg:post-init ()
   (lcl:install-packages)
