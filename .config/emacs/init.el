@@ -17,11 +17,11 @@
 (require 'major/markdown-cfg)
 (require 'major/cmake-cfg)
 (require 'major/lua-cfg)
+(require 'major/json-cfg)
 ;; warnings:
 (require 'major/cpp-cfg)
 (require 'major/org-cfg)
 (require 'major/yaml-cfg)
-(require 'major/json-cfg)
 (require 'major/python-cfg)
 (require 'major/rust-cfg)
 
