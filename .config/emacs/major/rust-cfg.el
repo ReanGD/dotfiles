@@ -1,45 +1,64 @@
-(provide 'major/rust-cfg)
+;;; rust-cfg.el --- Configure rust
+;;; Commentary:
+;;; Code:
+(require 'sys/packages)
+(require 'rust-mode nil t)
+(require 'company nil t)
+(require 'eldoc nil t)
+(require 'racer nil t)
+(require 'flycheck nil t)
+;; (require 'yasnippet nil t)
 
-;; (defun lcl:rust-cargo (arg)
-;;   (require 'compile)
-;;   (compile (format "cargo %s" arg)))
-
-;; (defun lcl:rust-defun-compile (name arg)
-;;   `(defun ,name ()
-;;      (interactive)
-;;      (lcl:rust-cargo ,arg)))
-
-;; (defmacro lcl:rust-compile-func-generator ()
-;;   `(progn ,@(mapcar
-;;              (lambda (x) (lcl:rust-defun-compile (intern (car x)) (cdr x)))
-;;              cfg:rust-compile-list)))
-
-;; (lcl:rust-compile-func-generator)
+(defun cfg:rust-flycheck ()
+  "Configure rust flycheck."
+  (flycheck-define-checker cargo-rust
+    "cargo-rust"
+    :command ("cargo" "rustc" "--" "-Z" "no-trans")
+    :error-patterns
+    ((error line-start (file-name) ":" line ":" column ": "
+            (one-or-more digit) ":" (one-or-more digit) " error: "
+            (or
+             ;; Multiline errors
+             (and (message (minimal-match (one-or-more anything)))
+                  " [" (id "E" (one-or-more digit)) "]")
+             (message))
+            line-end)
+     (warning line-start (file-name) ":" line ":" column ": "
+              (one-or-more digit) ":" (one-or-more digit) " warning: "
+              (message) line-end)
+     (info line-start (file-name) ":" line ":" column ": "
+           (one-or-more digit) ":" (one-or-more digit) " " (or "note" "help") ": "
+           (message) line-end))
+    :modes rust-mode)
+  (add-to-list 'flycheck-checkers 'cargo-rust)
+  )
 
 (defun cfg:rust ()
-  (autoload 'rust-mode "rust-mode" nil t)
+  "Configure rust."
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
   (add-hook 'rust-mode-hook
             (lambda ()
-              (setq indent-tabs-mode nil
-                    tab-width 4
-                    rust-indent-offset 4
-                    rustfmt-bin "/home/rean/tmp/rustfmt/target/release/rustfmt")
-              ))
+              (setq indent-tabs-mode nil  ;; отступы делаются пробелами
+                    tab-width 4           ;; default tab width
+                    rust-indent-offset 4  ;; rust specific tab width
+                    )))
 
   (setq racer-rust-src-path "/usr/src/rust/src")
   (setq racer-cmd "/usr/bin/racer")
 
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'rust-mode-hook #'lcl:rust-compile)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-
-  (add-hook 'racer-mode-hook #'company-mode)
-  (setq company-tooltip-align-annotations t)
+  (cfg:rust-flycheck)
+  (add-hook 'rust-mode-hook 'flycheck-mode)
+  (add-hook 'rust-mode-hook 'racer-mode)
+  (add-hook 'racer-mode-hook 'eldoc-mode)
+  (add-hook 'racer-mode-hook 'company-mode)
   )
 (add-hook 'cfg-hook:major-mode 'cfg:rust)
 
 (cfg:add-package 'rust-mode)
 (cfg:add-package 'racer)
 ;; (cfg:add-package 'rustfmt)
+
+
+(provide 'major/rust-cfg)
+;;; rust-cfg.el ends here

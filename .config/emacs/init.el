@@ -19,11 +19,11 @@
 (require 'major/lua-cfg)
 (require 'major/json-cfg)
 (require 'major/yaml-cfg)
+(require 'major/rust-cfg)
 ;; warnings:
 (require 'major/cpp-cfg)
 (require 'major/org-cfg)
 (require 'major/python-cfg)
-(require 'major/rust-cfg)
 
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
