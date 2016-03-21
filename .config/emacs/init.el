@@ -20,8 +20,8 @@
 (require 'major/json-cfg)
 (require 'major/yaml-cfg)
 (require 'major/rust-cfg)
-;; warnings:
 (require 'major/cpp-cfg)
+;; warnings:
 (require 'major/org-cfg)
 (require 'major/python-cfg)
 
