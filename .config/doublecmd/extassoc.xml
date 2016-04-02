@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doublecmd DCVersion="0.7.1 beta">
+  <ExtensionAssociation>
+    <FileType>
+      <Name>mp3</Name>
+      <IconFile/>
+      <ExtensionList>mp3</ExtensionList>
+      <Actions>
+        <Action>
+          <Name>Open</Name>
+          <Command>/usr/bin/deadbeef</Command>
+          <Params>%f</Params>
+        </Action>
+      </Actions>
+    </FileType>
+    <FileType>
+      <Name>image</Name>
+      <IconFile/>
+      <ExtensionList>png|bmp|gif|jpeg|jpg|tga|tif|tiff|svg|jpe</ExtensionList>
+      <Actions>
+        <Action>
+          <Name>Open</Name>
+          <Command>/usr/bin/viewnior</Command>
+          <Params>%f</Params>
+        </Action>
+      </Actions>
+    </FileType>
+    <FileType>
+      <Name>text</Name>
+      <IconFile/>
+      <ExtensionList>go|log</ExtensionList>
+      <Actions>
+        <Action>
+          <Name>Open</Name>
+          <Command>/usr/bin/subl3</Command>
+          <Params>%f</Params>
+        </Action>
+      </Actions>
+    </FileType>
+  </ExtensionAssociation>
+</doublecmd>
