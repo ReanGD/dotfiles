@@ -5,6 +5,7 @@
 (require 'company nil t)
 (require 'flycheck nil t)
 (require 'yasnippet nil t)
+(require 'multi-compile nil t)
 
 (defun cfg:go ()
   "Configure golang."
@@ -16,6 +17,16 @@
   (add-hook 'go-mode-hook (lambda ()
                             (set (make-local-variable 'company-backends) '(company-go))
                             (company-mode)))
+  (add-to-list
+   'multi-compile-alist
+   '(go-mode . (
+                ("go-build-and-run" "n=${PWD##*/} && go build -v -o bin/$n && echo 'build finish' && (cd bin && eval ./$n)"
+                 (multi-compile-locate-file-dir ".git"))
+                ("go-build" "go build -v -o bin/${PWD##*/}"
+                 (multi-compile-locate-file-dir ".git"))
+                ))
+   )
+
   (load-file "$GOPATH_BASE/src/golang.org/x/tools/cmd/oracle/oracle.el")
   )
 (add-hook 'cfg-hook:major-mode 'cfg:go)
