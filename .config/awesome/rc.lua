@@ -77,7 +77,7 @@ local layouts =
  }
  for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layout)
-    gears.wallpaper.maximized("/usr/share/slim/themes/wave/background.jpg", s, true)
+    --gears.wallpaper.maximized("/usr/share/slim/themes/wave/background.jpg", s, true)
  end
 -- }}}
 

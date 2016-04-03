@@ -14,6 +14,7 @@ export CUDA_CACHE_PATH=$HOME/.cache/nv
 export KDEHOME=$HOME/.local/share/kde
 export LESSHISTFILE=$HOME/.cache/.lesshst
 export PYTHON_EGG_CACHE=$HOME/.cache/python-eggs
+export SHELL=`which zsh`
 
 # LOCAL PATHS
 export PATH=$HOME/.config/bin:$PATH:$GOPATH_BASE/bin
