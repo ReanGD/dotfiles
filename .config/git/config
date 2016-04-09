@@ -3,6 +3,9 @@
     st = status
     co = checkout
     br = branch
+    ph = push origin HEAD
+    pl = pull origin HEAD
+    ll = log --graph --decorate --all --pretty='%h %an %ad %s' --date=local
     df = difftool --dir-diff
     dfc = icdiff
     mt = mergetool -t meld
