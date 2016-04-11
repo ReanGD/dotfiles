@@ -86,3 +86,34 @@
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
+
+(defun cfg:rename-file-and-buffer ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let* ((fullname (buffer-file-name))
+         (filename (file-name-nondirectory fullname))
+         (dirname (file-name-directory fullname)))
+    (if (not (and fullname (file-exists-p fullname)))
+        (message "Buffer is not visiting a file!")
+      (if (buffer-modified-p)
+          (message "File not saved!")
+        (let ((new-name (read-file-name "New name: " dirname nil nil filename)))
+          (if (y-or-n-p (format "Do you really want to rename file \"%s\"?" filename))
+              (progn
+                (rename-file fullname new-name t)
+                (set-visited-file-name new-name t t)
+                (message nil))
+            (message nil)))))))
+
+(defun cfg:delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((fullname (buffer-file-name)))
+    (if (not (and fullname (file-exists-p fullname)))
+        (message "Buffer is not visiting a file!")
+      (progn
+        (delete-file fullname)
+        (message "Deleted file %s" fullname)
+        (kill-buffer)))))
+
+(print (y-or-n-p (format "Do you really want to rename file %s?" "qwe")))

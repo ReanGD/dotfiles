@@ -168,13 +168,20 @@ mouse-3: Toggle minor modes"
                    (propertize (buffer-name)
                                'face 'lcl-face:filename))
            'help-echo (lcl:get-buffer-id-line-help proj-directory)
-           'local-map mode-line-buffer-identification-keymap))))
+           'local-map mode-line-buffer-identification-keymap)))
+  )
 
 (defun lcl:set-buffer-id (&rest ignored)
   (setq mode-line-buffer-identification lcl:mode-line-buffer-identification))
 
-(defadvice rename-buffer (after lcl:after-rename-buffer ())
-  (lcl:fill-buffer-id))
+(advice-add 'set-visited-file-name :after #'lcl:fill-buffer-id)
+(advice-add 'rename-buffer :after #'lcl:fill-buffer-id)
+
+;; (defadvice rename-file (around sync-ectags-rename-file (file newname &optional ok-if-already-exists) activate)
+;;     "Update ectags for renaming of FILE to NEWNAME."
+;;     (ectags-unregister-tag-file file)
+;;     ad-do-it
+;;     (ectags-register-tag-file newname))
 
 (defadvice set-visited-file-name (after lcl:after-set-visited-file-name ())
   (lcl:fill-buffer-id))
