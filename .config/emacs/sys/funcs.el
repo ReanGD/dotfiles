@@ -115,5 +115,3 @@
         (delete-file fullname)
         (message "Deleted file %s" fullname)
         (kill-buffer)))))
-
-(print (y-or-n-p (format "Do you really want to rename file %s?" "qwe")))

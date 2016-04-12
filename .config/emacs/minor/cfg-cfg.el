@@ -26,6 +26,7 @@
 (define-globalized-minor-mode global-cfg-mode cfg-mode turn-on-cfg-mode)
 
 (defun lcl:get-hotkeys ()
+  (global-set-key (kbd "M-m") nil)
   (list
    ;; File
    (list "C-s" 'save-buffer)              ;; C-x C-s
@@ -87,6 +88,8 @@
        (list "C-SPC" cfg-var:autocomplete))
    ;; My extensions
    (list "C-x C-f" 'cfg:format-buffer)
+   (list "M-m r" 'cfg:rename-file-and-buffer)
+   (list "M-m d" 'cfg:delete-file-and-buffer)
    ;; Search
    (list "C-f" 'swiper)          ;; C-s
    ))
