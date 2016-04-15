@@ -23,12 +23,11 @@ export PATH=$HOME/.config/bin:$PATH:$GOPATH_BASE/bin
 autoload () {
 	/usr/bin/xmodmap ~/.Xmodmap &
 	setxkbmap -option 'ctrl:nocaps' &
-	kbdd
+	kbdd & firefox & subl3 & doublecmd &
 	# urxvt &
-	(sleep 5 && firefox & subl3 & doublecmd) &
-	(sleep 10 && volumeicon) &
-	(sleep 15 && ssh-add ~/.ssh/github & ssh-add ~/.ssh/gitlab) &
-	(sleep 25 && ~/.config/bin/dropbox)
+	(sleep 5 && volumeicon) &
+	(sleep 10 && ssh-add ~/.ssh/github) &
+	(sleep 15 && ~/.config/bin/dropbox)
 }
 
 # START
