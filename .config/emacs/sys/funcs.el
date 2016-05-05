@@ -108,10 +108,32 @@
 (defun cfg:delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
   (interactive)
-  (let ((fullname (buffer-file-name)))
+  (let* ((fullname (buffer-file-name))
+         (filename (file-name-nondirectory fullname)))
     (if (not (and fullname (file-exists-p fullname)))
         (message "Buffer is not visiting a file!")
-      (progn
-        (delete-file fullname)
-        (message "Deleted file %s" fullname)
-        (kill-buffer)))))
+      (if (y-or-n-p (format "Do you really want to delete file \"%s\"?" filename))
+          (progn
+            (delete-file fullname)
+            (message "Deleted file %s" fullname)
+            (kill-buffer))))))
+
+(defun cfg:copy-file-name-to-clipboard ()
+  "Copy the current buffer full file name to the clipboard."
+  (interactive)
+  (let ((str (if (stringp buffer-file-name)
+                 buffer-file-name
+               (buffer-name))))
+    (when str
+      (kill-new str)
+      (message "Copied '%s' to the clipboard." str))))
+
+(defun cfg:copy-dir-name-to-clipboard ()
+  "Copy the current buffer directory name to the clipboard."
+  (interactive)
+  (let ((str (if (stringp buffer-file-name)
+                 (file-name-directory buffer-file-name)
+               default-directory)))
+    (when str
+      (kill-new str)
+      (message "Copied '%s' to the clipboard." str))))
