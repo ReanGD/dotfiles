@@ -1,23 +1,52 @@
 #!bin/sh
 
-# APPS
-export ZDOTDIR=$HOME/.config/zsh
-export MPLAYER_HOME=$HOME/.config/mplayer
-export CARGO_HOME=$HOME/.local/share/cargo
-export GOPATH_BASE=$HOME/.local/share/go
+export LANG=ru_RU.UTF-8
+
+# XDG
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+mkdir -p $XDG_DATA_HOME
+mkdir -p $XDG_CACHE_HOME
+mkdir -p $XDG_CONFIG_HOME
+
+# ~/.Xauthority
+#export XAUTHORITY=$XDG_CACHE_HOME/Xauthority
+
+# Go
+export GOPATH_BASE=$XDG_DATA_HOME/go
 export GOPATH=$GOPATH_BASE:$HOME/projects/git/go:$HOME/projects/temp/go
-export GNUPGHOME=$HOME/.config/gnupg
-export PYTHONSTARTUP=/home/rean/.config/python/pythonrc
-export GIMP2_DIRECTORY=$HOME/.local/share/gimp-2.8
-export __GL_SHADER_DISK_CACHE_PATH=$HOME/.cache/nv
-export CUDA_CACHE_PATH=$HOME/.cache/nv
-export KDEHOME=$HOME/.local/share/kde
-export LESSHISTFILE=$HOME/.cache/.lesshst
-export PYTHON_EGG_CACHE=$HOME/.cache/python-eggs
+
+# Rust
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+
+# ZSH
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+
+# Mplayer
+export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
+
+# Python
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
+export PYTHON_EGG_CACHE=$XDG_CACHE_HOME/python-eggs
+
+# Gimp
+export GIMP2_DIRECTORY=$XDG_DATA_HOME/gimp-2.8
+
+# KDE
+export KDEHOME=$XDG_DATA_HOME/kde
+
+# Other apps
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
+export LESSHISTFILE=$XDG_CACHE_HOME/.lesshst
+
+# Aliases
 export SHELL=`which zsh`
 
 # LOCAL PATHS
-export PATH=$HOME/.config/bin:$PATH:$GOPATH_BASE/bin
+export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
 
 # AUTOLOAD
 autoload () {
