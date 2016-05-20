@@ -25,6 +25,9 @@
 (require 'major/org-cfg)
 (require 'major/python-cfg)
 
+
+(require 'minor/popwin-cfg)
+;; warnings:
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
 (require 'minor/wrapline-cfg)
