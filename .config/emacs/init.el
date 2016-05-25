@@ -21,6 +21,7 @@
 (require 'major/yaml-cfg)
 (require 'major/rust-cfg)
 (require 'major/cpp-cfg)
+(require 'major/docker-cfg)
 ;; warnings:
 (require 'major/org-cfg)
 (require 'major/python-cfg)
