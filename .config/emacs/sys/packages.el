@@ -50,7 +50,7 @@
   (lcl:init-dir)
   (require 'package)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
 
 (defun cfg:post-init ()
