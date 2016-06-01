@@ -12,6 +12,6 @@ w=$(getnum "Width:")
 h=$(getnum "Height:")
 path=~/tmp/image-$(date +%FT%H-%M-%S).gif
 
-byzanz-record --cursor=false --exec="sleep 5m" --x=$x --y=$y --width=$w --height=$h $path
+byzanz-record --exec="sleep 5m" --x=$x --y=$y --width=$w --height=$h $path
 printf $path | xsel -ib --logfile $HOME/.cache/xsel.log
 notify-send -u 'normal' 'Screencast-window' 'Finish'
