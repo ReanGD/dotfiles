@@ -153,10 +153,28 @@
         <FrameStyle>0</FrameStyle>
         <FrameEdges>1</FrameEdges>
       </Attribute>
+      <Attribute Name="Measurement unit">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>536870911</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
       <Attribute Name="Number">
         <Style>0</Style>
         <StyleMask>0</StyleMask>
         <Foreground>8388608</Foreground>
+        <Background>536870911</Background>
+        <FrameColor>536870911</FrameColor>
+        <FrameStyle>0</FrameStyle>
+        <FrameEdges>1</FrameEdges>
+      </Attribute>
+      <Attribute Name="Selector">
+        <Style>0</Style>
+        <StyleMask>0</StyleMask>
+        <Foreground>536870911</Foreground>
         <Background>536870911</Background>
         <FrameColor>536870911</FrameColor>
         <FrameStyle>0</FrameStyle>
