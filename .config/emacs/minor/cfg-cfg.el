@@ -93,6 +93,8 @@
    (list "M-n d" 'cfg:delete-file-and-buffer)
    (list "M-m f" 'cfg:copy-file-name-to-clipboard)
    (list "M-m d" 'cfg:copy-dir-name-to-clipboard)
+   (list "M-m l" 'popwin:popup-last-buffer)
+   (list "M-m m" 'popwin:messages)
    ;; Search
    (list "C-f" 'swiper)          ;; C-s
    ))

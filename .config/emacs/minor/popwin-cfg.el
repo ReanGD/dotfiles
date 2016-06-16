@@ -6,8 +6,7 @@
 
 (defun cfg:popwin ()
   "Configure popwin."
-  (popwin-mode 1)
-  (global-set-key (kbd "C-z") popwin:keymap))
+  (popwin-mode 1))
 (add-hook 'cfg-hook:minor-mode 'cfg:popwin)
 
 (cfg:add-package 'popwin)
