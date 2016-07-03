@@ -28,6 +28,7 @@
 
 
 (require 'minor/popwin-cfg)
+(require 'minor/volatile-highlights-cfg)
 ;; warnings:
 (require 'minor/cfg-cfg)
 (require 'minor/mode-line-cfg)
