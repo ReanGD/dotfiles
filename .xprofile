@@ -50,7 +50,7 @@ export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
 
 # AUTOLOAD
 autoload () {
-	/usr/bin/xmodmap ~/.Xmodmap &
+	/usr/bin/xmodmap $XDG_CONFIG_HOME/.Xmodmap &
 	setxkbmap -option 'ctrl:nocaps' &
 	kbdd & firefox & subl3 & doublecmd &
 	# urxvt &
