@@ -1,8 +1,8 @@
 # my options
 unsetopt beep
+setopt IGNORE_EOF
 
 mkdir -p ~/.local/share/zsh
-HISTFILE=~/.local/share/zsh/.zshhistory
 ZDOTDIR=~/.local/share/zsh/
 
 # alias
@@ -51,13 +51,13 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_CUSTOM=~/.config/zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found colored-man compleat)
+plugins=(git command-not-found colored-man compleat docker)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+source $ZSH_CUSTOM/lib/settings.zsh
+source $ZSH_CUSTOM/lib/fzf.zsh
 
 export EDITOR="subl3"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
