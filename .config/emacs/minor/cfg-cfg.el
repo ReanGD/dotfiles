@@ -95,6 +95,7 @@
    (list "M-m d" 'cfg:copy-dir-name-to-clipboard)
    (list "M-m l" 'popwin:popup-last-buffer)
    (list "M-m m" 'popwin:messages)
+   (list "M-m g" 'goto-line)
    ;; Search
    (list "C-f" 'swiper)          ;; C-s
    ))
