@@ -6,6 +6,7 @@ then
 docker run -d \
   --name=chrome \
   --cap-add=SYS_ADMIN \
+  --security-opt seccomp:unconfined \
   --net=host \
   --env="DISPLAY" \
   --env="HOST_UID=$(id -u)" \
