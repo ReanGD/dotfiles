@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.7.1 beta">
-  <Hotkeys Version="23">
+<doublecmd DCVersion="0.7.3 beta">
+  <Hotkeys Version="38">
     <Form Name="Main">
       <Hotkey>
         <Shortcut>F1</Shortcut>
@@ -94,10 +94,6 @@
       <Hotkey>
         <Shortcut>Ctrl+W</Shortcut>
         <Command>cm_CloseTab</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>Ctrl+Z</Shortcut>
-        <Command>cm_EditComment</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+F1</Shortcut>
@@ -363,6 +359,11 @@
       <Hotkey>
         <Shortcut>Shift+Tab</Shortcut>
         <Command>cm_NextGroup</Command>
+        <Control>Files Panel</Control>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Z</Shortcut>
+        <Command>cm_EditComment</Command>
         <Control>Files Panel</Control>
       </Hotkey>
     </Form>
