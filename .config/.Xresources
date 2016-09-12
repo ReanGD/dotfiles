@@ -75,7 +75,18 @@ URxvt*pointerColorForeground: S_base1
 Xft*antialias: true
 Xft*rgba: rgb
 Xft*hinting: true
+! hintnone, hintslight, hintmedium, hintfull
 Xft*hintstyle: hintslight
+!Xft*hintstyle: hintfull
+
+!Xft*dpi: 96
+!http://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi
+Xft*dpi: 102
+
+! lcdnone, lcddefault, lcdlight, lcdlegacy
+Xft*lcdfilter: lcddefault
+
+
 
 URxvt*transparent: false
 URxvt*shading: 40
