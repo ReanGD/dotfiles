@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.7.3 beta">
+<doublecmd DCVersion="0.7.4 beta">
   <ExtensionAssociation>
     <FileType>
       <Name>mp3</Name>
@@ -33,6 +33,18 @@
         <Action>
           <Name>Open</Name>
           <Command>/usr/bin/subl3</Command>
+          <Params>%f</Params>
+        </Action>
+      </Actions>
+    </FileType>
+    <FileType>
+      <Name>pdf</Name>
+      <IconFile/>
+      <ExtensionList>pdf</ExtensionList>
+      <Actions>
+        <Action>
+          <Name>Open</Name>
+          <Command>/usr/bin/llpp</Command>
           <Params>%f</Params>
         </Action>
       </Actions>
