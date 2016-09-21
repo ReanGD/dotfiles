@@ -12,3 +12,6 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 unsetopt SHARE_HISTORY           # Share history between all sessions.
+
+# FIX backspace in ssh
+TERM=xterm-256color
