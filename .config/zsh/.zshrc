@@ -58,6 +58,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 source $ZSH_CUSTOM/lib/settings.zsh
 source $ZSH_CUSTOM/lib/fzf.zsh
+source $ZSH_CUSTOM/lib/other.zsh
 
 export EDITOR="subl3"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
