@@ -8,6 +8,7 @@ ZDOTDIR=~/.local/share/zsh/
 # alias
 alias st="subl3"
 alias ping='ping -c 4'
+alias dcc='docker-compose'
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
@@ -51,7 +52,7 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_CUSTOM=~/.config/zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git command-not-found colored-man compleat docker)
+plugins=(git command-not-found colored-man-pages colorize compleat docker extract)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -59,6 +60,9 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/lib/settings.zsh
 source $ZSH_CUSTOM/lib/fzf.zsh
 source $ZSH_CUSTOM/lib/other.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+alias clr='colorize_via_pygmentize'
 
 export EDITOR="subl3"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
