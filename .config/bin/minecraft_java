@@ -6,4 +6,4 @@ for var in "$@"; do
     [ "$var" != '--demo' ] && ARGS+=("$var")
 done
 
-/usr/lib/jvm/java-7-openjdk/jre/bin/java "${ARGS[@]}"
+/usr/lib/jvm/java-8-openjdk/jre/bin/java "${ARGS[@]}"
