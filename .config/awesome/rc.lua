@@ -46,6 +46,7 @@ editor = os.getenv("EDITOR") or "subl3"
 editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
+theme=beautiful.get()
 -- theme.taglist_font = "Ubuntu Mono 12"
 -- theme.taglist_font = "Source Code Pro 11"
 theme.font = "Ubuntu 11"
