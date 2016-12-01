@@ -20,7 +20,7 @@
     keepBackup = true
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output="$MERGED"
 [core]
-    autocrlf = false
+	autocrlf = input
 [user]
     email = reangd@yandex.ru
     name = ReanGD
