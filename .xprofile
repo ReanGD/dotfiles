@@ -53,18 +53,10 @@ export SHELL=`which zsh`
 # LOCAL PATHS
 export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
 
-# AUTOLOAD
-autoload () {
-	/usr/bin/xmodmap $XDG_CONFIG_HOME/.Xmodmap &
-	setxkbmap -option 'ctrl:nocaps' &
-	kbdd & firefox & subl3 & doublecmd &
-	# urxvt &
-	(sleep 5 && volumeicon) &
-	(sleep 10 && ssh-add ~/.ssh/github) &
-	(sleep 15 && ~/.config/bin/dropbox)
-}
-
 # START
 xrdb ~/.config/.Xresources
-eval $(ssh-agent)
-autoload & awesome
+/usr/bin/xmodmap $XDG_CONFIG_HOME/.Xmodmap &
+setxkbmap -option 'ctrl:nocaps' &
+kbdd &
+volumeicon &
+~/.config/bin/dropbox
