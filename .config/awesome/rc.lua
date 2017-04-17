@@ -46,7 +46,7 @@ end
 os.setlocale(os.getenv("LANG"))
 -- Themes define colours, icons, font and wallpapers.
 -- /usr/share/awesome/themes/
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "config/theme-config.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -268,12 +268,7 @@ awful.rules.rules = {
         sticky = true,
         ontop = false,
         focusable = false,
-        size_hints = {"program_position", "program_size"} } },
-
-    -- Add titlebars to dialogs
-    { rule_any = {type = { "dialog" }
-      }, properties = { titlebars_enabled = true }
-    }
+        size_hints = {"program_position", "program_size"} } }
 }
 -- }}}
 
@@ -307,31 +302,6 @@ client.connect_signal("request::titlebars", function(c)
             awful.mouse.client.resize(c)
         end)
     )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
