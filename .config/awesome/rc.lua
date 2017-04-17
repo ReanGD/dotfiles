@@ -14,6 +14,7 @@ local menubar = require("menubar")
 -- require("volume")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys.vim")
+timestamp = require("src.timestamp")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -345,10 +346,16 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- {{{ autoload
-awful.spawn("/home/rean/.config/bin/firefox", { tag = "web" })
-awful.spawn("subl3",                 { tag = "doc" })
-awful.spawn("doublecmd",             { tag = "cmdr" })
+
+
+-- Autostart user applications
+-----------------------------------------------------------------------------------------------------------------------
+local autostart = require("config.autostart-config") -- load file with autostart application list
+
+if timestamp.is_startup() then
+  autostart.run()
+end
+
 -- }}}
 
 -- -- {{{ !Conky
