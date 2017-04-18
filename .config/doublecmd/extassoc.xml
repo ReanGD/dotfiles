@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.7.5 beta">
+<doublecmd DCVersion="0.7.8 beta">
   <ExtensionAssociation>
     <FileType>
       <Name>mp3</Name>
@@ -44,7 +44,19 @@
       <Actions>
         <Action>
           <Name>Open</Name>
-          <Command>/usr/bin/llpp</Command>
+          <Command>/usr/bin/mupdf</Command>
+          <Params>%f</Params>
+        </Action>
+      </Actions>
+    </FileType>
+    <FileType>
+      <Name>video</Name>
+      <IconFile/>
+      <ExtensionList>mp4|flv|wmv|avi|mkv</ExtensionList>
+      <Actions>
+        <Action>
+          <Name>Open</Name>
+          <Command>/usr/bin/mpv</Command>
           <Params>%f</Params>
         </Action>
       </Actions>
