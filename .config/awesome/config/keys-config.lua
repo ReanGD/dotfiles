@@ -1,7 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-require("awful.hotkeys_popup.keys.vim")
 
 local keys = { client_keys = {}, client_buttons = {}}
 
@@ -33,7 +32,9 @@ local function client_numkey(i, modkey, action)
         function ()
             if client.focus then
                 local tag = client.focus.screen.tags[i]
-                if tag then action(tag) end
+                if tag then
+                    action(tag)
+                end
             end
         end
     )
