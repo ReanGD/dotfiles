@@ -12,7 +12,6 @@ local beautiful = require("beautiful")
 
 require("config.errcheck-config")
 timestamp = require("src.timestamp")
-keys = require("config.keys-config")
 
 -- {{{ Variable definitions
 os.setlocale(os.getenv("LANG"))
@@ -84,51 +83,11 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
-keys:init(modkey)
+local hotkeys = require("config.keys-config")
+hotkeys:init(modkey)
 
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = keys.client_keys,
-                     buttons = keys.client_buttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-      },
-      -- new client always open as slave
-      callback = awful.client.setslave
-    },
-
-    -- Floating clients.
-    { rule_any = {
-        class = {
-          "MPlayer",
-          "open3d",
-          "Pyorgcalendar",
-          "pinentry",
-          "gimp"
-        }
-    }, properties = { floating = true }},
-
-    -- move to tag
-    { rule = { class = "Firefox"   }, properties = { tag = "web" } },
-    { rule = { class = "Subl3"     }, properties = { tag = "doc" } },
-    { rule = { class = "Doublecmd" }, properties = { tag = "cmdr" } },
-
-    { rule = { class = "Conky" },
-      properties = {
-        floating = true,
-        sticky = true,
-        ontop = false,
-        focusable = false,
-        size_hints = {"program_position", "program_size"} } }
-}
--- }}}
+local rules = require("config.rules-config")
+rules:init(hotkeys)
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
