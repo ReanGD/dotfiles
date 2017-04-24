@@ -2,8 +2,8 @@ local awful = require("awful")
 
 local autostart = {}
 
-function autostart.run()
-    awful.spawn(os.getenv("HOME").."/.config/bin/firefox", { tag = "web" })
+function autostart.run(env)
+    awful.spawn(env.home.."/.config/bin/firefox", { tag = "web" })
     awful.spawn("subl3", { tag = "doc" })
     awful.spawn("doublecmd", { tag = "cmdr" })
 end

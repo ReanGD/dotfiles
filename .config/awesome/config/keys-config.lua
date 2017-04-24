@@ -41,15 +41,13 @@ local function client_numkey(i, modkey, action)
 end
 
 
-function keys:init(modkey)
-    local M = { modkey }
-    local SM = { modkey, "Shift" }
-    local CM = { modkey, "Control" }
-    local SCM = { modkey, "Shift", "Control" }
+function keys:init(env)
+    local M = { env.modkey }
+    local SM = { env.modkey, "Shift" }
+    local CM = { env.modkey, "Control" }
+    local SCM = { env.modkey, "Shift", "Control" }
     local Key = awful.key
     local Button = awful.button
-
-    local terminal = "urxvt"
 
     local root_keys = gears.table.join(
         -- Tags
@@ -91,7 +89,7 @@ function keys:init(modkey)
         -- Launcher
         Key(M, "s",      hotkeys_popup.show_help,
             {group = "Launcher", description = "Show help"}),
-        Key(M, "Return", function () awful.spawn(terminal) end,
+        Key(M, "Return", function () awful.spawn(env.terminal) end,
             {group = "Launcher", description = "Run terminal"}),
         Key(M,  "e",     function () awful.spawn("emacs") end,
             {group = "Launcher", description = "Run emacs"}),

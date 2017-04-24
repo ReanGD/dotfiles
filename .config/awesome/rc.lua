@@ -10,17 +10,14 @@ local vicious = require("vicious")
 local beautiful = require("beautiful")
 -- require("volume")
 
-require("config.errcheck-config")
 timestamp = require("src.timestamp")
 
--- {{{ Variable definitions
-os.setlocale(os.getenv("LANG"))
--- Themes define colours, icons, font and wallpapers.
--- /usr/share/awesome/themes/
-beautiful.init(awful.util.getdir("config") .. "config/theme-config.lua")
+require("config.errcheck-config")
 
--- Default modkey.
-modkey = "Mod4"
+local env = require("config.env-config")
+env:init()
+
+-- {{{ Variable definitions
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -84,7 +81,7 @@ end)
 -- }}}
 
 local hotkeys = require("config.keys-config")
-hotkeys:init(modkey)
+hotkeys:init(env)
 
 local rules = require("config.rules-config")
 rules:init(hotkeys)
@@ -94,10 +91,8 @@ signals:init()
 
 local autostart = require("config.autostart-config")
 if timestamp.is_startup() then
-  autostart.run()
+  autostart.run(env)
 end
-
--- }}}
 
 -- -- {{{ !Conky
 -- function get_conky()
