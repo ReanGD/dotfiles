@@ -13,6 +13,7 @@ function env:init()
     self.home = os.getenv("HOME")
     self.hostname = utils.output_read("uname -n")
     self.is_notebook = (self.hostname == "archmini" or self.hostname == "archnote")
+    self.scripts_dir = awful.util.getdir("config") .. "/scripts/"
 
     -- theme setup (/usr/share/awesome/themes/)
     self.themedir = awful.util.getdir("config").."config/"

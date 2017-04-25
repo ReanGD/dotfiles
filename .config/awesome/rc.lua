@@ -11,6 +11,7 @@ local beautiful = require("beautiful")
 -- require("volume")
 
 timestamp = require("src.timestamp")
+local widget = require("widget")
 
 require("config.errcheck-config")
 
@@ -30,9 +31,8 @@ awful.layout.layouts = {
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
+local w_textclock = widget.textclock(env)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
@@ -74,7 +74,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            w_textclock,
         },
     }
 end)
@@ -147,8 +147,6 @@ end
 -- -- vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\" color=\"#9CC646\"><b>  $1% | $2MB</b></span>", 10)
 -- -- batwidget = wibox.widget.textbox()
 -- -- vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>  $1$2% ($3)</b></span>", 120, 'BAT0')
--- datewidget = wibox.widget.textbox()
--- vicious.register(datewidget, vicious.widgets.date, "<span font=\"Ubuntu 11\" color=\"#C7D0CC\">%a. %B %d,  <span color=\"#D7E0DC\">%H:%M</span>   </span>", 60)
 
 -- kbdwidget = wibox.widget.textbox()
 -- kbdwidget.border_width = 1
@@ -182,6 +180,5 @@ end
 --        -- right_layout:add(batwidget)
 --     -- end
 --     -- right_layout:add(closewidget)
---     right_layout:add(datewidget)
 -- end
 -- -- }}}

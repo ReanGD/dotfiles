@@ -7,6 +7,7 @@ local themes_path = gfs.get_themes_dir().."default/"
 
 theme.font          = "Ubuntu 11"
 theme.taglist_font  = theme.font
+theme.mono_font     = "Ubuntu Mono 11"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = theme.bg_normal

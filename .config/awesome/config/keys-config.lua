@@ -11,8 +11,8 @@ local function windows_go_back()
     end
 end
 
-local function launcher_system_menu()
-    awful.spawn(awful.util.getdir("config") .. "/scripts/run_menu.sh")
+local function launcher_system_menu(env)
+    awful.spawn(env.scripts_dir .. "run_menu.sh")
 end
 
 local function tag_numkey(i, modkey, action)
@@ -97,7 +97,7 @@ function keys:init(env)
             {group = "Launcher", description = "Run pkill sleep"}),
         Key(M,  "r",     function () awful.spawn("rofi -show run") end,
             {group = "Launcher", description = "Open program menu"}),
-        Key(SM, "r",     function () launcher_system_menu() end,
+        Key(SM, "r",     function () launcher_system_menu(env) end,
             {group = "Launcher", description = "Open system menu"})
     )
 
