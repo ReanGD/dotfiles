@@ -1,14 +1,10 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local vicious = require("vicious")
--- Theme handling library
-local beautiful = require("beautiful")
--- require("volume")
 
 timestamp = require("src.timestamp")
 local widget = require("widget")
@@ -18,21 +14,15 @@ require("config.errcheck-config")
 local env = require("config.env-config")
 env:init()
 
--- {{{ Variable definitions
-
--- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,    
     awful.layout.suit.max
 }
--- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
--- {{{ Wibar
 
 local w_textclock = widget.textclock(env)
+local w_keyboard = widget.keyboard()
+local w_systray = wibox.widget.systray()
 
 awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
@@ -72,13 +62,12 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
+            w_systray,
+            w_keyboard,
             w_textclock,
         },
     }
 end)
--- }}}
 
 local hotkeys = require("config.keys-config")
 hotkeys:init(env)
@@ -147,32 +136,9 @@ end
 -- -- vicious.register(memwidget, vicious.widgets.mem, "<span font=\"Ubuntu 10\" color=\"#9CC646\"><b>  $1% | $2MB</b></span>", 10)
 -- -- batwidget = wibox.widget.textbox()
 -- -- vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>  $1$2% ($3)</b></span>", 120, 'BAT0')
-
--- kbdwidget = wibox.widget.textbox()
--- kbdwidget.border_width = 1
--- kbdwidget.border_color = beautiful.fg_normal
--- kbdwidget:set_markup("<span font=\"Ubuntu 11\"><b>  US </b></span>")
-
--- kbdstrings = {[0] = "<span font=\"Ubuntu 11\"><b>  US </b></span>",
---               [1] = "<span font=\"Ubuntu 11\"><b>  RU </b></span>"}
-
--- dbus.request_name("session", "ru.gentoo.kbdd")
--- dbus.add_match("session", "interface='ru.gentoo.kbdd',member='layoutChanged'")
--- dbus.connect_signal("ru.gentoo.kbdd", function(...)
---     local data = {...}
---     local layout = data[2]
---     kbdwidget:set_markup(kbdstrings[layout])
---     end
--- )
--- hostname = io.popen("uname -n"):read()
-
-
 -- for s = 1, screen.count() do
 --     if s == 1 then right_layout:add(wibox.widget.systray()) end
 --     right_layout:add(volume_widget)
-
-
---     right_layout:add(kbdwidget)
 --     -- right_layout:add(openwidget)
 --     -- right_layout:add(cpuwidget)
 --     -- right_layout:add(memwidget)
