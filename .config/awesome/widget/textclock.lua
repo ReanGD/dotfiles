@@ -1,14 +1,11 @@
-local setmetatable = setmetatable
 local os = os
-local io = io
-
+local setmetatable = setmetatable
 
 local awful = require("awful")
 local naughty = require("naughty")
 local textbox = require("wibox.widget.textbox")
 local timer = require("gears.timer")
 local DateTime = require("lgi").GLib.DateTime
-local utils = require("src.utils")
 local beautiful = require("beautiful")
 
 local textclock = { mt = {} }
@@ -38,7 +35,7 @@ end
 -- @tparam[opt=" %a %b %d, %H:%M "] string format The time format.
 -- @tparam[opt=60] number timeout How often update the time (in seconds).
 function textclock.new(env, format, timeout)
-    format = format or " %a %b %d, %H:%M "
+    format = format or " %a %b %d %H:%M "
     timeout = timeout or 60
 
     local w = textbox()

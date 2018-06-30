@@ -24,3 +24,5 @@
 [user]
     email = reangd@yandex.ru
     name = ReanGD
+[http "https://gopkg.in"]
+    followRedirects = true

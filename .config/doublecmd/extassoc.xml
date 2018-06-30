@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<doublecmd DCVersion="0.7.8 beta">
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd DCVersion="0.8.2 beta">
   <ExtensionAssociation>
     <FileType>
       <Name>mp3</Name>
       <IconFile/>
-      <ExtensionList>mp3</ExtensionList>
+      <ExtensionList>mp3|wav</ExtensionList>
       <Actions>
         <Action>
           <Name>Open</Name>
@@ -52,7 +52,7 @@
     <FileType>
       <Name>video</Name>
       <IconFile/>
-      <ExtensionList>mp4|flv|wmv|avi|mkv</ExtensionList>
+      <ExtensionList>mp4|flv|wmv|avi|mkv|mov</ExtensionList>
       <Actions>
         <Action>
           <Name>Open</Name>
