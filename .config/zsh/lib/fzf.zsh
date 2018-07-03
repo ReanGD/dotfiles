@@ -13,12 +13,21 @@ bindkey '^R' fzf-history-widget
 
 # CTRL-D - cd into the bookmarked directory
 function fzf-bookmarks-widget() {
-  cd $(cat "$HOME/.config/zsh/settings/bkd.cfg" | fzf "$FZF_COLOR" --tiebreak=begin --tac | awk '{print $2}')
+  eval cd $(cat "$HOME/.config/zsh/settings/bkd.cfg" | fzf "$FZF_COLOR" --tiebreak=begin --tac | awk '{print $2}')
   zle reset-prompt
 }
 
 zle -N fzf-bookmarks-widget
 bindkey '^D' fzf-bookmarks-widget
+
+# CTRL-H - cd into the bookmarked directory
+function fzf-ssh-widget() {
+  LBUFFER="ssh "$(cat "$HOME/.config/zsh/settings/ssh.cfg" | fzf "$FZF_COLOR" --tiebreak=begin --tac | awk '{print $2}')
+  zle redisplay
+}
+
+zle -N fzf-ssh-widget
+bindkey '^H' fzf-ssh-widget
 
 # fkill - select and kill process
 function fkill() {
