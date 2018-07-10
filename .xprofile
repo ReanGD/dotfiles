@@ -55,8 +55,7 @@ export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
 
 # START
 xrdb ~/.config/.Xresources
-/usr/bin/xmodmap $XDG_CONFIG_HOME/.Xmodmap &
-setxkbmap -option 'ctrl:nocaps'
-#kbdd &
+perWindowLayoutD
+# /usr/bin/xmodmap $XDG_CONFIG_HOME/.Xmodmap
 #volumeicon
 #~/.config/bin/dropbox
