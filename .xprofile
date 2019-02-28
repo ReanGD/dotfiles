@@ -15,7 +15,7 @@ mkdir -p $XDG_CONFIG_HOME
 
 # Go
 export GOPATH_BASE=$XDG_DATA_HOME/go
-export GOPATH=$GOPATH_BASE:$HOME/projects/git/go:$HOME/projects/temp/go
+export GOPATH=$GOPATH_BASE:$HOME/projects/home/go:$HOME/projects/test/go
 
 # Rust
 export CARGO_HOME=$XDG_DATA_HOME/cargo
