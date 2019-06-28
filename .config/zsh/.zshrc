@@ -59,6 +59,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 source $ZSH_CUSTOM/lib/settings.zsh
 source $ZSH_CUSTOM/lib/fzf.zsh
+source $ZSH_CUSTOM/lib/git_lib.zsh
 source $ZSH_CUSTOM/lib/other.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
