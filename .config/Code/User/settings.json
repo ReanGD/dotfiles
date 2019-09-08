@@ -1,0 +1,58 @@
+{
+    "editor.fontFamily": "Pragmata Pro",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "selection",
+    "[go]":  {
+        "editor.rulers": [ 130],
+    },
+    "[cpp]":  {
+        "editor.rulers": [ 140 ],
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "name": "Class name",
+                "scope": "entity.name.type, entity.name.class, entity.name.namespace, entity.name.scope-resolution",
+                "settings": {
+                    "fontStyle": "",
+                    "foreground": "#A6E22E"
+                }
+            }
+        ]
+    },
+    "window.zoomLevel": 0,
+    "window.enableMenuBarMnemonics": false,
+    "files.trimTrailingWhitespace": true,
+    "workbench.colorTheme": "Monokai",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreview": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "go.coverOnTestPackage": false,
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": ["--config=~/projects/work/go/src/gitlab.mobbtech.com/iqbus/kraang/ci/.golangci.yml"],
+    "go.testFlags": ["-count=1"],
+    "go.formatTool": "goimports",
+    "go.testTimeout": "120s",
+    "gitlens.advanced.telemetry.enabled": false,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.views.compare.files.layout": "list",
+    "git-graph.commitDetailsViewLocation": "Docked to Bottom",
+    "git-graph.sourceCodeProviderIntegrationLocation": "More Actions",
+    "todo-tree.regex.regexCaseSensitive": false,
+    "C_Cpp.updateChannel": "Insiders",
+    "sshfs.configs": [
+        {
+            "host": "hass",
+            "name": "hass",
+            "privateKeyPath": "$HOME/.ssh/hass",
+            "root": "/hass",
+            "username": "rean"
+        }
+    ],
+    "C_Cpp.default.cppStandard": "c++20"
+}
