@@ -26,7 +26,8 @@ function rules:init(hotkeys)
           "open3d",
           "Pyorgcalendar",
           "pinentry",
-          "gimp"
+          "gimp",
+          "RTGE",
         },
         type = { "dialog" }
     }
