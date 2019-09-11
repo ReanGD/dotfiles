@@ -51,6 +51,9 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    batwidget = wibox.widget.textbox()
+    vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>  $1$2% ($3)</b></span>", 120, 'BAT0')
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -63,6 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             w_systray,
+            batwidget,
             w_keyboard,
             w_textclock,
         },
