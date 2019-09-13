@@ -41,8 +41,6 @@
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.views.compare.files.layout": "list",
-    "git-graph.commitDetailsViewLocation": "Docked to Bottom",
-    "git-graph.sourceCodeProviderIntegrationLocation": "More Actions",
     "todo-tree.regex.regexCaseSensitive": false,
     "C_Cpp.updateChannel": "Insiders",
     "sshfs.configs": [
