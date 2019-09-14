@@ -30,6 +30,9 @@
     "workbench.editor.enablePreview": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "files.associations": {
+        "*.mat": "glsl",
+    },
     "diffEditor.ignoreTrimWhitespace": false,
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
@@ -43,6 +46,7 @@
     "gitlens.views.compare.files.layout": "list",
     "todo-tree.regex.regexCaseSensitive": false,
     "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.default.cppStandard": "c++20",
     "sshfs.configs": [
         {
             "host": "hass",
@@ -51,6 +55,5 @@
             "root": "/hass",
             "username": "rean"
         }
-    ],
-    "C_Cpp.default.cppStandard": "c++20"
+    ]
 }
