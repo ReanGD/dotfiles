@@ -55,5 +55,7 @@
             "root": "/hass",
             "username": "rean"
         }
-    ]
+    ],
+    "go.useLanguageServer": true,
+    "todo-tree.highlights.enabled": true
 }

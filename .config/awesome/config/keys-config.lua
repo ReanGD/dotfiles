@@ -117,7 +117,9 @@ function keys:init(env)
         Key(M,  "m",     function(c) c.maximized = not c.maximized c:raise() end ,
             {group = "Windows", description = "(Un)Maximize"}),
         Key(CM, "space", awful.client.floating.toggle,
-            {group = "Windows", description = "Toggle floating"})
+            {group = "Windows", description = "Toggle floating"}),
+        Key(M, "Print", function() awful.spawn("scrot --focused --exec 'mv $f ~/tmp'") end,
+            {group = "Windows", description = "Print screen"})
     )
 
     self.client_buttons = gears.table.join(
