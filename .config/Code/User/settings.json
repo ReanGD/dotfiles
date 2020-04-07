@@ -2,10 +2,11 @@
     "editor.fontFamily": "Pragmata Pro",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "editor.renderWhitespace": "selection",
+    "terminal.integrated.scrollback": 2000,
     "[go]":  {
-        "editor.rulers": [ 130],
+        "editor.rulers": [ 130 ],
     },
     "[cpp]":  {
         "editor.rulers": [ 140 ],
@@ -32,18 +33,22 @@
     "telemetry.enableTelemetry": false,
     "files.associations": {
         "*.mat": "glsl",
+        "*.msh": "hlsl",
     },
     "diffEditor.ignoreTrimWhitespace": false,
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
-    "go.lintFlags": ["--config=~/projects/work/go/src/gitlab.mobbtech.com/iqbus/kraang/ci/.golangci.yml"],
+    "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
     "go.testFlags": ["-count=1"],
     "go.formatTool": "goimports",
     "go.testTimeout": "120s",
+    "go.useLanguageServer": true,
+    "git.showProgress": false,
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.views.compare.files.layout": "list",
+    "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
     "todo-tree.regex.regexCaseSensitive": false,
     "C_Cpp.updateChannel": "Insiders",
     "C_Cpp.default.cppStandard": "c++20",
@@ -56,6 +61,6 @@
             "username": "rean"
         }
     ],
-    "go.useLanguageServer": true,
-    "todo-tree.highlights.enabled": true
+    "todo-tree.highlights.enabled": true,
+    "catch2TestExplorer.logSentry": "disable"
 }

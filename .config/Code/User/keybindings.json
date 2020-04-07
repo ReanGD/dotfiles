@@ -1,45 +1,31 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
-        "key": "ctrl+shift+b",
-        "command": "workbench.action.tasks.build"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "workbench.action.tasks.reRunTask"
-    },
-    {
-        "key": "alt+g",
-        "command": "editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+        "key": "f2",
+        "command": "-editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
     {
         "key": "f2",
         "command": "bookmarks.jumpToNext",
         "when": "editorTextFocus"
-    },
+    },    
     {
         "key": "ctrl+f2",
         "command": "bookmarks.toggle",
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+alt+left",
-        "command": "workbench.action.navigateBack"
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
     },
     {
-        "key": "shift+f6",
-        "command": "editor.action.rename",
-        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+        "key": "ctrl+b",
+        "command": "workbench.action.tasks.reRunTask"
     },
     {
-        "key": "ctrl+u",
-        "command": "references-view.find",
-        "when": "editorHasReferenceProvider"
-    },
-    {
-        "key": "shift+alt+w",
-        "command": "workbench.action.closeOtherEditors"
+        "key": "ctrl+shift+b",
+        "command": "workbench.action.tasks.build"
     },
     {
         "key": "alt+j",
@@ -48,8 +34,18 @@
     },
     {
         "key": "alt+k",
+        "command": "-keybindings.editor.recordSearchKeys",
+        "when": "inKeybindings && inKeybindingsSearch"
+    },
+    {
+        "key": "alt+k",
         "command": "cursorDown",
         "when": "textInputFocus"
+    },
+    {
+        "key": "alt+l",
+        "command": "-toggleFindInSelection",
+        "when": "editorFocus"
     },
     {
         "key": "alt+l",
@@ -67,7 +63,22 @@
     },
     {
         "key": "alt+o",
+        "command": "-C_Cpp.SwitchHeaderSource",
+        "when": "editorTextFocus && editorLangId == 'c'"
+    },
+    {
+        "key": "alt+o",
+        "command": "-C_Cpp.SwitchHeaderSource",
+        "when": "editorTextFocus && editorLangId == 'cpp'"
+    },
+    {
+        "key": "alt+o",
         "command": "cursorEnd"
+    },
+    {
+        "key": "shift+alt+j",
+        "command": "-bookmarks.expandSelectionToPrevious",
+        "when": "editorTextFocus"
     },
     {
         "key": "shift+alt+j",
@@ -76,13 +87,28 @@
     },
     {
         "key": "shift+alt+k",
+        "command": "-bookmarks.shrinkSelection",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+k",
         "command": "cursorDownSelect",
         "when": "textInputFocus"
     },
     {
         "key": "shift+alt+l",
+        "command": "-bookmarks.expandSelectionToNext",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+l",
         "command": "cursorRightSelect",
         "when": "textInputFocus"
+    },
+    {
+        "key": "shift+alt+i",
+        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
     },
     {
         "key": "shift+alt+i",
@@ -95,15 +121,94 @@
     },
     {
         "key": "shift+alt+o",
+        "command": "-editor.action.organizeImports",
+        "when": "editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
+    },
+    {
+        "key": "shift+alt+o",
         "command": "cursorEndSelect"
+    },
+    {
+        "key": "ctrl+alt+left",
+        "command": "workbench.action.navigateBack"
+    },
+    {
+        "key": "shift+alt+w",
+        "command": "workbench.action.closeOtherEditors"
+    },
+    {
+        "key": "ctrl+k ctrl+s",
+        "command": "workbench.action.files.saveAll"
+    },
+    {
+        "key": "alt+m",
+        "command": "workbench.action.gotoSymbol"
     },
     {
         "key": "shift+alt+m",
         "command": "workbench.action.showAllSymbols"
     },
     {
-        "key": "alt+m",
-        "command": "workbench.action.gotoSymbol"
+        "key": "alt+g",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "references-view.find",
+        "when": "editorHasReferenceProvider"
+    },
+    {
+        "key": "shift+f6",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "f9",
+        "command": "workbench.action.debug.stepOver",
+        "when": "debugState == 'stopped'"
+    },
+    {
+        "key": "f10",
+        "command": "-workbench.action.debug.stepOver",
+        "when": "debugState == 'stopped'"
+    },
+    {
+        "key": "f10",
+        "command": "workbench.action.debug.stepInto",
+        "when": "debugState == 'stopped'"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "go.test.cursor"
+    },
+    {
+        "key": "f7",
+        "command": "-cmake.build"
+    },
+    {
+        "key": "f7",
+        "command": "cmake.build",
+        "when": "editorTextFocus && editorLangId == 'cpp'"
+    },
+    {
+        "key": "alt+s",
+        "command": "-gitlens.showQuickRepoStatus",
+        "when": "gitlens:enabled && config.gitlens.keymap == 'alternate'"
+    },
+    {
+        "key": "alt+s",
+        "command": "C_Cpp.SwitchHeaderSource",
+        "when": "editorTextFocus && editorLangId == 'c'"
+    },
+    {
+        "key": "alt+s",
+        "command": "C_Cpp.SwitchHeaderSource",
+        "when": "editorTextFocus && editorLangId == 'cpp'"
     },
     {
         "key": "ctrl+;",
@@ -117,11 +222,6 @@
     {
         "key": "alt+-",
         "command": "-workbench.action.navigateBack"
-    },
-    {
-        "key": "f2",
-        "command": "-editor.action.rename",
-        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
     {
         "key": "shift+alt+f12",
@@ -139,49 +239,6 @@
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+b",
-        "command": "-workbench.action.toggleSidebarVisibility"
-    },
-    {
-        "key": "ctrl+shift+b",
-        "command": "-workbench.action.tasks.build"
-    },
-    {
-        "key": "alt+k",
-        "command": "-keybindings.editor.recordSearchKeys",
-        "when": "inKeybindings && inKeybindingsSearch"
-    },
-    {
-        "key": "alt+l",
-        "command": "-toggleFindInSelection",
-        "when": "editorFocus"
-    },
-    {
-        "key": "shift+alt+o",
-        "command": "-editor.action.organizeImports",
-        "when": "editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
-    },
-    {
-        "key": "shift+alt+i",
-        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+j",
-        "command": "-bookmarks.expandSelectionToPrevious",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+k",
-        "command": "-bookmarks.shrinkSelection",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+l",
-        "command": "-bookmarks.expandSelectionToNext",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "ctrl+r",
         "command": "-workbench.action.gotoSymbol"
     },
@@ -192,29 +249,6 @@
     {
         "key": "ctrl+shift+r",
         "command": "-workbench.action.showAllSymbols"
-    },
-    {
-        "key": "ctrl+t",
-        "command": "-workbench.action.showAllSymbols"
-    },
-    {
-        "key": "ctrl+t",
-        "command": "go.test.cursor"
-    },
-    {
-        "key": "f9",
-        "command": "workbench.action.debug.stepOver",
-        "when": "debugState == 'stopped'"
-    },
-    {
-        "key": "f10",
-        "command": "-workbench.action.debug.stepOver",
-        "when": "debugState == 'stopped'"
-    },
-    {
-        "key": "f10",
-        "command": "workbench.action.debug.stepInto",
-        "when": "debugState == 'stopped'"
     },
     {
         "key": "f11",
