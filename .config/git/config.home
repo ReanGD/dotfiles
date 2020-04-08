@@ -1,0 +1,28 @@
+[alias]
+    ci = commit
+    st = status
+    co = checkout
+    br = branch
+    ph = push origin HEAD
+    pl = pull origin HEAD
+    ll = log --graph --decorate --all --pretty='%h %an %ad %s' --date=local
+    df = difftool --dir-diff
+    dfc = icdiff
+    mt = mergetool -t meld
+[diff]
+    tool = meld
+[difftool "meld"]
+    cmd = meld $LOCAL $REMOTE
+[merge]
+    tool = meld
+[mergetool "meld"]
+    prompt = false
+    keepBackup = true
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output="$MERGED"
+[core]
+	autocrlf = input
+[user]
+    email = reangd@yandex.ru
+    name = ReanGD
+[http "https://gopkg.in"]
+    followRedirects = true

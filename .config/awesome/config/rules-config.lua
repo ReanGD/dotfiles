@@ -28,6 +28,8 @@ function rules:init(hotkeys)
           "pinentry",
           "gimp",
           "RTGE",
+          "terra",
+          "TERRA",
         },
         type = { "dialog" }
     }
