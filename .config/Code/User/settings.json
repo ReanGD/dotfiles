@@ -43,6 +43,7 @@
     "go.formatTool": "goimports",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
+    "python.dataScience.askForKernelRestart": false,
     "git.showProgress": false,
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.currentLine.enabled": false,
@@ -50,7 +51,6 @@
     "gitlens.views.compare.files.layout": "list",
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
     "todo-tree.regex.regexCaseSensitive": false,
-    "C_Cpp.updateChannel": "Insiders",
     "C_Cpp.default.cppStandard": "c++20",
     "sshfs.configs": [
         {
@@ -62,5 +62,5 @@
         }
     ],
     "todo-tree.highlights.enabled": true,
-    "catch2TestExplorer.logSentry": "disable"
+    "testMate.cpp.log.logSentry": "disable_3"
 }
