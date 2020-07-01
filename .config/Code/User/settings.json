@@ -4,7 +4,7 @@
     "editor.fontLigatures": true,
     "editor.minimap.enabled": true,
     "editor.renderWhitespace": "selection",
-    "terminal.integrated.scrollback": 2000,
+    "terminal.integrated.scrollback": 5000,
     "[go]":  {
         "editor.rulers": [ 130 ],
     },
@@ -39,6 +39,7 @@
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
+    // "go.testFlags": ["-count=1", "-gcflags=all=-l"],
     "go.testFlags": ["-count=1"],
     "go.formatTool": "goimports",
     "go.testTimeout": "120s",
@@ -52,6 +53,7 @@
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
     "todo-tree.regex.regexCaseSensitive": false,
     "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.updateChannel": "Insiders",
     "sshfs.configs": [
         {
             "host": "hass",
@@ -62,5 +64,9 @@
         }
     ],
     "todo-tree.highlights.enabled": true,
-    "testMate.cpp.log.logSentry": "disable_3"
+    "todo-tree.general.tags": [
+        "FIXME",
+        "TODO"
+    ],
+    "testMate.cpp.log.userId": "1111111111111111111111111111111111111111"
 }
