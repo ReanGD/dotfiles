@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# fixed
+MENU_ID=$1
+UEFI_PATH="/usr/share/edk2-ovmf/x64/OVMF_CODE.fd"
+UEFI_VAR_SRC="/usr/share/edk2-ovmf/x64/OVMF_VARS.fd"
+
+# configured
+DISK_SIZE="30G"
+DISK_PATH="/disk0/kvm/data/manjaro_home.raw"
+UEFI_VAR_DST="/disk0/kvm/data/OVMF_VARS_MH.fd"
+CDROM_PATH="/disk0/kvm/images/manjaro-architect.iso"
+
+CDROM_PARAMS=""
+case $MENU_ID in
+	"prepare")
+		qemu-img create -f raw ${DISK_PATH} ${DISK_SIZE}
+		cp ${UEFI_VAR_SRC} ${UEFI_VAR_DST}
+		exit 0
+		;;
+	"cdrom")
+		CDROM_PARAMS="-drive file=${CDROM_PATH},index=1,media=cdrom"
+		;;
+	* )
+		;;
+esac
+
+export SDL_VIDEO_X11_DGAMOUSE=0
+
+qemu-system-x86_64 \
+-m 4G \
+-cpu host \
+-smp 2 \
+-enable-kvm \
+-machine q35 \
+-boot menu=on \
+-smbios type=0,uefi=on \
+-drive if=pflash,format=raw,readonly,file=${UEFI_PATH} \
+-drive if=pflash,format=raw,file=${UEFI_VAR_DST} \
+-drive if=virtio,format=raw,file=${DISK_PATH},index=0,media=disk,cache=none \
+${CDROM_PARAMS} \
+-vga qxl \
+-device virtio-serial-pci \
+-spice unix,addr=/tmp/vm_spice.socket,disable-ticketing \
+-device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
+-chardev spicevmc,id=spicechannel0,name=vdagent

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+remote-viewer spice+unix:///tmp/vm_spice.socket
