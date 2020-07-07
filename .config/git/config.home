@@ -9,6 +9,8 @@
     df = difftool --dir-diff
     dfc = icdiff
     mt = mergetool -t meld
+[pull]
+    rebase = false
 [diff]
     tool = meld
 [difftool "meld"]
