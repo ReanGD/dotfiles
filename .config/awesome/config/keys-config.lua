@@ -15,6 +15,20 @@ local function launcher_system_menu(env)
     awful.spawn(env.scripts_dir .. "run_menu.sh")
 end
 
+screenshot_path = os.getenv("HOME") .. "/tmp/$(date +%F_%T).png"
+
+function scrot_full()
+    awful.util.spawn_with_shell("scrot " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+end
+
+function scrot_select()
+    awful.util.spawn_with_shell("sleep 0.5 && scrot --select " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+end
+
+function scrot_focused()
+    awful.util.spawn_with_shell("scrot --focused " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+end
+
 local function tag_numkey(i, modkey, action)
     return awful.key(modkey, "#" .. i + 9,
         function ()
@@ -42,6 +56,8 @@ end
 
 
 function keys:init(env)
+    local S = { "Shift" }
+    local C = { "Control" }
     local M = { env.modkey }
     local SM = { env.modkey, "Shift" }
     local CM = { env.modkey, "Control" }
@@ -110,16 +126,20 @@ function keys:init(env)
     end
 
     self.client_keys = gears.table.join(
-        Key(M,  "f",    function(c) c.fullscreen = not c.fullscreen c:raise() end,
+        Key(M,  "f",     function(c) c.fullscreen = not c.fullscreen c:raise() end,
             {group = "Windows", description = "Toggle fullscreen"}),
-        Key(SM, "q",    function(c) c:kill() end,
+        Key(SM, "q",     function(c) c:kill() end,
             {group = "Windows", description = "Close"}),
         Key(M,  "m",     function(c) c.maximized = not c.maximized c:raise() end ,
             {group = "Windows", description = "(Un)Maximize"}),
-        Key(CM, "space", awful.client.floating.toggle,
+        Key(M,  "b",     awful.client.floating.toggle,
             {group = "Windows", description = "Toggle floating"}),
-        Key(M, "Print", function() awful.spawn("scrot --focused --exec 'mv $f ~/tmp'") end,
-            {group = "Windows", description = "Print screen"})
+        Key({}, "Print", scrot_full,
+            {group = "Screenshot", description = "Screenshot full screen"}),
+        Key(S, "Print",  scrot_select,
+            {group = "Screenshot", description = "Screenshot selected rect"}),
+        Key(C, "Print",  scrot_focused,
+            {group = "Screenshot", description = "Screenshot focused window"})
     )
 
     self.client_buttons = gears.table.join(
