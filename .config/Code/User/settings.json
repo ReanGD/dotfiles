@@ -20,6 +20,20 @@
                     "fontStyle": "",
                     "foreground": "#A6E22E"
                 }
+            },
+            {
+                "scope": "log.error",
+                "settings": {
+                    "foreground": "#af1f1f",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": "log.warning",
+                "settings": {
+                    "foreground": "#ff9900",
+                    "fontStyle": ""
+                }
             }
         ]
     },
