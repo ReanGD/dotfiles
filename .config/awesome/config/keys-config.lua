@@ -15,18 +15,21 @@ local function launcher_system_menu(env)
     awful.spawn(env.scripts_dir .. "run_menu.sh")
 end
 
-screenshot_path = os.getenv("HOME") .. "/tmp/$(date +%F_%T).png"
+scrot_screenshot_path = os.getenv("HOME") .. "/tmp/$(date +%F_%T).png"
+flameshot_screenshot_path = os.getenv("HOME") .. "/tmp/"
 
-function scrot_full()
-    awful.util.spawn_with_shell("scrot " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+function screenshot_full()
+    awful.util.spawn_with_shell("flameshot full -c -p " .. flameshot_screenshot_path)
+    -- awful.util.spawn_with_shell("scrot " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
 end
 
-function scrot_select()
-    awful.util.spawn_with_shell("sleep 0.5 && scrot --select " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+function screenshot_select()
+    awful.util.spawn_with_shell("flameshot gui -p " .. flameshot_screenshot_path)
+    -- awful.util.spawn_with_shell("sleep 0.5 && scrot --select " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
 end
 
-function scrot_focused()
-    awful.util.spawn_with_shell("scrot --focused " .. screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
+function screenshot_focused()
+    awful.util.spawn_with_shell("scrot --focused " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
 end
 
 local function tag_numkey(i, modkey, action)
@@ -134,11 +137,11 @@ function keys:init(env)
             {group = "Windows", description = "(Un)Maximize"}),
         Key(M,  "b",     awful.client.floating.toggle,
             {group = "Windows", description = "Toggle floating"}),
-        Key({}, "Print", scrot_full,
+        Key({}, "Print", screenshot_full,
             {group = "Screenshot", description = "Screenshot full screen"}),
-        Key(S, "Print",  scrot_select,
+        Key(S, "Print",  screenshot_select,
             {group = "Screenshot", description = "Screenshot selected rect"}),
-        Key(C, "Print",  scrot_focused,
+        Key(C, "Print",  screenshot_focused,
             {group = "Screenshot", description = "Screenshot focused window"})
     )
 
