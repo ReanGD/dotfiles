@@ -2,8 +2,7 @@
 unsetopt beep
 setopt IGNORE_EOF
 
-mkdir -p ~/.local/share/zsh
-ZDOTDIR=~/.local/share/zsh/
+mkdir -p ~/.local/share/zs
 
 # alias
 alias st="subl3"
@@ -64,23 +63,3 @@ source $ZSH_CUSTOM/lib/other.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias clr='colorize_via_pygmentize'
-
-export EDITOR="subl3"
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
