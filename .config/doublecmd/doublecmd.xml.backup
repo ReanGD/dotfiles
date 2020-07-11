@@ -369,19 +369,19 @@
   <Fonts>
     <Main>
       <Name>default</Name>
-      <Size>10</Size>
+      <Size>8</Size>
       <Style>1</Style>
       <Quality>0</Quality>
     </Main>
     <Editor>
       <Name>Monospace</Name>
-      <Size>14</Size>
+      <Size>13</Size>
       <Style>0</Style>
       <Quality>0</Quality>
     </Editor>
     <Viewer>
       <Name>Monospace</Name>
-      <Size>14</Size>
+      <Size>13</Size>
       <Style>0</Style>
       <Quality>0</Quality>
     </Viewer>
@@ -405,7 +405,7 @@
     </SearchResults>
     <PathEdit>
       <Name>default</Name>
-      <Size>8</Size>
+      <Size>7</Size>
       <Style>0</Style>
       <Quality>0</Quality>
     </PathEdit>
@@ -417,19 +417,19 @@
     </FunctionButtons>
     <Log>
       <Name>Monospace</Name>
-      <Size>12</Size>
+      <Size>11</Size>
       <Style>0</Style>
       <Quality>0</Quality>
     </Log>
     <ViewerBook>
       <Name>default</Name>
-      <Size>16</Size>
+      <Size>15</Size>
       <Style>1</Style>
       <Quality>0</Quality>
     </ViewerBook>
     <Console>
       <Name>Monospace</Name>
-      <Size>12</Size>
+      <Size>11</Size>
       <Style>0</Style>
       <Quality>0</Quality>
     </Console>
@@ -614,7 +614,7 @@
     <Exclude>False</Exclude>
     <ExcludeDirs/>
     <CustomIcons>0</CustomIcons>
-    <PixelsPerInch>102</PixelsPerInch>
+    <PixelsPerInch>121</PixelsPerInch>
     <ShowInMenus Enabled="False">
       <Size>16</Size>
     </ShowInMenus>
@@ -772,7 +772,7 @@
       <Name>Default</Name>
       <CustomView>False</CustomView>
       <FileSystem>&lt;General&gt;</FileSystem>
-      <PixelsPerInch>102</PixelsPerInch>
+      <PixelsPerInch>121</PixelsPerInch>
       <CursorBorder Enabled="False">
         <Color>0</Color>
       </CursorBorder>
@@ -780,7 +780,7 @@
         <Column>
           <Title>Имя</Title>
           <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>360</Width>
+          <Width>427</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -803,7 +803,7 @@
         <Column>
           <Title>Тип</Title>
           <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>50</Width>
+          <Width>59</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
@@ -826,7 +826,7 @@
         <Column>
           <Title>Размер</Title>
           <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>70</Width>
+          <Width>83</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>
@@ -849,7 +849,7 @@
         <Column>
           <Title>Дата</Title>
           <FuncString>[DC().GETFILETIME{}]</FuncString>
-          <Width>140</Width>
+          <Width>166</Width>
           <Align>1</Align>
           <Font>
             <Name>default</Name>
@@ -872,7 +872,7 @@
         <Column>
           <Title>Атриб</Title>
           <FuncString>[DC().GETFILEATTR{}]</FuncString>
-          <Width>100</Width>
+          <Width>119</Width>
           <Align>0</Align>
           <Font>
             <Name>default</Name>
