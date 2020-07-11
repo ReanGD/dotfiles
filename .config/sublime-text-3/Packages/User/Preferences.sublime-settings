@@ -1,0 +1,10 @@
+{
+	"font_face": "Pragmata Pro",
+	"font_size": 13,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"ui_scale": 1.09,
+	"theme": "Default.sublime-theme"
+}
