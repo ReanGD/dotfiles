@@ -48,7 +48,10 @@ export LESSHISTFILE=$XDG_CACHE_HOME/.lesshst
 export SHELL=`which zsh`
 SUBL_PATH=$(which subl3) && export EDITOR=$SUBL_PATH
 
-# LOCAL PATHS
+# Lib paths
+export LD_LIBRARY_PATH=$XDG_CONFIG_HOME/lib:$LD_LIBRARY_PATH
+
+# Bin paths
 export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
 
 
