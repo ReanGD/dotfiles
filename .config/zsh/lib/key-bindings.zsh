@@ -1,8 +1,11 @@
+# see all commands: https://jlk.fjfi.cvut.cz/arch/manpages/man/zshzle.1#STANDARD_WIDGETS
 # list of keymaps: bindkey -l
 # hotkeys in keymap: bindkey -M rean
 # ^[u = alt+u
 # ^U = ctrl+U
 # for get key code - exec "cat > /dev/null" and press keys:
+
+source $ZSH_CUSTOM/lib/library.zsh
 
 bindkey -N rean emacs
 bindkey -A rean main
@@ -11,14 +14,16 @@ bindkey -A rean main
 typeset -g -A key
 key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Ctrl-Delete]="^[[3^"
+key[Backspace]="${terminfo[kbs]}"
+key[Ctrl-Backspace]="^[[33~"
 key[Left]="${terminfo[kcub1]}"
+key[Ctrl-Left]="^[Od"
 key[Right]="${terminfo[kcuf1]}"
-key[Control-Left]="^[Od"
-key[Control-Right]="^[Oc"
+key[Ctrl-Right]="^[Oc"
 
 key[Insert]="${terminfo[kich1]}"
-key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminfo[kdch1]}"
 key[Up]="${terminfo[kcuu1]}"
 key[Down]="${terminfo[kcud1]}"
 key[PageUp]="${terminfo[kpp]}"
@@ -39,7 +44,27 @@ bindkey '^[o' end-of-line
 bindkey "${key[End]}" end-of-line
 
 bindkey '^L' forward-word
-bindkey "${key[Control-Right]}" forward-word
+bindkey "${key[Ctrl-Right]}" forward-word
 
 bindkey '^J' backward-word
-bindkey "${key[Control-Left]}" backward-word
+bindkey "${key[Ctrl-Left]}" backward-word
+
+# Edit
+bindkey '^[f' delete-char
+bindkey "${key[Delete]}" delete-char
+
+bindkey '^[d' backward-delete-char
+bindkey "${key[Backspace]}" backward-delete-char
+
+bindkey '^[r' delete-word
+bindkey "${key[Ctrl-Delete]}" delete-word
+
+bindkey '^[e' backward-delete-word
+bindkey "${key[Ctrl-Backspace]}" backward-delete-word
+
+bindkey '^[g' kill-whole-line
+
+bindkey '^[t' clear-screen
+
+zle -N edit-command-line-sublime
+bindkey '^X^E' edit-command-line-sublime
