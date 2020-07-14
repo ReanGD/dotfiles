@@ -64,19 +64,6 @@ URxvt.clipboard.autocopy: true
 URxvt.keysym.S-C-C: perl:clipboard:copy
 URxvt.keysym.S-C-V: perl:clipboard:paste
 URxvt.keysym.C-v:   perl:clipboard:paste_escaped
-!Up
-!URxvt.keysym.M-i:   \033[A
-!Down
-!URxvt.keysym.M-k:   \033[B
-!Right
-!URxvt.keysym.M-l:   \033[C
-!Left
-!URxvt.keysym.M-j:   \033[D
-!Line begin
-!URxvt.keysym.M-u:   \033[7~
-!Line end
-!URxvt.keysym.M-o:   \033[8~
-!Delete
-!URxvt.keysym.M-f:   \033[3~
-!Backspace
-!URxvt.keysym.M-d:   \010
+
+!-- Declare keysym code --!
+URxvt.keysym.C-BackSpace: \033[33~
