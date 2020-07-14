@@ -91,6 +91,16 @@ bindkey "${key[PageDown]}" down-line-or-history
 bindkey "${key[Tab]}" menu-expand-or-complete
 bindkey "${key[Shift-Tab]}" reverse-menu-complete
 
+zle -N fzf-history-widget
+bindkey '^R' fzf-history-widget
+
+
+# Widgets
+zle -N fzf-bookmarks-widget
+bindkey '^D' fzf-bookmarks-widget
+
+zle -N fzf-file-widget
+bindkey '^F' fzf-file-widget
 
 # Paste mode
 # see: https://github.com/zsh-users/zsh-autosuggestions/issues/141#issuecomment-280876210
