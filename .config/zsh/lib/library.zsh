@@ -53,7 +53,7 @@ fzf-bookmarks-widget() {
 
 # Paste the selected file path(s) into the command line
 fzf-file-widget() {
-  LBUFFER+=$(fd -H -E .git | fzf -m | while read item; do printf '%q ' "$item"; done)
+  LBUFFER+=$(fd -H -E .git | fzf -m | while read item; do printf '%q ' "$item";	done )
   zle redisplay
 }
 
@@ -72,6 +72,15 @@ fkill() {
     fi
 }
 
+# Interactive search man
+fman() {
+    name=$(man -k . | fzf --prompt='Man> ' | awk '{print $1}')
+	if [ "x$name" != "x" ]
+    then
+        man $name
+    fi
+}
+
 # Change user in gitconfig
 git_change_user() {
 	if [[ "$(command git config user.name)" == "ReanGD" ]]; then
@@ -80,3 +89,9 @@ git_change_user() {
         cp $XDG_CONFIG_HOME/git/config.home $XDG_CONFIG_HOME/git/config
     fi
 }
+
+# Interactive command z
+zz() {
+  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf --tac)"
+}
+
