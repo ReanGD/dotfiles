@@ -33,3 +33,6 @@
 # pulseaudio
 **/pulse/*
 !**/pulse/default.pa
+
+# zsh
+**/.zinit/*

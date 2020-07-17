@@ -2,6 +2,8 @@
 unsetopt beep
 setopt IGNORE_EOF
 
+ZSH_CONFIG_DIR=$XDG_CONFIG_HOME/zsh
+
 mkdir -p ~/.local/share/zsh
 
 # alias
@@ -52,9 +54,34 @@ ZSH_CUSTOM=~/.config/zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 export ZSH_COLORIZE_TOOL="pygmentize"
-plugins=(z git command-not-found colored-man-pages colorize compleat docker extract)
+plugins=(compleat docker)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 source $ZSH_CUSTOM/lib/settings.zsh
+
+# Install zinit
+if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.config/zsh/.zinit" && command chmod g-rwX "$HOME/.config/zsh/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.config/zsh/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.config/zsh/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
+zinit snippet OMZP::git
+zinit snippet OMZP::extract
+zinit snippet OMZP::colorize
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::colored-man-pages
+zinit load agkozak/zsh-z
+zinit load supercrabtree/k
+zinit load zsh-users/zsh-syntax-highlighting
+zinit load zsh-users/zsh-autosuggestions
