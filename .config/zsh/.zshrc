@@ -1,10 +1,13 @@
+ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
+ZSH_CONFIG_DIR=$XDG_CONFIG_HOME/zsh
+ZSH_LIB_DIR=$XDG_CONFIG_HOME/zsh/lib
+
+source $ZSH_LIB_DIR/history.zsh
+
+
 # my options
 unsetopt beep
 setopt IGNORE_EOF
-
-ZSH_CONFIG_DIR=$XDG_CONFIG_HOME/zsh
-
-mkdir -p ~/.local/share/zsh
 
 # alias
 alias st="subl3"
@@ -17,15 +20,8 @@ ZSH=/usr/share/oh-my-zsh
 # Path to .zcompdump<...> file
 ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="simple"
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -44,22 +40,19 @@ DISABLE_AUTO_UPDATE="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=~/.config/zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 export ZSH_COLORIZE_TOOL="pygmentize"
-plugins=(compleat docker)
+plugins=()
 
-source $ZSH/oh-my-zsh.sh
+source $ZSH_CUSTOM/lib/oh-my-zsh-local.sh
 
-# User configuration
+# Local modules
 source $ZSH_CUSTOM/lib/settings.zsh
+source $ZSH_CUSTOM/lib/key-bindings.zsh
+source $ZSH_CUSTOM/themes/simple.zsh-theme
 
 # Install zinit
 if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
@@ -77,6 +70,8 @@ autoload -Uz _zinit
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
 zinit snippet OMZP::git
+# zinit snippet OMZP::docker
+# zinit snippet OMZP::compleat
 zinit snippet OMZP::extract
 zinit snippet OMZP::colorize
 zinit snippet OMZP::command-not-found

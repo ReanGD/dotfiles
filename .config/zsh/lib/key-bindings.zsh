@@ -5,6 +5,19 @@
 # ^U = ctrl+U
 # for get key code - exec "cat > /dev/null" and press keys:
 
+# Make sure that the terminal is in application mode when zle is active, since
+# only then values from $terminfo are valid
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+  function zle-line-init() {
+    echoti smkx
+  }
+  function zle-line-finish() {
+    echoti rmkx
+  }
+  zle -N zle-line-init
+  zle -N zle-line-finish
+fi
+
 source $ZSH_CUSTOM/lib/library.zsh
 
 bindkey -N paste
@@ -113,14 +126,3 @@ bindkey -M paste "${key[End-Paste]}" lib-end-paste
 zle -N paste-insert lib-paste-insert
 bindkey -R -M paste "^@"-"\M-^?" paste-insert
 bindkey -M paste -s '^M' '^J'
-
-
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
-	autoload -Uz add-zle-hook-widget
-	function zle_application_mode_start { echoti smkx }
-	function zle_application_mode_stop { echoti rmkx }
-	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
-	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
