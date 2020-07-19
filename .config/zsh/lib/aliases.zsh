@@ -8,12 +8,16 @@ if [[ -z "$LS_COLORS" ]]; then
   (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
 
-ls --color -d . &>/dev/null && alias ls='ls --color=tty' || { ls -G . &>/dev/null && alias ls='ls -G' }
+alias ls='ls --color=tty'
 
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# Enable diff color if possible.
-if command diff --color . . &>/dev/null; then
-  alias diff='diff --color'
-fi
+alias diff='diff --color'
+
+# Ignore these folders in grep
+EXC_FOLDERS="{.bzr,CVS,.git,.hg,.svn,.idea,.tox}"
+
+alias grep="grep --color=auto --exclude-dir=$EXC_FOLDERS"
+alias egrep="egrep --color=auto --exclude-dir=$EXC_FOLDERS"
+alias fgrep="fgrep --color=auto --exclude-dir=$EXC_FOLDERS"
