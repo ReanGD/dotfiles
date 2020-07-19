@@ -2,7 +2,12 @@ ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
 ZSH_CONFIG_DIR=$XDG_CONFIG_HOME/zsh
 ZSH_LIB_DIR=$XDG_CONFIG_HOME/zsh/lib
 
+source $ZSH_LIB_DIR/common.zsh
+source $ZSH_LIB_DIR/options.zsh
 source $ZSH_LIB_DIR/history.zsh
+source $ZSH_LIB_DIR/aliases.zsh
+source $ZSH_LIB_DIR/correction.zsh
+source $ZSH_LIB_DIR/prompt.zsh
 
 
 # my options

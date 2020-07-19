@@ -15,7 +15,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-unsetopt SHARE_HISTORY           # Share history between all sessions.
+setopt NO_SHARE_HISTORY          # Disable share history between all sessions.
 
 ## History wrapper
 history() {

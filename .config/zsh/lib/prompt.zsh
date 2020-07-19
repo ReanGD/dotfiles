@@ -29,10 +29,6 @@ _prompt_dir() {
     _print_with_bold_color yellow "${PWD/#$HOME/~} "
 }
 
-_git_command() {
-  GIT_OPTIONAL_LOCKS=0 command git "$@"
-}
-
 _prompt_git() {
     if [ "$(_git_command rev-parse --is-inside-work-tree 2> /dev/null)" ]; then
       _print_with_color white "on "
