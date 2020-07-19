@@ -94,4 +94,3 @@ git_change_user() {
 zz() {
   cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf --tac)"
 }
-
