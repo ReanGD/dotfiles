@@ -18,13 +18,15 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   zle -N zle-line-finish
 fi
 
-source $ZSH_CUSTOM/lib/library.zsh
+source $ZSH_LIB_DIR/key_bindings_funcs.zsh
 
 bindkey -N paste
 bindkey -N rean emacs
 bindkey -A rean main
 
 # create a zkbd compatible hash
+GLOBAL_TERM=$TERM
+TERM=rxvt-unicode-256color
 typeset -g -A key
 key[Tab]="\t"
 key[Shift-Tab]="${terminfo[kcbt]}"
@@ -49,6 +51,8 @@ key[Down]="${terminfo[kcud1]}"
 key[Start-Paste]="^[[200~"
 key[End-Paste]="^[[201~"
 
+TERM=$GLOBAL_TERM
+unset GLOBAL_TERM
 
 # Move
 bindkey '^[l' forward-char
@@ -87,8 +91,8 @@ bindkey '^[g' kill-whole-line
 
 bindkey '^[t' clear-screen
 
-zle -N lib-edit-command-line-sublime
-bindkey '^X^E' lib-edit-command-line-sublime
+zle -N _edit_command_line_sublime
+bindkey '^X^E' _edit_command_line_sublime
 
 
 # History
@@ -104,25 +108,25 @@ bindkey "${key[PageDown]}" down-line-or-history
 bindkey "${key[Tab]}" menu-expand-or-complete
 bindkey "${key[Shift-Tab]}" reverse-menu-complete
 
-zle -N fzf-history-widget
-bindkey '^R' fzf-history-widget
+zle -N _history_widget
+bindkey '^R' _history_widget
 
 
 # Widgets
-zle -N fzf-bookmarks-widget
-bindkey '^D' fzf-bookmarks-widget
+zle -N _bookmarks_widget
+bindkey '^D' _bookmarks_widget
 
-zle -N fzf-file-widget
-bindkey '^F' fzf-file-widget
+zle -N _file_widget
+bindkey '^F' _file_widget
 
 # Paste mode
 # see: https://github.com/zsh-users/zsh-autosuggestions/issues/141#issuecomment-280876210
-zle -N lib-start-paste
-bindkey "${key[Start-Paste]}" lib-start-paste
+zle -N _start_paste
+bindkey "${key[Start-Paste]}" _start_paste
 
-zle -N lib-end-paste
-bindkey -M paste "${key[End-Paste]}" lib-end-paste
+zle -N _end_paste
+bindkey -M paste "${key[End-Paste]}" _end_paste
 
-zle -N paste-insert lib-paste-insert
+zle -N paste-insert _paste_insert
 bindkey -R -M paste "^@"-"\M-^?" paste-insert
 bindkey -M paste -s '^M' '^J'

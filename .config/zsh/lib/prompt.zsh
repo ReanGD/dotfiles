@@ -26,7 +26,7 @@ _prompt_context() {
 }
 
 _prompt_dir() {
-    _print_with_bold_color yellow "${PWD/#$HOME/~} "
+    _print_with_bold_color yellow "%~ "
 }
 
 _prompt_git() {

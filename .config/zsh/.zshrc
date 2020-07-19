@@ -8,6 +8,7 @@ source $ZSH_LIB_DIR/history.zsh
 source $ZSH_LIB_DIR/aliases.zsh
 source $ZSH_LIB_DIR/correction.zsh
 source $ZSH_LIB_DIR/prompt.zsh
+source $ZSH_LIB_DIR/key_bindings.zsh
 
 
 # my options
