@@ -33,8 +33,6 @@ source $ZSH_LIB_DIR/completion.zsh
 zinit snippet OMZP::extract
 zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
 zinit snippet OMZP::colorize
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::colored-man-pages
 zinit load agkozak/zsh-z
 zinit load supercrabtree/k
 zinit load zpm-zsh/clipboard

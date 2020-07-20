@@ -19,3 +19,7 @@ zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
+
+# add command not found
+[[ -e /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
+[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh

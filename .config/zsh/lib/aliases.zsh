@@ -8,7 +8,13 @@ if [[ -z "$LS_COLORS" ]]; then
   (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
 
-alias ls='ls --color=tty'
+if which exa >/dev/null; then
+    alias ls='exa --grid'
+    alias ll='exa --long --group --header --links --all --git'
+else
+    alias ls='ls --color=tty'
+    alias ll='ls -la'
+fi
 
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -67,6 +73,20 @@ fkill() {
     then
         echo $pid | xargs kill -${1:-9}
     fi
+}
+
+# Colorized man
+man() {
+	env \
+		LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
+		LESS_TERMCAP_me=$(tput sgr0) \
+		LESS_TERMCAP_mb=$(tput blink) \
+		LESS_TERMCAP_us=$(tput setaf 2) \
+		LESS_TERMCAP_ue=$(tput sgr0) \
+		LESS_TERMCAP_so=$(tput smso) \
+		LESS_TERMCAP_se=$(tput rmso) \
+		PAGER="${commands[less]:-$PAGER}" \
+		man "$@"
 }
 
 # Interactive search man
