@@ -7,4 +7,7 @@ _git_command() {
 # fix backspace in ssh
 TERM=xterm-256color
 
+PAGER='less'
+LESS='-R'
+
 FZF_COLOR="--color=fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33,info:136,prompt:136,pointer:230,marker:230,spinner:136"
