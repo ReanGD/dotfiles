@@ -117,7 +117,9 @@ function keys:init(env)
         Key(M,  "r",     function () awful.spawn("rofi -show run") end,
             {group = "Launcher", description = "Open program menu"}),
         Key(SM, "r",     function () launcher_system_menu(env) end,
-            {group = "Launcher", description = "Open system menu"})
+            {group = "Launcher", description = "Open system menu"}),
+        Key(M,  "t",     function () awful.spawn("launcher") end,
+            {group = "Launcher", description = "Open ulauncher"})
     )
 
     for i = 1, 9 do
