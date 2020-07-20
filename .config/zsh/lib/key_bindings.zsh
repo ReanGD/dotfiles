@@ -21,7 +21,6 @@ fi
 # add keymap "menuselect"
 zmodload -i zsh/complist
 
-bindkey -N paste
 bindkey -N rean
 bindkey -A rean main
 
@@ -142,14 +141,18 @@ bindkey '^D' _bookmarks_widget
 zle -N _file_widget
 bindkey '^F' _file_widget
 
+
 # Paste mode
-# see: https://github.com/zsh-users/zsh-autosuggestions/issues/141#issuecomment-280876210
-zle -N _start_paste
-bindkey "${key[Start-Paste]}" _start_paste
+bindkey "${key[Start-Paste]}" bracketed-paste
 
-zle -N _end_paste
-bindkey -M paste "${key[End-Paste]}" _end_paste
+# for long insert see: https://github.com/zsh-users/zsh-autosuggestions/issues/141#issuecomment-280876210
+# bindkey -N paste
+# zle -N _start_paste
+# bindkey "${key[Start-Paste]}" _start_paste
 
-zle -N paste-insert _paste_insert
-bindkey -R -M paste "^@"-"\M-^?" paste-insert
-bindkey -M paste -s '^M' '^J'
+# zle -N _end_paste
+# bindkey -M paste "${key[End-Paste]}" _end_paste
+
+# zle -N paste-insert _paste_insert
+# bindkey -R -M paste "^@"-"\M-^?" paste-insert
+# bindkey -M paste -s '^M' '^J'

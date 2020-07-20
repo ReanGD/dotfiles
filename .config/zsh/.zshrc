@@ -27,13 +27,11 @@ source $ZSH_LIB_DIR/prompt.zsh
 source $ZSH_LIB_DIR/key_bindings.zsh
 source $ZSH_LIB_DIR/completion.zsh
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-ZSH_COLORIZE_TOOL="pygmentize"
-
-zinit snippet OMZP::git
 # zinit snippet OMZP::docker
 # zinit snippet OMZP::compleat
+# zinit load mbrubeck/compleat
 zinit snippet OMZP::extract
+zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
 zinit snippet OMZP::colorize
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::colored-man-pages
@@ -42,6 +40,7 @@ zinit load supercrabtree/k
 zinit load zpm-zsh/clipboard
 zinit load trystan2k/zsh-tab-title
 zinit load zsh-users/zsh-autosuggestions
-zinit load zsh-users/zsh-syntax-highlighting
+zinit ice atinit'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"'
+zinit load zdharma/fast-syntax-highlighting
 
 source $ZSH_LIB_DIR/compinit.zsh

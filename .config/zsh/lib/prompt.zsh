@@ -42,14 +42,7 @@ _prompt_git() {
       fi
 
       # parse git current branch
-      local ref
-      ref=$(_git_command symbolic-ref --quiet HEAD 2> /dev/null)
-      local ret=$?
-      if [[ $ret != 0 ]]; then
-        [[ $ret == 128 ]] && return  # no git repo.
-        ref=$(_git_command rev-parse --short HEAD 2> /dev/null) || return
-      fi
-      _print_with_color cyan "${ref#refs/heads/} "
+      _print_with_color cyan "$(_git_current_branch) "
 
       # parse git dirty
       if [[ -n $(_git_command status --porcelain 2> /dev/null | tail -n1) ]]; then

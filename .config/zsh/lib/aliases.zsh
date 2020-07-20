@@ -35,6 +35,15 @@ alias wifi-menu='_show_which wifi-menu && sudo wifi-menu'
 alias journalctl='_show_which journalctl && sudo journalctl'
 alias systemctl='_show_which systemctl && sudo systemctl'
 
+# git aliases
+alias g='git'
+alias ga='git add'
+alias gc='git commit -v'
+alias gst='git status'
+alias gfa='git fetch --all --prune'
+alias ggpull='git pull origin "$(_git_current_branch)"'
+alias ggpush='git push origin "$(_git_current_branch)"'
+
 # auto add sudo and rehash
 pacman() {
   /usr/bin/sudo /usr/bin/pacman $* && echo "$*" | grep -q "S\|R" && rehash
