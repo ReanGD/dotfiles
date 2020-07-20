@@ -1,5 +1,3 @@
-ZSH_COMPDUMP="${ZSH_DATA_DIR}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-
 # Handle completions insecurities (i.e., completion-dependent directories with
 # insecure ownership or permissions) by:
 #

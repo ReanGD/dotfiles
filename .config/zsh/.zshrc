@@ -2,15 +2,10 @@ ZSH_DATA_DIR=$XDG_DATA_HOME/zsh
 ZSH_CACHE_DIR=$XDG_CACHE_HOME/zsh
 ZSH_CONFIG_DIR=$XDG_CONFIG_HOME/zsh
 ZSH_LIB_DIR=$XDG_CONFIG_HOME/zsh/lib
+ZSH_COMPDUMP="${ZSH_DATA_DIR}/.zcompdump-${HOST/.*/}-${ZSH_VERSION}"
 
-source $ZSH_LIB_DIR/common.zsh
-source $ZSH_LIB_DIR/options.zsh
-source $ZSH_LIB_DIR/history.zsh
-source $ZSH_LIB_DIR/aliases.zsh
-source $ZSH_LIB_DIR/correction.zsh
-source $ZSH_LIB_DIR/prompt.zsh
-source $ZSH_LIB_DIR/key_bindings.zsh
-source $ZSH_LIB_DIR/completion.zsh
+declare -A ZINIT
+ZINIT[ZCOMPDUMP_PATH]=ZSH_COMPDUMP
 
 # Install zinit
 if [[ ! -f $ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh ]]; then
@@ -22,11 +17,18 @@ if [[ ! -f $ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh ]]; then
 fi
 
 source "$ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+
+source $ZSH_LIB_DIR/common.zsh
+source $ZSH_LIB_DIR/options.zsh
+source $ZSH_LIB_DIR/history.zsh
+source $ZSH_LIB_DIR/aliases.zsh
+source $ZSH_LIB_DIR/correction.zsh
+source $ZSH_LIB_DIR/prompt.zsh
+source $ZSH_LIB_DIR/key_bindings.zsh
+source $ZSH_LIB_DIR/completion.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-export ZSH_COLORIZE_TOOL="pygmentize"
+ZSH_COLORIZE_TOOL="pygmentize"
 
 zinit snippet OMZP::git
 # zinit snippet OMZP::docker

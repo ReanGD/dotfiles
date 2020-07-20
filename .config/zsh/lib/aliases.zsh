@@ -69,6 +69,12 @@ fman() {
     fi
 }
 
+# Update zinit and plugins
+fupdate() {
+    zinit self-update
+    zinit update
+}
+
 # Change user in gitconfig
 git_change_user() {
 	if [[ "$(_git_command config user.name)" == "ReanGD" ]]; then
