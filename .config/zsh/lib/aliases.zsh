@@ -41,6 +41,9 @@ alias wifi-menu='_show_which wifi-menu && sudo wifi-menu'
 alias journalctl='_show_which journalctl && sudo journalctl'
 alias systemctl='_show_which systemctl && sudo systemctl'
 
+# disable beep in less
+alias less='less -Q'
+
 # git aliases
 alias g='git'
 alias ga='git add'
