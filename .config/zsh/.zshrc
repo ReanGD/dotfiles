@@ -27,10 +27,9 @@ source $ZSH_LIB_DIR/prompt.zsh
 source $ZSH_LIB_DIR/key_bindings.zsh
 source $ZSH_LIB_DIR/completion.zsh
 
-# zinit snippet OMZP::docker
-# zinit snippet OMZP::compleat
-# zinit load mbrubeck/compleat
 zinit snippet OMZP::extract
+zinit ice atinit'ZSH_ALIAS_FINDER_AUTOMATIC=true'
+zinit snippet OMZP::alias-finder
 zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
 zinit snippet OMZP::colorize
 zinit load agkozak/zsh-z
@@ -38,7 +37,21 @@ zinit load supercrabtree/k
 zinit load zpm-zsh/clipboard
 zinit load trystan2k/zsh-tab-title
 zinit load zsh-users/zsh-autosuggestions
+zinit load zsh-users/zsh-completions
 zinit ice atinit'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"'
 zinit load zdharma/fast-syntax-highlighting
+
+# not working
+# hlissner/zsh-autopair
+
+# need test
+# Aloxaf/fzf-tab
+# OMZP::docker
+# OMZP::compleat = mbrubeck/compleat
+
+# alternative
+# OMZP::extract = thetic/extract
+# OMZP::alias-finder = sei40kr/zsh-fast-alias-tips = djui/alias-tips
+
 
 source $ZSH_LIB_DIR/compinit.zsh
