@@ -100,8 +100,12 @@ fman() {
 
 # Update zinit and plugins
 fupdate() {
+    rm -f $ZSH_COMPDUMP
     zinit self-update
     zinit update
+
+    # generate ZSH_COMPDUMP
+    compinit -i -C -d "${ZSH_COMPDUMP}"
 }
 
 # Change user in gitconfig
