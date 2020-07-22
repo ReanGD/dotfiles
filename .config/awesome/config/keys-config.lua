@@ -4,13 +4,6 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 local keys = { client_keys = {}, client_buttons = {}}
 
-local function windows_go_back()
-    awful.client.focus.history.previous()
-    if client.focus then
-        client.focus:raise()
-    end
-end
-
 local function launcher_system_menu(env)
     awful.spawn(env.scripts_dir .. "run_menu.sh")
 end
@@ -58,6 +51,37 @@ local function client_numkey(i, modkey, action)
 end
 
 
+----------------------------------------------------------------------------------------------------------------------
+-- Key support functions
+----------------------------------------------------------------------------------------------------------------------
+local redflat = require("redflat")
+
+-- Change window focus
+local function focus_switch(dir)
+    return function()
+        local screen = awful.screen.focused()
+        local layout = awful.layout.get(screen)
+        if layout == awful.layout.suit.max then
+            if dir == "right" or dir == "up" then
+                awful.client.focus.byidx(1)
+            else
+                awful.client.focus.byidx(-1)
+            end
+        else
+            awful.client.focus.bydirection(dir, client.focus, true)
+        end
+
+		if client.focus then client.focus:raise() end
+	end
+end
+
+-- Change window position
+local function position_switch(dir)
+    return function()
+        awful.client.swap.bydirection(dir)
+	end
+end
+
 function keys:init(env)
     local S = { "Shift" }
     local C = { "Control" }
@@ -69,6 +93,26 @@ function keys:init(env)
     local Button = awful.button
 
     local root_keys = gears.table.join(
+        -- Window focus
+        Key(M,  "j", focus_switch("left"),
+            {group = "Window focus", description = "Go to left window"}),
+        Key(M,  "l", focus_switch("right"),
+            {group = "Window focus", description = "Go to right window"}),
+        Key(M,  "i", focus_switch("up"),
+            {group = "Window focus", description = "Go to up window"}),
+        Key(M,  "k", focus_switch("down"),
+            {group = "Window focus", description = "Go to down window"}),
+
+        -- Window position
+        Key(SM, "j", position_switch("left"),
+            {group = "Window position", description = "Move to left"}),
+        Key(SM, "l", position_switch("right"),
+            {group = "Window position", description = "Move to right"}),
+        Key(SM, "i", position_switch("up"),
+            {group = "Window position", description = "Move to up"}),
+        Key(SM, "k", position_switch("down"),
+            {group = "Window position", description = "Move to down"}),
+
         -- Tags
         Key(M, "Left",  awful.tag.viewprev,
             {group = "Tag", description = "View previous"}),
@@ -77,23 +121,11 @@ function keys:init(env)
         Key(M, "Tab",   awful.tag.history.restore,
             {group = "Tag", description = "Go back"}),
 
-        -- Windows
-        Key(M,  "j", function () awful.client.focus.byidx(1) end,
-            {group = "Windows", description = "Focus next by index"}),
-        Key(SM, "j", function () awful.client.swap.byidx(1) end,
-            {group = "Windows", description = "Swap with next window by index"}),
-        Key(M,  "k", function () awful.client.focus.byidx(-1) end,
-            {group = "Windows", description = "Focus previous by index"}),
-        Key(SM, "k", function () awful.client.swap.byidx( -1) end,
-            {group = "Windows", description = "Swap with previous window by index"}),
-        Key(M,  "p", function () windows_go_back() end,
-            {group = "Windows", description = "Go back"}),
-
         -- Windows size
-        Key(M, "l",  function () awful.tag.incmwfact( 0.05) end,
-            {group = "Windows", description = "Increase master width factor"}),
-        Key(M, "h",  function () awful.tag.incmwfact(-0.05) end,
-            {group = "Windows", description = "Decrease master width factor"}),
+        -- Key(M, "l",  function () awful.tag.incmwfact( 0.05) end,
+        --     {group = "Windows", description = "Increase master width factor"}),
+        -- Key(M, "h",  function () awful.tag.incmwfact(-0.05) end,
+        --     {group = "Windows", description = "Decrease master width factor"}),
 
         -- Awesome
         Key(SCM, "r", awesome.restart,
