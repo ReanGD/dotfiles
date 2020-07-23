@@ -1,6 +1,7 @@
 local naughty = require("naughty")
 
 -- Handle startup errors
+--------------------------------------------------------------------------------
 if awesome.startup_errors then
 	naughty.notify({
 		preset = naughty.config.presets.critical,
@@ -10,6 +11,7 @@ if awesome.startup_errors then
 end
 
 -- Handle runtime errors after startup
+--------------------------------------------------------------------------------
 do
 	local in_error = false
 	awesome.connect_signal("debug::error", function (err)

@@ -1,6 +1,5 @@
-----------------------------------------------------------------------------------------------------------------------
 -- Load modules
-----------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -18,14 +17,12 @@ require("awful.autofocus")
 timestamp = require("src.timestamp")
 local widget = require("widget")
 
-----------------------------------------------------------------------------------------------------------------------
 -- Error handling
-----------------------------------------------------------------------------------------------------------------------
-require("lib.errcheck")
+--------------------------------------------------------------------------------
+require("lib.error_check")
 
-----------------------------------------------------------------------------------------------------------------------
 -- Setup theme and environment vars
-----------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 local env = require("lib.env")
 env:init{theme="default"}
 
@@ -40,7 +37,8 @@ local w_keyboard = widget.keyboard()
 local w_systray = wibox.widget.systray()
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Each screen has its own tag table.
+    -- set wallpaper
+    env.wallpaper(s)
     awful.tag({ "web", "doc", "devel", "cmdr", "media", "custom" }, s,
               { awful.layout.layouts[3],
                 awful.layout.layouts[1],
