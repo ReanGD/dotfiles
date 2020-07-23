@@ -1,9 +1,15 @@
 local gfs = require("gears.filesystem")
+
+-- load base theme
+local default_themes_path = gfs.get_themes_dir().."default/"
+local path = package.path
+package.path = package.path .. ";" .. gfs.get_themes_dir() .. "?.lua"
+local theme = require("default.theme")
+package.path = path
+
+-- override vars
 local xresources = require("beautiful.xresources")
-
-local theme = {}
-
-local themes_path = gfs.get_themes_dir().."default/"
+theme.path = gfs.get_configuration_dir() .. "themes/default"
 
 theme.font          = "Ubuntu 11"
 theme.taglist_font  = theme.font
@@ -28,10 +34,6 @@ theme.border_marked = "#91231c"
 theme.tasklist_disable_icon = true
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
-
-theme.layout_max = themes_path.."layouts/maxw.png"
-theme.layout_tileleft   = themes_path.."layouts/tileleftw.png"
-theme.layout_tile = themes_path.."layouts/tilew.png"
 
 theme.icon_theme = nil
 

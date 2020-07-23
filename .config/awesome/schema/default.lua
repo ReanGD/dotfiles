@@ -1,11 +1,20 @@
+----------------------------------------------------------------------------------------------------------------------
+-- Load modules
+----------------------------------------------------------------------------------------------------------------------
+
+-- If LuaRocks is installed, make sure that packages installed through it are
+-- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+pcall(require, "luarocks.loader")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
 local vicious = require("vicious")
 
+require("awful.autofocus")
+
+-- Custom library
 timestamp = require("src.timestamp")
 local widget = require("widget")
 
@@ -14,8 +23,11 @@ local widget = require("widget")
 ----------------------------------------------------------------------------------------------------------------------
 require("lib.errcheck")
 
-local env = require("config.env-config")
-env:init()
+----------------------------------------------------------------------------------------------------------------------
+-- Setup theme and environment vars
+----------------------------------------------------------------------------------------------------------------------
+local env = require("lib.env")
+env:init{theme="default"}
 
 awful.layout.layouts = {
     awful.layout.suit.tile,
