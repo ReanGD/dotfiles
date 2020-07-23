@@ -19,11 +19,11 @@ local widget = require("widget")
 
 -- Error handling
 --------------------------------------------------------------------------------
-require("lib.error_check")
+require("std.error_check")
 
 -- Setup theme and environment vars
 --------------------------------------------------------------------------------
-local env = require("lib.env")
+local env = require("std.env")
 env:init{theme="default"}
 
 awful.layout.layouts = {

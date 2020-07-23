@@ -1,7 +1,7 @@
 local gears = require("gears")
-local utils = require("src.utils")
 local beautiful = require("beautiful")
 local gfs = require("gears.filesystem")
+local subprocess = require("std.subprocess")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ function env:init(args)
 	self.mod = self.modkey
 	self.terminal = args.terminal or "urxvt"
 	self.home = os.getenv("HOME")
-	self.hostname = utils.output_read("uname -n")
+	self.hostname = subprocess.output_read("uname -n")
 	self.theme_dir = gfs.get_configuration_dir() .. "themes/" .. theme
 	self.scripts_dir = gfs.get_configuration_dir() .. "sripts/"
 

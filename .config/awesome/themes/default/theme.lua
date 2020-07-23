@@ -36,5 +36,6 @@ theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 
 theme.icon_theme = nil
+theme.wallpaper = theme.path .. "/wallpapers/morning-wallpaper.jpg"
 
 return theme
