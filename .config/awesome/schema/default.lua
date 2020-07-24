@@ -13,6 +13,9 @@ local vicious = require("vicious")
 
 require("awful.autofocus")
 
+-- Widget library
+widget_clock = require('widget.clock')
+
 -- Custom library
 timestamp = require("src.timestamp")
 local widget = require("widget")
