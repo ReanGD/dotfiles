@@ -16,11 +16,11 @@ function clock:create(args)
 
 	local format = args.format or "%a, %d %H:%M "
 	local refresh_sec = args.refresh or 60
-	clock_widget = wibox.widget.textclock(format, refresh_sec)
-	clock_widget.font = beautiful.tasklist_widget_font
+	local widget = wibox.widget.textclock(format, refresh_sec)
+	widget.font = beautiful.tasklist_widget_font
 
 	local tooltip = awful.tooltip{
-		objects = { clock_widget },
+		objects = { widget },
 		delay_show = 1,
 		margin_leftright = dpi(8),
 		margin_topbottom = dpi(8),
@@ -50,7 +50,7 @@ function clock:create(args)
 		long_weekdays = false,
 	})
 
-	clock_widget:buttons(gears.table.join(
+	widget:buttons(gears.table.join(
 		abutton({ }, 1, function ()
 			if tooltip.visible then
 				tooltip.visible = false
@@ -79,7 +79,7 @@ function clock:create(args)
 		end)
 	))
 
-	return clock_widget
+	return widget
 end
 
 return clock
