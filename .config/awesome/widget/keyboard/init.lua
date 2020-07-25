@@ -1,87 +1,82 @@
 local wibox = require("wibox")
 local awful = require('awful')
-local gears = require('gears')
+local gdebug = require("gears.debug")
 local beautiful = require('beautiful')
-local abutton = require("awful.button")
-local textbox = require("wibox.widget.textbox")
-local widget_base = require("wibox.widget.base")
-local kb = require("awful.widget.keyboardlayout")
-local capi = {awesome = awesome}
-local dpi = beautiful.xresources.apply_dpi
+local awesome = awesome
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
 local keyboard = {}
 
-local function update_status (self)
-    self._current = awesome.xkb_get_layout_group()
-    local text = ""
-    if #self._layout > 0 then
-        -- Please note that the group number reported by xkb_get_layout_group
-        -- is lower by one than the group numbers reported by xkb_get_group_names.
-        local name = self._layout[self._current+1]
+-- Module functions
+--------------------------------------------------------------------------------
+local function update_text(self)
+    self._layout_group_ind = awesome.xkb_get_layout_group()
+
+	local text = ""
+    if #self._layouts > 0 then
+        local name = self._layouts[self._layout_group_ind+1]
         if name then
-            text = " " .. name .. " "
+            text = name
         end
-    end
-    self.widget:set_text(text)
+	end
+
+    self.parent:set_text(text)
 end
 
-local function update_layout(self)
-    self._layout = {};
-    local layouts = kb.get_groups_from_group_names(awesome.xkb_get_group_names())
+local function update_layouts(self)
+	self._layouts = {}
+
+    local layouts = awful.widget.keyboardlayout.get_groups_from_group_names(awesome.xkb_get_group_names())
     if layouts == nil or layouts[1] == nil then
         gdebug.print_error("Failed to get list of keyboard groups")
         return
-    end
+	end
+
     if #layouts == 1 then
         layouts[1].group_idx = 1
-    end
+	end
+
     for _, v in ipairs(layouts) do
-        self._layout[v.group_idx] = "[" .. v.file:upper() .. "]"
-    end
-    update_status(self)
+        self._layouts[v.group_idx] = " [" .. v.file:upper() .. "] "
+	end
+
+    update_text(self)
+end
+
+local function next_layout(self)
+	self._layout_group_ind = (self._layout_group_ind + 1) % (#self._layouts + 1)
+	awesome.xkb_set_layout_group(self._layout_group_ind)
 end
 
 -- Constructor
 --------------------------------------------------------------------------------
-function keyboard:create(args)
+function keyboard.new(args)
 	args = args or {}
 
-    local tbox = textbox()
-    local widget = widget_base.make_widget(tbox, nil, {enable_properties=true})
+	local parent = wibox.widget.textbox()
+	parent.font = beautiful.tasklist_widget_font
 
-    widget.widget = tbox
+    local self = wibox.widget.base.make_widget(parent, nil, {enable_properties=true})
+    self.parent = parent
 
-    widget.next_layout = function()
-        widget.set_layout((widget._current + 1) % (#widget._layout + 1))
-    end
+    update_layouts(self)
 
-    widget.set_layout = function(group_number)
-        if (0 > group_number) or (group_number > #widget._layout) then
-            error("Invalid group number: " .. group_number ..
-                    "expected number from 0 to " .. #widget._layout)
-            return;
-        end
-        awesome.xkb_set_layout_group(group_number)
-    end
+	awesome.connect_signal("xkb::map_changed", function ()
+		update_layouts(self)
+	end)
 
-    update_layout(widget)
+	awesome.connect_signal("xkb::group_changed", function ()
+		update_text(self)
+	end)
 
-    -- callback for processing layout changes
-    capi.awesome.connect_signal("xkb::map_changed",
-                                function () update_layout(widget) end)
-    capi.awesome.connect_signal("xkb::group_changed",
-                                function () update_status(widget) end);
-
-    -- Mouse bindings
-    widget.buttons = {
-        button({ }, 1, widget.next_layout)
+	self.buttons = {
+		awful.button({ }, 1, function ()
+			next_layout(self)
+		end)
     }
 
-    return widget
-
-	-- return widget
+    return self
 end
 
 return keyboard

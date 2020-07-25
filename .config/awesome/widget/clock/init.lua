@@ -2,7 +2,6 @@ local wibox = require("wibox")
 local awful = require('awful')
 local gears = require('gears')
 local beautiful = require('beautiful')
-local abutton = require("awful.button")
 local dpi = beautiful.xresources.apply_dpi
 
 -- Initialize tables and vars for module
@@ -11,16 +10,16 @@ local clock = {}
 
 -- Constructor
 --------------------------------------------------------------------------------
-function clock:create(args)
+function clock.new(args)
 	args = args or {}
 
 	local format = args.format or "%a, %d %H:%M "
 	local refresh_sec = args.refresh or 60
-	local widget = wibox.widget.textclock(format, refresh_sec)
-	widget.font = beautiful.tasklist_widget_font
+	local self = wibox.widget.textclock(format, refresh_sec)
+	self.font = beautiful.tasklist_widget_font
 
 	local tooltip = awful.tooltip{
-		objects = { widget },
+		objects = { self },
 		delay_show = 1,
 		margin_leftright = dpi(8),
 		margin_topbottom = dpi(8),
@@ -50,8 +49,8 @@ function clock:create(args)
 		long_weekdays = false,
 	})
 
-	widget:buttons(gears.table.join(
-		abutton({ }, 1, function ()
+	self:buttons(gears.table.join(
+		awful.button({ }, 1, function ()
 			if tooltip.visible then
 				tooltip.visible = false
 			end
@@ -64,7 +63,7 @@ function clock:create(args)
 			end
 			month_calendar._calendar_clicked_on = month_calendar.visible
 		end),
-		abutton({ }, 3, function ()
+		awful.button({ }, 3, function ()
 			if tooltip.visible then
 				tooltip.visible = false
 			end
@@ -79,7 +78,7 @@ function clock:create(args)
 		end)
 	))
 
-	return widget
+	return self
 end
 
 return clock
