@@ -1,7 +1,7 @@
 local wibox = require("wibox")
-local awful = require('awful')
-local gears = require('gears')
-local beautiful = require('beautiful')
+local awful = require("awful")
+local gears = require("gears")
+local beautiful = require("beautiful")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------

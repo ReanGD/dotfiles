@@ -1,16 +1,18 @@
 local wibox = require("wibox")
-local awful = require('awful')
-local gdebug = require("gears.debug")
-local beautiful = require('beautiful')
-local awesome = awesome
+local awful = require("awful")
+local gears = require("gears")
+local naughty = require("naughty")
+local beautiful = require("beautiful")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
 local keyboard = {}
 
+local awesome = awesome
+
 -- Module functions
 --------------------------------------------------------------------------------
-local function update_text(self)
+function keyboard:update_text()
 	self._layout_group_ind = awesome.xkb_get_layout_group()
 
 	local text = ""
@@ -21,15 +23,19 @@ local function update_text(self)
 		end
 	end
 
-	self.parent:set_text(text)
+	self.widget:set_text(text)
 end
 
-local function update_layouts(self)
+function keyboard:update_layouts()
 	self._layouts = {}
 
 	local layouts = awful.widget.keyboardlayout.get_groups_from_group_names(awesome.xkb_get_group_names())
 	if layouts == nil or layouts[1] == nil then
-		gdebug.print_error("Failed to get list of keyboard groups")
+		naughty.notify({
+			title = "Error while update layouts for widget 'keyboard'",
+			text = "Failed to get list of keyboard groups",
+			preset = naughty.config.presets.critical
+		})
 		return
 	end
 
@@ -41,42 +47,39 @@ local function update_layouts(self)
 		self._layouts[v.group_idx] = " [" .. v.file:upper() .. "] "
 	end
 
-	update_text(self)
+	keyboard:update_text()
 end
 
-local function next_layout(self)
+function keyboard:next_layout()
 	self._layout_group_ind = (self._layout_group_ind + 1) % (#self._layouts + 1)
 	awesome.xkb_set_layout_group(self._layout_group_ind)
 end
 
 -- Constructor
 --------------------------------------------------------------------------------
-function keyboard.new(args)
+function keyboard:init(args)
 	args = args or {}
 
-	local parent = wibox.widget.textbox()
-	parent.font = beautiful.tasklist_widget_font
+	local widget = wibox.widget.textbox()
+	widget.font = beautiful.tasklist_widget_font
 
-	local self = wibox.widget.base.make_widget(parent, nil, {enable_properties=true})
-	self.parent = parent
+	self.widget = widget
 
-	update_layouts(self)
+	self:update_layouts()
 
 	awesome.connect_signal("xkb::map_changed", function ()
-		update_layouts(self)
+		self:update_layouts()
 	end)
 
 	awesome.connect_signal("xkb::group_changed", function ()
-		update_text(self)
+		self:update_text()
 	end)
 
-	self.buttons = {
+	self.widget:buttons(gears.table.join(
 		awful.button({ }, 1, function ()
-			next_layout(self)
+			self:next_layout()
 		end)
-	}
-
-	return self
+	))
 end
 
 return keyboard

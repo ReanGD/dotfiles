@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local naughty = require("naughty")
-local beautiful = require('beautiful')
+local beautiful = require("beautiful")
 local pulse = require("pulseaudio_dbus")
 
 -- Initialize tables and vars for module
@@ -45,8 +45,8 @@ function volume:notify(v)
 	end
 
 	self.notification = naughty.notify({
-		text=msg,
-		timeout=self.notification_timeout_seconds
+		text = msg,
+		timeout = self.notification_timeout_seconds
 	})
 end
 
@@ -141,9 +141,9 @@ function volume:init(args)
 	local status, address = pcall(pulse.get_address)
 	if not status then
 		naughty.notify({
-			title="Error while loading the PulseAudio widget",
-			text=address,
-			preset=naughty.config.presets.critical
+			title = "Error while loading widget 'volume'",
+			text = address,
+			preset = naughty.config.presets.critical
 		})
 
 		return self
