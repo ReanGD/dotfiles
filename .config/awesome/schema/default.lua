@@ -9,16 +9,20 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
-local vicious = require("vicious")
 
 require("awful.autofocus")
 
+-- Std library
+local env = require("std.env")
+
 -- Widget library
-widget_clock = require('widget.clock')
+clock = require("widget.clock")
+volume = require("widget.volume")
+systray = require("widget.systray")
+keyboard = require("widget.keyboard")
 
 -- Custom library
 timestamp = require("src.timestamp")
-local widget = require("widget")
 
 -- Error handling
 --------------------------------------------------------------------------------
@@ -26,8 +30,7 @@ require("std.error_check")
 
 -- Setup theme and environment vars
 --------------------------------------------------------------------------------
-local env = require("std.env")
-env:init{theme="default"}
+env:init({theme="default"})
 
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -81,10 +84,10 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            w_systray,
-            batwidget,
-            w_keyboard,
-            w_textclock,
+            systray.widget,
+            volume.widget,
+            keyboard.widget,
+            clock.widget,
         },
     }
 end)

@@ -138,6 +138,8 @@ end
 function volume:init(args)
 	args = args or {}
 
+	local mixer = args.mixer or "pavucontrol"
+
 	local status, address = pcall(pulse.get_address)
 	if not status then
 		naughty.notify({
@@ -159,7 +161,6 @@ function volume:init(args)
 		muted = beautiful.icon_theme .. "/scalable/status/audio-volume-muted-symbolic.svg",
 	}
 
-	self.mixer = "pavucontrol"
 	self.notification_timeout_seconds = 1
 
 	self.widget = wibox.widget {
@@ -180,7 +181,7 @@ function volume:init(args)
 			self:toggle_muted()
 		end),
 		awful.button({ }, 3, function ()
-			awful.spawn(widget.mixer)
+			awful.spawn(mixer)
 		end),
 		awful.button({ }, 4, function ()
 			self:volume_up()
