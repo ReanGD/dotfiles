@@ -152,7 +152,6 @@ function volume:init(args)
 	self.connection = pulse.get_connection(address)
 	self.core = pulse.get_core(self.connection)
 
-
 	self.icons = {
 		high = beautiful.icon_theme .. "/scalable/status/audio-volume-high-symbolic.svg",
 		medium = beautiful.icon_theme .. "/scalable/status/audio-volume-medium-symbolic.svg",
