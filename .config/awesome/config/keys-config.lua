@@ -1,6 +1,10 @@
+-- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
+
+-- Widget library
+volume = require("widget.volume")
 
 local keys = { client_keys = {}, client_buttons = {}}
 
@@ -113,6 +117,19 @@ function keys:init(env)
         Key(SM, "k", position_switch("down"),
             {group = "Window position", description = "Move to down"}),
 
+        -- Audio
+        Key({}, "XF86AudioRaiseVolume", function () volume:volume_up() end,
+            {group = "Hotkeys", description = "Increase volume up by 5%"}),
+        Key(SM, "=", function () volume:volume_up() end,
+            {group = "Hotkeys", description = "Increase volume up by 5%"}),
+        Key({}, "XF86AudioLowerVolume", function () volume:volume_down() end,
+            {group = "Hotkeys", description = "decrease volume up by 5%"}),
+        Key(SM, "-", function () volume:volume_down() end,
+            {group = "Hotkeys", description = "decrease volume up by 5%"}),
+        Key({}, "XF86AudioMute", function () volume:toggle_muted() end,
+            {group = "Hotkeys", description = "Toggle mute"}),
+        Key(SM, "0", function () volume:toggle_muted() end,
+            {group = "Hotkeys", description = "Toggle mute"}),
         -- Tags
         Key(M, "Left",  awful.tag.viewprev,
             {group = "Tag", description = "View previous"}),

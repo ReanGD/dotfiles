@@ -13,6 +13,41 @@ local math = math
 local string = string
 local dpi = beautiful.xresources.apply_dpi
 
+-- Interface functions
+--------------------------------------------------------------------------------
+function volume:volume_up()
+	if not self.sink:is_muted() then
+		self.sink:volume_up()
+	end
+end
+
+function volume:volume_down()
+	if not self.sink:is_muted() then
+		self.sink:volume_down()
+	end
+end
+
+function volume:toggle_muted()
+	self.sink:toggle_muted()
+end
+
+function volume:volume_up_mic()
+	if self.source and not self.source:is_muted() then
+		self.source:volume_up()
+	end
+end
+
+function volume:volume_down_mic()
+	if self.source and not self.source:is_muted() then
+		self.source:volume_down()
+	end
+end
+
+function volume:toggle_muted_mic()
+	if self.source then
+		self.source:toggle_muted()
+	end
+end
 
 -- Utils functions
 --------------------------------------------------------------------------------
@@ -78,40 +113,6 @@ function volume:update_sources(sources)
 		else
 			self.source = nil
 		end
-	end
-end
-
-function volume:volume_up()
-	if not self.sink:is_muted() then
-		self.sink:volume_up()
-	end
-end
-
-function volume:volume_down()
-	if not self.sink:is_muted() then
-		self.sink:volume_down()
-	end
-end
-
-function volume:toggle_muted()
-	self.sink:toggle_muted()
-end
-
-function volume:volume_up_mic()
-	if self.source and not self.source:is_muted() then
-		self.source:volume_up()
-	end
-end
-
-function volume:volume_down_mic()
-	if self.source and not self.source:is_muted() then
-		self.source:volume_down()
-	end
-end
-
-function volume:toggle_muted_mic()
-	if self.source then
-		self.source:toggle_muted()
 	end
 end
 
