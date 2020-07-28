@@ -9,32 +9,47 @@ local pulse = require("pulseaudio_dbus")
 --------------------------------------------------------------------------------
 local volume = {}
 
+local math = math
 local string = string
 local dpi = beautiful.xresources.apply_dpi
 
+
+-- Utils functions
+--------------------------------------------------------------------------------
+function volume:get_volume_percent(volume, base_volume)
+	local volume = volume or self.sink:get_volume()[1]
+	local base_volume = base_volume or self.sink.BaseVolume
+
+	return math.max(0, math.ceil(volume * 100.0 / base_volume - 0.5))
+end
+
 -- Module functions
 --------------------------------------------------------------------------------
-function volume:update_appearance(v)
-	local icon, msg
+function volume:update_widget(is_muted, volume_percent)
+	local widget_icon, widget_text, tooltip_text
+	local is_muted = is_muted or self.sink:is_muted()
 
-	if v == "Muted" then
-		msg = v
-		icon = self.icons.muted
+	if is_muted then
+		widget_text = ""
+		tooltip_text = "Muted"
+		widget_icon = self.icons.muted
 	else
-		v = v == "Unmuted" and self.sink:get_volume_percent()[1] or tonumber(v)
-		msg = string.format("%d%%", v)
+		local volume_percent = volume_percent or self:get_volume_percent()
+		widget_text = string.format("%d", volume_percent)
+		tooltip_text = string.format("%d%%", volume_percent)
 
-		if v <= 33 then
-			icon = self.icons.low
-		elseif v <= 66 then
-			icon = self.icons.medium
+		if volume_percent <= 33 then
+			widget_icon = self.icons.low
+		elseif volume_percent <= 66 then
+			widget_icon = self.icons.medium
 		else
-			icon = self.icons.high
+			widget_icon = self.icons.high
 		end
 	end
 
-	self.widget.image = icon
-	self.tooltip:set_text(msg)
+	self.widget_text.text = widget_text
+	self.widget_image.image = widget_icon
+	self.tooltip:set_text(tooltip_text)
 end
 
 function volume:notify(v)
@@ -108,11 +123,8 @@ function volume:connect_device(device)
 	if device.signals.VolumeUpdated then
 		device:connect_signal(
 			function (this, volume)
-				-- FIXME: BaseVolume for sources (i.e. microphones) won't give the correct percentage
-				local v = math.ceil(tonumber(volume[1]) / this.BaseVolume * 100)
 				if this.object_path == self.sink.object_path then
-					self:update_appearance(v)
-					self:notify(v)
+					self:update_widget(false, self:get_volume_percent(tonumber(volume[1]), this.BaseVolume))
 				end
 			end,
 			"VolumeUpdated"
@@ -122,10 +134,8 @@ function volume:connect_device(device)
 	if device.signals.MuteUpdated then
 		device:connect_signal(
 			function (this, is_mute)
-				local m = is_mute and "Muted" or "Unmuted"
 				if this.object_path == self.sink.object_path then
-					self:update_appearance(m)
-					self:notify(m)
+					self:update_widget(is_mute)
 				end
 			end,
 			"MuteUpdated"
@@ -164,8 +174,7 @@ function volume:init_dbus(iteration)
 		function (_, newsink)
 			self:update_sink(newsink)
 			self:connect_device(self.sink)
-			local volume = self.sink:is_muted() and "Muted" or self.sink:get_volume_percent()[1]
-			self:update_appearance(volume)
+			self:update_widget()
 		end,
 		"NewSink"
 	)
@@ -185,9 +194,7 @@ function volume:init_dbus(iteration)
 	local sink_path = assert(self.core:get_sinks()[1], "No sinks found")
 	self:update_sink(sink_path)
 	self:connect_device(self.sink)
-
-	local volume = self.sink:is_muted() and "Muted" or self.sink:get_volume_percent()[1]
-	self:update_appearance(volume)
+	self:update_widget()
 end
 
 -- Constructor
@@ -207,9 +214,20 @@ function volume:init(args)
 	self.notification_timeout_seconds = 1
 
 	self.widget = wibox.widget {
-		resize = true,
-		widget = wibox.widget.imagebox
+		layout = wibox.layout.fixed.horizontal,
+		{
+			id = "image",
+			widget = wibox.widget.imagebox,
+		},
+		{
+			id = "text",
+			widget = wibox.widget.textbox,
+			text = ""
+		}
 	}
+
+	self.widget_image = self.widget:get_children_by_id("image")[1]
+	self.widget_text = self.widget:get_children_by_id("text")[1]
 
 	self.tooltip = awful.tooltip {
 		objects = { self.widget },
