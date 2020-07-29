@@ -15,15 +15,23 @@ local dpi = beautiful.xresources.apply_dpi
 
 -- Interface functions
 --------------------------------------------------------------------------------
-function volume:volume_up()
+function volume:volume_up(show_popup)
 	if not self.sink:is_muted() then
 		self.sink:volume_up()
+		show_popup = show_popup or true
+		if show_popup then
+			awesome.emit_signal('module::volume_osd:show', true)
+		end
 	end
 end
 
-function volume:volume_down()
+function volume:volume_down(show_popup)
 	if not self.sink:is_muted() then
 		self.sink:volume_down()
+		show_popup = show_popup or true
+		if show_popup then
+			awesome.emit_signal('module::volume_osd:show', true)
+		end
 	end
 end
 
@@ -61,21 +69,24 @@ end
 -- Module functions
 --------------------------------------------------------------------------------
 function volume:update_widget(is_muted, volume_percent)
-	local widget_icon, widget_text, tooltip_text
+	local widget_icon, widget_text, tooltip_text, popup_value_text
 	local is_muted = is_muted or self.sink:is_muted()
 
 	if is_muted then
 		widget_text = ""
 		tooltip_text = "Muted"
+		popup_value_text = "Muted"
 		widget_icon = self.icons.muted
+		self.volume_percent = 0
 	else
-		local volume_percent = volume_percent or self:get_volume_percent()
-		widget_text = string.format("%d", volume_percent)
-		tooltip_text = string.format("%d%%", volume_percent)
+		self.volume_percent = volume_percent or self:get_volume_percent()
+		widget_text = string.format("%d", self.volume_percent)
+		tooltip_text = string.format("%d%%", self.volume_percent)
+		popup_value_text = string.format("%d%%", self.volume_percent)
 
-		if volume_percent <= 33 then
+		if self.volume_percent <= 33 then
 			widget_icon = self.icons.low
-		elseif volume_percent <= 66 then
+		elseif self.volume_percent <= 66 then
 			widget_icon = self.icons.medium
 		else
 			widget_icon = self.icons.high
@@ -84,6 +95,9 @@ function volume:update_widget(is_muted, volume_percent)
 
 	self.widget_text.text = widget_text
 	self.widget_image.image = widget_icon
+	self.widget_popup_slider:set_value(self.volume_percent)
+	self.widget_popup_value.text = popup_value_text
+	self.widget_popup_image.image = widget_icon
 	self.tooltip:set_text(tooltip_text)
 end
 
@@ -198,6 +212,257 @@ function volume:init_dbus(iteration)
 	self:update_widget()
 end
 
+function volume:create_slider()
+	local slider = wibox.widget {
+		nil,
+		{
+			id 					= "slider_widget_id",
+			bar_shape           = gears.shape.rounded_rect,
+			bar_height          = dpi(2),
+			bar_color           = "#ffffff20",
+			bar_active_color	= "#f2f2f2EE",
+			handle_color        = "#ffffff",
+			handle_shape        = gears.shape.circle,
+			handle_width        = dpi(15),
+			handle_border_color = "#00000012",
+			handle_border_width = dpi(1),
+			maximum				= 100,
+			widget              = wibox.widget.slider,
+		},
+		nil,
+		expand = "none",
+		layout = wibox.layout.align.vertical
+	}
+
+	local slider_image = wibox.widget {
+		{
+			id = "image_widget_id",
+			resize = true,
+			widget = wibox.widget.imagebox
+		},
+		top = dpi(12),
+		bottom = dpi(12),
+		widget = wibox.container.margin
+	}
+
+	self.widget_popup_slider = slider.slider_widget_id
+	self.widget_popup_image = slider_image.image_widget_id
+
+	self.widget_popup_slider:connect_signal(
+		"property::value",
+		function()
+			local volume_percent = tonumber(self.widget_popup_slider:get_value())
+			if self.volume_percent == volume_percent then
+				return
+			end
+
+			if not self.sink:is_muted() then
+				local volume = volume_percent * self.sink.BaseVolume / 100
+				local volumes = self.sink:get_volume_percent()
+				for i, v in ipairs(volumes) do
+					volumes[i] = volume
+				end
+
+				self.sink:set_volume(volumes)
+			end
+		end
+	)
+
+	self.widget_popup_slider:connect_signal(
+		"button::press",
+		function()
+			self.show_popup = true
+		end
+	)
+
+	self.widget_popup_slider:connect_signal(
+		"mouse::enter",
+		function()
+			self.show_popup = true
+		end
+	)
+
+	return wibox.widget {
+		slider_image,
+		slider,
+		spacing = dpi(24),
+		layout = wibox.layout.fixed.horizontal
+	}
+end
+
+function volume:init_popup()
+	self.show_popup = false
+
+	local popup_header = wibox.widget {
+		text = "Volume",
+		font = "Inter Bold 12",
+		align = "left",
+		valign = "center",
+		widget = wibox.widget.textbox
+	}
+
+	self.widget_popup_value = wibox.widget {
+		text = "0%",
+		font = "Inter Bold 12",
+		align = "center",
+		valign = "center",
+		widget = wibox.widget.textbox
+	}
+
+	local slider = self:create_slider()
+
+	-- Create the box
+	local osd_height = dpi(100)
+	local osd_width = dpi(300)
+	local osd_margin = dpi(10)
+
+	self.volume_osd_overlay = awful.popup {
+		widget = {
+		  -- Removing this block will cause an error...
+		},
+		ontop = true,
+		visible = false,
+		type = 'notification',
+		-- screen = s,
+		height = osd_height,
+		width = osd_width,
+		maximum_height = osd_height,
+		maximum_width = osd_width,
+		offset = dpi(5),
+		shape = gears.shape.rectangle,
+		bg = beautiful.transparent,
+		preferred_anchors = 'middle',
+		preferred_positions = {'left', 'right', 'top', 'bottom'}
+	}
+
+	self.volume_osd_overlay : setup {
+		{
+			{
+				{
+					layout = wibox.layout.align.horizontal,
+					expand = 'none',
+					forced_height = dpi(48),
+					popup_header,
+					nil,
+					self.widget_popup_value
+				},
+				slider,
+				layout = wibox.layout.fixed.vertical
+			},
+			left = dpi(24),
+			right = dpi(24),
+			widget = wibox.container.margin
+
+		},
+		bg = beautiful.background,
+		shape = gears.shape.rounded_rect,
+		widget = wibox.container.background()
+	}
+
+	local hide_osd = gears.timer {
+		timeout = 2,
+		autostart = true,
+		callback  = function()
+			awful.screen.focused().volume_osd_overlay.visible = false
+			s.show_popup = false
+		end
+	}
+
+	local timer_rerun = function()
+		if hide_osd.started then
+			hide_osd:again()
+		else
+			hide_osd:start()
+		end
+	end
+
+	-- Reset timer on mouse hover
+	self.volume_osd_overlay:connect_signal(
+		'mouse::enter',
+		function()
+			-- s.show_popup = true
+			timer_rerun()
+		end
+	)
+
+	local placement_placer = function()
+
+		local focused = awful.screen.focused()
+
+		local right_panel = focused.right_panel
+		local left_panel = focused.left_panel
+		local volume_osd = focused.volume_osd_overlay
+
+		if right_panel and left_panel then
+			if right_panel.visible then
+				awful.placement.bottom_left(
+					focused.volume_osd_overlay,
+					{
+						margins = {
+							left = osd_margin,
+							right = 0,
+							top = 0,
+							bottom = osd_margin
+						},
+						honor_workarea = true
+					}
+				)
+				return
+			end
+		end
+
+		if right_panel then
+			if right_panel.visible then
+				awful.placement.bottom_left(
+					focused.volume_osd_overlay,
+					{
+						margins = {
+							left = osd_margin,
+							right = 0,
+							top = 0,
+							bottom = osd_margin
+						},
+						honor_workarea = true
+					}
+				)
+				return
+			end
+		end
+
+		awful.placement.bottom_right(
+			focused.volume_osd_overlay,
+			{
+				margins = {
+					left = 0,
+					right = osd_margin,
+					top = 0,
+					bottom = osd_margin,
+				},
+				honor_workarea = true
+			}
+		)
+	end
+
+	awesome.connect_signal(
+		'module::volume_osd:show',
+		function(bool)
+			placement_placer()
+			self.volume_osd_overlay.visible = bool
+			if bool then
+				timer_rerun()
+				awesome.emit_signal(
+					'module::brightness_osd:show',
+					false
+				)
+			else
+				if hide_osd.started then
+					hide_osd:stop()
+				end
+			end
+		end
+	)
+end
+
 -- Constructor
 --------------------------------------------------------------------------------
 function volume:init(args)
@@ -217,18 +482,18 @@ function volume:init(args)
 	self.widget = wibox.widget {
 		layout = wibox.layout.fixed.horizontal,
 		{
-			id = "image",
+			id = "image_id",
 			widget = wibox.widget.imagebox,
 		},
 		{
-			id = "text",
+			id = "text_id",
 			widget = wibox.widget.textbox,
 			text = ""
 		}
 	}
 
-	self.widget_image = self.widget:get_children_by_id("image")[1]
-	self.widget_text = self.widget:get_children_by_id("text")[1]
+	self.widget_image = self.widget.image_id
+	self.widget_text = self.widget.text_id
 
 	self.tooltip = awful.tooltip {
 		objects = { self.widget },
@@ -253,6 +518,7 @@ function volume:init(args)
 		end)
 	))
 
+	self:init_popup()
 	self:init_dbus(0)
 end
 
