@@ -118,17 +118,17 @@ function keys:init(env)
             {group = "Window position", description = "Move to down"}),
 
         -- Audio
-        Key({}, "XF86AudioRaiseVolume", function () volume:volume_up() end,
+        Key({}, "XF86AudioRaiseVolume", function () volume:volume_up(true) end,
             {group = "Hotkeys", description = "Increase volume up by 5%"}),
-        Key(SM, "=", function () volume:volume_up() end,
+        Key(SM, "=", function () volume:volume_up(true) end,
             {group = "Hotkeys", description = "Increase volume up by 5%"}),
-        Key({}, "XF86AudioLowerVolume", function () volume:volume_down() end,
+        Key({}, "XF86AudioLowerVolume", function () volume:volume_down(true) end,
             {group = "Hotkeys", description = "decrease volume up by 5%"}),
-        Key(SM, "-", function () volume:volume_down() end,
+        Key(SM, "-", function () volume:volume_down(true) end,
             {group = "Hotkeys", description = "decrease volume up by 5%"}),
-        Key({}, "XF86AudioMute", function () volume:toggle_muted() end,
+        Key({}, "XF86AudioMute", function () volume:toggle_muted(false) end,
             {group = "Hotkeys", description = "Toggle mute"}),
-        Key(SM, "0", function () volume:toggle_muted() end,
+        Key(SM, "0", function () volume:toggle_muted(false) end,
             {group = "Hotkeys", description = "Toggle mute"}),
         -- Tags
         Key(M, "Left",  awful.tag.viewprev,

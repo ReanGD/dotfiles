@@ -18,7 +18,6 @@ local dpi = beautiful.xresources.apply_dpi
 function volume:volume_up(show_popup)
 	if not self.sink:is_muted() then
 		self.sink:volume_up()
-		show_popup = show_popup or true
 		if show_popup then
 			awesome.emit_signal('module::volume_osd:show', true)
 		end
@@ -28,15 +27,17 @@ end
 function volume:volume_down(show_popup)
 	if not self.sink:is_muted() then
 		self.sink:volume_down()
-		show_popup = show_popup or true
 		if show_popup then
 			awesome.emit_signal('module::volume_osd:show', true)
 		end
 	end
 end
 
-function volume:toggle_muted()
+function volume:toggle_muted(show_popup)
 	self.sink:toggle_muted()
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:volume_up_mic()
@@ -69,7 +70,7 @@ end
 -- Module functions
 --------------------------------------------------------------------------------
 function volume:update_widget(is_muted, volume_percent)
-	local widget_icon, widget_text, tooltip_text, popup_value_text
+	local widget_icon, widget_text, tooltip_text, popup_value_text, popup_slider_max
 	local is_muted = is_muted or self.sink:is_muted()
 
 	if is_muted then
@@ -77,12 +78,14 @@ function volume:update_widget(is_muted, volume_percent)
 		tooltip_text = "Muted"
 		popup_value_text = "Muted"
 		widget_icon = self.icons.muted
+		popup_slider_max = 1
 		self.volume_percent = 0
 	else
 		self.volume_percent = volume_percent or self:get_volume_percent()
 		widget_text = string.format("%d", self.volume_percent)
 		tooltip_text = string.format("%d%%", self.volume_percent)
 		popup_value_text = string.format("%d%%", self.volume_percent)
+		popup_slider_max = 100
 
 		if self.volume_percent <= 33 then
 			widget_icon = self.icons.low
@@ -95,6 +98,7 @@ function volume:update_widget(is_muted, volume_percent)
 
 	self.widget_text.text = widget_text
 	self.widget_image.image = widget_icon
+	self.widget_popup_slider.maximum = popup_slider_max
 	self.widget_popup_slider:set_value(self.volume_percent)
 	self.widget_popup_value.text = popup_value_text
 	self.widget_popup_image.image = widget_icon
@@ -212,7 +216,45 @@ function volume:init_dbus(iteration)
 	self:update_widget()
 end
 
-function volume:create_slider()
+function volume:popup_create_header()
+	local popup_header = wibox.widget {
+		text = "Volume",
+		font = "Inter Bold 12",
+		align = "left",
+		valign = "center",
+		widget = wibox.widget.textbox
+	}
+
+	self.widget_popup_value = wibox.widget {
+		text = "0%",
+		font = "Inter Bold 12",
+		align = "center",
+		valign = "center",
+		widget = wibox.widget.textbox
+	}
+
+	return wibox.widget {
+		popup_header,
+		nil,
+		self.widget_popup_value,
+		expand = "none",
+		forced_height = dpi(48),
+		layout = wibox.layout.align.horizontal
+	}
+end
+
+function volume:popup_create_slider()
+	local slider_image = wibox.widget {
+		{
+			id = "image_widget_id",
+			resize = true,
+			widget = wibox.widget.imagebox
+		},
+		top = dpi(12),
+		bottom = dpi(12),
+		widget = wibox.container.margin
+	}
+
 	local slider = wibox.widget {
 		nil,
 		{
@@ -234,19 +276,14 @@ function volume:create_slider()
 		layout = wibox.layout.align.vertical
 	}
 
-	local slider_image = wibox.widget {
-		{
-			id = "image_widget_id",
-			resize = true,
-			widget = wibox.widget.imagebox
-		},
-		top = dpi(12),
-		bottom = dpi(12),
-		widget = wibox.container.margin
-	}
-
-	self.widget_popup_slider = slider.slider_widget_id
 	self.widget_popup_image = slider_image.image_widget_id
+	self.widget_popup_slider = slider.slider_widget_id
+
+	slider_image:buttons(gears.table.join(
+		awful.button({ }, 1, function ()
+			self:toggle_muted(false)
+		end)
+	))
 
 	self.widget_popup_slider:connect_signal(
 		"property::value",
@@ -293,23 +330,8 @@ end
 function volume:init_popup()
 	self.show_popup = false
 
-	local popup_header = wibox.widget {
-		text = "Volume",
-		font = "Inter Bold 12",
-		align = "left",
-		valign = "center",
-		widget = wibox.widget.textbox
-	}
-
-	self.widget_popup_value = wibox.widget {
-		text = "0%",
-		font = "Inter Bold 12",
-		align = "center",
-		valign = "center",
-		widget = wibox.widget.textbox
-	}
-
-	local slider = self:create_slider()
+	local header = self:popup_create_header()
+	local slider = self:popup_create_slider()
 
 	-- Create the box
 	local osd_height = dpi(100)
@@ -338,14 +360,7 @@ function volume:init_popup()
 	self.volume_osd_overlay : setup {
 		{
 			{
-				{
-					layout = wibox.layout.align.horizontal,
-					expand = 'none',
-					forced_height = dpi(48),
-					popup_header,
-					nil,
-					self.widget_popup_value
-				},
+				header,
 				slider,
 				layout = wibox.layout.fixed.vertical
 			},
@@ -505,16 +520,16 @@ function volume:init(args)
 
 	self.widget:buttons(gears.table.join(
 		awful.button({ }, 1, function ()
-			self:toggle_muted()
+			self:toggle_muted(false)
 		end),
 		awful.button({ }, 3, function ()
 			awful.spawn(mixer)
 		end),
 		awful.button({ }, 4, function ()
-			self:volume_up()
+			self:volume_up(false)
 		end),
 		awful.button({ }, 5, function ()
-			self:volume_down()
+			self:volume_down(false)
 		end)
 	))
 
