@@ -18,8 +18,8 @@ show_sound_level=true
 use_transparent_background=false
 
 [Hotkeys]
-up_enabled=true
-down_enabled=true
+up_enabled=false
+down_enabled=false
 mute_enabled=false
 up=<Super>equal
 down=<Super>minus
