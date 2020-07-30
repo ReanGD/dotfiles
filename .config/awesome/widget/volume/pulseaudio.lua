@@ -158,6 +158,7 @@ function pulseaudio.core.create(connection)
 	add_interface(self, pulseaudio.core)
 
 	self.outputs = {}
+	self.inputs = {}
 	self.connection = connection
 
 	self:ListenForSignal("org.PulseAudio.Core1.Device.MuteUpdated", {})
@@ -165,6 +166,8 @@ function pulseaudio.core.create(connection)
 	self:ListenForSignal("org.PulseAudio.Core1.Device.ActivePortUpdated", {})
 	self:ListenForSignal("org.PulseAudio.Core1.NewSink", { self.object_path })
 	self:ListenForSignal("org.PulseAudio.Core1.SinkRemoved", { self.object_path })
+	self:ListenForSignal("org.PulseAudio.Core1.NewSource", { self.object_path })
+	self:ListenForSignal("org.PulseAudio.Core1.SourceRemoved", { self.object_path })
 
 	self:connect_signal(
 		function (_, sink_path)
@@ -180,10 +183,28 @@ function pulseaudio.core.create(connection)
 		"SinkRemoved"
 	)
 
+	self:connect_signal(
+		function (_, source_path)
+			self:inputs_add(source_path)
+		end,
+		"NewSource"
+	)
+
+	self:connect_signal(
+		function (_, source_path)
+			self:inputs_remove(source_path)
+		end,
+		"SourceRemoved"
+	)
+
 	for _, sink_path in pairs(self:get_sinks()) do
 		local device = pulseaudio.device.create(self.connection, sink_path)
 		self.outputs[sink_path] = device
-		gears.debug.print_error("core.create: device = " .. device.Name .. ", path = " .. sink_path)
+	end
+
+	for _, source_path in pairs(self:get_sources()) do
+		local device = pulseaudio.device.create(self.connection, source_path)
+		self.inputs[source_path] = device
 	end
 
 	return self
@@ -193,15 +214,34 @@ function pulseaudio.core:get_sinks()
 	return self:Get("org.PulseAudio.Core1", "Sinks")
 end
 
+function pulseaudio.core:get_sources()
+    return self:Get("org.PulseAudio.Core1", "Sources")
+end
+
 function pulseaudio.core:outputs_add(sink_path)
 	local device = pulseaudio.device.create(self.connection, sink_path)
 	self.outputs[sink_path] = output
-	gears.debug.print_error("outputs_add: device = " .. device.Name .. ", path = " .. sink_path)
 end
 
 function pulseaudio.core:outputs_remove(sink_path)
 	self.outputs[sink_path] = nil
-	gears.debug.print_error("outputs_remove: path = " .. sink_path)
+end
+
+function pulseaudio.core:inputs_add(source_path)
+	local device = pulseaudio.device.create(self.connection, source_path)
+	if not device.Name or device.Name:match("%.monitor$") then
+		return
+	end
+
+	self.inputs[source_path] = output
+end
+
+function pulseaudio.core:inputs_remove(source_path)
+	if not self.inputs[source_path] then
+		return
+	end
+
+	self.inputs[source_path] = nil
 end
 
 -- Interface functions
@@ -209,7 +249,7 @@ end
 
 -- Constructor
 --------------------------------------------------------------------------------
-function pulseaudio:init(update_func)
+function pulseaudio:init(on_outputs_changed, on_volume_changed, on_inputs_changed, on_mic_changed)
 	local status, address = pcall(pulse.get_address)
 	if not status then
 		if iteration == 30 then
