@@ -3,6 +3,7 @@ local awful = require("awful")
 local gears = require("gears")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
+local pulseaudio = require("widget.volume.pulseaudio")
 local pulse = require("pulseaudio_dbus")
 
 -- Initialize tables and vars for module
@@ -327,37 +328,11 @@ function volume:popup_create_slider()
 	}
 end
 
-function volume:init_popup()
-	self.show_popup = false
-
+function volume:popup_create_volume_dialog()
 	local header = self:popup_create_header()
 	local slider = self:popup_create_slider()
 
-	-- Create the box
-	local osd_height = dpi(100)
-	local osd_width = dpi(300)
-	local osd_margin = dpi(10)
-
-	self.volume_osd_overlay = awful.popup {
-		widget = {
-		  -- Removing this block will cause an error...
-		},
-		ontop = true,
-		visible = false,
-		type = 'notification',
-		-- screen = s,
-		height = osd_height,
-		width = osd_width,
-		maximum_height = osd_height,
-		maximum_width = osd_width,
-		offset = dpi(5),
-		shape = gears.shape.rectangle,
-		bg = beautiful.transparent,
-		preferred_anchors = 'middle',
-		preferred_positions = {'left', 'right', 'top', 'bottom'}
-	}
-
-	self.volume_osd_overlay : setup {
+	return wibox.widget {
 		{
 			{
 				header,
@@ -367,19 +342,43 @@ function volume:init_popup()
 			left = dpi(24),
 			right = dpi(24),
 			widget = wibox.container.margin
-
 		},
 		bg = beautiful.background,
 		shape = gears.shape.rounded_rect,
 		widget = wibox.container.background()
+	}
+end
+
+function volume:init_popup()
+	self.show_popup = false
+
+	-- Create the box
+	local osd_height = dpi(100)
+	local osd_width = dpi(300)
+	local osd_margin = dpi(10)
+
+	self.volume_osd_overlay = awful.popup {
+		widget = self:popup_create_volume_dialog(),
+		ontop = true,
+		visible = false,
+		type = "notification",
+		height = osd_height,
+		width = osd_width,
+		maximum_height = osd_height,
+		maximum_width = osd_width,
+		offset = dpi(5),
+		shape = gears.shape.rectangle,
+		bg = beautiful.transparent,
+		preferred_anchors = "middle",
+		preferred_positions = {"right", "left", "top", "bottom"}
 	}
 
 	local hide_osd = gears.timer {
 		timeout = 2,
 		autostart = true,
 		callback  = function()
-			awful.screen.focused().volume_osd_overlay.visible = false
-			s.show_popup = false
+			self.volume_osd_overlay.visible = false
+			self.show_popup = false
 		end
 	}
 
@@ -535,6 +534,7 @@ function volume:init(args)
 
 	self:init_popup()
 	self:init_dbus(0)
+	pulseaudio:init()
 end
 
 return volume
