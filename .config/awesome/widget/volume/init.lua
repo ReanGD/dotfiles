@@ -4,59 +4,58 @@ local gears = require("gears")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 local pulseaudio = require("widget.volume.pulseaudio")
-local pulse = require("pulseaudio_dbus")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
 local volume = {}
 
 local math = math
+local table = table
 local string = string
 local dpi = beautiful.xresources.apply_dpi
 
 -- Interface functions
 --------------------------------------------------------------------------------
 function volume:volume_up(show_popup)
-	if not self.sink:is_muted() then
-		self.sink:volume_up()
-		if show_popup then
-			awesome.emit_signal('module::volume_osd:show', true)
-		end
-	end
+	pulseaudio:volume_up()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
 function volume:volume_down(show_popup)
-	if not self.sink:is_muted() then
-		self.sink:volume_down()
-		if show_popup then
-			awesome.emit_signal('module::volume_osd:show', true)
-		end
-	end
+	pulseaudio:volume_down()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
 function volume:toggle_muted(show_popup)
-	self.sink:toggle_muted()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	pulseaudio:toggle_muted()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
-function volume:volume_up_mic()
-	if self.source and not self.source:is_muted() then
-		self.source:volume_up()
-	end
+function volume:volume_up_mic(show_popup)
+	pulseaudio:volume_up_mic()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
-function volume:volume_down_mic()
-	if self.source and not self.source:is_muted() then
-		self.source:volume_down()
-	end
+function volume:volume_down_mic(show_popup)
+	pulseaudio:volume_down_mic()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
-function volume:toggle_muted_mic()
-	if self.source then
-		self.source:toggle_muted()
-	end
+function volume:toggle_muted_mic(show_popup)
+	pulseaudio:toggle_muted_mic()
+	-- if show_popup then
+	-- 	awesome.emit_signal('module::volume_osd:show', true)
+	-- end
 end
 
 -- Utils functions
@@ -117,104 +116,6 @@ function volume:notify(v)
 		text = msg,
 		timeout = self.notification_timeout_seconds
 	})
-end
-
-function volume:update_sink(object_path)
-	self.sink = pulse.get_device(self.connection, object_path)
-end
-
-function volume:update_sources(sources)
-	for _, source_path in ipairs(sources) do
-		local s = pulse.get_device(self.connection, source_path)
-		if s.Name and not s.Name:match("%.monitor$") then
-			self.source = s
-			break
-		else
-			self.source = nil
-		end
-	end
-end
-
-function volume:connect_device(device)
-	if not device then
-		return
-	end
-
-	if device.signals.VolumeUpdated then
-		device:connect_signal(
-			function (this, volume)
-				if this.object_path == self.sink.object_path then
-					self:update_widget(false, self:get_volume_percent(tonumber(volume[1]), this.BaseVolume))
-				end
-			end,
-			"VolumeUpdated"
-		)
-	end
-
-	if device.signals.MuteUpdated then
-		device:connect_signal(
-			function (this, is_mute)
-				if this.object_path == self.sink.object_path then
-					self:update_widget(is_mute)
-				end
-			end,
-			"MuteUpdated"
-		)
-	end
-end
-
-function volume:init_dbus(iteration)
-	local status, address = pcall(pulse.get_address)
-	if not status then
-		if iteration == 30 then
-			naughty.notify({
-				title = "Error while loading widget 'volume'",
-				text = address,
-				preset = naughty.config.presets.critical
-			})
-		else
-			gears.timer.start_new(1, function()
-				self:init_dbus(iteration + 1)
-				return false
-			end)
-		end
-
-		return
-	end
-
-	self.connection = pulse.get_connection(address)
-	self.core = pulse.get_core(self.connection)
-
-	-- listen on ALL objects as sinks and sources may change
-	self.core:ListenForSignal("org.PulseAudio.Core1.Device.VolumeUpdated", {})
-	self.core:ListenForSignal("org.PulseAudio.Core1.Device.MuteUpdated", {})
-
-	self.core:ListenForSignal("org.PulseAudio.Core1.NewSink", {self.core.object_path})
-	self.core:connect_signal(
-		function (_, newsink)
-			self:update_sink(newsink)
-			self:connect_device(self.sink)
-			self:update_widget()
-		end,
-		"NewSink"
-	)
-
-	self.core:ListenForSignal("org.PulseAudio.Core1.NewSource", {self.core.object_path})
-	self.core:connect_signal(
-		function (_, newsource)
-			self:update_sources({newsource})
-			self:connect_device(self.source)
-		end,
-		"NewSource"
-	)
-
-	self:update_sources(self.core:get_sources())
-	self:connect_device(self.source)
-
-	local sink_path = assert(self.core:get_sinks()[1], "No sinks found")
-	self:update_sink(sink_path)
-	self:connect_device(self.sink)
-	self:update_widget()
 end
 
 function volume:popup_create_header()
@@ -477,6 +378,72 @@ function volume:init_popup()
 	)
 end
 
+function volume:on_item_changed(device)
+	local tray_text = device.widget.text_widget_id
+	local tray_icon = device.widget.icon_widget_id
+	local tray_tooltip = device.tooltip
+
+	if device.mute then
+		tray_text.text = ""
+		tray_icon.image = self.icons.muted
+		tray_tooltip:set_text("Muted")
+	else
+		local icon
+		if device.volume_percent <= 33 then
+			icon = self.icons.low
+		elseif device.volume_percent <= 66 then
+			icon = self.icons.medium
+		else
+			icon = self.icons.high
+		end
+		local tooltip_text = string.format("%s: %d%%", device.active_port_desc, device.volume_percent)
+
+		tray_text.text = string.format("%d", device.volume_percent)
+		tray_icon.image = icon
+		tray_tooltip:set_text(tooltip_text)
+	end
+end
+
+function volume:on_outputs_changed(outputs)
+	local widgets = {
+		layout = wibox.layout.fixed.horizontal
+	}
+
+	for _, device in ipairs(outputs) do
+		if not device.widget then
+			device.widget = wibox.widget {
+				layout = wibox.layout.fixed.horizontal,
+				{
+					id = "icon_widget_id",
+					image = self.icons.low,
+					widget = wibox.widget.imagebox,
+				},
+				{
+					id = "text_widget_id",
+					widget = wibox.widget.textbox,
+					text = "22"
+				}
+			}
+
+			device.tooltip = awful.tooltip {
+				objects = { device.widget },
+				delay_show = 1,
+				margin_leftright = dpi(8),
+				margin_topbottom = dpi(8),
+				mode = "outside",
+			}
+
+			self:on_item_changed(device)
+		end
+		table.insert(widgets, device.widget)
+	end
+
+	self.widget:setup(widgets)
+end
+
+function volume:on_inputs_changed(inputs)
+end
+
 -- Constructor
 --------------------------------------------------------------------------------
 function volume:init(args)
@@ -493,48 +460,31 @@ function volume:init(args)
 
 	self.notification_timeout_seconds = 1
 
-	self.widget = wibox.widget {
-		layout = wibox.layout.fixed.horizontal,
-		{
-			id = "image_id",
-			widget = wibox.widget.imagebox,
-		},
-		{
-			id = "text_id",
-			widget = wibox.widget.textbox,
-			text = ""
-		}
+	-- self.widget:buttons(gears.table.join(
+	-- 	awful.button({ }, 1, function ()
+	-- 		self:toggle_muted(false)
+	-- 	end),
+	-- 	awful.button({ }, 3, function ()
+	-- 		awful.spawn(mixer)
+	-- 	end),
+	-- 	awful.button({ }, 4, function ()
+	-- 		self:volume_up(false)
+	-- 	end),
+	-- 	awful.button({ }, 5, function ()
+	-- 		self:volume_down(false)
+	-- 	end)
+	-- ))
+
+	-- self:init_popup()
+	self.widget = wibox.widget{
+		layout = wibox.layout.fixed.horizontal
 	}
 
-	self.widget_image = self.widget.image_id
-	self.widget_text = self.widget.text_id
+	local on_outputs_changed = function (outputs) self:on_outputs_changed(outputs) end
+	local on_inputs_changed = function (inputs) self:on_inputs_changed(inputs) end
+	local on_item_changed = function (device) self:on_item_changed(device) end
 
-	self.tooltip = awful.tooltip {
-		objects = { self.widget },
-		delay_show = 1,
-		margin_leftright = dpi(8),
-		margin_topbottom = dpi(8),
-		mode = "outside",
-	}
-
-	self.widget:buttons(gears.table.join(
-		awful.button({ }, 1, function ()
-			self:toggle_muted(false)
-		end),
-		awful.button({ }, 3, function ()
-			awful.spawn(mixer)
-		end),
-		awful.button({ }, 4, function ()
-			self:volume_up(false)
-		end),
-		awful.button({ }, 5, function ()
-			self:volume_down(false)
-		end)
-	))
-
-	self:init_popup()
-	self:init_dbus(0)
-	pulseaudio:init()
+	pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed)
 end
 
 return volume
