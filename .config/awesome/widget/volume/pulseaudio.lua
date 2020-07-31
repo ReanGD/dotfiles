@@ -1,9 +1,7 @@
 local lgi =  require("lgi")
-local gears = require("gears")
 local naughty = require("naughty")
 local timer = require("std.timer")
 local proxy = require("dbus_proxy")
-local pulse = require("pulseaudio_dbus")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
@@ -14,6 +12,7 @@ pulseaudio.core = {}
 
 local math = math
 local table = table
+local string = string
 
 -- Local functions
 --------------------------------------------------------------------------------
@@ -22,6 +21,17 @@ local function add_interface(instance, interface)
 		assert(instance[ind] == nil, "Cannot override attribute " .. ind)
 		instance[ind] = attribute
 	end
+end
+
+local function get_address()
+	local server = proxy.Proxy:new({
+		bus=proxy.Bus.SESSION,
+		name="org.PulseAudio1",
+		path="/org/pulseaudio/server_lookup1",
+		interface="org.PulseAudio.ServerLookup1"
+	})
+
+	return server.Address
 end
 
 local function get_volume_percent(volume, base_volume)
@@ -52,7 +62,7 @@ end
 
 -- pulseaudio.device
 --------------------------------------------------------------------------------
-function pulseaudio.device.create(connection, path, settings)
+function pulseaudio.device.create(connection, path, settings, is_output)
 	local self = proxy.Proxy:new({
 		bus = connection,
 		name=nil,
@@ -64,21 +74,21 @@ function pulseaudio.device.create(connection, path, settings)
 	add_interface(self, pulseaudio.device)
 
 	self.settings = settings
+	self.is_output = is_output
 	self.connection = connection
-	self.mute = self:get_mute()
-	self.volume_percent = self:get_volume_percent()
-	local port_path = self:get_active_port()
-	if port_path == "" then
-		self.active_port_desc = "<unknown>"
-	else
-		self.active_port_desc = pulseaudio.port.create(self.connection, port_path).Description
-	end
+	self.mute = self:_get_mute()
+	self.volume_percent = 0
+	self.active_port_desc = "<unknown>"
+
+	self:_update_volume_percent()
+	self:_update_active_port_desc()
 
 	if self.signals.MuteUpdated then
 		self:connect_signal(
 			function (this, is_mute)
 				if this.object_path == self.object_path then
 					self.muted = is_mute
+					self:_update_volume_percent()
 					self.settings.on_item_changed(self)
 				end
 			end,
@@ -90,7 +100,7 @@ function pulseaudio.device.create(connection, path, settings)
 		self:connect_signal(
 			function (this, volumes)
 				if this.object_path == self.object_path then
-					self.volume_percent = get_volume_percent(tonumber(volumes[1]), self.BaseVolume)
+					self:_update_volume_percent(tonumber(volumes[1]))
 					self.settings.on_item_changed(self)
 				end
 			end,
@@ -102,7 +112,7 @@ function pulseaudio.device.create(connection, path, settings)
 		self:connect_signal(
 			function (this, port_path)
 				if this.object_path == self.object_path then
-					self.active_port_desc = pulseaudio.port.create(self.connection, port_path).Description
+					self:_update_active_port_desc(port_path)
 					self.settings.on_item_changed(self)
 				end
 			end,
@@ -113,27 +123,38 @@ function pulseaudio.device.create(connection, path, settings)
 	return self
 end
 
-function pulseaudio.device:get_volumes()
+function pulseaudio.device:_update_active_port_desc(port_path)
+	if #self.Ports == 0 then
+		self.active_port_desc = "<unknown>"
+	else
+		local path = port_path or self:Get("org.PulseAudio.Core1.Device", "ActivePort")
+		self.active_port_desc = pulseaudio.port.create(self.connection, path).Description
+	end
+end
+
+function pulseaudio.device:_get_volumes()
 	return self:Get("org.PulseAudio.Core1.Device", "Volume")
 end
 
-function pulseaudio.device:set_volumes(value)
+function pulseaudio.device:_set_volumes(value)
 	self:Set("org.PulseAudio.Core1.Device", "Volume", lgi.GLib.Variant("au", value))
 	self.Volume = {signature="au", value=value}
 end
 
-function pulseaudio.device:get_volume_percent()
-	return get_volume_percent(self:get_volumes()[1], self.BaseVolume)
+function pulseaudio.device:_update_volume_percent(volume)
+	local value = volume or self:_get_volumes()[1]
+	self.volume_percent = get_volume_percent(value, self.BaseVolume)
 end
 
-function pulseaudio.device:set_volume_percent(value)
-	local volume = value * self.BaseVolume / 100
-	local volumes = self:get_volumes()
-	for i, v in ipairs(volumes) do
-		volumes[i] = volume
+function pulseaudio.device:set_volume_percent(volume_percent)
+	local new_volumes = {}
+	local cur_volumes = self:_get_volumes()
+	local raw_volume = volume_percent * self.BaseVolume / 100
+	for key, _ in ipairs(cur_volumes) do
+		new_volumes[key] = raw_volume
 	end
-	self.set_volumes(volumes)
-	self.volume_percent = value
+	self:_set_volumes(new_volumes)
+	self.volume_percent = volume_percent
 end
 
 function pulseaudio.device:volume_up()
@@ -166,7 +187,7 @@ function pulseaudio.device:volume_down()
 	self:set_volume_percent(volume_percent)
 end
 
-function pulseaudio.device:get_mute()
+function pulseaudio.device:_get_mute()
 	return self:Get("org.PulseAudio.Core1.Device", "Mute")
 end
 
@@ -176,17 +197,9 @@ function pulseaudio.device:set_mute(value)
 	self.mute = value
 end
 
-function pulseaudio.device:toggle_muted()
-	local mute = self:get_mute()
+function pulseaudio.device:toggle_mute()
+	local mute = self:_get_mute()
 	self:set_mute(not mute)
-end
-
-function pulseaudio.device:get_active_port()
-	if #self.Ports == 0 then
-		return ""
-	else
-		return self:Get("org.PulseAudio.Core1.Device", "ActivePort")
-	end
 end
 
 -- pulseaudio.core
@@ -217,40 +230,42 @@ function pulseaudio.core.create(connection, settings)
 
 	self:connect_signal(
 		function (_, sink_path)
-			self:outputs_add(sink_path)
+			self:_outputs_add(sink_path)
 		end,
 		"NewSink"
 	)
 
 	self:connect_signal(
 		function (_, sink_path)
-			self:outputs_remove(sink_path)
+			self:_outputs_remove(sink_path)
 		end,
 		"SinkRemoved"
 	)
 
 	self:connect_signal(
 		function (_, source_path)
-			self:inputs_add(source_path)
+			self:_inputs_add(source_path)
 		end,
 		"NewSource"
 	)
 
 	self:connect_signal(
 		function (_, source_path)
-			self:inputs_remove(source_path)
+			self:_inputs_remove(source_path)
 		end,
 		"SourceRemoved"
 	)
 
-	for _, sink_path in pairs(self:get_sinks()) do
-		local device = pulseaudio.device.create(self.connection, sink_path, self.settings)
+	is_output = true
+	for _, sink_path in pairs(self:_get_sinks()) do
+		local device = pulseaudio.device.create(self.connection, sink_path, self.settings, is_output)
 		table.insert(self.outputs, device)
 	end
 	self.settings.on_outputs_changed(self.outputs)
 
-	for _, source_path in pairs(self:get_sources()) do
-		local device = pulseaudio.device.create(self.connection, source_path, self.settings)
+	is_output = false
+	for _, source_path in pairs(self:_get_sources()) do
+		local device = pulseaudio.device.create(self.connection, source_path, self.settings, is_output)
 		table.insert(self.inputs, device)
 	end
 	self.settings.on_inputs_changed(self.inputs)
@@ -258,22 +273,23 @@ function pulseaudio.core.create(connection, settings)
 	return self
 end
 
-function pulseaudio.core:get_sinks()
+function pulseaudio.core:_get_sinks()
 	return self:Get("org.PulseAudio.Core1", "Sinks")
 end
 
-function pulseaudio.core:get_sources()
+function pulseaudio.core:_get_sources()
     return self:Get("org.PulseAudio.Core1", "Sources")
 end
 
-function pulseaudio.core:outputs_add(sink_path)
-	local device = pulseaudio.device.create(self.connection, sink_path, self.settings)
+function pulseaudio.core:_outputs_add(sink_path)
+	is_output = true
+	local device = pulseaudio.device.create(self.connection, sink_path, self.settings, is_output)
 	self.outputs[device.Index] = device
 	table.insert(self.outputs, device)
 	self.settings.on_outputs_changed(self.outputs)
 end
 
-function pulseaudio.core:outputs_remove(sink_path)
+function pulseaudio.core:_outputs_remove(sink_path)
 	for ind, device in pairs(self.outputs) do
 		if device.object_path == sink_path then
 			table.remove(self.outputs, ind)
@@ -282,8 +298,9 @@ function pulseaudio.core:outputs_remove(sink_path)
 	end
 end
 
-function pulseaudio.core:inputs_add(source_path)
-	local device = pulseaudio.device.create(self.connection, source_path, self.settings)
+function pulseaudio.core:_inputs_add(source_path)
+	is_output = false
+	local device = pulseaudio.device.create(self.connection, source_path, self.settings, is_output)
 	if not device.Name or device.Name:match("%.monitor$") then
 		return
 	end
@@ -292,7 +309,7 @@ function pulseaudio.core:inputs_add(source_path)
 	self.settings.on_inputs_changed(self.inputs)
 end
 
-function pulseaudio.core:inputs_remove(source_path)
+function pulseaudio.core:_inputs_remove(source_path)
 	for ind, device in pairs(self.inputs) do
 		if device.object_path == sink_path then
 			table.remove(self.inputs, ind)
@@ -313,9 +330,9 @@ function pulseaudio.core:volume_down()
 	end
 end
 
-function pulseaudio.core:toggle_muted()
+function pulseaudio.core:toggle_mute()
 	for _, device in pairs(self.outputs) do
-		device:toggle_muted()
+		device:toggle_mute()
 	end
 end
 
@@ -331,9 +348,9 @@ function pulseaudio.core:volume_down_mic()
 	end
 end
 
-function pulseaudio.core:toggle_muted_mic()
+function pulseaudio.core:toggle_mute_mic()
 	for _, device in pairs(self.inputs) do
-		device:toggle_muted()
+		device:toggle_mute()
 	end
 end
 
@@ -347,8 +364,8 @@ function pulseaudio:volume_down()
 	self.core:volume_down()
 end
 
-function pulseaudio:toggle_muted()
-	self.core:toggle_muted()
+function pulseaudio:toggle_mute()
+	self.core:toggle_mute()
 end
 
 function pulseaudio:volume_up_mic()
@@ -359,14 +376,14 @@ function pulseaudio:volume_down_mic()
 	self.core:volume_down_mic()
 end
 
-function pulseaudio:toggle_muted_mic()
-	self.core:toggle_muted_mic()
+function pulseaudio:toggle_mute_mic()
+	self.core:toggle_mute_mic()
 end
 
--- Constructor
+-- Module functions
 --------------------------------------------------------------------------------
-function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed, volume_step, volume_max)
-	local status, address = pcall(pulse.get_address)
+function pulseaudio:_init_iteration(settings, iteration)
+	local status, address = pcall(get_address)
 	if not status then
 		if iteration == 30 then
 			naughty.notify({
@@ -376,7 +393,7 @@ function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed,
 			})
 		else
 			timer.single_shot(1, function()
-				self:init_dbus(iteration + 1)
+				self:_init_iteration(settings, iteration + 1)
 				return false
 			end)
 		end
@@ -384,6 +401,15 @@ function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed,
 		return
 	end
 
+	local connection = lgi.Gio.DBusConnection.new_for_address_sync(address, lgi.Gio.DBusConnectionFlags.AUTHENTICATION_CLIENT)
+	assert(not connection.closed, string.format("Connection from '%s' is closed!", address))
+
+	self.core = pulseaudio.core.create(connection, settings)
+end
+
+-- Constructor
+--------------------------------------------------------------------------------
+function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed, volume_step, volume_max)
 	local settings = {}
 	settings.on_outputs_changed = on_outputs_changed or on_array_changed
 	settings.on_inputs_changed = on_inputs_changed or on_array_changed
@@ -391,8 +417,7 @@ function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed,
 	settings.volume_step = volume_step or 5
 	settings.volume_max = volume_max or 150
 
-	self.connection = pulse.get_connection(address)
-	self.core = pulseaudio.core.create(self.connection, settings)
+	self:_init_iteration(settings, 0)
 end
 
 return pulseaudio
