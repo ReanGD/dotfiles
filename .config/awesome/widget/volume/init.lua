@@ -18,44 +18,44 @@ local dpi = beautiful.xresources.apply_dpi
 --------------------------------------------------------------------------------
 function volume:volume_up(show_popup)
 	pulseaudio:volume_up()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:volume_down(show_popup)
 	pulseaudio:volume_down()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:toggle_mute(show_popup)
 	pulseaudio:toggle_mute()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:volume_up_mic(show_popup)
 	pulseaudio:volume_up_mic()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:volume_down_mic(show_popup)
 	pulseaudio:volume_down_mic()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 function volume:toggle_mute_mic(show_popup)
 	pulseaudio:toggle_mute_mic()
-	-- if show_popup then
-	-- 	awesome.emit_signal('module::volume_osd:show', true)
-	-- end
+	if show_popup then
+		awesome.emit_signal('module::volume_osd:show', true)
+	end
 end
 
 -- Utils functions
@@ -263,15 +263,15 @@ function volume:init_popup()
 		ontop = true,
 		visible = false,
 		type = "notification",
-		height = osd_height,
 		width = osd_width,
-		maximum_height = osd_height,
 		maximum_width = osd_width,
-		offset = dpi(5),
-		shape = gears.shape.rectangle,
+		height = osd_height,
+		maximum_height = osd_height,
 		bg = beautiful.transparent,
-		preferred_anchors = "middle",
-		preferred_positions = {"right", "left", "top", "bottom"}
+		shape = gears.shape.rectangle,
+		offset = dpi(5),
+		preferred_anchors = "back",
+		preferred_positions = {"right", "left", "bottom", "top"}
 	}
 
 	local hide_osd = gears.timer {
@@ -300,68 +300,11 @@ function volume:init_popup()
 		end
 	)
 
-	local placement_placer = function()
-
-		local focused = awful.screen.focused()
-
-		local right_panel = focused.right_panel
-		local left_panel = focused.left_panel
-		local volume_osd = focused.volume_osd_overlay
-
-		if right_panel and left_panel then
-			if right_panel.visible then
-				awful.placement.bottom_left(
-					focused.volume_osd_overlay,
-					{
-						margins = {
-							left = osd_margin,
-							right = 0,
-							top = 0,
-							bottom = osd_margin
-						},
-						honor_workarea = true
-					}
-				)
-				return
-			end
-		end
-
-		if right_panel then
-			if right_panel.visible then
-				awful.placement.bottom_left(
-					focused.volume_osd_overlay,
-					{
-						margins = {
-							left = osd_margin,
-							right = 0,
-							top = 0,
-							bottom = osd_margin
-						},
-						honor_workarea = true
-					}
-				)
-				return
-			end
-		end
-
-		awful.placement.bottom_right(
-			focused.volume_osd_overlay,
-			{
-				margins = {
-					left = 0,
-					right = osd_margin,
-					top = 0,
-					bottom = osd_margin,
-				},
-				honor_workarea = true
-			}
-		)
-	end
-
 	awesome.connect_signal(
 		'module::volume_osd:show',
 		function(bool)
-			placement_placer()
+			local bar = awful.screen.focused()[self.bar_id]
+			self.volume_osd_overlay:move_next_to(bar)
 			self.volume_osd_overlay.visible = bool
 			if bool then
 				timer_rerun()
@@ -486,6 +429,7 @@ end
 function volume:init(args)
 	args = args or {}
 
+	self.bar_id = args.bar_id or "bar"
 	self.mixer = args.mixer or "pavucontrol"
 	self.notification_timeout_seconds = 1
 
@@ -505,10 +449,10 @@ function volume:init(args)
 		},
 	}
 
-	-- self:init_popup()
 	self.widget = wibox.widget{
 		layout = wibox.layout.fixed.horizontal
 	}
+	self:init_popup()
 
 	local on_device_changed = function (device) self:on_device_changed(device) end
 	local on_devices_changed = function (inputs, outputs) self:on_devices_changed(inputs, outputs) end
