@@ -38,10 +38,10 @@ local function get_volume_percent(volume, base_volume)
 	return math.max(0, math.ceil(volume * 100.0 / base_volume - 0.5))
 end
 
-local function on_array_changed(array)
+local function on_item_changed(device)
 end
 
-local function on_array_item_changed(item)
+local function on_array_changed(inputs, outputs)
 end
 
 -- pulseaudio.port
@@ -89,7 +89,7 @@ function pulseaudio.device.create(connection, path, settings, is_output)
 				if this.object_path == self.object_path then
 					self.muted = is_mute
 					self:_update_volume_percent()
-					self.settings.on_item_changed(self)
+					self.settings.on_device_changed(self)
 				end
 			end,
 			"MuteUpdated"
@@ -101,7 +101,7 @@ function pulseaudio.device.create(connection, path, settings, is_output)
 			function (this, volumes)
 				if this.object_path == self.object_path then
 					self:_update_volume_percent(tonumber(volumes[1]))
-					self.settings.on_item_changed(self)
+					self.settings.on_device_changed(self)
 				end
 			end,
 			"VolumeUpdated"
@@ -113,7 +113,7 @@ function pulseaudio.device.create(connection, path, settings, is_output)
 			function (this, port_path)
 				if this.object_path == self.object_path then
 					self:_update_active_port_desc(port_path)
-					self.settings.on_item_changed(self)
+					self.settings.on_device_changed(self)
 				end
 			end,
 			"ActivePortUpdated"
@@ -143,13 +143,21 @@ end
 
 function pulseaudio.device:_update_volume_percent(volume)
 	local value = volume or self:_get_volumes()[1]
-	self.volume_percent = get_volume_percent(value, self.BaseVolume)
+	local base_volume = self.BaseVolume
+	if not self.is_output then
+		base_volume = base_volume * 10
+	end
+	self.volume_percent = get_volume_percent(value, base_volume)
 end
 
 function pulseaudio.device:set_volume_percent(volume_percent)
 	local new_volumes = {}
 	local cur_volumes = self:_get_volumes()
-	local raw_volume = volume_percent * self.BaseVolume / 100
+	local base_volume = self.BaseVolume
+	if not self.is_output then
+		base_volume = base_volume * 10
+	end
+	local raw_volume = volume_percent * base_volume / 100
 	for key, _ in ipairs(cur_volumes) do
 		new_volumes[key] = raw_volume
 	end
@@ -261,14 +269,16 @@ function pulseaudio.core.create(connection, settings)
 		local device = pulseaudio.device.create(self.connection, sink_path, self.settings, is_output)
 		table.insert(self.outputs, device)
 	end
-	self.settings.on_outputs_changed(self.outputs)
 
 	is_output = false
 	for _, source_path in pairs(self:_get_sources()) do
 		local device = pulseaudio.device.create(self.connection, source_path, self.settings, is_output)
-		table.insert(self.inputs, device)
+		if device.Name and not device.Name:match("%.monitor$") then
+			table.insert(self.inputs, device)
+		end
 	end
-	self.settings.on_inputs_changed(self.inputs)
+
+	self.settings.on_devices_changed(self.inputs, self.outputs)
 
 	return self
 end
@@ -286,14 +296,14 @@ function pulseaudio.core:_outputs_add(sink_path)
 	local device = pulseaudio.device.create(self.connection, sink_path, self.settings, is_output)
 	self.outputs[device.Index] = device
 	table.insert(self.outputs, device)
-	self.settings.on_outputs_changed(self.outputs)
+	self.settings.on_devices_changed(self.inputs, self.outputs)
 end
 
 function pulseaudio.core:_outputs_remove(sink_path)
 	for ind, device in pairs(self.outputs) do
 		if device.object_path == sink_path then
 			table.remove(self.outputs, ind)
-			self.settings.on_outputs_changed(self.outputs)
+			self.settings.on_devices_changed(self.inputs, self.outputs)
 		end
 	end
 end
@@ -306,14 +316,14 @@ function pulseaudio.core:_inputs_add(source_path)
 	end
 
 	table.insert(self.inputs, device)
-	self.settings.on_inputs_changed(self.inputs)
+	self.settings.on_devices_changed(self.inputs, self.outputs)
 end
 
 function pulseaudio.core:_inputs_remove(source_path)
 	for ind, device in pairs(self.inputs) do
-		if device.object_path == sink_path then
+		if device.object_path == source_path then
 			table.remove(self.inputs, ind)
-			self.settings.on_inputs_changed(self.inputs)
+			self.settings.on_devices_changed(self.inputs, self.outputs)
 		end
 	end
 end
@@ -409,11 +419,10 @@ end
 
 -- Constructor
 --------------------------------------------------------------------------------
-function pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed, volume_step, volume_max)
+function pulseaudio:init(on_device_changed, on_devices_changed, volume_step, volume_max)
 	local settings = {}
-	settings.on_outputs_changed = on_outputs_changed or on_array_changed
-	settings.on_inputs_changed = on_inputs_changed or on_array_changed
-	settings.on_item_changed = on_item_changed or on_array_item_changed
+	settings.on_device_changed = on_device_changed or on_item_changed
+	settings.on_devices_changed = on_devices_changed or on_array_changed
 	settings.volume_step = volume_step or 5
 	settings.volume_max = volume_max or 150
 

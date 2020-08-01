@@ -1,11 +1,9 @@
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
+local subprocess = {}
+
 local io = io
 local assert = assert
-
--- Constructor
---------------------------------------------------------------------------------
-local subprocess = {}
 
 -- Run command and read output
 --------------------------------------------------------------------------------

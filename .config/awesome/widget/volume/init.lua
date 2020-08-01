@@ -30,8 +30,8 @@ function volume:volume_down(show_popup)
 	-- end
 end
 
-function volume:toggle_muted(show_popup)
-	pulseaudio:toggle_muted()
+function volume:toggle_mute(show_popup)
+	pulseaudio:toggle_mute()
 	-- if show_popup then
 	-- 	awesome.emit_signal('module::volume_osd:show', true)
 	-- end
@@ -51,8 +51,8 @@ function volume:volume_down_mic(show_popup)
 	-- end
 end
 
-function volume:toggle_muted_mic(show_popup)
-	pulseaudio:toggle_muted_mic()
+function volume:toggle_mute_mic(show_popup)
+	pulseaudio:toggle_mute_mic()
 	-- if show_popup then
 	-- 	awesome.emit_signal('module::volume_osd:show', true)
 	-- end
@@ -415,13 +415,11 @@ function volume:on_outputs_changed(outputs)
 				layout = wibox.layout.fixed.horizontal,
 				{
 					id = "icon_widget_id",
-					image = self.icons.low,
 					widget = wibox.widget.imagebox,
 				},
 				{
 					id = "text_widget_id",
-					widget = wibox.widget.textbox,
-					text = "22"
+					widget = wibox.widget.textbox
 				}
 			}
 
