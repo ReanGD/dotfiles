@@ -378,68 +378,107 @@ function volume:init_popup()
 	)
 end
 
-function volume:on_item_changed(device)
-	local tray_text = device.widget.text_widget_id
-	local tray_icon = device.widget.icon_widget_id
-	local tray_tooltip = device.tooltip
-
-	if device.mute then
-		tray_text.text = ""
-		tray_icon.image = self.icons.muted
-		tray_tooltip:set_text("Muted")
+function volume:_get_device_icon(device)
+	local icons
+	if device.is_output then
+		icons = self.icons.output
 	else
-		local icon
+		icons = self.icons.input
+	end
+	if device.mute then
+		return icons.muted
+	else
 		if device.volume_percent <= 33 then
-			icon = self.icons.low
+			return icons.low
 		elseif device.volume_percent <= 66 then
-			icon = self.icons.medium
+			return icons.medium
 		else
-			icon = self.icons.high
+			return icons.high
 		end
-		local tooltip_text = string.format("%s: %d%%", device.active_port_desc, device.volume_percent)
-
-		tray_text.text = string.format("%d", device.volume_percent)
-		tray_icon.image = icon
-		tray_tooltip:set_text(tooltip_text)
 	end
 end
 
-function volume:on_outputs_changed(outputs)
+function volume:_create_tray_widget(device)
+	local widget = wibox.widget {
+		layout = wibox.layout.fixed.horizontal,
+		{
+			id = "icon_widget_id",
+			widget = wibox.widget.imagebox,
+		},
+		{
+			id = "text_widget_id",
+			widget = wibox.widget.textbox
+		}
+	}
+
+	widget.tooltip = awful.tooltip {
+		objects = { widget },
+		delay_show = 1,
+		margin_leftright = dpi(8),
+		margin_topbottom = dpi(8),
+		mode = "outside",
+	}
+
+	widget:buttons(gears.table.join(
+		awful.button({ }, 1, function ()
+			device:toggle_mute()
+		end),
+		awful.button({ }, 3, function ()
+			awful.spawn(self.mixer)
+		end),
+		awful.button({ }, 4, function ()
+			device:volume_up()
+		end),
+		awful.button({ }, 5, function ()
+			device:volume_down()
+		end)
+	))
+
+	device.widget = widget
+	self:on_device_changed(device)
+end
+
+function volume:on_device_changed(device)
+	local text, tooltip_text
+
+	local tray_text = device.widget.text_widget_id
+	local tray_icon = device.widget.icon_widget_id
+	local tray_tooltip = device.widget.tooltip
+
+	if device.mute then
+		text = ""
+		tooltip_text = "Muted"
+	else
+		text = string.format("%d", device.volume_percent)
+		tooltip_text = string.format("%s: %d%%", device.active_port_desc, device.volume_percent)
+	end
+
+	tray_text.text = text
+	tray_tooltip:set_text(tooltip_text)
+	tray_icon.image = self:_get_device_icon(device)
+end
+
+function volume:on_devices_changed(inputs, outputs)
 	local widgets = {
 		layout = wibox.layout.fixed.horizontal
 	}
 
-	for _, device in ipairs(outputs) do
+	for _, device in ipairs(inputs) do
 		if not device.widget then
-			device.widget = wibox.widget {
-				layout = wibox.layout.fixed.horizontal,
-				{
-					id = "icon_widget_id",
-					widget = wibox.widget.imagebox,
-				},
-				{
-					id = "text_widget_id",
-					widget = wibox.widget.textbox
-				}
-			}
-
-			device.tooltip = awful.tooltip {
-				objects = { device.widget },
-				delay_show = 1,
-				margin_leftright = dpi(8),
-				margin_topbottom = dpi(8),
-				mode = "outside",
-			}
-
-			self:on_item_changed(device)
+			self:_create_tray_widget(device)
 		end
 		table.insert(widgets, device.widget)
 	end
 
-	self.widget:setup(widgets)
-end
+	for _, device in ipairs(outputs) do
+		if not device.widget then
+			self:_create_tray_widget(device)
+		end
+		table.insert(widgets, device.widget)
+	end
 
-function volume:on_inputs_changed(inputs)
+	self.widget:reset()
+	self.widget:setup(widgets)
 end
 
 -- Constructor
@@ -447,42 +486,34 @@ end
 function volume:init(args)
 	args = args or {}
 
-	local mixer = args.mixer or "pavucontrol"
-
-	self.icons = {
-		high = beautiful.icon_theme .. "/scalable/status/audio-volume-high-symbolic.svg",
-		medium = beautiful.icon_theme .. "/scalable/status/audio-volume-medium-symbolic.svg",
-		low = beautiful.icon_theme .. "/scalable/status/audio-volume-low-symbolic.svg",
-		muted = beautiful.icon_theme .. "/scalable/status/audio-volume-muted-symbolic.svg",
-	}
-
+	self.mixer = args.mixer or "pavucontrol"
 	self.notification_timeout_seconds = 1
 
-	-- self.widget:buttons(gears.table.join(
-	-- 	awful.button({ }, 1, function ()
-	-- 		self:toggle_muted(false)
-	-- 	end),
-	-- 	awful.button({ }, 3, function ()
-	-- 		awful.spawn(mixer)
-	-- 	end),
-	-- 	awful.button({ }, 4, function ()
-	-- 		self:volume_up(false)
-	-- 	end),
-	-- 	awful.button({ }, 5, function ()
-	-- 		self:volume_down(false)
-	-- 	end)
-	-- ))
+	local icons_dir = beautiful.icon_theme .. "/scalable/status/"
+	self.icons = {
+		output = {
+			high    = icons_dir .. "audio-volume-high-symbolic.svg",
+			medium  = icons_dir .. "audio-volume-medium-symbolic.svg",
+			low     = icons_dir .. "audio-volume-low-symbolic.svg",
+			muted   = icons_dir .. "audio-volume-muted-symbolic.svg",
+		},
+		input = {
+			high   = icons_dir .. "microphone-sensitivity-high-symbolic.svg",
+			medium = icons_dir .. "microphone-sensitivity-medium-symbolic.svg",
+			low    = icons_dir .. "microphone-sensitivity-low-symbolic.svg",
+			muted  = icons_dir .. "microphone-sensitivity-muted-symbolic.svg",
+		},
+	}
 
 	-- self:init_popup()
 	self.widget = wibox.widget{
 		layout = wibox.layout.fixed.horizontal
 	}
 
-	local on_outputs_changed = function (outputs) self:on_outputs_changed(outputs) end
-	local on_inputs_changed = function (inputs) self:on_inputs_changed(inputs) end
-	local on_item_changed = function (device) self:on_item_changed(device) end
+	local on_device_changed = function (device) self:on_device_changed(device) end
+	local on_devices_changed = function (inputs, outputs) self:on_devices_changed(inputs, outputs) end
 
-	pulseaudio:init(on_outputs_changed, on_inputs_changed, on_item_changed)
+	pulseaudio:init(on_device_changed, on_devices_changed)
 end
 
 return volume
