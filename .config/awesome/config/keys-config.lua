@@ -60,8 +60,15 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 local redflat = require("redflat")
 
+-- Change screen focus
+local function screen_focus_switch(dir)
+    return function()
+        awful.screen.focus_bydirection(dir)
+	end
+end
+
 -- Change window focus
-local function focus_switch(dir)
+local function client_focus_switch(dir)
     return function()
         local screen = awful.screen.focused()
         local layout = awful.layout.get(screen)
@@ -97,14 +104,24 @@ function keys:init(env)
     local Button = awful.button
 
     local root_keys = gears.table.join(
+        -- Screen focus
+        Key(M, "Left",  screen_focus_switch("left"),
+            {group = "Screen focus", description = "Go to left screen"}),
+        Key(M, "Right", screen_focus_switch("right"),
+            {group = "Screen focus", description = "Go to right screen"}),
+        Key(M, "Up",    screen_focus_switch("up"),
+            {group = "Screen focus", description = "Go to up screen"}),
+        Key(M, "Down",  screen_focus_switch("down"),
+            {group = "Screen focus", description = "Go to down screen"}),
+
         -- Window focus
-        Key(M,  "j", focus_switch("left"),
+        Key(M,  "j", client_focus_switch("left"),
             {group = "Window focus", description = "Go to left window"}),
-        Key(M,  "l", focus_switch("right"),
+        Key(M,  "l", client_focus_switch("right"),
             {group = "Window focus", description = "Go to right window"}),
-        Key(M,  "i", focus_switch("up"),
+        Key(M,  "i", client_focus_switch("up"),
             {group = "Window focus", description = "Go to up window"}),
-        Key(M,  "k", focus_switch("down"),
+        Key(M,  "k", client_focus_switch("down"),
             {group = "Window focus", description = "Go to down window"}),
 
         -- Window position
