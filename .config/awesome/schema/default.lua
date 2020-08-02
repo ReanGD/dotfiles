@@ -23,6 +23,7 @@ local env = require("std.env")
 clock = require("widget.clock")
 volume = require("widget.volume")
 systray = require("widget.systray")
+taglist = require("widget.taglist")
 tasklist = require("widget.tasklist")
 keyboard = require("widget.keyboard")
 
@@ -43,6 +44,7 @@ awful.layout.layouts = {
 clock:init()
 volume:init({mixer = env.mixer})
 systray:init()
+taglist:init()
 tasklist:init()
 keyboard:init()
 
@@ -64,11 +66,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(awful.button({ }, 1, function () awful.layout.inc( 1) end))
 
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all,
-      gears.table.join( awful.button({ }, 1, function(t) t:view_only() end),
-                        awful.button({ }, 3, awful.tag.viewtoggle)))
-
     -- Create the wibox
     s.bar = awful.wibar({ position = "top", screen = s })
 
@@ -78,7 +75,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
-            s.mytaglist,
+            taglist:widget(s),
         },
         tasklist:widget(s),
         {
