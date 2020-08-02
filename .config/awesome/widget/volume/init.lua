@@ -18,44 +18,32 @@ local dpi = beautiful.xresources.apply_dpi
 --------------------------------------------------------------------------------
 function volume:volume_up(show_popup)
 	pulseaudio:volume_up()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 function volume:volume_down(show_popup)
 	pulseaudio:volume_down()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 function volume:toggle_mute(show_popup)
 	pulseaudio:toggle_mute()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 function volume:volume_up_mic(show_popup)
 	pulseaudio:volume_up_mic()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 function volume:volume_down_mic(show_popup)
 	pulseaudio:volume_down_mic()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 function volume:toggle_mute_mic(show_popup)
 	pulseaudio:toggle_mute_mic()
-	if show_popup then
-		awesome.emit_signal('module::volume_osd:show', true)
-	end
+	self:on_show_popup(show_popup)
 end
 
 -- Utils functions
@@ -250,77 +238,6 @@ function volume:popup_create_volume_dialog()
 	}
 end
 
-function volume:init_popup()
-	self.show_popup = false
-
-	-- Create the box
-	local osd_height = dpi(100)
-	local osd_width = dpi(300)
-	local osd_margin = dpi(10)
-
-	self.volume_osd_overlay = awful.popup {
-		widget = self:popup_create_volume_dialog(),
-		ontop = true,
-		visible = false,
-		type = "notification",
-		width = osd_width,
-		maximum_width = osd_width,
-		height = osd_height,
-		maximum_height = osd_height,
-		bg = beautiful.transparent,
-		shape = gears.shape.rectangle,
-		offset = dpi(5),
-		preferred_anchors = "back",
-		preferred_positions = {"right", "left", "bottom", "top"}
-	}
-
-	local hide_osd = gears.timer {
-		timeout = 2,
-		autostart = true,
-		callback  = function()
-			self.volume_osd_overlay.visible = false
-			self.show_popup = false
-		end
-	}
-
-	local timer_rerun = function()
-		if hide_osd.started then
-			hide_osd:again()
-		else
-			hide_osd:start()
-		end
-	end
-
-	-- Reset timer on mouse hover
-	self.volume_osd_overlay:connect_signal(
-		'mouse::enter',
-		function()
-			-- s.show_popup = true
-			timer_rerun()
-		end
-	)
-
-	awesome.connect_signal(
-		'module::volume_osd:show',
-		function(bool)
-			local bar = awful.screen.focused()[self.bar_id]
-			self.volume_osd_overlay:move_next_to(bar)
-			self.volume_osd_overlay.visible = bool
-			if bool then
-				timer_rerun()
-				awesome.emit_signal(
-					'module::brightness_osd:show',
-					false
-				)
-			else
-				if hide_osd.started then
-					hide_osd:stop()
-				end
-			end
-		end
-	)
-end
-
 function volume:_get_device_icon(device)
 	local icons
 	if device.is_output then
@@ -379,6 +296,74 @@ function volume:_create_tray_widget(device)
 
 	device.widget = widget
 	self:on_device_changed(device)
+end
+
+function volume:_create_popup_widget(enable)
+	local width = dpi(300)
+	local height = dpi(100)
+
+	local widget = awful.popup {
+		widget = wibox.widget {
+			text = "Volume",
+			font = "Inter Bold 12",
+			align = "left",
+			valign = "center",
+			widget = wibox.widget.textbox
+		},
+		ontop = true,
+		visible = false,
+		type = "notification",
+		width = width,
+		maximum_width = width,
+		height = height,
+		maximum_height = height,
+		bg = beautiful.transparent,
+		shape = gears.shape.rectangle,
+		offset = dpi(5),
+		preferred_anchors = "back",
+		preferred_positions = {"right", "left", "bottom", "top"}
+	}
+
+	widget.hide_timer = gears.timer {
+		timeout = 2,
+		single_shot = true,
+		callback = function()
+			if widget.enbale_stop then
+				widget.visible = false
+			end
+		end
+	}
+
+	widget:connect_signal(
+		"mouse::enter",
+		function()
+			widget.enbale_stop = false
+		end
+	)
+
+	widget:connect_signal(
+		"mouse::leave",
+		function()
+			widget.enbale_stop = true
+			widget.hide_timer:again()
+		end
+	)
+
+	return widget
+end
+
+function volume:on_show_popup(enable)
+	if not enable then
+		return
+	end
+
+	if not self.popup_wiget.visible then
+		local bar = awful.screen.focused()[self.bar_id]
+		self.popup_wiget:move_next_to(bar)
+		self.popup_wiget.enbale_stop = true
+		self.popup_wiget.visible = true
+	end
+	self.popup_wiget.hide_timer:again()
 end
 
 function volume:on_device_changed(device)
@@ -449,10 +434,10 @@ function volume:init(args)
 		},
 	}
 
-	self.widget = wibox.widget{
+	self.widget = wibox.widget {
 		layout = wibox.layout.fixed.horizontal
 	}
-	self:init_popup()
+	self.popup_wiget = self:_create_popup_widget()
 
 	local on_device_changed = function (device) self:on_device_changed(device) end
 	local on_devices_changed = function (inputs, outputs) self:on_devices_changed(inputs, outputs) end
