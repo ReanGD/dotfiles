@@ -12,6 +12,10 @@ local wibox = require("wibox")
 
 require("awful.autofocus")
 
+-- Error handling
+--------------------------------------------------------------------------------
+require("std.error_check")
+
 -- Std library
 local env = require("std.env")
 
@@ -19,14 +23,11 @@ local env = require("std.env")
 clock = require("widget.clock")
 volume = require("widget.volume")
 systray = require("widget.systray")
+tasklist = require("widget.tasklist")
 keyboard = require("widget.keyboard")
 
 -- Custom library
 timestamp = require("src.timestamp")
-
--- Error handling
---------------------------------------------------------------------------------
-require("std.error_check")
 
 -- Setup theme and environment vars
 --------------------------------------------------------------------------------
@@ -38,13 +39,17 @@ awful.layout.layouts = {
     awful.layout.suit.max
 }
 
-local w_textclock = widget.textclock(env)
-local w_keyboard = widget.keyboard()
-local w_systray = wibox.widget.systray()
+
+clock:init()
+volume:init({mixer = env.mixer})
+systray:init()
+tasklist:init()
+keyboard:init()
 
 awful.screen.connect_for_each_screen(function(s)
     -- set wallpaper
-    env.wallpaper(s)
+    env:wallpaper_setup(s)
+
     awful.tag({ "web", "doc", "devel", "cmdr", "media", "custom" }, s,
               { awful.layout.layouts[3],
                 awful.layout.layouts[1],
@@ -64,25 +69,19 @@ awful.screen.connect_for_each_screen(function(s)
       gears.table.join( awful.button({ }, 1, function(t) t:view_only() end),
                         awful.button({ }, 3, awful.tag.viewtoggle)))
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused, {})
-
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    batwidget = wibox.widget.textbox()
-    vicious.register(batwidget, vicious.widgets.bat, "<span font=\"Ubuntu 10\" color=\"#3CAA3C\"><b>  $1$2% ($3)</b></span>", 120, 'BAT0')
+    s.bar = awful.wibar({ position = "top", screen = s })
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    s.bar:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
             s.mytaglist,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+        tasklist:widget(s),
+        {
             layout = wibox.layout.fixed.horizontal,
             systray.widget,
             volume.widget,
