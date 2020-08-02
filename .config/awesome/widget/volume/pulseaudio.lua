@@ -87,7 +87,7 @@ function pulseaudio.device.create(connection, path, settings, is_output)
 		self:connect_signal(
 			function (this, is_mute)
 				if this.object_path == self.object_path then
-					self.muted = is_mute
+					self.mute = is_mute
 					self:_update_volume_percent()
 					self.settings.on_device_changed(self)
 				end

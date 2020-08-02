@@ -126,9 +126,9 @@ function keys:init(env)
             {group = "Hotkeys", description = "decrease volume up by 5%"}),
         Key(SM, "-", function () volume:volume_down(true) end,
             {group = "Hotkeys", description = "decrease volume up by 5%"}),
-        Key({}, "XF86AudioMute", function () volume:toggle_mute(false) end,
+        Key({}, "XF86AudioMute", function () volume:toggle_mute(true) end,
             {group = "Hotkeys", description = "Toggle mute"}),
-        Key(SM, "0", function () volume:toggle_mute(false) end,
+        Key(SM, "0", function () volume:toggle_mute(true) end,
             {group = "Hotkeys", description = "Toggle mute"}),
         -- Tags
         Key(M, "Left",  awful.tag.viewprev,

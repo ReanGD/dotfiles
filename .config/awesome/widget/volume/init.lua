@@ -46,198 +46,8 @@ function volume:toggle_mute_mic(show_popup)
 	self:on_show_popup(show_popup)
 end
 
--- Utils functions
---------------------------------------------------------------------------------
-function volume:get_volume_percent(volume, base_volume)
-	local volume = volume or self.sink:get_volume()[1]
-	local base_volume = base_volume or self.sink.BaseVolume
-
-	return math.max(0, math.ceil(volume * 100.0 / base_volume - 0.5))
-end
-
 -- Module functions
 --------------------------------------------------------------------------------
-function volume:update_widget(is_muted, volume_percent)
-	local widget_icon, widget_text, tooltip_text, popup_value_text, popup_slider_max
-	local is_muted = is_muted or self.sink:is_muted()
-
-	if is_muted then
-		widget_text = ""
-		tooltip_text = "Muted"
-		popup_value_text = "Muted"
-		widget_icon = self.icons.muted
-		popup_slider_max = 1
-		self.volume_percent = 0
-	else
-		self.volume_percent = volume_percent or self:get_volume_percent()
-		widget_text = string.format("%d", self.volume_percent)
-		tooltip_text = string.format("%d%%", self.volume_percent)
-		popup_value_text = string.format("%d%%", self.volume_percent)
-		popup_slider_max = 100
-
-		if self.volume_percent <= 33 then
-			widget_icon = self.icons.low
-		elseif self.volume_percent <= 66 then
-			widget_icon = self.icons.medium
-		else
-			widget_icon = self.icons.high
-		end
-	end
-
-	self.widget_text.text = widget_text
-	self.widget_image.image = widget_icon
-	self.widget_popup_slider.maximum = popup_slider_max
-	self.widget_popup_slider:set_value(self.volume_percent)
-	self.widget_popup_value.text = popup_value_text
-	self.widget_popup_image.image = widget_icon
-	self.tooltip:set_text(tooltip_text)
-end
-
-function volume:notify(v)
-	local msg = tonumber(v) and string.format("%d%%", v) or v
-
-	if self.notification then
-		naughty.destroy(self.notification, naughty.notificationClosedReason.dismissedByCommand)
-	end
-
-	self.notification = naughty.notify({
-		text = msg,
-		timeout = self.notification_timeout_seconds
-	})
-end
-
-function volume:popup_create_header()
-	local popup_header = wibox.widget {
-		text = "Volume",
-		font = "Inter Bold 12",
-		align = "left",
-		valign = "center",
-		widget = wibox.widget.textbox
-	}
-
-	self.widget_popup_value = wibox.widget {
-		text = "0%",
-		font = "Inter Bold 12",
-		align = "center",
-		valign = "center",
-		widget = wibox.widget.textbox
-	}
-
-	return wibox.widget {
-		popup_header,
-		nil,
-		self.widget_popup_value,
-		expand = "none",
-		forced_height = dpi(48),
-		layout = wibox.layout.align.horizontal
-	}
-end
-
-function volume:popup_create_slider()
-	local slider_image = wibox.widget {
-		{
-			id = "image_widget_id",
-			resize = true,
-			widget = wibox.widget.imagebox
-		},
-		top = dpi(12),
-		bottom = dpi(12),
-		widget = wibox.container.margin
-	}
-
-	local slider = wibox.widget {
-		nil,
-		{
-			id 					= "slider_widget_id",
-			bar_shape           = gears.shape.rounded_rect,
-			bar_height          = dpi(2),
-			bar_color           = "#ffffff20",
-			bar_active_color	= "#f2f2f2EE",
-			handle_color        = "#ffffff",
-			handle_shape        = gears.shape.circle,
-			handle_width        = dpi(15),
-			handle_border_color = "#00000012",
-			handle_border_width = dpi(1),
-			maximum				= 100,
-			widget              = wibox.widget.slider,
-		},
-		nil,
-		expand = "none",
-		layout = wibox.layout.align.vertical
-	}
-
-	self.widget_popup_image = slider_image.image_widget_id
-	self.widget_popup_slider = slider.slider_widget_id
-
-	slider_image:buttons(gears.table.join(
-		awful.button({ }, 1, function ()
-			self:toggle_muted(false)
-		end)
-	))
-
-	self.widget_popup_slider:connect_signal(
-		"property::value",
-		function()
-			local volume_percent = tonumber(self.widget_popup_slider:get_value())
-			if self.volume_percent == volume_percent then
-				return
-			end
-
-			if not self.sink:is_muted() then
-				local volume = volume_percent * self.sink.BaseVolume / 100
-				local volumes = self.sink:get_volume_percent()
-				for i, v in ipairs(volumes) do
-					volumes[i] = volume
-				end
-
-				self.sink:set_volume(volumes)
-			end
-		end
-	)
-
-	self.widget_popup_slider:connect_signal(
-		"button::press",
-		function()
-			self.show_popup = true
-		end
-	)
-
-	self.widget_popup_slider:connect_signal(
-		"mouse::enter",
-		function()
-			self.show_popup = true
-		end
-	)
-
-	return wibox.widget {
-		slider_image,
-		slider,
-		spacing = dpi(24),
-		layout = wibox.layout.fixed.horizontal
-	}
-end
-
-function volume:popup_create_volume_dialog()
-	local header = self:popup_create_header()
-	local slider = self:popup_create_slider()
-
-	return wibox.widget {
-		{
-			{
-				header,
-				slider,
-				layout = wibox.layout.fixed.vertical
-			},
-			left = dpi(24),
-			right = dpi(24),
-			widget = wibox.container.margin
-		},
-		bg = beautiful.background,
-		shape = gears.shape.rounded_rect,
-		widget = wibox.container.background()
-	}
-end
-
 function volume:_get_device_icon(device)
 	local icons
 	if device.is_output then
@@ -256,6 +66,85 @@ function volume:_get_device_icon(device)
 			return icons.high
 		end
 	end
+end
+
+function volume:_create_popup_slider(device)
+	local desc = wibox.widget {
+		font = "Inter Medium 11",
+		widget = wibox.widget.textbox
+	}
+
+	local icon = wibox.widget {
+		resize = true,
+		forced_height = dpi(32),
+		forced_width = dpi(32),
+		widget = wibox.widget.imagebox
+	}
+
+	icon:buttons(gears.table.join(
+		awful.button({ }, 1, function ()
+			device:toggle_mute()
+		end)
+	))
+
+	local slider = wibox.widget {
+		bar_shape           = gears.shape.rounded_rect,
+		bar_height          = dpi(2),
+		bar_color           = "#ffffff20",
+		bar_active_color	= "#f2f2f2EE",
+		handle_color        = "#ffffff",
+		handle_shape        = gears.shape.circle,
+		handle_width        = dpi(15),
+		handle_border_color = "#00000012",
+		handle_border_width = dpi(1),
+		maximum				= 100,
+		widget              = wibox.widget.slider,
+		forced_height       = dpi(46),
+		forced_width        = dpi(200),
+	}
+
+	slider:connect_signal(
+		"property::value",
+		function()
+			local volume_percent = slider:get_value()
+			if device.volume_percent ~= volume_percent then
+				device:set_volume_percent(volume_percent)
+			end
+		end
+	)
+
+	local value = wibox.widget {
+		font = "Inter Bold 12",
+		widget = wibox.widget.textbox
+	}
+
+	local widget = wibox.widget {
+		{
+			{
+				desc,
+				bottom = dpi(4),
+				widget = wibox.container.margin
+			},
+			{
+				icon,
+				slider,
+				value,
+				spacing = dpi(24),
+				layout = wibox.layout.fixed.horizontal
+			},
+			layout = wibox.layout.fixed.vertical,
+		},
+		top = dpi(12),
+		bottom = dpi(0),
+		widget = wibox.container.margin
+	}
+
+	widget.desc = desc
+	widget.icon = icon
+	widget.slider = slider
+	widget.value = value
+
+	return widget
 end
 
 function volume:_create_tray_widget(device)
@@ -294,14 +183,28 @@ function volume:_create_tray_widget(device)
 		end)
 	))
 
-	device.widget = widget
-	self:on_device_changed(device)
+	return widget
+end
+
+function volume:_create_device_widgets(device)
+	local need_update = false
+
+	if not device.widget then
+		need_update = true
+		device.widget = self:_create_tray_widget(device)
+	end
+
+	if not device.popup_widget then
+		need_update = true
+		device.popup_widget = self:_create_popup_slider(device)
+	end
+
+	if need_update then
+		self:on_device_changed(device)
+	end
 end
 
 function volume:_create_popup_widget(enable)
-	local width = dpi(300)
-	local height = dpi(100)
-
 	local widget = awful.popup {
 		widget = wibox.widget {
 			text = "Volume",
@@ -313,10 +216,6 @@ function volume:_create_popup_widget(enable)
 		ontop = true,
 		visible = false,
 		type = "notification",
-		width = width,
-		maximum_width = width,
-		height = height,
-		maximum_height = height,
 		bg = beautiful.transparent,
 		shape = gears.shape.rectangle,
 		offset = dpi(5),
@@ -367,46 +266,72 @@ function volume:on_show_popup(enable)
 end
 
 function volume:on_device_changed(device)
-	local text, tooltip_text
+	local icon = self:_get_device_icon(device)
+	local text, value_text, tooltip_text, popup_slider_max
 
 	local tray_text = device.widget.text_widget_id
 	local tray_icon = device.widget.icon_widget_id
+	local popup_desc = device.popup_widget.desc
+	local popup_icon = device.popup_widget.icon
+	local popup_slider = device.popup_widget.slider
+	local popup_value = device.popup_widget.value
 	local tray_tooltip = device.widget.tooltip
 
 	if device.mute then
 		text = ""
+		value_text = ""
 		tooltip_text = "Muted"
+		popup_slider_max = 1
 	else
 		text = string.format("%d", device.volume_percent)
+		value_text = string.format("%d%%", device.volume_percent)
 		tooltip_text = string.format("%s: %d%%", device.active_port_desc, device.volume_percent)
+		popup_slider_max = 100
 	end
 
 	tray_text.text = text
+	popup_desc:set_text(device.active_port_desc)
 	tray_tooltip:set_text(tooltip_text)
-	tray_icon.image = self:_get_device_icon(device)
+	popup_slider.maximum = popup_slider_max
+	popup_slider:set_value(device.volume_percent)
+	popup_value:set_text(value_text)
+	tray_icon.image = icon
+	popup_icon.image = icon
 end
 
 function volume:on_devices_changed(inputs, outputs)
-	local widgets = {
+	local tray_widgets = {
 		layout = wibox.layout.fixed.horizontal
+	}
+	local popup_widgets = {
+		layout = wibox.layout.fixed.vertical
 	}
 
 	for _, device in ipairs(inputs) do
-		if not device.widget then
-			self:_create_tray_widget(device)
-		end
-		table.insert(widgets, device.widget)
+		self:_create_device_widgets(device)
+		table.insert(tray_widgets, device.widget)
+		table.insert(popup_widgets, device.popup_widget)
 	end
 
 	for _, device in ipairs(outputs) do
-		if not device.widget then
-			self:_create_tray_widget(device)
-		end
-		table.insert(widgets, device.widget)
+		self:_create_device_widgets(device)
+		table.insert(tray_widgets, device.widget)
+		table.insert(popup_widgets, device.popup_widget)
 	end
 
 	self.widget:reset()
-	self.widget:setup(widgets)
+	self.widget:setup(tray_widgets)
+	self.popup_wiget:setup({
+		{
+			popup_widgets,
+			left = dpi(24),
+			right = dpi(24),
+			widget = wibox.container.margin
+		},
+		bg = beautiful.background,
+		shape = gears.shape.rounded_rect,
+		widget = wibox.container.background()
+	})
 end
 
 -- Constructor
