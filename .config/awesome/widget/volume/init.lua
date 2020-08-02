@@ -106,6 +106,9 @@ function volume:_create_popup_slider(device)
 	slider:connect_signal(
 		"property::value",
 		function()
+			if device.mute then
+				return
+			end
 			local volume_percent = slider:get_value()
 			if device.volume_percent ~= volume_percent then
 				device:set_volume_percent(volume_percent)
@@ -168,12 +171,18 @@ function volume:_create_tray_widget(device)
 		mode = "outside",
 	}
 
+	menu_items = {}
+	table.insert(menu_items,  {"toggle mute", function() device:toggle_mute() end } )
+	table.insert(menu_items,  {"mixer", function() awful.spawn(self.mixer) end } )
+
+	widget.menu = awful.menu(menu_items)
+
 	widget:buttons(gears.table.join(
 		awful.button({ }, 1, function ()
-			device:toggle_mute()
+			self:on_show_popup(true)
 		end),
 		awful.button({ }, 3, function ()
-			awful.spawn(self.mixer)
+			widget.menu:show()
 		end),
 		awful.button({ }, 4, function ()
 			device:volume_up()
@@ -227,7 +236,7 @@ function volume:_create_popup_widget(enable)
 		timeout = 2,
 		single_shot = true,
 		callback = function()
-			if widget.enbale_stop then
+			if widget.enable_stop then
 				widget.visible = false
 			end
 		end
@@ -236,14 +245,14 @@ function volume:_create_popup_widget(enable)
 	widget:connect_signal(
 		"mouse::enter",
 		function()
-			widget.enbale_stop = false
+			widget.enable_stop = false
 		end
 	)
 
 	widget:connect_signal(
 		"mouse::leave",
 		function()
-			widget.enbale_stop = true
+			widget.enable_stop = true
 			widget.hide_timer:again()
 		end
 	)
@@ -259,7 +268,7 @@ function volume:on_show_popup(enable)
 	if not self.popup_wiget.visible then
 		local bar = awful.screen.focused()[self.bar_id]
 		self.popup_wiget:move_next_to(bar)
-		self.popup_wiget.enbale_stop = true
+		self.popup_wiget.enable_stop = true
 		self.popup_wiget.visible = true
 	end
 	self.popup_wiget.hide_timer:again()
@@ -267,7 +276,7 @@ end
 
 function volume:on_device_changed(device)
 	local icon = self:_get_device_icon(device)
-	local text, value_text, tooltip_text, popup_slider_max
+	local text, value_text, tooltip_text, popup_slider_value, popup_slider_max
 
 	local tray_text = device.widget.text_widget_id
 	local tray_icon = device.widget.icon_widget_id
@@ -282,18 +291,20 @@ function volume:on_device_changed(device)
 		value_text = ""
 		tooltip_text = "Muted"
 		popup_slider_max = 1
+		popup_slider_value = 0
 	else
 		text = string.format("%d", device.volume_percent)
 		value_text = string.format("%d%%", device.volume_percent)
 		tooltip_text = string.format("%s: %d%%", device.active_port_desc, device.volume_percent)
 		popup_slider_max = 100
+		popup_slider_value = device.volume_percent
 	end
 
 	tray_text.text = text
 	popup_desc:set_text(device.active_port_desc)
 	tray_tooltip:set_text(tooltip_text)
 	popup_slider.maximum = popup_slider_max
-	popup_slider:set_value(device.volume_percent)
+	popup_slider:set_value(popup_slider_value)
 	popup_value:set_text(value_text)
 	tray_icon.image = icon
 	popup_icon.image = icon
@@ -301,6 +312,7 @@ end
 
 function volume:on_devices_changed(inputs, outputs)
 	local tray_widgets = {
+		spacing = dpi(5),
 		layout = wibox.layout.fixed.horizontal
 	}
 	local popup_widgets = {
@@ -341,7 +353,6 @@ function volume:init(args)
 
 	self.bar_id = args.bar_id or "bar"
 	self.mixer = args.mixer or "pavucontrol"
-	self.notification_timeout_seconds = 1
 
 	local icons_dir = beautiful.icon_theme .. "/scalable/status/"
 	self.icons = {
