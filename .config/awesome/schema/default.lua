@@ -20,6 +20,7 @@ require("std.error_check")
 local env = require("std.env")
 
 -- Widget library
+bar = require("widget.bar")
 clock = require("widget.clock")
 volume = require("widget.volume")
 systray = require("widget.systray")
@@ -42,52 +43,32 @@ awful.layout.layouts = {
 }
 
 
+bar:init({ bar_id = env.bar_id })
 clock:init()
-volume:init({mixer = env.mixer})
+volume:init({ bar_id = env.bar_id, mixer = env.mixer })
 systray:init()
 taglist:init()
 tasklist:init()
 keyboard:init()
-layoutbox:init()
+layoutbox:init({ modkey = env.modkey })
 
 awful.screen.connect_for_each_screen(function(s)
-    -- set wallpaper
     env:wallpaper_setup(s)
 
     awful.tag({ "web", "doc", "devel", "cmdr", "media", "custom" }, s,
-              { awful.layout.layouts[3],
-                awful.layout.layouts[1],
-                awful.layout.layouts[3],
-                awful.layout.layouts[3],
-                awful.layout.layouts[2],
-                awful.layout.layouts[2] })
+              { awful.layout.suit.max,
+                awful.layout.suit.tile.right,
+                awful.layout.suit.max,
+                awful.layout.suit.max,
+                awful.layout.suit.tile.left,
+                awful.layout.suit.tile.left })
 
-
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(awful.button({ }, 1, function () awful.layout.inc( 1) end))
-
-    -- Create the wibox
-    s.bar = awful.wibar({ position = "top", screen = s })
-
-    -- Add widgets to the wibox
-    s.bar:setup {
-        layout = wibox.layout.align.horizontal,
-        {
-            layout = wibox.layout.fixed.horizontal,
-            layoutbox:widget(s),
-            taglist:widget(s),
-        },
-        tasklist:widget(s),
-        {
-            layout = wibox.layout.fixed.horizontal,
-            systray.widget,
-            volume.widget,
-            keyboard.widget,
-            clock.widget,
-        },
-    }
+    bar:create( {
+        screen = s,
+        left = { layoutbox:widget(s), taglist:widget(s) },
+        center = tasklist:widget(s),
+        right = { systray.widget, volume.widget, keyboard.widget, clock.widget },
+    })
 end)
 
 local hotkeys = require("config.keys-config")
