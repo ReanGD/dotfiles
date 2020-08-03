@@ -4,18 +4,18 @@ local awful = require("awful")
 --------------------------------------------------------------------------------
 local tasklist = {}
 
-mouse = mouse
-client = client
-screen = screen
+local mouse = mouse
+local client = client
+local screen = screen
 
 -- Local functions
 --------------------------------------------------------------------------------
 local function get_screen(s)
-    return s and screen[s]
+	return s and screen[s]
 end
 
 function focused_screen()
-    return get_screen(client.focus and client.focus.screen or mouse.screen)
+	return get_screen(client.focus and client.focus.screen or mouse.screen)
 end
 
 -- Module functions

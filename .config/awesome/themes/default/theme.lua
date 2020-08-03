@@ -56,6 +56,7 @@ end
 function theme:init()
     -- Common
     self.font = "Inter Medium 10"
+    self.form_font = "Inter Medium 12" -- Custom
     self.path = gfs.get_configuration_dir() .. "themes/default"
 
     self.icon_theme = "/usr/share/icons/mate"

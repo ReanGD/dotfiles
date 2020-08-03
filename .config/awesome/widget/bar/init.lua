@@ -14,10 +14,10 @@ function bar:create(args)
 	args.right.layout = wibox.layout.fixed.horizontal
 
 	local widget = wibox.widget {
-        layout = wibox.layout.align.horizontal,
-        args.left,
-        args.center,
-        args.right,
+		layout = wibox.layout.align.horizontal,
+		args.left,
+		args.center,
+		args.right,
 	}
 
 	screen[self.bar_id] = awful.wibar {

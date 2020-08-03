@@ -288,7 +288,7 @@ function pulseaudio.core:_get_sinks()
 end
 
 function pulseaudio.core:_get_sources()
-    return self:Get("org.PulseAudio.Core1", "Sources")
+	return self:Get("org.PulseAudio.Core1", "Sources")
 end
 
 function pulseaudio.core:_outputs_add(sink_path)

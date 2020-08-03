@@ -70,7 +70,7 @@ end
 
 function volume:_create_popup_slider(device)
 	local desc = wibox.widget {
-		font = "Inter Medium 11",
+		font = beautiful.form_font,
 		widget = wibox.widget.textbox
 	}
 
@@ -117,7 +117,8 @@ function volume:_create_popup_slider(device)
 	)
 
 	local value = wibox.widget {
-		font = "Inter Bold 12",
+		font = beautiful.form_font,
+		forced_width = dpi(50),
 		widget = wibox.widget.textbox
 	}
 
@@ -215,13 +216,7 @@ end
 
 function volume:_create_popup_widget(enable)
 	local widget = awful.popup {
-		widget = wibox.widget {
-			text = "Volume",
-			font = "Inter Bold 12",
-			align = "left",
-			valign = "center",
-			widget = wibox.widget.textbox
-		},
+		widget = {},
 		ontop = true,
 		visible = false,
 		type = "notification",

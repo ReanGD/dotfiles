@@ -47,10 +47,7 @@ function clock:init(args)
 	local format = args.format or "%a, %d %H:%M "
 	local refresh_sec = args.refresh or 60
 
-	local widget = wibox.widget.textclock(format, refresh_sec)
-	widget.font =beautiful.tasklist_widget_font
-
-	self.widget = widget
+	self.widget = wibox.widget.textclock(format, refresh_sec)
 
 	self.tooltip = awful.tooltip {
 		objects = { self.widget },
@@ -65,7 +62,6 @@ function clock:init(args)
 
 	self.month_calendar = awful.widget.calendar_popup.month({
 		position = "tr",
-		font = beautiful.calendar_font,
 		spacing = dpi(5),
 		margin = dpi(5),
 		week_numbers = false,
@@ -75,7 +71,6 @@ function clock:init(args)
 
 	self.year_calendar = awful.widget.calendar_popup.year({
 		position = "tr",
-		font = beautiful.calendar_font,
 		spacing = dpi(5),
 		margin = dpi(5),
 		week_numbers = false,

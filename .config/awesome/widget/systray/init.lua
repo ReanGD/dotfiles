@@ -10,9 +10,9 @@ local systray = {}
 -- Constructor
 --------------------------------------------------------------------------------
 function systray:init(args)
-	args = args or {}
+    args = args or {}
 
-	self.widget = wibox.widget.systray()
+    self.widget = wibox.widget.systray()
 end
 
 return systray

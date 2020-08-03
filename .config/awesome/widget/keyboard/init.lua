@@ -2,7 +2,6 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local naughty = require("naughty")
-local beautiful = require("beautiful")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
@@ -60,10 +59,7 @@ end
 function keyboard:init(args)
 	args = args or {}
 
-	local widget = wibox.widget.textbox()
-	widget.font = beautiful.tasklist_widget_font
-
-	self.widget = widget
+	self.widget = wibox.widget.textbox()
 
 	self:update_layouts()
 

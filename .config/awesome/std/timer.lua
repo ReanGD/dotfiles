@@ -2,7 +2,7 @@ local gears = require("gears")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
-timer = {}
+local timer = {}
 
 -- Run callback after timeout and close timer
 --------------------------------------------------------------------------------
