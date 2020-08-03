@@ -26,6 +26,7 @@ systray = require("widget.systray")
 taglist = require("widget.taglist")
 tasklist = require("widget.tasklist")
 keyboard = require("widget.keyboard")
+layoutbox = require("widget.layoutbox")
 
 -- Custom library
 timestamp = require("src.timestamp")
@@ -47,6 +48,7 @@ systray:init()
 taglist:init()
 tasklist:init()
 keyboard:init()
+layoutbox:init()
 
 awful.screen.connect_for_each_screen(function(s)
     -- set wallpaper
@@ -74,7 +76,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         {
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
+            layoutbox:widget(s),
             taglist:widget(s),
         },
         tasklist:widget(s),
