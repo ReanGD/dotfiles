@@ -1,9 +1,5 @@
 #!bin/sh
 
-# START
 xrdb ~/.config/.Xresources
 # disable SHIFT+CAPS LOCK
 xmodmap -e 'keycode 66 = ISO_Next_Group ISO_Next_Group ISO_Next_Group ISO_Next_Group'
-perWindowLayoutD
-volumeicon &
-# ~/.config/bin/dropbox &

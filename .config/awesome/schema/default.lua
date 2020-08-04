@@ -29,8 +29,8 @@ tasklist = require("widget.tasklist")
 keyboard = require("widget.keyboard")
 layoutbox = require("widget.layoutbox")
 
--- Custom library
-timestamp = require("src.timestamp")
+-- Config modules
+local autostart = require("cfg.autostart")
 
 -- Setup theme and environment vars
 --------------------------------------------------------------------------------
@@ -80,7 +80,4 @@ rules:init(hotkeys)
 local signals = require("config.signals-config")
 signals:init()
 
-local autostart = require("config.autostart-config")
-if timestamp.is_startup() then
-  autostart.run(env)
-end
+autostart:init()

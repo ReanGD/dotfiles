@@ -631,7 +631,7 @@
     <HotDir Name="config" Path="/home/rean/.config"/>
   </DirectoryHotList>
   <Viewer>
-    <PreviewVisible>False</PreviewVisible>
+    <PreviewVisible>True</PreviewVisible>
     <ImageStretch>False</ImageStretch>
     <ImageExifRotate>True</ImageExifRotate>
     <ImageStretchLargeOnly>False</ImageStretchLargeOnly>

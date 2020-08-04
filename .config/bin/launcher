@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if pgrep -f "ulauncher"; then	
+if pgrep -f "ulauncher"; then
 	dbus-send \
 	    --session \
 	    --print-reply \
