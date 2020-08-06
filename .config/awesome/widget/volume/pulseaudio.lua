@@ -1,7 +1,8 @@
 local lgi =  require("lgi")
 local naughty = require("naughty")
 local timer = require("std.timer")
-local proxy = require("dbus_proxy")
+-- local proxy = require("dbus_proxy")
+local proxy = require("std.dbus_proxy")
 
 -- Initialize tables and vars for module
 --------------------------------------------------------------------------------
