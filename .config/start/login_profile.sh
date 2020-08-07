@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 export LANG=ru_RU.UTF-8
 
