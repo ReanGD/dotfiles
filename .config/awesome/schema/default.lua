@@ -20,14 +20,14 @@ require("std.error_check")
 local env = require("std.env")
 
 -- Widget library
-bar = require("widget.bar")
-clock = require("widget.clock")
-volume = require("widget.volume")
-systray = require("widget.systray")
-taglist = require("widget.taglist")
-tasklist = require("widget.tasklist")
-keyboard = require("widget.keyboard")
-layoutbox = require("widget.layoutbox")
+local bar = require("widget.bar")
+local clock = require("widget.clock")
+local volume = require("widget.volume")
+local systray = require("widget.systray")
+local taglist = require("widget.taglist")
+local tasklist = require("widget.tasklist")
+local keyboard = require("widget.keyboard")
+local layoutbox = require("widget.layoutbox")
 
 -- Config modules
 local autostart = require("cfg.autostart")
@@ -37,9 +37,12 @@ local autostart = require("cfg.autostart")
 env:init({theme="default"})
 
 awful.layout.layouts = {
-    awful.layout.suit.tile,
+    awful.layout.suit.tile.right,
     awful.layout.suit.tile.left,
-    awful.layout.suit.max
+    awful.layout.suit.max,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
 }
 
 
@@ -63,12 +66,12 @@ awful.screen.connect_for_each_screen(function(s)
                 awful.layout.suit.tile.left,
                 awful.layout.suit.tile.left })
 
-    bar:create( {
+    bar:create {
         screen = s,
         left = { layoutbox:widget(s), taglist:widget(s) },
         center = tasklist:widget(s),
         right = { systray.widget, volume.widget, keyboard.widget, clock.widget },
-    })
+    }
 end)
 
 local hotkeys = require("config.keys-config")

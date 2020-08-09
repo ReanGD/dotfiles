@@ -20,11 +20,11 @@ end
 
 -- Module functions
 --------------------------------------------------------------------------------
-function tasklist:widget(screen)
-	return awful.widget.tasklist({
-		screen = screen,
+function tasklist:widget(s)
+	return awful.widget.tasklist {
+		screen = s,
 		filter = function(c, s) return self:filter(c, s) end,
-	})
+	}
 end
 
 function tasklist:filter(c, s)
@@ -33,12 +33,12 @@ function tasklist:filter(c, s)
 	end
 
 	if focused_screen() == s then
-		if c.active then
-			s.last_active_client = c
+		if client.focus == c then
+			s.last_focused_client = c
+			return true
 		end
-		return c.active
 	else
-		return c == s.last_active_client
+		return c == s.last_focused_client
 	end
 
 	return false
