@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # fixed
 MENU_ID=$1

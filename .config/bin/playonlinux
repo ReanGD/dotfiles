@@ -1,2 +1,3 @@
-#!/bin/bash
+#!/bin/sh
+
 HOME=$HOME/.local/share /usr/bin/playonlinux $@

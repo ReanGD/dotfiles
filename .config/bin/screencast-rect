@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 ARGUMENTS=$(xrectsel "--x=%x --y=%y --width=%w --height=%h") || exit -1
 path=~/tmp/image-$(date +%FT%H-%M-%S).gif
 byzanz-record --exec="sleep 5m" ${ARGUMENTS} $path
