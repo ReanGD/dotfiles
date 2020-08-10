@@ -26,6 +26,9 @@ export MPLAYER_HOME=$XDG_CONFIG_HOME/mplayer
 # Python
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export PYTHON_EGG_CACHE=$XDG_CACHE_HOME/python-eggs
+export IPYTHONDIR=$XDG_DATA_HOME/ipython
+export JUPYTER_CONFIG_DIR=$XDG_DATA_HOME/jupyter
+export PYLINTHOME=$XDG_CACHE_HOME/pylint
 
 # Gimp
 export GIMP2_DIRECTORY=$XDG_DATA_HOME/gimp-2.8
@@ -36,8 +39,8 @@ export KDEHOME=$XDG_DATA_HOME/kde
 # gnupg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 
-# java font
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+# java
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Djava.util.prefs.userRoot=$XDG_DATA_HOME/java"
 
 # Other apps
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
@@ -53,6 +56,3 @@ export LD_LIBRARY_PATH=$XDG_CONFIG_HOME/lib:$LD_LIBRARY_PATH
 
 # Bin paths
 export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
-
-
-echo $(date) >> ~/date
