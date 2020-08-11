@@ -20,7 +20,7 @@ function bar:create(args)
 		args.right,
 	}
 
-	screen[self.bar_id] = awful.wibar {
+	args.screen[self.bar_id] = awful.wibar {
 		position = "top",
 		screen = args.screen,
 		widget = widget

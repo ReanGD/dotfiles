@@ -16,7 +16,7 @@ function theme:solarized_colors()
     self.bg_urgent = self.bg_normal
     self.fg_normal = "#93a1a1ff"
     self.fg_focus  = "#fdf6e3ff"
-    self.fg_urgent = "#a24a52ff"
+    self.fg_urgent = "#dc322fff"
 end
 
 function theme:client()
