@@ -1,0 +1,13 @@
+[Layout]
+DisplayNames=,
+LayoutList=us,ru(winkeys)
+LayoutLoopCount=-1
+Model=pc86
+Options=grp:caps_toggle
+ResetOldOptions=true
+ShowFlag=false
+ShowLabel=true
+ShowLayoutIndicator=true
+ShowSingle=false
+SwitchMode=WinClass
+Use=true

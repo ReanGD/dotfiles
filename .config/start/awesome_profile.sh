@@ -6,7 +6,9 @@ xrdb -merge ~/.config/start/xresources
 
 # caps lock as layout switch v1
 # see: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration#Using_setxkbmap
-setxkbmap -option grp:caps_toggle
+# setxkbmap -print -verbose 10
+#
+# setxkbmap -option grp:caps_toggle
 
 # caps lock as layout switch v2
 # see
