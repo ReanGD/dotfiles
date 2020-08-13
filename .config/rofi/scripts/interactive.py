@@ -4,6 +4,7 @@ import sys
 import json
 import math
 import types
+from googletrans import Translator
 
 
 class Rofi:
@@ -20,7 +21,7 @@ class Rofi:
 			msg["message"] = header
 
 		if lines is not None:
-			msg["lines"] = lines
+			msg["lines"] = [{"text": it, "markup": True} for it in lines]
 
 		if prompt is not None:
 			msg["prompt"] = prompt
@@ -68,9 +69,29 @@ class Calc(Rofi):
 		self.send(header = f"Result: {answer}")
 
 
+class Translate(Rofi):
+	def __init__(self):
+		self.translator = Translator(service_urls=["translate.google.ru"])
+		super(Translate, self).__init__("/home/rean/tmp/rofi/log.txt")
+
+	def on_input(self, text):
+		if len(text) <= 1:
+			self.send(header = "Result:")
+			return
+
+		dst_lang = "ru"
+		src_lang = self.translator.detect(text).lang
+		if src_lang == "ru":
+			dst_lang = "en"
+
+		answer = self.translator.translate(text, dest=dst_lang).text
+
+		self.send(lines = [f"<span>Result: <b>{answer}</b></span>\n<span>{src_lang}->{dst_lang}</span>"])
+
+
 if __name__ == '__main__':
 	try:
-		obj = Calc()
-		obj.run("calc")
+		obj = Translate()
+		obj.run("translate")
 	except Exception as e:
 		print('Error exit: ' + str(e))
