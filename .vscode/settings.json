@@ -1,6 +1,6 @@
 {
 	"python.linting.pylintEnabled": false,
 	"python.linting.pylamaEnabled": true,
-	"python.linting.pylamaArgs": ["-o", ".vscode/pylama.ini"],
+	"python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
 	"python.linting.enabled": true
 }

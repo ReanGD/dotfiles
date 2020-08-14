@@ -1,25 +1,24 @@
 import math
 import types
-from rofi import Rofi
+from message import Message
 
 
-class Calc(Rofi):
+class Calc:
     def __init__(self):
         self.globals_dict = {"__builtins__": {}}
         self.locals_dict = vars(math)
-        super(Calc, self).__init__("/home/rean/tmp/rofi/log.txt")
 
-    def on_input(self, text):
-        if text == "":
-            self.send(header="Result:")
-            return
+    def on_input(self, user_text: str, msg: Message) -> bool:
+        if user_text == "":
+            return False
 
-        answer = ""
         try:
-            result = eval(text.replace("^", "**"), self.globals_dict, self.locals_dict)
-            if not isinstance(result, types.BuiltinFunctionType):
-                answer = result
-        except Exception:
-            pass
+            processed_user_text = user_text.replace("^", "**")
+            answer = eval(processed_user_text, self.globals_dict, self.locals_dict)
+            if isinstance(answer, types.BuiltinFunctionType):
+                return False
 
-        self.send(header=f"Result: {answer}")
+            msg.add_line(f"{user_text} = {answer}")
+            return True
+        except Exception:
+            return False
