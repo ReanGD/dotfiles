@@ -1,7 +1,9 @@
 #!/bin/python
 
+import os
 import sys
 import json
+import logging
 
 from calc import Calc
 from message import Message
@@ -12,11 +14,21 @@ class Runner:
     def __init__(self):
         self.calc = Calc()
         self.translate = Translate()
-        self.log_handler = open("/home/rean/tmp/rofi/log.txt", "w")
+        self.log_handler = open(self.get_log_path(), "w")
+
+    def get_log_path(self):
+        home_dir = os.getenv("HOME", None)
+        if home_dir is None:
+            raise Exception("not found HOME env")
+
+        xdg_data_home = os.getenv('XDG_DATA_HOME', os.path.join(home_dir, ".local", "share"))
+        return os.path.join(xdg_data_home, "rofi", "interactive.log")
 
     def send(self, msg: Message):
-        sys.stdout.write(json.dumps(msg.build()) + "\n")
+        text = json.dumps(msg.build()) + "\n"
+        sys.stdout.write(text)
         sys.stdout.flush()
+        self.log("<< " + text)
 
     def log(self, text: str):
         self.log_handler.write(text)
@@ -42,7 +54,7 @@ class Runner:
         self.send(init_msg)
 
         for line in sys.stdin:
-            self.log(line)
+            self.log(">> " + line)
             user_msg = json.loads(line)
             msg_name = user_msg["name"]
             if msg_name == "input change":
