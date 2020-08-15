@@ -30,6 +30,13 @@ class Runner:
         self.translate.on_input(user_text, answer)
         return answer
 
+    def on_enter(self, user_text: str):
+        if self.calc.on_enter(user_text):
+            return
+
+        if self.translate.on_enter(user_text):
+            return
+
     def run(self):
         init_msg = Message().set_action(is_send=True).set_prompt("interactive")
         self.send(init_msg)
@@ -37,8 +44,11 @@ class Runner:
         for line in sys.stdin:
             self.log(line)
             user_msg = json.loads(line)
-            if user_msg["name"] == "input change":
+            msg_name = user_msg["name"]
+            if msg_name == "input change":
                 self.send(self.on_input(user_msg["value"]))
+            elif msg_name == "select entry":
+                self.on_enter(user_msg["value"])
 
 
 if __name__ == '__main__':
