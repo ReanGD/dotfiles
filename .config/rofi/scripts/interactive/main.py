@@ -3,9 +3,9 @@
 import os
 import sys
 import json
-import logging
 
 from calc import Calc
+from kill import Kill
 from message import Message
 from translate import Translate
 
@@ -13,6 +13,7 @@ from translate import Translate
 class Runner:
     def __init__(self):
         self.calc = Calc()
+        self.kill = Kill()
         self.translate = Translate()
         self.log_handler = open(self.get_log_path(), "w")
 
@@ -36,6 +37,9 @@ class Runner:
 
     def on_input(self, user_text: str) -> Message:
         answer = Message()
+        if self.kill.on_input(user_text, answer):
+            return answer
+
         if self.calc.on_input(user_text, answer):
             return answer
 
@@ -43,6 +47,9 @@ class Runner:
         return answer
 
     def on_enter(self, user_text: str):
+        if self.kill.on_enter(user_text):
+            return
+
         if self.calc.on_enter(user_text):
             return
 
