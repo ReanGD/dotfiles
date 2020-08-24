@@ -604,28 +604,13 @@
     <ExcludeDirs/>
     <Mode>1</Mode>
   </AutoRefresh>
-  <Icons>
-    <Theme>dctheme</Theme>
-    <ShowMode>3</ShowMode>
-    <ShowOverlays>False</ShowOverlays>
-    <Size>32</Size>
-    <DiskSize>16</DiskSize>
-    <DiskAlpha>50</DiskAlpha>
-    <Exclude>False</Exclude>
-    <ExcludeDirs/>
-    <CustomIcons>0</CustomIcons>
-    <PixelsPerInch>121</PixelsPerInch>
-    <ShowInMenus Enabled="False">
-      <Size>16</Size>
-    </ShowInMenus>
-    <ShowButtonGlyphs>0</ShowButtonGlyphs>
-    <ShowHiddenDimmed>False</ShowHiddenDimmed>
-  </Icons>
+  <Icons/>
   <IgnoreList Enabled="False">
     <IgnoreListFile>%DC_CONFIG_PATH%/ignorelist.txt</IgnoreListFile>
   </IgnoreList>
   <DirectoryHotList>
     <HotDir Name="projects" Path="/home/rean/projects/home"/>
+    <HotDir Name="tmp" Path="/home/rean/tmp"/>
     <HotDir Name="downloads" Path="/home/rean/downloads"/>
     <HotDir Name="doc" Path="/home/rean/doc"/>
     <HotDir Name="config" Path="/home/rean/.config"/>
@@ -767,134 +752,7 @@
   <MarkDefaultWantedAttribute/>
   <MarkLastWantedAttribute/>
   <SearchTemplates/>
-  <ColumnsSets DefaultTitleHash="1848642058">
-    <ColumnsSet UseFrameCursor="False">
-      <Name>Default</Name>
-      <CustomView>False</CustomView>
-      <FileSystem>&lt;General&gt;</FileSystem>
-      <PixelsPerInch>121</PixelsPerInch>
-      <CursorBorder Enabled="False">
-        <Color>0</Color>
-      </CursorBorder>
-      <Columns>
-        <Column>
-          <Title>Имя</Title>
-          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
-          <Width>427</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>128</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Тип</Title>
-          <FuncString>[DC().GETFILEEXT{}]</FuncString>
-          <Width>59</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>128</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Размер</Title>
-          <FuncString>[DC().GETFILESIZE{}]</FuncString>
-          <Width>83</Width>
-          <Align>1</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>128</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Дата</Title>
-          <FuncString>[DC().GETFILETIME{}]</FuncString>
-          <Width>166</Width>
-          <Align>1</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>128</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-        <Column>
-          <Title>Атриб</Title>
-          <FuncString>[DC().GETFILEATTR{}]</FuncString>
-          <Width>119</Width>
-          <Align>0</Align>
-          <Font>
-            <Name>default</Name>
-            <Size>10</Size>
-            <Style>1</Style>
-            <Quality>0</Quality>
-          </Font>
-          <TextColor>-2147483640</TextColor>
-          <Background>-2147483643</Background>
-          <Background2>-2147483643</Background2>
-          <MarkColor>255</MarkColor>
-          <CursorColor>-2147483635</CursorColor>
-          <CursorText>-2147483634</CursorText>
-          <InactiveCursorColor>-2147483645</InactiveCursorColor>
-          <InactiveMarkColor>128</InactiveMarkColor>
-          <UseInvertedSelection>False</UseInvertedSelection>
-          <UseInactiveSelColor>False</UseInactiveSelColor>
-          <Overcolor>True</Overcolor>
-        </Column>
-      </Columns>
-    </ColumnsSet>
-  </ColumnsSets>
+  <ColumnsSets DefaultTitleHash="1848642058"/>
   <MultiRenamePresets>
     <LastPreset/>
     <Presets/>
