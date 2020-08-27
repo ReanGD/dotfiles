@@ -34,5 +34,17 @@
 **/pulse/*
 !**/pulse/default.pa
 
+# firefox
+**/rean.default-release/*
+!**/rean.default-release/user.js
+
+# applications
+/.local/share/applications/*
+!/.local/share/applications/dropbox.desktop
+!/.local/share/applications/firefox.desktop
+!/.local/share/applications/google-chrome.desktop
+!/.local/share/applications/visual-studio-code.desktop
+!/.local/share/applications/visual-studio-code-url-handler.desktop
+
 # zsh
 **/.zinit/*
