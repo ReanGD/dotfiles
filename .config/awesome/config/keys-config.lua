@@ -4,7 +4,9 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 -- Widget library
-volume = require("widget.volume")
+local volume = require("widget.volume")
+local keyboard = require("widget.keyboard")
+local layoutbox = require("widget.layoutbox")
 
 local keys = { client_keys = {}, client_buttons = {}}
 
@@ -58,8 +60,6 @@ end
 ----------------------------------------------------------------------------------------------------------------------
 -- Key support functions
 ----------------------------------------------------------------------------------------------------------------------
-local redflat = require("redflat")
-
 -- Change screen focus
 local function screen_focus_switch(dir)
     return function()
@@ -104,6 +104,14 @@ function keys:init(env)
     local Button = awful.button
 
     local root_keys = gears.table.join(
+        -- Awesome
+        Key(SCM, "r", awesome.restart,
+            {group = "Awesome", description = "Reload awesome"}),
+        Key(SCM, "q", awesome.quit,
+            {group = "Awesome", description = "Quit awesome"}),
+        Key(M, "F1",  hotkeys_popup.show_help,
+            {group = "Awesome", description = "Show help"}),
+
         -- Screen focus
         Key(M, "Left",  screen_focus_switch("left"),
             {group = "Screen focus", description = "Go to left screen"}),
@@ -134,6 +142,16 @@ function keys:init(env)
         Key(SM, "k", position_switch("down"),
             {group = "Window position", description = "Move to down"}),
 
+        -- Windows size
+        Key(CM, "l",  function () awful.tag.incmwfact( 0.05) end,
+            {group = "Window size", description = "Increase window width"}),
+        Key(CM, "j",  function () awful.tag.incmwfact(-0.05) end,
+            {group = "Window size", description = "Decrease window width"}),
+        Key(CM, "i",  function () awful.client.incwfact(0.05) end,
+            {group = "Window size", description = "Increase window height"}),
+        Key(CM, "k",  function () awful.client.incwfact(-0.05) end,
+            {group = "Window size", description = "Decrease window height"}),
+
         -- Audio
         Key({}, "XF86AudioRaiseVolume", function () volume:volume_up(true) end,
             {group = "Hotkeys", description = "Increase volume up by 5%"}),
@@ -147,37 +165,21 @@ function keys:init(env)
             {group = "Hotkeys", description = "Toggle mute"}),
         Key(SM, "0", function () volume:toggle_mute(true) end,
             {group = "Hotkeys", description = "Toggle mute"}),
+
+        Key(M, "F3", function () layoutbox:layout_menu_show() end,
+            {group = "Main", description = "Window control mode"}),
+
         -- Tags
-        Key(M, "Left",  awful.tag.viewprev,
-            {group = "Tag", description = "View previous"}),
-        Key(M, "Right", awful.tag.viewnext,
-            {group = "Tag", description = "View next"}),
         Key(M, "Tab",   awful.tag.history.restore,
             {group = "Tag", description = "Go back"}),
-
-        -- Windows size
-        -- Key(M, "l",  function () awful.tag.incmwfact( 0.05) end,
-        --     {group = "Windows", description = "Increase master width factor"}),
-        -- Key(M, "h",  function () awful.tag.incmwfact(-0.05) end,
-        --     {group = "Windows", description = "Decrease master width factor"}),
-
-        -- Awesome
-        Key(SCM, "r", awesome.restart,
-            {group = "Awesome", description = "Reload awesome"}),
-        Key(SCM, "q", awesome.quit,
-            {group = "Awesome", description = "Quit awesome"}),
 
         -- Layout
         Key(M, "space", function () awful.layout.inc(1) end,
             {group = "Layout", description = "Select next"}),
 
         -- Launcher
-        Key(M, "s",      hotkeys_popup.show_help,
-            {group = "Launcher", description = "Show help"}),
         Key(M, "Return", function () awful.spawn(env.terminal) end,
             {group = "Launcher", description = "Run terminal"}),
-        Key(M,  "e",     function () awful.spawn("emacs") end,
-            {group = "Launcher", description = "Run emacs"}),
         Key(SM, "r",     function () awful.spawn("pkill sleep") end,
             {group = "Launcher", description = "Run pkill sleep"}),
         Key(M,  "r",     function () awful.spawn("rofi -show run") end,
