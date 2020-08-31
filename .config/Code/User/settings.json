@@ -1,12 +1,22 @@
 {
+    "update.mode": "manual",
     "editor.fontFamily": "Pragmata Pro",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "editor.renderWhitespace": "selection",
-    "terminal.integrated.scrollback": 5000,
     "[go]":  {
         "editor.rulers": [ 130 ],
+    },
+    "[python]":  {
+        "editor.rulers": [ 120 ],
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+    },
+    "[lua]":  {
+        "editor.rulers": [ 120 ],
+        "editor.insertSpaces": false,
+        "editor.tabSize": 4,
     },
     "[cpp]":  {
         "editor.rulers": [ 140 ],
@@ -40,25 +50,33 @@
     "window.zoomLevel": 0,
     "window.enableMenuBarMnemonics": false,
     "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "*.mat": "glsl",
+        "*.msh": "hlsl",
+    },
     "workbench.colorTheme": "Monokai",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.enablePreview": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "files.associations": {
-        "*.mat": "glsl",
-        "*.msh": "hlsl",
-    },
+    "terminal.integrated.scrollback": 5000,
     "diffEditor.ignoreTrimWhitespace": false,
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
-    // "go.testFlags": ["-count=1", "-gcflags=all=-l"],
-    "go.testFlags": ["-count=1"],
+    "go.testFlags": [
+        "-count=1",
+        // "-gcflags=all=-l"
+    ],
     "go.formatTool": "goimports",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
     "python.dataScience.askForKernelRestart": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylamaEnabled": true,
+    "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
+    "python.linting.enabled": true,
     "git.showProgress": false,
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.currentLine.enabled": false,
@@ -66,6 +84,11 @@
     "gitlens.views.compare.files.layout": "list",
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
     "todo-tree.regex.regexCaseSensitive": false,
+    "todo-tree.highlights.enabled": true,
+    "todo-tree.general.tags": [
+        "FIXME",
+        "TODO"
+    ],
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.updateChannel": "Insiders",
     "sshfs.configs": [
@@ -77,11 +100,9 @@
             "username": "rean"
         }
     ],
-    "todo-tree.highlights.enabled": true,
-    "todo-tree.general.tags": [
-        "FIXME",
-        "TODO"
-    ],
     "testMate.cpp.log.userId": "1111111111111111111111111111111111111111",
-    "workspaceExplorer.workspaceStorageDirectory": "/home/rean/projects/workspases"
+    "testMate.cpp.log.logSentry": "disable_3",
+    "workspaceExplorer.workspaceStorageDirectory": "/home/rean/projects/workspases",
+    "cmake.configureOnOpen": false,
+    "githd.blameView.enabled": false
 }
