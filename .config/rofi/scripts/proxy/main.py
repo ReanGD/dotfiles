@@ -4,25 +4,25 @@ import sys
 import json
 import asyncio
 from typing import Dict
-from sender import Sender
+from writer import Writer
 from translate import Translate
 
 
 class Proxy:
-    def __init__(self):
-        self._loop = asyncio.get_event_loop()
-        self._sender = Sender()
-        receivers = [Translate(self._sender)]
+    def __init__(self, loop):
+        self.__loop = loop
+        self.__writer = Writer()
+        receivers = [Translate(self.__writer)]
         self.__receivers = {receiver.get_group(): receiver for receiver in receivers}
 
     async def _get_stdin_reader(self):
-        reader = asyncio.StreamReader(loop=self._loop)
+        reader = asyncio.StreamReader(loop=self.__loop)
         reader_protocol = asyncio.StreamReaderProtocol(reader)
-        await self._loop.connect_read_pipe(lambda: reader_protocol, sys.stdin)
+        await self.__loop.connect_read_pipe(lambda: reader_protocol, sys.stdin)
         return reader
 
     def __send(self):
-        self._sender.send(self.__receivers.values())
+        self.__writer.send(self.__receivers.values())
 
     def __on_init(self):
         for receiver in self.__receivers.values():
@@ -58,7 +58,7 @@ def main():
     loop = asyncio.get_event_loop()
     task = None
     try:
-        proxy = Proxy()
+        proxy = Proxy(loop)
         task = proxy.run()
         loop.run_until_complete(task)
     except KeyboardInterrupt:

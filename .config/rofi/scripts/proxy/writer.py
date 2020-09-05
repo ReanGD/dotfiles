@@ -4,7 +4,7 @@ from typing import List
 from receiver import Receiver
 
 
-class Sender:
+class Writer:
     def __init__(self):
         self.__help = None
         self.__input = None

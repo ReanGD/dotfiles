@@ -1,13 +1,13 @@
 import sys
 import clipboard
-from sender import Sender
+from writer import Writer
 from receiver import Receiver
 from googletrans import Translator
 
 
 class Translate(Receiver):
-    def __init__(self, sender: Sender):
-        super().__init__(sender, "Translate")
+    def __init__(self, writer: Writer):
+        super().__init__(writer, "Translate")
         self.__src_text = ""
         self.__dst_text = ""
         self.__translator = Translator(service_urls=["translate.google.ru"])
@@ -24,7 +24,7 @@ class Translate(Receiver):
                 return
 
         self.__translate(text)
-        self._sender.set_input(self.__src_text)
+        self._writer.set_input(self.__src_text)
 
     def on_input(self, text: str):
         if len(text) <= 1:
@@ -42,7 +42,7 @@ class Translate(Receiver):
                 return
 
             self.__translate(self.__dst_text)
-            self._sender.set_input(self.__src_text)
+            self._writer.set_input(self.__src_text)
 
     def __translate(self, text: str):
         text = text.strip()
@@ -56,4 +56,4 @@ class Translate(Receiver):
         self.__src_text = res.origin
         self.__dst_text = res.text
         markup_text = f"<b>{src_lang}</b>: {self.__src_text}\r\r<b>{dst_lang}</b>: {self.__dst_text}"
-        self._sender.set_help(markup_text)
+        self._writer.set_help(markup_text)

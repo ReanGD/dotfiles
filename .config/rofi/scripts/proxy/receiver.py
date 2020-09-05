@@ -1,14 +1,14 @@
 from __future__ import annotations
 from typing import List, TYPE_CHECKING
 if TYPE_CHECKING:
-    from sender import Sender
+    from writer import Writer
 
 
 class Receiver:
-    def __init__(self, sender: Sender, group: str):
+    def __init__(self, writer: Writer, group: str):
         self.__group = group
         self.__lines: List[object] = []
-        self._sender = sender
+        self._writer = writer
 
     def get_group(self) -> str:
         return self.__group
