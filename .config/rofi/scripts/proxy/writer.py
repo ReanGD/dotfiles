@@ -6,14 +6,14 @@ from receiver import Receiver
 
 class Writer:
     def __init__(self):
-        self.__help = None
-        self.__input = None
+        self._help = None
+        self._input = None
 
     def set_help(self, text: str):
-        self.__help = text
+        self._help = text
 
     def set_input(self, text: str):
-        self.__input = text
+        self._input = text
 
     def send(self, receivers: List[Receiver]):
         lines = []
@@ -21,12 +21,12 @@ class Writer:
             lines.extend(receiver.get_lines())
 
         req = {"lines": lines}
-        if self.__help is not None:
-            req["help"] = self.__help
-            self.__help = None
-        if self.__input is not None:
-            req["input"] = self.__input
-            self.__input = None
+        if self._help is not None:
+            req["help"] = self._help
+            self._help = None
+        if self._input is not None:
+            req["input"] = self._input
+            self._input = None
 
         sys.stdout.write(json.dumps(req) + "\n")
         sys.stdout.flush()

@@ -6,25 +6,25 @@ if TYPE_CHECKING:
 
 class Receiver:
     def __init__(self, writer: Writer, group: str):
-        self.__group = group
-        self.__lines: List[object] = []
-        self._writer = writer
+        self._group = group
+        self._lines: List[object] = []
+        self.writer = writer
 
     def get_group(self) -> str:
-        return self.__group
+        return self._group
 
     def get_lines(self) -> List[object]:
-        return self.__lines
+        return self._lines
 
     def reset_lines(self):
-        self.__lines = []
+        self._lines = []
 
     def add_line(self, text: str, id_text: str = "", markup: bool = False, filtering: bool = True, icon: str = None):
         # pylint: disable=R0913
-        self.__lines.append({
+        self._lines.append({
             "id": id_text,
             "text": text,
-            "group": self.__group,
+            "group": self._group,
             "icon": icon,
             "filtering": filtering,
             "markup": markup})

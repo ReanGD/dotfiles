@@ -6,13 +6,13 @@ from broker import Broker
 
 class Reader:
     def __init__(self, loop, broker: Broker):
-        self.__loop = loop
-        self.__broker = broker
+        self._loop = loop
+        self._broker = broker
 
     async def _get_stdin_reader(self):
-        reader = asyncio.StreamReader(loop=self.__loop)
+        reader = asyncio.StreamReader(loop=self._loop)
         reader_protocol = asyncio.StreamReaderProtocol(reader)
-        await self.__loop.connect_read_pipe(lambda: reader_protocol, sys.stdin)
+        await self._loop.connect_read_pipe(lambda: reader_protocol, sys.stdin)
         return reader
 
     async def run(self):
@@ -21,4 +21,4 @@ class Reader:
         while True:
             line = await reader.readline()
             input_msg = json.loads(line)
-            self.__broker.add_message(input_msg)
+            self._broker.add_message(input_msg)
