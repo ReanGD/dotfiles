@@ -9,8 +9,10 @@ from broker import Broker
 
 async def main():
     module = "interactive"
-    if len(sys.argv) >= 2 and sys.argv[1] == "translate":
-        module = "translate"
+    if len(sys.argv) >= 2:
+        name = sys.argv[1].strip()
+        if name in ["translate", "custom_menu"]:
+            module = name
 
     loop = asyncio.get_event_loop()
     writer = Writer()

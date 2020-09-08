@@ -3,6 +3,7 @@ from calc import Calc
 from writer import Writer
 from receiver import Receiver
 from translate import Translate
+from custom_menu import CustomMenu
 from typing import Dict, List, Optional, Any
 from utils import cancel_all_tasks, ExitException
 
@@ -15,9 +16,11 @@ class Broker:
         self._queue: collections.deque = collections.deque()
         receivers: List[Receiver] = []
         if module == "translate":
-            receivers.append(Translate(writer))
+            receivers = [Translate(writer)]
+        if module == "custom_menu":
+            receivers = [CustomMenu(writer)]
         else:
-            receivers.append(Calc(writer))
+            receivers = [Calc(writer)]
 
         self._receivers = {receiver.get_group(): receiver for receiver in receivers}
 
