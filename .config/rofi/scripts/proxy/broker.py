@@ -1,7 +1,7 @@
 import collections
-from typing import Dict
 from writer import Writer
 from translate import Translate
+from typing import Dict, Optional
 from utils import cancel_all_tasks, ExitException
 
 
@@ -16,15 +16,20 @@ class Broker:
 
     def add_message(self, msg: Dict[str, object]):
         self._queue.append(msg)
-        if self._waiter is not None:
-            if not self._waiter.done():
-                self._waiter.set_result(None)
+        if self._waiter is not None and not self._waiter.done():
+            self._waiter.set_result(None)
 
-    async def _get_next_message(self):
+    async def _get_next_message(self) -> Dict[str, object]:
         if not self._queue:
-            self._waiter = self._loop.create_future()
-            await self._waiter
+            waiter = self._loop.create_future()
+            self._waiter = waiter
+            await waiter
         return self._queue.popleft()
+
+    def _view_next_message(self) -> Optional[Dict[str, object]]:
+        if not self._queue:
+            return None
+        return self._queue[0]
 
     def _send(self):
         self._writer.send(self._receivers.values())
@@ -52,7 +57,9 @@ class Broker:
             msg = await self._get_next_message()
             name = msg["name"]
             if name == "input":
-                self._on_input(msg["value"])
+                next_msg = self._view_next_message()
+                if next_msg is None or next_msg["name"] != "input":
+                    self._on_input(msg["value"])
             elif name == "select_line":
                 self._on_enter(msg["value"])
 
