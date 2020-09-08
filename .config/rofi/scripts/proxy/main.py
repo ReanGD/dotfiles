@@ -9,7 +9,7 @@ from broker import Broker
 async def main():
     loop = asyncio.get_event_loop()
     writer = Writer()
-    broker = Broker(writer)
+    broker = Broker(loop, writer)
     reader = Reader(loop, broker)
     try:
         await asyncio.gather(broker.run(), reader.run())
