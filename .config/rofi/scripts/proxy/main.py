@@ -11,8 +11,10 @@ async def main():
     writer = Writer()
     broker = Broker(writer)
     reader = Reader(loop, broker)
-    await asyncio.gather(broker.run(), reader.run())
-
+    try:
+        await asyncio.gather(broker.run(), reader.run())
+    except asyncio.exceptions.CancelledError:
+        pass
 
 if __name__ == "__main__":
     asyncio.run(main())

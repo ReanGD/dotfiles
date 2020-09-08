@@ -1,7 +1,7 @@
-import sys
 import clipboard
 from writer import Writer
 from receiver import Receiver
+from utils import ExitException
 from googletrans import Translator
 
 
@@ -35,7 +35,7 @@ class Translate(Receiver):
     def on_enter(self, id_text: str, text: str):
         if id_text == "copy":
             clipboard.set_clipboard(self.__dst_text)
-            sys.exit(0)
+            raise ExitException()
 
         if id_text == "swap":
             if len(self.__dst_text) <= 1:

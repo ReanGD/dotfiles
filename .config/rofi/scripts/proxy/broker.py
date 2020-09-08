@@ -2,6 +2,7 @@ import asyncio
 from typing import Dict
 from writer import Writer
 from translate import Translate
+from utils import cancel_all_tasks, ExitException
 
 
 class Broker:
@@ -33,7 +34,7 @@ class Broker:
             receiver.on_enter(line["id"], line["text"])
             self.__send()
 
-    async def run(self):
+    async def _run(self):
         self.__on_init()
 
         while True:
@@ -45,3 +46,9 @@ class Broker:
                 self.__on_enter(msg["value"])
 
             self.__queue.task_done()
+
+    async def run(self):
+        try:
+            await self._run()
+        except ExitException:
+            await cancel_all_tasks()
