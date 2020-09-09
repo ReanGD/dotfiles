@@ -1,32 +1,39 @@
 import collections
+from calc import Calc
 from writer import Writer
+from receiver import Receiver
 from translate import Translate
-from typing import Dict, Optional
+from typing import Dict, List, Optional, Any
 from utils import cancel_all_tasks, ExitException
 
 
 class Broker:
-    def __init__(self, loop, writer: Writer):
+    def __init__(self, loop, writer: Writer, module: str):
         self._loop = loop
         self._writer = writer
         self._waiter = None
         self._queue: collections.deque = collections.deque()
-        receivers = [Translate(writer)]
+        receivers: List[Receiver] = []
+        if module == "translate":
+            receivers.append(Translate(writer))
+        else:
+            receivers.append(Calc(writer))
+
         self._receivers = {receiver.get_group(): receiver for receiver in receivers}
 
-    def add_message(self, msg: Dict[str, object]):
+    def add_message(self, msg: Dict[str, Any]):
         self._queue.append(msg)
         if self._waiter is not None and not self._waiter.done():
             self._waiter.set_result(None)
 
-    async def _get_next_message(self) -> Dict[str, object]:
+    async def _get_next_message(self) -> Dict[str, Any]:
         if not self._queue:
             waiter = self._loop.create_future()
             self._waiter = waiter
             await waiter
         return self._queue.popleft()
 
-    def _view_next_message(self) -> Optional[Dict[str, object]]:
+    def _view_next_message(self) -> Optional[Dict[str, Any]]:
         if not self._queue:
             return None
         return self._queue[0]

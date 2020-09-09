@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, TYPE_CHECKING
+from typing import List, Any, TYPE_CHECKING
 if TYPE_CHECKING:
     from writer import Writer
 
@@ -7,13 +7,13 @@ if TYPE_CHECKING:
 class Receiver:
     def __init__(self, writer: Writer, group: str):
         self._group = group
-        self._lines: List[object] = []
+        self._lines: List[Any] = []
         self.writer = writer
 
     def get_group(self) -> str:
         return self._group
 
-    def get_lines(self) -> List[object]:
+    def get_lines(self) -> List[Any]:
         return self._lines
 
     def reset_lines(self):
