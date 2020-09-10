@@ -1,5 +1,6 @@
 import collections
 from calc import Calc
+from kill import Kill
 from writer import Writer
 from receiver import Receiver
 from translate import Translate
@@ -20,9 +21,12 @@ class Broker:
         elif module == "custom_menu":
             receivers = [CustomMenu(writer)]
         else:
-            receivers = [Calc(writer)]
+            receivers = [Calc(writer), Kill(writer)]
 
         self._receivers = {receiver.get_group(): receiver for receiver in receivers}
+        self._mode_receivers = {receiver.get_activate_word(): receiver
+                                for receiver in receivers
+                                if receiver.get_activate_word() is not None}
 
     def add_message(self, msg: Dict[str, Any]):
         self._queue.append(msg)
@@ -49,7 +53,31 @@ class Broker:
             receiver.on_init()
         self._send()
 
+    def _on_activate(self, activated_receiver: Receiver):
+        prompt = activated_receiver.get_prompt()
+        if prompt is not None:
+            self._writer.set_prompt(prompt)
+        self._writer.set_input("")
+        self._writer.exit_by_cancel(False)
+        self._writer.hide_combi_lines(True)
+
+        activated_receiver.set_activated(True)
+        for receiver in self._receivers.values():
+            if receiver != activated_receiver:
+                receiver.set_activated(False)
+
+        self._send()
+
     def _on_input(self, text: str):
+        activated_receiver: Optional[Receiver] = self._mode_receivers.get(text, None)
+        if activated_receiver is not None and not activated_receiver.is_activated():
+            self._on_activate(activated_receiver)
+            return
+
+        next_msg = self._view_next_message()
+        if next_msg is not None and next_msg["name"] == "input":
+            return
+
         for receiver in self._receivers.values():
             receiver.on_input(text)
         self._send()
@@ -67,9 +95,7 @@ class Broker:
             msg = await self._get_next_message()
             name = msg["name"]
             if name == "input":
-                next_msg = self._view_next_message()
-                if next_msg is None or next_msg["name"] != "input":
-                    self._on_input(msg["value"])
+                self._on_input(msg["value"])
             elif name == "select_line":
                 self._on_enter(msg["value"])
 
