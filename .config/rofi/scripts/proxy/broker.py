@@ -23,6 +23,7 @@ class Broker:
         else:
             receivers = [Calc(writer), Kill(writer)]
 
+        self._exclusive_receiver: Optional[Receiver] = None
         self._receivers = {receiver.get_group(): receiver for receiver in receivers}
         self._mode_receivers = {receiver.get_activate_word(): receiver
                                 for receiver in receivers
@@ -62,24 +63,43 @@ class Broker:
         self._writer.hide_combi_lines(True)
 
         activated_receiver.set_activated(True)
+        activated_receiver.on_input("")
         for receiver in self._receivers.values():
             if receiver != activated_receiver:
                 receiver.set_activated(False)
 
+        self._exclusive_receiver = activated_receiver
+        self._send()
+
+    def _on_deactivate(self):
+        self._writer.set_prompt("proxy")
+        self._writer.set_input("")
+        self._writer.exit_by_cancel(True)
+        self._writer.hide_combi_lines(False)
+
+        self._exclusive_receiver.set_activated(False)
+        for receiver in self._receivers.values():
+            if receiver.get_activate_word() is None:
+                receiver.set_activated(True)
+                receiver.on_input("")
+
+        self._exclusive_receiver = None
         self._send()
 
     def _on_input(self, text: str):
-        activated_receiver: Optional[Receiver] = self._mode_receivers.get(text, None)
-        if activated_receiver is not None and not activated_receiver.is_activated():
-            self._on_activate(activated_receiver)
-            return
+        if self._exclusive_receiver is None:
+            activated_receiver: Optional[Receiver] = self._mode_receivers.get(text, None)
+            if activated_receiver is not None and not activated_receiver.is_activated():
+                self._on_activate(activated_receiver)
+                return
 
         next_msg = self._view_next_message()
         if next_msg is not None and next_msg["name"] == "input":
             return
 
         for receiver in self._receivers.values():
-            receiver.on_input(text)
+            if receiver.is_activated():
+                receiver.on_input(text)
         self._send()
 
     def _on_enter(self, line: Dict[str, str]):
@@ -87,6 +107,10 @@ class Broker:
         if receiver is not None:
             receiver.on_enter(line["id"], line["text"])
             self._send()
+
+    def _on_key_press(self, key: str, line: Dict[str, str]):
+        if key == "cancel" and self._exclusive_receiver is not None:
+            self._on_deactivate()
 
     async def _run(self):
         self._on_init()
@@ -98,6 +122,8 @@ class Broker:
                 self._on_input(msg["value"])
             elif name == "select_line":
                 self._on_enter(msg["value"])
+            elif name == "key_press":
+                self._on_key_press(msg["value"]["key"], msg["value"]["line"])
 
     async def run(self):
         try:
