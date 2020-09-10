@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# -proxy-log
+rofi -show-icons -combi-hide-mode-prefix -modi combi -show combi -combi-modi "proxy,drun" -proxy-cmd "$XDG_CONFIG_HOME/rofi/scripts/proxy/main.py interactive"

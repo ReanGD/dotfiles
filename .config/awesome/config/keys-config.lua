@@ -10,10 +10,6 @@ local layoutbox = require("widget.layoutbox")
 
 local keys = { client_keys = {}, client_buttons = {}}
 
-local function launcher_system_menu(env)
-    awful.spawn(env.scripts_dir .. "run_menu.sh")
-end
-
 scrot_screenshot_path = os.getenv("HOME") .. "/tmp/$(date +%F_%T).png"
 flameshot_screenshot_path = os.getenv("HOME") .. "/tmp/"
 
@@ -180,14 +176,12 @@ function keys:init(env)
         -- Launcher
         Key(M, "Return", function () awful.spawn(env.terminal) end,
             {group = "Launcher", description = "Run terminal"}),
-        Key(SM, "r",     function () awful.spawn("pkill sleep") end,
-            {group = "Launcher", description = "Run pkill sleep"}),
-        Key(M,  "r",     function () awful.spawn("rofi -show run") end,
+        Key(M,  "r",     function () awful.spawn("rofi-interactive") end,
             {group = "Launcher", description = "Open program menu"}),
-        Key(SM, "r",     function () launcher_system_menu(env) end,
-            {group = "Launcher", description = "Open system menu"}),
-        Key(M,  "t",     function () awful.spawn("launcher") end,
-            {group = "Launcher", description = "Open ulauncher"})
+        Key(SM, "r",     function () awful.spawn("rofi-custom-menu") end,
+            {group = "Launcher", description = "Open custom menu"}),
+        Key(M,  "t",     function () awful.spawn("rofi-translate") end,
+            {group = "Launcher", description = "Translate text"})
     )
 
     for i = 1, 9 do
