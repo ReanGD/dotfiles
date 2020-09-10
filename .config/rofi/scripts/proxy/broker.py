@@ -17,7 +17,7 @@ class Broker:
         receivers: List[Receiver] = []
         if module == "translate":
             receivers = [Translate(writer)]
-        if module == "custom_menu":
+        elif module == "custom_menu":
             receivers = [CustomMenu(writer)]
         else:
             receivers = [Calc(writer)]

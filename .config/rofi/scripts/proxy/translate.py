@@ -1,7 +1,7 @@
 import clipboard
 from writer import Writer
 from receiver import Receiver
-from utils import ExitException
+from utils import ExitException, get_icon
 from googletrans import Translator
 
 
@@ -14,8 +14,8 @@ class Translate(Receiver):
 
     def on_init(self):
         self.reset_lines()
-        self.add_line("Copy", "copy", filtering=False, icon="edit-copy")
-        self.add_line("Swap", "swap", filtering=False, icon="go-up")
+        self.add_line("Copy", "copy", filtering=False, icon=get_icon("copy.svg"))
+        self.add_line("Swap", "swap", filtering=False, icon=get_icon("swap.svg"))
 
         text = clipboard.get_primary_clipboard()
         if len(text) <= 1:
