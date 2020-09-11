@@ -6,6 +6,7 @@ local subprocess = require("std.subprocess")
 --------------------------------------------------------------------------------
 local env = {}
 
+local os = os
 local gfs = gears.filesystem
 
 -- Module functions
@@ -34,6 +35,7 @@ function env:init(args)
 	self.terminal = args.terminal or "urxvt"
 	self.mixer = args.mixer or "pavucontrol"
 	self.home = os.getenv("HOME")
+	self.screenshot_dir = self.home .. "/tmp/"
 	self.hostname = subprocess.output_read("uname -n")
 	self.theme_dir = gfs.get_configuration_dir() .. "themes/" .. theme
 	self.scripts_dir = gfs.get_configuration_dir() .. "sripts/"

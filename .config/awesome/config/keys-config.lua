@@ -5,27 +5,10 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 -- Widget library
 local volume = require("widget.volume")
-local keyboard = require("widget.keyboard")
 local layoutbox = require("widget.layoutbox")
+local screenshot = require("widget.screenshot")
 
 local keys = { client_keys = {}, client_buttons = {}}
-
-scrot_screenshot_path = os.getenv("HOME") .. "/tmp/$(date +%F_%T).png"
-flameshot_screenshot_path = os.getenv("HOME") .. "/tmp/"
-
-function screenshot_full()
-    awful.util.spawn_with_shell("flameshot full -c -p " .. flameshot_screenshot_path)
-    -- awful.util.spawn_with_shell("scrot " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
-end
-
-function screenshot_select()
-    awful.util.spawn_with_shell("flameshot gui -p " .. flameshot_screenshot_path)
-    -- awful.util.spawn_with_shell("sleep 0.5 && scrot --select " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
-end
-
-function screenshot_focused()
-    awful.util.spawn_with_shell("scrot --focused " .. scrot_screenshot_path .. " --exec 'xclip -selection c -t image/png < $f'")
-end
 
 local function tag_numkey(i, modkey, action)
     return awful.key(modkey, "#" .. i + 9,
@@ -150,17 +133,25 @@ function keys:init(env)
 
         -- Audio
         Key({}, "XF86AudioRaiseVolume", function () volume:volume_up(true) end,
-            {group = "Hotkeys", description = "Increase volume up by 5%"}),
+            {group = "Audio", description = "Increase volume up by 5%"}),
         Key(SM, "=", function () volume:volume_up(true) end,
-            {group = "Hotkeys", description = "Increase volume up by 5%"}),
+            {group = "Audio", description = "Increase volume up by 5%"}),
         Key({}, "XF86AudioLowerVolume", function () volume:volume_down(true) end,
-            {group = "Hotkeys", description = "decrease volume up by 5%"}),
+            {group = "Audio", description = "decrease volume up by 5%"}),
         Key(SM, "-", function () volume:volume_down(true) end,
-            {group = "Hotkeys", description = "decrease volume up by 5%"}),
+            {group = "Audio", description = "decrease volume up by 5%"}),
         Key({}, "XF86AudioMute", function () volume:toggle_mute(true) end,
-            {group = "Hotkeys", description = "Toggle mute"}),
+            {group = "Audio", description = "Toggle mute"}),
         Key(SM, "0", function () volume:toggle_mute(true) end,
-            {group = "Hotkeys", description = "Toggle mute"}),
+            {group = "Audio", description = "Toggle mute"}),
+
+        -- Screenshot
+        Key({}, "Print", function () screenshot:screen() end,
+            {group = "Screenshot", description = "Screenshot screen"}),
+        Key(S, "Print",  function () screenshot:rect() end,
+            {group = "Screenshot", description = "Screenshot selected rect"}),
+        Key(C, "Print",  function () screenshot:focused_window() end,
+            {group = "Screenshot", description = "Screenshot focused window"}),
 
         Key(M, "F3", function () layoutbox:layout_menu_show() end,
             {group = "Main", description = "Window control mode"}),
@@ -200,13 +191,7 @@ function keys:init(env)
         Key(M,  "m",     function(c) c.maximized = not c.maximized c:raise() end ,
             {group = "Windows", description = "(Un)Maximize"}),
         Key(M,  "b",     awful.client.floating.toggle,
-            {group = "Windows", description = "Toggle floating"}),
-        Key({}, "Print", screenshot_full,
-            {group = "Screenshot", description = "Screenshot full screen"}),
-        Key(S, "Print",  screenshot_select,
-            {group = "Screenshot", description = "Screenshot selected rect"}),
-        Key(C, "Print",  screenshot_focused,
-            {group = "Screenshot", description = "Screenshot focused window"})
+            {group = "Windows", description = "Toggle floating"})
     )
 
     self.client_buttons = gears.table.join(
