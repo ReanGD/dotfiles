@@ -6,9 +6,7 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 
 require("awful.autofocus")
 
@@ -31,20 +29,12 @@ local layoutbox = require("widget.layoutbox")
 local screenshot = require("widget.screenshot")
 
 -- Config modules
+local keys = require("cfg.keys")
 local autostart = require("cfg.autostart")
 
 -- Setup theme and environment vars
 --------------------------------------------------------------------------------
-env:init({theme="default"})
-
-awful.layout.layouts = {
-    awful.layout.suit.tile.right,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.max,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-}
+env:init{ theme="default" }
 
 bar:init{ bar_id = env.bar_id }
 clock:init()
@@ -55,6 +45,15 @@ tasklist:init()
 keyboard:init()
 layoutbox:init{ modkey = env.modkey }
 screenshot:init{ dir = env.screenshot_dir }
+
+awful.layout.layouts = {
+    awful.layout.suit.tile.right,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.max,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+}
 
 awful.screen.connect_for_each_screen(function(s)
     env:wallpaper_setup(s)
@@ -67,7 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
                 awful.layout.suit.tile.left,
                 awful.layout.suit.tile.left })
 
-    bar:create {
+    bar:create{
         screen = s,
         left = { layoutbox:widget(s), taglist:widget(s) },
         center = tasklist:widget(s),
@@ -75,11 +74,10 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 
-local hotkeys = require("config.keys-config")
-hotkeys:init{ modkey = env.modkey, terminal = env.terminal }
+keys:init{ modkey = env.modkey, terminal = env.terminal }
 
 local rules = require("config.rules-config")
-rules:init(hotkeys)
+rules:init(keys)
 
 local signals = require("config.signals-config")
 signals:init()
