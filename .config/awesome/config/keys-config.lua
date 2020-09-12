@@ -1,14 +1,48 @@
--- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
+local hotkeys_popup = require("awful.hotkeys_popup")
 
--- Widget library
 local volume = require("widget.volume")
 local layoutbox = require("widget.layoutbox")
 local screenshot = require("widget.screenshot")
 
-local keys = { client_keys = {}, client_buttons = {}}
+-- Initialize tables and vars for module
+--------------------------------------------------------------------------------
+local keys = {}
+
+local table = gears.table
+
+-- Local functions
+--------------------------------------------------------------------------------
+local function screen_focus_switch(dir)
+    return function()
+        awful.screen.focus_bydirection(dir)
+	end
+end
+
+local function client_focus_switch(dir)
+    return function()
+        local screen = awful.screen.focused()
+        local layout = awful.layout.get(screen)
+        if layout == awful.layout.suit.max then
+            if dir == "right" or dir == "up" then
+                awful.client.focus.byidx(1)
+            else
+                awful.client.focus.byidx(-1)
+            end
+        else
+            awful.client.focus.bydirection(dir, client.focus, true)
+        end
+
+		if client.focus then client.focus:raise() end
+	end
+end
+
+local function position_switch(dir)
+    return function()
+        awful.client.swap.bydirection(dir)
+	end
+end
 
 local function tag_numkey(i, modkey, action)
     return awful.key(modkey, "#" .. i + 9,
@@ -35,60 +69,29 @@ local function client_numkey(i, modkey, action)
     )
 end
 
+-- Constructor
+--------------------------------------------------------------------------------
+function keys:init(args)
+    args = args or {}
+    local modkey = args.modkey or "Mod4"
+    local terminal = args.terminal or "urxvt"
 
-----------------------------------------------------------------------------------------------------------------------
--- Key support functions
-----------------------------------------------------------------------------------------------------------------------
--- Change screen focus
-local function screen_focus_switch(dir)
-    return function()
-        awful.screen.focus_bydirection(dir)
-	end
-end
-
--- Change window focus
-local function client_focus_switch(dir)
-    return function()
-        local screen = awful.screen.focused()
-        local layout = awful.layout.get(screen)
-        if layout == awful.layout.suit.max then
-            if dir == "right" or dir == "up" then
-                awful.client.focus.byidx(1)
-            else
-                awful.client.focus.byidx(-1)
-            end
-        else
-            awful.client.focus.bydirection(dir, client.focus, true)
-        end
-
-		if client.focus then client.focus:raise() end
-	end
-end
-
--- Change window position
-local function position_switch(dir)
-    return function()
-        awful.client.swap.bydirection(dir)
-	end
-end
-
-function keys:init(env)
     local S = { "Shift" }
     local C = { "Control" }
-    local M = { env.modkey }
-    local SM = { env.modkey, "Shift" }
-    local CM = { env.modkey, "Control" }
-    local SCM = { env.modkey, "Shift", "Control" }
+    local M = { modkey }
+    local SM = { modkey, "Shift" }
+    local CM = { modkey, "Control" }
+    local SCM = { modkey, "Shift", "Control" }
     local Key = awful.key
     local Button = awful.button
 
-    local root_keys = gears.table.join(
+    local root_keys = table.join(
         -- Awesome
         Key(SCM, "r", awesome.restart,
             {group = "Awesome", description = "Reload awesome"}),
         Key(SCM, "q", awesome.quit,
             {group = "Awesome", description = "Quit awesome"}),
-        Key(M, "F1",  hotkeys_popup.show_help,
+        Key(M, "F1",  hotkeys_popup.widget.show_help,
             {group = "Awesome", description = "Show help"}),
 
         -- Screen focus
@@ -165,7 +168,7 @@ function keys:init(env)
             {group = "Layout", description = "Select next"}),
 
         -- Launcher
-        Key(M, "Return", function () awful.spawn(env.terminal) end,
+        Key(M, "Return", function () awful.spawn(terminal) end,
             {group = "Launcher", description = "Run terminal"}),
         Key(M,  "r",     function () awful.spawn("rofi-interactive") end,
             {group = "Launcher", description = "Open program menu"}),
@@ -176,14 +179,14 @@ function keys:init(env)
     )
 
     for i = 1, 9 do
-        root_keys = gears.table.join(root_keys,
+        root_keys = table.join(root_keys,
             tag_numkey(i, M,     function(t) t:view_only() end),
             tag_numkey(i, CM,    function(t) awful.tag.viewtoggle(t) end),
             client_numkey(i, SM, function(t) client.focus:move_to_tag(t) end)
         )
     end
 
-    self.client_keys = gears.table.join(
+    self.client_keys = table.join(
         Key(M,  "f",     function(c) c.fullscreen = not c.fullscreen c:raise() end,
             {group = "Windows", description = "Toggle fullscreen"}),
         Key(SM, "q",     function(c) c:kill() end,
@@ -194,7 +197,7 @@ function keys:init(env)
             {group = "Windows", description = "Toggle floating"})
     )
 
-    self.client_buttons = gears.table.join(
+    self.client_buttons = table.join(
         Button({}, 1, function (c) client.focus = c; c:raise() end),
         Button(M,  1, awful.mouse.client.move),
         Button(M,  3, awful.mouse.client.resize)

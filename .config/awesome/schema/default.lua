@@ -28,6 +28,7 @@ local taglist = require("widget.taglist")
 local tasklist = require("widget.tasklist")
 local keyboard = require("widget.keyboard")
 local layoutbox = require("widget.layoutbox")
+local screenshot = require("widget.screenshot")
 
 -- Config modules
 local autostart = require("cfg.autostart")
@@ -45,15 +46,15 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
 }
 
-
-bar:init({ bar_id = env.bar_id })
+bar:init{ bar_id = env.bar_id }
 clock:init()
-volume:init({ bar_id = env.bar_id, mixer = env.mixer })
+volume:init{ bar_id = env.bar_id, mixer = env.mixer }
 systray:init()
 taglist:init()
 tasklist:init()
 keyboard:init()
-layoutbox:init({ modkey = env.modkey })
+layoutbox:init{ modkey = env.modkey }
+screenshot:init{ dir = env.screenshot_dir }
 
 awful.screen.connect_for_each_screen(function(s)
     env:wallpaper_setup(s)
@@ -75,7 +76,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 local hotkeys = require("config.keys-config")
-hotkeys:init(env)
+hotkeys:init{ modkey = env.modkey, terminal = env.terminal }
 
 local rules = require("config.rules-config")
 rules:init(hotkeys)
