@@ -78,7 +78,7 @@ mouse-3: Toggle minor modes"
     t))
 
 (defun lcl:get-minor-modes ()
-  (remove-if-not
+  (cl-remove-if-not
    (lambda (mode) (lcl:filer-minor-mode mode))
    (split-string (format-mode-line minor-mode-alist))))
 

@@ -6,7 +6,8 @@
         initial-major-mode 'text-mode
         inhibit-startup-screen t
         inhibit-splash-screen t)
-  (set-default-font "monospace 10"))
+  (add-to-list 'default-frame-alist
+               '(font . "monospace 10")))
 (add-hook 'cfg-hook:ui 'cfg:screen)
 
 (defun cfg:bar ()

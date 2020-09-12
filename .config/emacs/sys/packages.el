@@ -1,6 +1,6 @@
 (provide 'sys/packages)
 
-(require 'cl)
+(require 'cl-lib)
 
 (require 'sys/groups)
 (require 'sys/hooks)
@@ -9,7 +9,7 @@
 (require 'sys/remap)
 
 (defun lcl:install-packages ()
-  (let ((pkgs (remove-if (lambda (p) (package-installed-p (car p))) cfg-var:packages)))
+  (let ((pkgs (cl-remove-if (lambda (p) (package-installed-p (car p))) cfg-var:packages)))
     (when pkgs
       (message "%s" "Emacs is now refreshing its package database...")
       (package-refresh-contents)
@@ -20,21 +20,15 @@
         (if func (funcall func))))))
 
 (defun lcl:init-dir ()
-  (setq delete-dir nil)
-
   (if (eq cfg-var:work-dir nil)
-      (setq cfg-var:work-dir user-emacs-directory)
-    (setq delete-dir user-emacs-directory))
+      (setq cfg-var:work-dir user-emacs-directory))
 
   (setq backup-dir (concat (file-name-as-directory cfg-var:work-dir) "backup")
         auto-save-dir (concat (file-name-as-directory cfg-var:work-dir) "auto-save"))
 
   (setq user-emacs-directory cfg-var:work-dir
         backup-directory-alist `(("." . ,backup-dir))
-        auto-save-list-file-prefix auto-save-dir)
-
-  (if (not (eq delete-dir nil))
-      (delete-directory delete-dir t)))
+        auto-save-list-file-prefix auto-save-dir))
 
 (defun lcl:init-session ()
   (desktop-save-mode t)
