@@ -19,6 +19,16 @@ function theme:solarized_colors()
     self.fg_urgent = "#dc322fff"
 end
 
+-- see https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+function theme:custom_colors()
+    self.bg_normal = "#00334d"
+    self.bg_focus  = "#375c79"
+    self.bg_urgent = self.bg_normal
+    self.fg_normal = "#FFFFFFdd"
+    self.fg_focus  = "#FFFFFFaa"
+    self.fg_urgent = "#dc322fff"
+end
+
 function theme:client()
     self.useless_gap   = 0
     self.border_width  = dpi(1)
@@ -64,7 +74,8 @@ function theme:init()
     self.icon_theme = "/usr/share/icons/mate"
     self.wallpaper = self.path .. "/wallpapers/morning-wallpaper.jpg"
 
-    self:solarized_colors()
+    -- self:solarized_colors()
+    self:custom_colors()
     self:client()
     self:tasklist()
     self:layout()
