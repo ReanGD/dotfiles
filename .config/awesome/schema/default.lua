@@ -30,6 +30,7 @@ local screenshot = require("widget.screenshot")
 
 -- Config modules
 local keys = require("cfg.keys")
+local rules = require("cfg.rules")
 local autostart = require("cfg.autostart")
 
 -- Setup theme and environment vars
@@ -75,9 +76,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 keys:init{ modkey = env.modkey, terminal = env.terminal }
-
-local rules = require("config.rules-config")
-rules:init(keys)
+rules:init{ client_keys = keys.client_keys, client_buttons = keys.client_buttons }
 
 local signals = require("config.signals-config")
 signals:init()
