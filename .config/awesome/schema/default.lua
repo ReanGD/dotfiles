@@ -31,6 +31,7 @@ local screenshot = require("widget.screenshot")
 -- Config modules
 local keys = require("cfg.keys")
 local rules = require("cfg.rules")
+local signals = require("cfg.signals")
 local autostart = require("cfg.autostart")
 
 -- Setup theme and environment vars
@@ -59,13 +60,18 @@ awful.layout.layouts = {
 awful.screen.connect_for_each_screen(function(s)
     env:wallpaper_setup(s)
 
-    awful.tag({ "web", "doc", "devel", "cmdr", "media", "custom" }, s,
-              { awful.layout.suit.max,
-                awful.layout.suit.tile.right,
-                awful.layout.suit.max,
-                awful.layout.suit.max,
-                awful.layout.suit.tile.left,
-                awful.layout.suit.tile.left })
+    awful.tag(
+        { "web", "doc", "devel", "cmdr", "media", "custom", "bg" },
+        s,
+        {
+            awful.layout.suit.max,
+            awful.layout.suit.tile.right,
+            awful.layout.suit.tile.right,
+            awful.layout.suit.max,
+            awful.layout.suit.tile.right,
+            awful.layout.suit.tile.right,
+            awful.layout.suit.tile.right
+        })
 
     bar:create{
         screen = s,
@@ -77,8 +83,5 @@ end)
 
 keys:init{ modkey = env.modkey, terminal = env.terminal }
 rules:init{ client_keys = keys.client_keys, client_buttons = keys.client_buttons }
-
-local signals = require("config.signals-config")
 signals:init()
-
 autostart:init()
