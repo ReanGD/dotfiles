@@ -1,23 +1,29 @@
 local awful =require("awful")
 local beautiful = require("beautiful")
 
+-- Initialize tables and vars for module
+--------------------------------------------------------------------------------
 local rules = {}
 
+-- Constructor
+--------------------------------------------------------------------------------
+function rules:init(args)
+    args = args or {}
+    local client_keys = args.client_keys or {}
+    local client_buttons = args.client_buttons or {}
 
--- Build rule table
------------------------------------------------------------------------------------------------------------------------
-function rules:init(hotkeys)
     local base_properties = {
+        -- from https://awesomewm.org/doc/api/sample%20files/rc.lua.html
         border_width = beautiful.border_width,
         border_color = beautiful.border_normal,
         focus = awful.client.focus.filter,
         raise = true,
-        keys = hotkeys.client_keys,
-        buttons = hotkeys.client_buttons,
+        keys = client_keys,
+        buttons = client_buttons,
         screen = awful.screen.preferred,
-        -- hotkeys fix
-        size_hints_honor = false,
-        placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+        -- Remove gaps
+        size_hints_honor = false
     }
 
     floating_any = {
@@ -39,7 +45,7 @@ function rules:init(hotkeys)
         {
             rule = { },
             properties = base_properties,
-            -- new client always open as slave
+            -- New client always open as slave, put it at the end of other windows.
             callback = awful.client.setslave
         },
 
@@ -61,16 +67,6 @@ function rules:init(hotkeys)
         {
             rule = { class = "Doublecmd" },
             properties = { tag = "cmdr" }
-        }, 
-        {
-            rule = { class = "Conky" },
-            properties = {
-                floating = true,
-                sticky = true,
-                ontop = false,
-                focusable = false,
-                size_hints = {"program_position", "program_size"}
-            }
         }
     }
 end
