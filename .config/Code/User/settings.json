@@ -69,11 +69,11 @@
         "-count=1",
         // "-gcflags=all=-l"
     ],
-    "go.formatTool": "goimports",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
     "python.dataScience.askForKernelRestart": false,
     "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
     "python.linting.pylamaEnabled": true,
     "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
     "python.linting.enabled": true,
