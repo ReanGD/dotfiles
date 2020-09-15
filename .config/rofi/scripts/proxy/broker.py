@@ -1,29 +1,16 @@
 import collections
-from calc import Calc
-from kill import Kill
 from writer import Writer
-from storage import Storage
 from receiver import Receiver
-from translate import Translate
-from custom_menu import CustomMenu
 from typing import Dict, List, Optional, Any
 from utils import cancel_all_tasks, ExitException
 
 
 class Broker:
-    def __init__(self, loop, storage: Storage, module: str):
+    def __init__(self, loop, writer: Writer, receivers: List[Receiver]):
         self._loop = loop
-        self._writer: Writer = storage.writer
+        self._writer = writer
         self._waiter = None
         self._queue: collections.deque = collections.deque()
-        receivers: List[Receiver] = []
-        if module == "translate":
-            receivers = [Translate(storage)]
-        elif module == "custom_menu":
-            receivers = [CustomMenu(storage)]
-        else:
-            receivers = [Calc(storage), Kill(storage)]
-
         self._exclusive_receiver: Optional[Receiver] = None
         self._receivers = {receiver.get_group(): receiver for receiver in receivers}
         self._mode_receivers = {receiver.get_activate_word(): receiver
