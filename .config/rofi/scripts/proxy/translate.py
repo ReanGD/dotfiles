@@ -1,21 +1,21 @@
 import clipboard
-from writer import Writer
+from storage import Storage
 from receiver import Receiver
-from utils import ExitException, get_icon
+from utils import ExitException
 from googletrans import Translator
 
 
 class Translate(Receiver):
-    def __init__(self, writer: Writer):
-        super().__init__(writer, "Translate")
+    def __init__(self, storage: Storage):
+        super().__init__(storage, "Translate")
         self._src_text = ""
         self._dst_text = ""
         self._translator = Translator(service_urls=["translate.google.ru"])
 
     def on_init(self):
         self.reset_lines()
-        self.add_line("Copy", "copy", filtering=False, icon=get_icon("copy.svg"))
-        self.add_line("Swap", "swap", filtering=False, icon=get_icon("swap.svg"))
+        self.add_line("Copy", "copy", filtering=False, icon=self.resolve_icon("copy"))
+        self.add_line("Swap", "swap", filtering=False, icon=self.resolve_icon("swap"))
 
         text = clipboard.get_primary_clipboard()
         if len(text) <= 1:

@@ -1,15 +1,15 @@
 import math
 import types
 import clipboard
-from writer import Writer
+from storage import Storage
 from typing import Dict, Any
 from receiver import Receiver
 from utils import ExitException
 
 
 class Calc(Receiver):
-    def __init__(self, writer: Writer):
-        super().__init__(writer, "Calc")
+    def __init__(self, storage: Storage):
+        super().__init__(storage, "Calc")
         self.locals_dict = vars(math)
         self.globals_dict: Dict[str, Any] = {"__builtins__": {}}
 

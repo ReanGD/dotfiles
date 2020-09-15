@@ -1,16 +1,16 @@
 import sys
 import json
-from typing import List
 from receiver import Receiver
+from typing import List, Dict, Any, Optional
 
 
 class Writer:
     def __init__(self):
-        self._help = None
-        self._input = None
-        self._prompt = None
-        self._hide_combi_lines = None
-        self._exit_by_cancel = None
+        self._help: Optional[str] = None
+        self._input: Optional[str] = None
+        self._prompt: Optional[str] = None
+        self._hide_combi_lines: Optional[bool] = None
+        self._exit_by_cancel: Optional[bool] = None
 
     def set_help(self, text: str):
         self._help = text
@@ -33,7 +33,7 @@ class Writer:
             if receiver.is_activated():
                 lines.extend(receiver.get_lines())
 
-        req = {"lines": lines}
+        req: Dict[str, Any] = {"lines": lines}
         if self._help is not None:
             req["help"] = self._help
             self._help = None
