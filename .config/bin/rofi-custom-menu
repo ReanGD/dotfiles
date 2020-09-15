@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # -proxy-log
-rofi -show-icons -modi proxy -show proxy -proxy-cmd "$XDG_CONFIG_HOME/rofi/scripts/proxy/main.py custom_menu"
+rofi -show-icons -theme "awesome" -modi proxy -show proxy -proxy-cmd "$XDG_CONFIG_HOME/rofi/scripts/proxy/main.py custom_menu"
