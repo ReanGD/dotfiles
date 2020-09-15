@@ -54,5 +54,8 @@ class Receiver:
     def on_input(self, text: str):
         pass
 
+    def on_key_press(self, key: str, id_text: str, text: str):
+        pass
+
     def on_enter(self, id_text: str, text: str):
         pass

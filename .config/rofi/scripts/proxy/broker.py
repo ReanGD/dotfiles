@@ -102,15 +102,21 @@ class Broker:
                 receiver.on_input(text)
         self._send()
 
+    def _on_key_press(self, key: str, line: Dict[str, str]):
+        if key == "cancel":
+            if self._exclusive_receiver is not None:
+                self._on_deactivate()
+        else:
+            receiver = self._receivers.get(line["group"], None)
+            if receiver is not None:
+                receiver.on_key_press(key, line["id"], line["text"])
+                self._send()
+
     def _on_enter(self, line: Dict[str, str]):
         receiver = self._receivers.get(line["group"], None)
         if receiver is not None:
             receiver.on_enter(line["id"], line["text"])
             self._send()
-
-    def _on_key_press(self, key: str, line: Dict[str, str]):
-        if key == "cancel" and self._exclusive_receiver is not None:
-            self._on_deactivate()
 
     async def _run(self):
         self._on_init()
@@ -120,10 +126,10 @@ class Broker:
             name = msg["name"]
             if name == "input":
                 self._on_input(msg["value"])
-            elif name == "select_line":
-                self._on_enter(msg["value"])
             elif name == "key_press":
                 self._on_key_press(msg["value"]["key"], msg["value"]["line"])
+            elif name == "select_line":
+                self._on_enter(msg["value"])
 
     async def run(self):
         try:
