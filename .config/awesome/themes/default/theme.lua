@@ -24,8 +24,8 @@ function theme:custom_colors()
     self.bg_normal = "#00334d"
     self.bg_focus  = "#375c79"
     self.bg_urgent = self.bg_normal
-    self.fg_normal = "#FFFFFFdd"
-    self.fg_focus  = "#FFFFFFaa"
+    self.fg_normal = "#bebebe"
+    self.fg_focus  = "#ffffffaa"
     self.fg_urgent = "#dc322fff"
 end
 

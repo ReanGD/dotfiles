@@ -48,12 +48,15 @@
         ]
     },
     "window.zoomLevel": 0,
+    "window.titleBarStyle": "custom",
     "window.enableMenuBarMnemonics": false,
+    "window.customMenuBarAltFocus": false,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.associations": {
         "*.mat": "glsl",
         "*.msh": "hlsl",
+        "*.rasi": "glsl",
     },
     "workbench.colorTheme": "Monokai",
     "workbench.editor.enablePreviewFromQuickOpen": false,

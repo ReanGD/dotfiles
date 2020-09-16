@@ -38,6 +38,10 @@
                                     "when": "textInputFocus" },
     { "key": "ctrl+l",              "command": "cursorWordStartRight",
                                     "when": "textInputFocus" },
+    { "key": "ctrl+i",              "command": "editorScroll", "args": {"by": "line", "to": "up", "revealCursor": false, "value": 10},
+                                    "when": "editorFocus" },
+    // { "key": "ctrl+k",              "command": "editorScroll", "args": {"by": "line", "to": "down", "revealCursor": false, "value": 10},
+    //                                 "when": "editorFocus" },
 
     // Shift with additional arrow (disable)
     { "key": "shift+alt+j",         "command": "-bookmarks.expandSelectionToPrevious",
@@ -104,6 +108,9 @@
                                     "when": "searchViewletFocus" },
     { "key": "alt+r",               "command": "-workbench.action.terminal.toggleFindRegex",
                                     "when": "terminalFindFocused || terminalFocus" },
+    { "key": "ctrl+shift+;",        "command": "-breadcrumbs.focus",
+                                    "when": "breadcrumbsPossible" },
+    { "key": "alt+z",               "command": "-editor.action.toggleWordWrap" },
 
     // Edit additional
     { "key": "alt+d",               "command": "deleteLeft",
@@ -114,6 +121,9 @@
                                     "when": "textInputFocus && !editorReadonly" },
     { "key": "alt+r",               "command": "deleteWordRight",
                                     "when": "textInputFocus && !editorReadonly" },
+    { "key": "ctrl+shift+;",        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+                                    "when": "editorTextFocus" },
+    { "key": "alt+z",               "command": "undo"},
 
     // Bookmarks (disable)
     { "key": "f2",                  "command": "-editor.action.rename",

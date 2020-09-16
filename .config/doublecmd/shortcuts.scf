@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="0.9.1 beta">
+<doublecmd DCVersion="0.9.9 beta">
   <Hotkeys Version="46">
     <Form Name="Main">
-      <Hotkey>
-        <Shortcut>F1</Shortcut>
-        <Command>cm_About</Command>
-      </Hotkey>
       <Hotkey>
         <Shortcut>F2</Shortcut>
         <Command>cm_RenameOnly</Command>
@@ -455,13 +451,13 @@
         <Control>Files Panel</Control>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+Home</Shortcut>
-        <Command>cm_ChangeDirToHome</Command>
+        <Shortcut>Ctrl+Z</Shortcut>
+        <Command>cm_EditComment</Command>
         <Control>Files Panel</Control>
       </Hotkey>
       <Hotkey>
-        <Shortcut>Ctrl+Z</Shortcut>
-        <Command>cm_EditComment</Command>
+        <Shortcut>Ctrl+Shift+Home</Shortcut>
+        <Command>cm_ChangeDirToHome</Command>
         <Control>Files Panel</Control>
       </Hotkey>
     </Form>
