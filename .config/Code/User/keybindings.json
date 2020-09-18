@@ -56,7 +56,6 @@
     { "key": "ctrl+k ctrl+n",       "command": "-git.unstageSelectedRanges",
                                     "when": "isInDiffEditor" },
     { "key": "ctrl+k ctrl+q",       "command": "-workbench.action.navigateToLastEditLocation" },
-    { "key": "ctrl+alt+k",          "command": "-code-runner.runCustomCommand" },
     { "key": "ctrl+k m",            "command": "-workbench.action.editor.changeLanguageMode" },
     { "key": "ctrl+k ctrl+c",       "command": "-editor.action.addCommentLine",
                                     "when": "editorTextFocus && !editorReadonly" },
@@ -244,7 +243,6 @@
                                     "when": "terminalFindFocused || terminalFocus" },
     { "key": "ctrl+shift+;",        "command": "-breadcrumbs.focus",
                                     "when": "breadcrumbsPossible" },
-    { "key": "alt+z",               "command": "-editor.action.toggleWordWrap" },
 
     // Edit additional
     { "key": "alt+d",               "command": "deleteLeft",
@@ -257,21 +255,55 @@
                                     "when": "textInputFocus && !editorReadonly" },
     { "key": "ctrl+shift+;",        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
                                     "when": "editorTextFocus" },
-    { "key": "alt+z",               "command": "undo"},
 
-    // Menu hotkeys (disable)
+    // Undo, cut, copy, paste (disable)
+    { "key": "alt+z",               "command": "-editor.action.toggleWordWrap" },
+    { "key": "alt+c",               "command": "-toggleFindCaseSensitive",
+                                    "when": "editorFocus" },
+    { "key": "alt+c",               "command": "-toggleSearchCaseSensitive",
+                                    "when": "searchViewletFocus" },
+    { "key": "alt+c",               "command": "-toggleSearchEditorCaseSensitive",
+                                    "when": "inSearchEditor && searchInputBoxFocus" },
+    { "key": "alt+c",               "command": "-workbench.action.terminal.toggleFindCaseSensitive",
+                                    "when": "terminalFindFocused || terminalFocus" },
+    { "key": "alt+c",               "command": "-gitlens.showQuickCommitFileDetails",
+                                    "when": "editorTextFocus && gitlens:enabled && config.gitlens.keymap == 'alternate'" },
+
+    // Undo, cut, copy, paste
+    { "key": "alt+z",               "command": "undo"},
+    { "key": "alt+x",               "command": "editor.action.clipboardCutAction" },
+    { "key": "alt+c",               "command": "editor.action.clipboardCopyAction" },
+    { "key": "alt+v",               "command": "editor.action.clipboardPasteAction" },
+
+    // Menu interface (disable)
+
+    // Menu interface
+    { "key": "alt+m b",             "command": "workbench.action.toggleSidebarVisibility" },
+    { "key": "alt+m l",             "command": "workbench.action.editor.changeLanguageMode" },
+    { "key": "alt+m s",             "command": "workbench.action.gotoSymbol" },
+    { "key": "alt+m a",             "command": "workbench.action.showAllSymbols" },
+
+    // Menu text operation (disable)
     { "key": "ctrl+m",              "command": "-editor.action.jumpToBracket",
                                     "when": "editorFocus"},
     { "key": "ctrl+m",              "command": "-editor.action.toggleTabFocusMode" },
 
-    // Menu hotkeys
+    // Menu text operation
     { "key": "ctrl+m ctrl+u",       "command": "editor.action.transformToUppercase",
                                     "when": "editorTextFocus && !editorReadonly" },
     { "key": "ctrl+m ctrl+l",       "command": "editor.action.transformToLowercase",
                                     "when": "editorTextFocus && !editorReadonly" },
-    { "key": "ctrl+m ctrl+b",       "command": "workbench.action.toggleSidebarVisibility" },
     { "key": "ctrl+m ctrl+s",       "command": "workbench.action.files.saveAll" },
-    { "key": "ctrl+m ctrl+m",       "command": "workbench.action.editor.changeLanguageMode" },
+
+    // Build (disable)
+    { "key": "ctrl+b",              "command": "-workbench.action.toggleSidebarVisibility" },
+    { "key": "f7",                  "command": "-cmake.build" },
+
+    // Build
+    { "key": "ctrl+b",              "command": "workbench.action.tasks.reRunTask" },
+    { "key": "ctrl+shift+b",        "command": "workbench.action.tasks.build" },
+    { "key": "f7",                  "command": "cmake.build",
+                                    "when": "editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cmake'" },
 
     // Bookmarks (disable)
     { "key": "f2",                  "command": "-editor.action.rename",
@@ -283,14 +315,7 @@
     { "key": "ctrl+f2",             "command": "bookmarks.toggle",
                                     "when": "editorTextFocus" },
 
-    // Tasks (disable)
-    { "key": "ctrl+b",              "command": "-workbench.action.toggleSidebarVisibility" },
-
-    // Tasks
-    { "key": "ctrl+b",              "command": "workbench.action.tasks.reRunTask" },
-    { "key": "ctrl+shift+b",        "command": "workbench.action.tasks.build" },
-
-    // Navigate
+    // Others
     {
         "key": "ctrl+alt+left",
         "command": "workbench.action.navigateBack"
@@ -298,14 +323,6 @@
     {
         "key": "shift+alt+w",
         "command": "workbench.action.closeOtherEditors"
-    },
-    {
-        "key": "alt+m",
-        "command": "workbench.action.gotoSymbol"
-    },
-    {
-        "key": "shift+alt+m",
-        "command": "workbench.action.showAllSymbols"
     },
     {
         "key": "alt+g",
@@ -346,15 +363,6 @@
         "command": "go.test.cursor"
     },
     {
-        "key": "f7",
-        "command": "-cmake.build"
-    },
-    {
-        "key": "f7",
-        "command": "cmake.build",
-        "when": "editorTextFocus && editorLangId == 'cpp'"
-    },
-    {
         "key": "alt+s",
         "command": "-gitlens.showQuickRepoStatus",
         "when": "gitlens:enabled && config.gitlens.keymap == 'alternate'"
@@ -368,50 +376,5 @@
         "key": "alt+s",
         "command": "C_Cpp.SwitchHeaderSource",
         "when": "editorTextFocus && editorLangId == 'cpp'"
-    },
-    {
-        "key": "ctrl+;",
-        "command": "-workbench.action.gotoSymbol"
-    },
-    {
-        "key": "ctrl+alt+k",
-        "command": "-bookmarks.toggle",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+-",
-        "command": "-workbench.action.navigateBack"
-    },
-    {
-        "key": "shift+alt+f12",
-        "command": "-references-view.find",
-        "when": "editorHasReferenceProvider"
-    },
-    {
-        "key": "ctrl+alt+l",
-        "command": "-bookmarks.jumpToNext",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "f12",
-        "command": "-editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
-    },
-    {
-        "key": "ctrl+r",
-        "command": "-workbench.action.gotoSymbol"
-    },
-    {
-        "key": "ctrl+shift+o",
-        "command": "-workbench.action.gotoSymbol"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "-workbench.action.showAllSymbols"
-    },
-    {
-        "key": "f11",
-        "command": "-workbench.action.debug.stepInto",
-        "when": "debugState == 'stopped'"
     }
 ]
