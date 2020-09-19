@@ -43,7 +43,7 @@ function keyboard:update_layouts()
 	end
 
 	for _, v in ipairs(layouts) do
-		self._layouts[v.group_idx] = " [" .. v.file:upper() .. "] "
+		self._layouts[v.group_idx] = "[" .. v.file:upper() .. "]"
 	end
 
 	keyboard:update_text()

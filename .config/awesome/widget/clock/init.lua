@@ -44,7 +44,7 @@ end
 function clock:init(args)
 	args = args or {}
 
-	local format = args.format or "%a, %d %H:%M "
+	local format = args.format or "%a, %d %H:%M"
 	local refresh_sec = args.refresh or 60
 
 	self.widget = wibox.widget.textclock(format, refresh_sec)

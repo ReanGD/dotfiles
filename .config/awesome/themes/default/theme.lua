@@ -41,6 +41,11 @@ function theme:tasklist()
     self.tasklist_fg_focus = self.fg_normal
 end
 
+function theme:systray()
+    self.systray_icon_spacing = dpi(2);
+    self.systray_widget_spacing = dpi(6); -- Custom
+end
+
 function theme:layout()
     local default_themes_path = gfs.get_themes_dir().."default/"
     local l = default_themes_path .. "layouts/"
@@ -78,6 +83,7 @@ function theme:init()
     self:custom_colors()
     self:client()
     self:tasklist()
+    self:systray()
     self:layout()
 end
 
