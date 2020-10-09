@@ -33,16 +33,16 @@
     </FileFilters>
     <UseCursorBorder>False</UseCursorBorder>
     <CursorBorderColor>-2147483635</CursorBorderColor>
-    <UseFrameCursor>False</UseFrameCursor>
+    <UseFrameCursor>True</UseFrameCursor>
     <Foreground>-2147483640</Foreground>
     <Background>-2147483643</Background>
     <Background2>-2147483643</Background2>
-    <Cursor>-2147483635</Cursor>
+    <Cursor>0</Cursor>
     <CursorText>-2147483634</CursorText>
-    <Mark>255</Mark>
+    <Mark>8612171</Mark>
     <InactiveCursor>-2147483645</InactiveCursor>
     <InactiveMark>128</InactiveMark>
-    <UseInvertedSelection>False</UseInvertedSelection>
+    <UseInvertedSelection>True</UseInvertedSelection>
     <UseInactiveSelColor>False</UseInactiveSelColor>
     <AllowOverColor>True</AllowOverColor>
     <gBorderFrameWidth>1</gBorderFrameWidth>
