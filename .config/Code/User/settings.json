@@ -86,6 +86,7 @@
     "gitlens.codeLens.enabled": false,
     "gitlens.views.compare.files.layout": "list",
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
+    "githd.blameView.enabled": false,
     "todo-tree.regex.regexCaseSensitive": false,
     "todo-tree.highlights.enabled": true,
     "todo-tree.general.tags": [
@@ -107,5 +108,17 @@
     "testMate.cpp.log.logSentry": "disable_3",
     "workspaceExplorer.workspaceStorageDirectory": "/home/rean/projects/workspases",
     "cmake.configureOnOpen": false,
-    "githd.blameView.enabled": false
+    "cmake.enabledOutputParsers": [
+        "cmake",
+        "gcc",
+        "gnuld"
+    ],
+    "spellright.language": [
+        "en_US",
+        "ru_RU"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "plaintext"
+    ]
 }
