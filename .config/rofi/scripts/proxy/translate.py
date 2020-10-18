@@ -12,6 +12,7 @@ class Translated:
         self.src_text = ""
         self.dst_text = ""
         self.dst_synonyms = dict()
+        self.dst_variants = list()
 
 
 class Translate(Receiver):
@@ -62,6 +63,8 @@ class Translate(Receiver):
         self.add_line("Swap", "#swap", filtering=False, icon=self.resolve_icon("swap"))
         for word, text in self._result.dst_synonyms.items():
             self.add_line(f"{text}", word, markup=True, filtering=False, icon=self.resolve_icon("copy"))
+        for text in self._result.dst_variants:
+            self.add_line(f"{text}", text, markup=False, filtering=False, icon=self.resolve_icon("copy"))
 
     def _translate(self, text: str):
         text = text.strip()
@@ -96,7 +99,7 @@ class Translate(Receiver):
             res.src_lang, res.dst_lang = res.dst_lang, res.src_lang
             data = self._translator._translate(text, dest=res.dst_lang, src=res.src_lang, override=None)
 
-        res.dst_text = "\r".join([d[0] for d in data[self.TRANSLATION] if d[0] is not None])
+        res.dst_text = " ".join([d[0] for d in data[self.TRANSLATION] if d[0] is not None])
 
         if data[self.SYNONYMS] is not None:
             for group in data[self.SYNONYMS]:
@@ -104,6 +107,14 @@ class Translate(Receiver):
                 for variant in variants:
                     word = variant[0]
                     translates = ",".join(variant[1])
-                    res.dst_synonyms[word] = f"<b>{word}</b> <span style='italic'>({translates})</span>"
+                    word_text = f"<b>{word}</b> <span style='italic' weight='ultralight'>({translates})</span>"
+                    res.dst_synonyms[word] = word_text
+
+        if data[self.POSSIBLE_TRANSLATIONS] is not None:
+            for group in data[self.POSSIBLE_TRANSLATIONS]:
+                if group[0] != res.src_text:
+                    continue
+
+                res.dst_variants += [variant[0] for variant in group[2] if variant[0] != res.dst_text]
 
         return res
