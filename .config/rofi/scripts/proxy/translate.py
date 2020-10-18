@@ -11,7 +11,7 @@ class Translated:
         self.dst_lang = "ru"
         self.src_text = ""
         self.dst_text = ""
-        self.dst_variants = []
+        self.dst_synonyms = dict()
 
 
 class Translate(Receiver):
@@ -60,8 +60,8 @@ class Translate(Receiver):
         self.reset_lines()
         self.add_line("Copy", "#copy", filtering=False, icon=self.resolve_icon("copy"))
         self.add_line("Swap", "#swap", filtering=False, icon=self.resolve_icon("swap"))
-        for text in self._result.dst_variants:
-            self.add_line(f"Copy: {text}", text, filtering=False, icon=self.resolve_icon("copy"))
+        for word, text in self._result.dst_synonyms.items():
+            self.add_line(f"{text}", word, markup=True, filtering=False, icon=self.resolve_icon("copy"))
 
     def _translate(self, text: str):
         text = text.strip()
@@ -74,13 +74,12 @@ class Translate(Receiver):
         self._fill_lines()
 
     TRANSLATION = 0
-    ALL_TRANSLATIONS = 1
+    SYNONYMS = 1
     SRC_LANGUAGE = 2
     POSSIBLE_TRANSLATIONS = 5
     CONFIDENCE = 6
     POSSIBLE_MISTAKES = 7
     SRC_POSSIBLE_LANGUAGES = 8
-    SYNONYMS = 11
     DEFINITIONS = 12
     EXAMPLES = 13
     SEE_ALSO = 14
@@ -99,11 +98,12 @@ class Translate(Receiver):
 
         res.dst_text = "\r".join([d[0] for d in data[self.TRANSLATION] if d[0] is not None])
 
-        if data[self.ALL_TRANSLATIONS] is not None:
-            variants = set()
-            for it in data[self.ALL_TRANSLATIONS]:
-                variants.update(it[1])
-            variants.discard(res.dst_text.lower())
-            res.dst_variants = list(variants)
+        if data[self.SYNONYMS] is not None:
+            for group in data[self.SYNONYMS]:
+                variants = group[2]
+                for variant in variants:
+                    word = variant[0]
+                    translates = ",".join(variant[1])
+                    res.dst_synonyms[word] = f"<b>{word}</b> <span style='italic'>({translates})</span>"
 
         return res
