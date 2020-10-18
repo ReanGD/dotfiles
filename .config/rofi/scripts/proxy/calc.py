@@ -28,7 +28,13 @@ class Calc(Receiver):
             if isinstance(answer, types.BuiltinFunctionType):
                 return
 
-            self.add_line(f"= {answer}", str(answer), filtering=False, icon="accessories-calculator")
+            icon = "accessories-calculator"
+            dec_answer = answer
+            self.add_line(f"<tt>Dec {dec_answer}</tt>", str(dec_answer), markup=True, filtering=False, icon=icon)
+            hex_answer = hex(answer)
+            self.add_line(f"<tt>Hex {hex_answer}</tt>", str(hex_answer), markup=True, filtering=False, icon=icon)
+            bin_answer = bin(answer)
+            self.add_line(f"<tt>Bin {bin_answer}</tt>", str(bin_answer), markup=True, filtering=False, icon=icon)
         except Exception:
             pass
 
