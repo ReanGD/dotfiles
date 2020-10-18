@@ -11,6 +11,7 @@ class Translated:
         self.dst_lang = "ru"
         self.src_text = ""
         self.dst_text = ""
+        self.dst_variants = []
 
 
 class Translate(Receiver):
@@ -22,14 +23,11 @@ class Translate(Receiver):
         self._translator = Translator(["translate.google.ru"], user_agent)
 
     def on_init(self):
-        self.reset_lines()
-        self.add_line("Copy", "copy", filtering=False, icon=self.resolve_icon("copy"))
-        self.add_line("Swap", "swap", filtering=False, icon=self.resolve_icon("swap"))
-
         text = clipboard.get_primary_clipboard()
         if len(text) <= 1:
             text = clipboard.get_clipboard()
             if len(text) <= 1:
+                self._fill_lines()
                 return
 
         self._translate(text)
@@ -37,21 +35,33 @@ class Translate(Receiver):
 
     def on_input(self, text: str):
         if len(text) <= 1:
+            self._fill_lines()
             return
 
         self._translate(text)
 
     def on_enter(self, id_text: str, text: str):
-        if id_text == "copy":
+        if id_text == "#copy":
             clipboard.set_clipboard(self._result.dst_text)
             raise ExitException()
 
-        if id_text == "swap":
-            if len(self._result.dst_text) <= 1:
-                return
+        if id_text != "#swap":
+            clipboard.set_clipboard(id_text)
+            raise ExitException()
 
-            self._translate(self._result.dst_text)
-            self.writer.set_input(self._result.src_text)
+        if len(self._result.dst_text) <= 1:
+            self._fill_lines()
+            return
+
+        self._translate(self._result.dst_text)
+        self.writer.set_input(self._result.src_text)
+
+    def _fill_lines(self):
+        self.reset_lines()
+        self.add_line("Copy", "#copy", filtering=False, icon=self.resolve_icon("copy"))
+        self.add_line("Swap", "#swap", filtering=False, icon=self.resolve_icon("swap"))
+        for text in self._result.dst_variants:
+            self.add_line(f"Copy: {text}", text, filtering=False, icon=self.resolve_icon("copy"))
 
     def _translate(self, text: str):
         text = text.strip()
@@ -61,6 +71,7 @@ class Translate(Receiver):
         dst_lang = self._result.dst_lang.upper()
         markup_text = f"<b>{src_lang}</b>: {self._result.src_text}\r\r<b>{dst_lang}</b>: {self._result.dst_text}"
         self.writer.set_help(markup_text)
+        self._fill_lines()
 
     TRANSLATION = 0
     ALL_TRANSLATIONS = 1
@@ -86,6 +97,13 @@ class Translate(Receiver):
             res.src_lang, res.dst_lang = res.dst_lang, res.src_lang
             data = self._translator._translate(text, dest=res.dst_lang, src=res.src_lang, override=None)
 
-        res.dst_text = "###".join([d[0] for d in data[self.TRANSLATION] if d[0] is not None])
+        res.dst_text = "\r".join([d[0] for d in data[self.TRANSLATION] if d[0] is not None])
+
+        if data[self.ALL_TRANSLATIONS] is not None:
+            variants = set()
+            for it in data[self.ALL_TRANSLATIONS]:
+                variants.update(it[1])
+            variants.discard(res.dst_text.lower())
+            res.dst_variants = list(variants)
 
         return res
