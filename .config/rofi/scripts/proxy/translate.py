@@ -94,7 +94,16 @@ class Translate(Receiver):
         res.dst_lang = prev.dst_lang
         res.src_text = text
 
-        data = self._translator._translate(text, dest=res.dst_lang, src=res.src_lang, override=None)
+        cnt_err = 0
+        while True:
+            try:
+                data = self._translator._translate(text, dest=res.dst_lang, src=res.src_lang, override=None)
+                break
+            except Exception as e:
+                cnt_err += 1
+                if cnt_err > 6:
+                    raise e
+
         if res.src_lang not in data[self.SRC_POSSIBLE_LANGUAGES][0]:
             res.src_lang, res.dst_lang = res.dst_lang, res.src_lang
             data = self._translator._translate(text, dest=res.dst_lang, src=res.src_lang, override=None)
