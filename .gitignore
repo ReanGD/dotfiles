@@ -34,6 +34,11 @@
 **/pulse/*
 !**/pulse/default.pa
 
+# conan
+**/.conan/*
+!**/.conan/conan.conf
+!**/.conan/profiles
+
 # firefox
 **/rean.default-release/*
 !**/rean.default-release/user.js
