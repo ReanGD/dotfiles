@@ -39,6 +39,9 @@ export KDEHOME=$XDG_DATA_HOME/kde
 # gnupg
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 
+# conan
+export CONAN_USER_HOME=$XDG_CONFIG_HOME
+
 # java
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Djava.util.prefs.userRoot=$XDG_DATA_HOME/java"
 
