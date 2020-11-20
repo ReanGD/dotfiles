@@ -5,6 +5,6 @@
 	[
 		"Vintage"
 	],
-	"ui_scale": 1.09,
-	"theme": "Default.sublime-theme"
+	"theme": "Default.sublime-theme",
+	"ui_scale": 1.09
 }
