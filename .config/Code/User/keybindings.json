@@ -282,6 +282,7 @@
     { "key": "alt+m l",             "command": "workbench.action.editor.changeLanguageMode" },
     { "key": "alt+m s",             "command": "workbench.action.gotoSymbol" },
     { "key": "alt+m a",             "command": "workbench.action.showAllSymbols" },
+    { "key": "alt+m d",             "command": "editor.action.revealDeclaration" },
     { "key": "alt+m r",             "command": "references-view.find",
                                     "when": "editorHasReferenceProvider" },
     { "key": "alt+m i",             "command": "references-view.findImplementations",
@@ -304,7 +305,8 @@
     { "key": "f7",                  "command": "-cmake.build" },
 
     // Build
-    { "key": "ctrl+b",              "command": "workbench.action.tasks.reRunTask" },
+    { "key": "ctrl+b",              "command": "workbench.action.tasks.reRunTask",
+                                    "when": "editorLangId != 'markdown'" },
     { "key": "ctrl+shift+b",        "command": "workbench.action.tasks.build" },
     { "key": "f7",                  "command": "cmake.build",
                                     "when": "editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cmake'" },

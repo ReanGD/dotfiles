@@ -78,17 +78,17 @@ configuration {
 /*	display-proxy: "proxy";*/
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
-	kb-clear-line: "Alt+g";
-	kb-move-front: "Alt+u,Home,KP_Home";
-	kb-move-end: "Alt+o,End,KP_End";
-	kb-move-word-back: "Control+j,Control+Left";
-	kb-move-word-forward: "Control+l,Control+Right";
-	kb-move-char-back: "Left,Alt+j";
-	kb-move-char-forward: "Right,Alt+l";
-	kb-remove-word-back: "Alt+e,Control+BackSpace";
-	kb-remove-word-forward: "Alt+r,Control+Delete";
-	kb-remove-char-back: "Alt+d,BackSpace";
-	kb-remove-char-forward: "Alt+f,Delete";
+	kb-clear-line: "Alt+g,Alt+Cyrillic_pe";
+	kb-move-front: "Alt+u,Alt+Cyrillic_ghe,Home,KP_Home";
+	kb-move-end: "Alt+o,Alt+Cyrillic_shcha,End,KP_End";
+	kb-move-word-back: "Control+j,Control+Cyrillic_o,Control+Left";
+	kb-move-word-forward: "Control+l,Control+Cyrillic_de,Control+Right";
+	kb-move-char-back: "Alt+j,Alt+Cyrillic_o,Left";
+	kb-move-char-forward: "Alt+l,Alt+Cyrillic_de,Right";
+	kb-remove-word-back: "Alt+e,Alt+Cyrillic_u,Control+BackSpace";
+	kb-remove-word-forward: "Alt+r,Alt+Cyrillic_ka,Control+Delete";
+	kb-remove-char-back: "Alt+d,Alt+Cyrillic_ve,BackSpace";
+	kb-remove-char-forward: "Alt+f,Alt+Cyrillic_a,Delete";
 	kb-remove-to-eol: "";
 	kb-remove-to-sol: "";
 	kb-accept-entry: "Return,KP_Enter";
@@ -99,13 +99,13 @@ configuration {
 /*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
 	kb-row-left: "";
 	kb-row-right: "";
-	kb-row-up: "Up,Alt+i";
-	kb-row-down: "Down,Alt+k";
+	kb-row-up: "Alt+i,Alt+Cyrillic_sha,Up";
+	kb-row-down: "Alt+k,Alt+Cyrillic_el,Down";
 	kb-row-tab: "";
-	kb-page-prev: "Page_Up,Control+i";
-	kb-page-next: "Page_Down,Control+k";
-	kb-row-first: "Control+Page_Up,Control+Alt+i";
-	kb-row-last: "Control+Page_Down,Control+Alt+k";
+	kb-page-prev: "Control+i,Control+Cyrillic_sha,Page_Up";
+	kb-page-next: "Control+k,Control+Cyrillic_el,Page_Down";
+	kb-row-first: "Control+Alt+i,Control+Alt+Cyrillic_sha,Control+Page_Up";
+	kb-row-last: "Control+Alt+k,Control+Alt+Cyrillic_el,Control+Page_Down";
 /*	kb-row-select: "Control+space";*/
 /*	kb-screenshot: "Alt+S";*/
 /*	kb-ellipsize: "Alt+period";*/
