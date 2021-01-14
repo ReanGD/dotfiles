@@ -8,4 +8,4 @@
 # for disable correc files use: CORRECT_IGNORE_FILE (see doc)
 
 setopt CORRECT      # Try to correct the spelling of commands
-setopt CORRECT_ALL  # Try to correct the spelling of all arguments in a line
+# setopt CORRECT_ALL  # Try to correct the spelling of all arguments in a line
