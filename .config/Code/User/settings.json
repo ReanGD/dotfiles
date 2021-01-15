@@ -71,6 +71,10 @@
         "*.mat": "glsl",
         "*.msh": "hlsl",
         "*.rasi": "glsl",
+        "*.config_entries": "json",
+        "*.device_registry": "json",
+        "*.entity_registry": "json",
+        "*.area_registry": "json",
     },
     "workbench.colorTheme": "Monokai",
     "workbench.editor.enablePreview": false,
@@ -85,7 +89,7 @@
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
     "go.testFlags": [
         "-count=1",
-        // "-gcflags=all=-l"
+        // "-gcflags=all=-l",
     ],
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
