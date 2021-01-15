@@ -1,0 +1,3 @@
+#!/bin/sh
+
+google-chrome-stable --user-data-dir="/home/rean/tmp/chrome_tmp" --disable-web-security $*

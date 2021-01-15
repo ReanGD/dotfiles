@@ -1,3 +1,4 @@
 #!/bin/sh
 
+export CHROME_EXECUTABLE=chrome-disable-security
 /opt/visual-studio-code/code --extensions-dir ~/.local/share/vscode $@
