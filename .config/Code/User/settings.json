@@ -23,6 +23,18 @@
         "editor.rulers": [ 140 ],
         "editor.insertSpaces": true,
     },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false,
+    },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -83,6 +95,8 @@
     "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
     "python.linting.enabled": true,
     "jupyter.askForKernelRestart": false,
+    "dart.debugExternalLibraries": true,
+    "dart.debugSdkLibraries": true,
     "git.showProgress": false,
     "gitlens.advanced.telemetry.enabled": false,
     "gitlens.currentLine.enabled": false,
