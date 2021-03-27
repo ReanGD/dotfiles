@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<doublecmd DCVersion="0.9.9 beta" ConfigVersion="10">
+<doublecmd DCVersion="0.9.10 beta" ConfigVersion="10">
   <Configuration Save="True" SortOrder="0" TreeType="0">
     <UseConfigInProgramDir>False</UseConfigInProgramDir>
     <FolderTabs Save="True"/>
@@ -616,7 +616,7 @@
     <HotDir Name="config" Path="/home/rean/.config"/>
   </DirectoryHotList>
   <Viewer>
-    <PreviewVisible>False</PreviewVisible>
+    <PreviewVisible>True</PreviewVisible>
     <ImageStretch>False</ImageStretch>
     <ImageExifRotate>True</ImageExifRotate>
     <ImageStretchLargeOnly>False</ImageStretchLargeOnly>
@@ -742,7 +742,7 @@
   <NameShortcutFile>shortcuts.scf</NameShortcutFile>
   <HotKeySortOrder>0</HotKeySortOrder>
   <UseEnterToCloseHotKeyEditor>True</UseEnterToCloseHotKeyEditor>
-  <LastUsedPacker>zip</LastUsedPacker>
+  <LastUsedPacker>gz</LastUsedPacker>
   <UseShellForFileOperations>False</UseShellForFileOperations>
   <LastDoAnyCommand>cm_Refresh</LastDoAnyCommand>
   <MarkMaskCaseSensitive>False</MarkMaskCaseSensitive>

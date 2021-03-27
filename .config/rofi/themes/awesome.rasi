@@ -1,0 +1,128 @@
+* {
+    // awesome theme constant
+    bg-normal:  #00334dff;
+    bg-focus:   #375c79ff;
+    bg-urgent:  var(bg-normal);
+    //fg-normal:  #ffffffbe;
+    fg-normal:  #bebebe;
+    fg-focus:   #ffffffaa;
+    fg-urgent:  #dc322fff;
+    base-font:  "Inter Medium 11";
+    // small-font: "Inter Medium 9";
+    small-font: "Inter Mono 9";
+
+    // custom
+    color-border:      #ffffffff;
+    color-transparent: #00000000;
+    color-placeholder: #808080ff;
+
+    // common settings
+    font:               var(base-font);
+
+    background-color:   var(bg-normal);
+    text-color:         var(fg-normal);
+    border-color:       var(color-border);
+
+    // all
+    // top&bottom left&right
+    // top, left&right, bottom
+    // top, right, bottom, left
+    padding:            0;
+    border:             0;
+    border-radius:      0;
+}
+
+window {
+    padding:            10px;
+    border:             1px;
+    border-radius:      10px;
+    width:              70%;
+}
+
+overlay {
+
+}
+
+mainbox {
+
+}
+
+// Inputbar
+// ----------------
+inputbar {
+    padding:           10px 0;
+    children:          [ prompt,textbox-prompt-colon,entry,num-filtered-rows,textbox-num-sep,num-rows,case-indicator ];
+}
+prompt {
+    spacing:           0;
+}
+textbox-prompt-colon {
+    expand:            false;
+    str:               ":";
+}
+entry {
+    padding:           0 10px;
+    spacing:           0;
+    placeholder:       "Type to filter";
+    placeholder-color: var(color-placeholder);
+}
+num-filtered-rows {
+    expand:            false;
+    text-color:        var(color-placeholder);
+}
+textbox-num-sep {
+    expand:            false;
+    str:               "/";
+    text-color:        var(color-placeholder);
+}
+num-rows {
+    expand:           false;
+    text-color:       var(color-placeholder);
+}
+case-indicator {
+    text-color:       var(normal-foreground);
+}
+
+// Listview
+// ----------------
+listview {
+    // border: 1px;
+    padding: 0;
+    font:    var(small-font);
+}
+
+element {
+    // border: 1px;
+    padding: 10px;
+}
+
+element-icon {
+    // background-color: var(color-transparent);
+    // background-color: White;
+    color: #ff0000ff;
+    // text-color:       White;
+    size:             5mm;
+}
+
+element-text {
+    padding: 2px 0 0;
+    font:    var(small-font);
+}
+
+element-index {
+    border: 10px;
+}
+
+element selected {
+    background-color: var(bg-focus);
+    text-color:       var(fg-focus);
+}
+
+
+mode-switcher {
+
+}
+
+message {
+    border: 1px 0;
+}
