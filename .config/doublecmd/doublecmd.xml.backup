@@ -616,7 +616,7 @@
     <HotDir Name="config" Path="/home/rean/.config"/>
   </DirectoryHotList>
   <Viewer>
-    <PreviewVisible>True</PreviewVisible>
+    <PreviewVisible>False</PreviewVisible>
     <ImageStretch>False</ImageStretch>
     <ImageExifRotate>True</ImageExifRotate>
     <ImageStretchLargeOnly>False</ImageStretchLargeOnly>
@@ -742,7 +742,7 @@
   <NameShortcutFile>shortcuts.scf</NameShortcutFile>
   <HotKeySortOrder>0</HotKeySortOrder>
   <UseEnterToCloseHotKeyEditor>True</UseEnterToCloseHotKeyEditor>
-  <LastUsedPacker>gz</LastUsedPacker>
+  <LastUsedPacker>zip</LastUsedPacker>
   <UseShellForFileOperations>False</UseShellForFileOperations>
   <LastDoAnyCommand>cm_Refresh</LastDoAnyCommand>
   <MarkMaskCaseSensitive>False</MarkMaskCaseSensitive>
