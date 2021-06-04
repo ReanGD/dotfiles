@@ -111,12 +111,3 @@ fupdate() {
     # generate ZSH_COMPDUMP
     compinit -i -C -d "${ZSH_COMPDUMP}"
 }
-
-# Change user in gitconfig
-git_change_user() {
-	if [[ "$(_git_command config user.name)" == "ReanGD" ]]; then
-        cp $XDG_CONFIG_HOME/git/config.work $XDG_CONFIG_HOME/git/config
-    else
-        cp $XDG_CONFIG_HOME/git/config.home $XDG_CONFIG_HOME/git/config
-    fi
-}
