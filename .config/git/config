@@ -23,8 +23,9 @@
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output="$MERGED"
 [core]
 	autocrlf = input
-[user]
-    email = reangd@yandex.ru
-    name = ReanGD
+[include]
+    path = ~/.config/git/user.home
+[includeIf "gitdir:~/projects/work/"]
+    path = ~/.config/git/user.work
 [http "https://gopkg.in"]
     followRedirects = true
