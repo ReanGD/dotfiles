@@ -1,6 +1,9 @@
+[$Version]
+update_info=kxkb_variants.upd:split-variants
+
 [Layout]
 DisplayNames=,
-LayoutList=us,ru(winkeys)
+LayoutList=us,ru
 LayoutLoopCount=-1
 Model=pc86
 Options=grp:caps_toggle
@@ -11,3 +14,4 @@ ShowLayoutIndicator=true
 ShowSingle=false
 SwitchMode=WinClass
 Use=true
+VariantList=,winkeys
