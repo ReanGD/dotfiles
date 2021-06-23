@@ -21,3 +21,6 @@ Name_6=custom
 Name_7=bg
 Number=7
 Rows=1
+
+[NightColor]
+Active=true
