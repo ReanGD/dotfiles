@@ -5,6 +5,7 @@
     "editor.fontLigatures": true,
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "selection",
+    "editor.smoothScrolling": true,
     "[go]":  {
         "editor.rulers": [ 130 ],
         "editor.insertSpaces": false,
