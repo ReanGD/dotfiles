@@ -1,4 +1,5 @@
 #!/bin/sh
 
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 export CHROME_EXECUTABLE=chrome-disable-security
 /usr/bin/code --extensions-dir ~/.local/share/vscode $@
