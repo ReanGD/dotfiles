@@ -6,6 +6,11 @@
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "selection",
     "editor.smoothScrolling": true,
+    "editor.tabCompletion": "on",
+    "editor.snippetSuggestions": "bottom",
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.filterGraceful": true,
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
     "[go]":  {
         "editor.rulers": [ 130 ],
         "editor.insertSpaces": false,
@@ -25,11 +30,9 @@
         "editor.insertSpaces": true,
     },
     "[dart]": {
+        "editor.rulers": [ 80 ],
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
-        "editor.rulers": [
-            80
-        ],
         "editor.selectionHighlight": false,
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
@@ -88,6 +91,7 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "terminal.integrated.scrollback": 5000,
+    "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
@@ -108,7 +112,6 @@
     "dart.debugExternalLibraries": true,
     "dart.debugSdkLibraries": true,
     "git.showProgress": false,
-    "gitlens.advanced.telemetry.enabled": false,
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",

@@ -41,6 +41,10 @@ zinit load zsh-users/zsh-autosuggestions
 zinit load zsh-users/zsh-completions
 zinit ice atinit'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"'
 zinit load zdharma/fast-syntax-highlighting
+zinit ice atclone'PYENV_ROOT="$XDG_CACHE_HOME/pyenv" ./libexec/pyenv init - > zpyenv.zsh' \
+    atinit'export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"' atpull"%atclone" \
+    as'command' pick'bin/pyenv' src"zpyenv.zsh" nocompile'!'
+zinit light pyenv/pyenv
 
 # not working
 # hlissner/zsh-autopair
