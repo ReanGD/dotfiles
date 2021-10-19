@@ -86,7 +86,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.decorations.colors": true,
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
+        "*.ipynb": "jupyter-notebook"
     },
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
@@ -108,6 +108,8 @@
     "python.linting.pylamaEnabled": true,
     "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
     "python.linting.enabled": true,
+    "python.analysis.indexing": true,
+    "python.analysis.autoImportCompletions": true,
     "jupyter.askForKernelRestart": false,
     "dart.debugExternalLibraries": true,
     "dart.debugSdkLibraries": true,
