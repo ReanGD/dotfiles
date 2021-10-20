@@ -88,8 +88,7 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "terminal.integrated.scrollback": 5000,
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
