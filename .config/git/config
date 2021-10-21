@@ -22,7 +22,8 @@
     keepBackup = true
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output="$MERGED"
 [core]
-	autocrlf = input
+    editor = nano
+    autocrlf = input
 [include]
     path = ~/.config/git/user.home
 [includeIf "gitdir:~/projects/work/"]
