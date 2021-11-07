@@ -52,7 +52,7 @@ export LESSHISTFILE=$XDG_CACHE_HOME/.lesshst
 
 # Aliases
 export SHELL=`which zsh`
-SUBL_PATH=$(which subl3) && export EDITOR=$SUBL_PATH
+SUBL_PATH=$(which subl) && export EDITOR=$SUBL_PATH
 
 # Lib paths
 export LD_LIBRARY_PATH=$XDG_CONFIG_HOME/lib:$LD_LIBRARY_PATH

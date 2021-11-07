@@ -1,5 +1,4 @@
-alias st="subl3"
-alias subl="subl3"
+alias st="subl"
 alias ping='ping -c 4'
 
 # Find the option for using colors in ls, depending on the version

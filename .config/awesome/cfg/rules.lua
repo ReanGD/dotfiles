@@ -61,7 +61,7 @@ function rules:init(args)
             properties = { tag = "web" }
         },
         {
-            rule = { class = "Subl3" },
+            rule = { class = "Subl" },
             properties = { tag = "doc" }
         },
         {

@@ -10,7 +10,7 @@ _edit_command_line_sublime() {
 		exec < /dev/tty
 		setopt localoptions nomultibyte noksharrays
 		(( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[2]
-		eval "/usr/bin/subl3 -w $1"
+		eval "/usr/bin/subl -w $1"
 		(( $+zle_bracketed_paste )) && print -r -n - $zle_bracketed_paste[1]
 		print -Rz - "$(<$1)"
 	} =(<<<"$PREBUFFER$BUFFER")

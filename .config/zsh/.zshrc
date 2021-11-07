@@ -11,7 +11,7 @@ ZINIT[ZCOMPDUMP_PATH]=ZSH_COMPDUMP
 if [[ ! -f $ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$ZSH_CONFIG_DIR/.zinit" && command chmod g-rwX "$ZSH_CONFIG_DIR/.zinit"
-    command git clone https://github.com/zdharma/zinit "$ZSH_CONFIG_DIR/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit.git "$ZSH_CONFIG_DIR/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi

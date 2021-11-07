@@ -32,7 +32,7 @@
       <Actions>
         <Action>
           <Name>Open</Name>
-          <Command>/usr/bin/subl3</Command>
+          <Command>/usr/bin/subl</Command>
           <Params>%f</Params>
         </Action>
       </Actions>
