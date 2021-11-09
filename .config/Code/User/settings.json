@@ -97,8 +97,9 @@
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
     "go.testFlags": [
         "-count=1",
-        // "-gcflags=all=-l",
+        "-gcflags=all=-l"
     ],
+    "go.buildTags": "part_1 part_2 part_3 part_4 part_5 part_6",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
     "go.toolsManagement.autoUpdate": false,
@@ -157,5 +158,10 @@
         "go": "go run",
         "lua": "lua",
         "shellscript": "bash",
-    }
+    },
+    "yaml.customTags": [
+        "!encrypted/pkcs1-oaep scalar",
+        "!vault scalar"
+    ],
+    "redhat.telemetry.enabled": false
 }
