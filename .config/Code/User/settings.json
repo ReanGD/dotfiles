@@ -108,10 +108,8 @@
     "python.linting.pylamaEnabled": true,
     "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
     "python.linting.enabled": true,
-    "python.analysis.indexing": true,
     "python.analysis.autoImportCompletions": true,
     "jupyter.askForKernelRestart": false,
-    "dart.debugExternalLibraries": true,
     "dart.debugSdkLibraries": true,
     "git.showProgress": false,
     "gitlens.currentLine.enabled": false,
@@ -131,8 +129,7 @@
             "host": "hass",
             "name": "hass",
             "privateKeyPath": "$HOME/.ssh/hass",
-            "root": "/hass",
-            "username": "rean"
+            "root": "/hass"
         }
     ],
     "testMate.cpp.log.userId": "1111111111111111111111111111111111111111",
@@ -159,9 +156,6 @@
         "lua": "lua",
         "shellscript": "bash",
     },
-    "yaml.customTags": [
-        "!encrypted/pkcs1-oaep scalar",
-        "!vault scalar"
-    ],
+    "ansible.ansibleLint.arguments": "-x risky-shell-pipe -x meta-no-info",
     "redhat.telemetry.enabled": false
 }

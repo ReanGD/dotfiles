@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<doublecmd DCVersion="1.0.0 beta" ConfigVersion="12">
+<doublecmd DCVersion="1.0.1 beta" ConfigVersion="12">
   <Configuration Save="True" SortOrder="0" TreeType="0">
     <UseConfigInProgramDir>False</UseConfigInProgramDir>
     <FolderTabs Save="True"/>
@@ -636,7 +636,7 @@
       <MulRenLogFilename>%DC_CONFIG_PATH%/multirename.log</MulRenLogFilename>
       <MultRenDailyIndividualDirLog>True</MultRenDailyIndividualDirLog>
       <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
-      <MulRenPathRangeSeparator> - </MulRenPathRangeSeparator>
+      <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
     </MultiRename>
   </FileOperations>
   <Tabs/>
