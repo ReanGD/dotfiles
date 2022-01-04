@@ -1,3 +1,38 @@
-#!/bin/sh
+#!/bin/python
 
-bw list items | jq -r '.[] | "\(.login.passwordRevisionDate) \(.login.username) \(.name)"' | awk '$2!="null"' | sort -r | less
+import subprocess
+from json import loads
+from datetime import datetime
+
+p = subprocess.Popen(["bw", "list", "items"], stdout=subprocess.PIPE)
+if p.stdout is None:
+    exit()
+
+json_data = p.stdout.read()
+p.stdout.close()
+if p.wait() != 0:
+    exit()
+
+items = []
+now = datetime.now().date()
+for it in loads(json_data):
+    if it["folderId"] in ["c96de4ee-0139-4501-8e63-ade800044ada", "4d8c589e-ca25-40d7-b536-ae0b01462964"]:
+        continue
+
+    name = it["name"]
+    date = it["login"]["passwordRevisionDate"]
+    login = it["login"]["username"]
+    if date is None:
+        print(f"Not inited {name} {login}")
+        continue
+
+    date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f%z").date()
+    dt = (now - date).days
+    if dt < 180:
+        continue
+
+    items.append((dt, date, name, login))
+
+for dt, date, name, login in sorted(items, key=lambda item: item[0]):
+    print(f"{date} ({dt} days) {name} {login}")
+
