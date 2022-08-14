@@ -65,7 +65,6 @@
             }
         ]
     },
-    "window.zoomLevel": 0,
     "window.titleBarStyle": "custom",
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
@@ -95,19 +94,11 @@
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
-    "go.testFlags": [
-        "-count=1",
-        "-gcflags=all=-l"
-    ],
-    "go.buildTags": "part_1 part_2 part_3 part_4 part_5 part_6",
+    "go.testFlags": ["-count=1"],
+    // "go.buildTags": "part_1 part_2 part_3 part_4 part_5 part_6",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
     "go.toolsManagement.autoUpdate": false,
-    "python.linting.pylintEnabled": false,
-    "python.linting.mypyEnabled": true,
-    "python.linting.pylamaEnabled": true,
-    "python.linting.pylamaArgs": ["-o", "${env:XDG_CONFIG_HOME}/python/pylama.ini"],
-    "python.linting.enabled": true,
     "python.analysis.autoImportCompletions": true,
     "jupyter.askForKernelRestart": false,
     "dart.debugSdkLibraries": true,
@@ -115,7 +106,6 @@
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
-    "githd.blameView.enabled": false,
     "todo-tree.regex.regexCaseSensitive": false,
     "todo-tree.highlights.enabled": true,
     "todo-tree.general.tags": [
@@ -123,7 +113,6 @@
         "TODO"
     ],
     "C_Cpp.default.cppStandard": "c++20",
-    "C_Cpp.updateChannel": "Insiders",
     "sshfs.configs": [
         {
             "host": "hass",
