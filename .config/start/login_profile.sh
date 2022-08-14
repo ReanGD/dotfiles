@@ -11,8 +11,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 #export XAUTHORITY=$XDG_CACHE_HOME/Xauthority
 
 # Go
-export GOPATH_BASE=$XDG_DATA_HOME/go
-export GOPATH=$GOPATH_BASE:$HOME/projects/home/go:$HOME/projects/work/go:$HOME/projects/test/go
+export GOPATH=$XDG_DATA_HOME/go
 
 # Rust
 export CARGO_HOME=$XDG_DATA_HOME/cargo
