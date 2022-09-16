@@ -24,9 +24,12 @@
 [core]
     editor = nano
     autocrlf = input
+[url "git@gitlab.stageoffice.ru:"]
+    insteadOf = https://gitlab.stageoffice.ru/
 [include]
     path = ~/.config/git/user.home
 [includeIf "gitdir:~/projects/work/"]
     path = ~/.config/git/user.work
 [http "https://gopkg.in"]
     followRedirects = true
+
