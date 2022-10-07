@@ -11,6 +11,7 @@
     "editor.suggest.localityBonus": true,
     "editor.suggest.filterGraceful": true,
     "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "editor.inlineSuggest.enabled": true,
     "[go]":  {
         "editor.rulers": [ 130 ],
         "editor.insertSpaces": false,
@@ -68,6 +69,9 @@
     "window.titleBarStyle": "custom",
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
+    "window.zoomLevel": 1,
+    "security.workspace.trust.untrustedFiles": "open",
+    "mergeEditor.diffAlgorithm": "experimental",
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.associations": {
@@ -95,7 +99,6 @@
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
     "go.testFlags": ["-count=1"],
-    // "go.buildTags": "part_1 part_2 part_3 part_4 part_5 part_6",
     "go.testTimeout": "120s",
     "go.useLanguageServer": true,
     "go.toolsManagement.autoUpdate": false,
@@ -146,5 +149,8 @@
         "shellscript": "bash",
     },
     "ansible.ansibleLint.arguments": "-x risky-shell-pipe -x meta-no-info",
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "github.copilot.enable": {
+        "*": true
+    }
 }
