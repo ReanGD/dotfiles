@@ -1,9 +1,6 @@
 #!/bin/sh
 # start before awesome
 
-xrdb -merge ~/.config/start/xresources
-
-
 # caps lock as layout switch v1
 # see: https://wiki.archlinux.org/index.php/Xorg/Keyboard_configuration#Using_setxkbmap
 # setxkbmap -print -verbose 10

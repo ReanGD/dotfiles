@@ -30,7 +30,7 @@ function env:init(args)
 	local locale = args.locale or os.getenv("LANG")
 	self.bar_id = args.bar_id or "bar"
 	self.modkey = args.modkey or "Mod4"
-	self.terminal = args.terminal or "urxvt"
+	self.terminal = args.terminal or "terminator"
 	self.mixer = args.mixer or "pavucontrol"
 	self.home = os.getenv("HOME")
 	self.screenshot_dir = self.home .. "/tmp/"

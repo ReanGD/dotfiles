@@ -74,7 +74,7 @@ end
 function keys:init(args)
     args = args or {}
     local modkey = args.modkey or "Mod4"
-    local terminal = args.terminal or "urxvt"
+    local terminal = args.terminal or "terminator"
 
     local S = { "Shift" }
     local C = { "Control" }
