@@ -26,7 +26,8 @@ bindkey -A rean main
 
 # create a zkbd compatible hash
 GLOBAL_TERM=$TERM
-TERM=rxvt-unicode-256color
+# ?? for terminal without UI
+# TERM=rxvt-unicode-256color
 typeset -g -A key
 key[Esc]="^["
 key[Tab]="\t"
