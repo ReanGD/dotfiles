@@ -57,4 +57,4 @@ SUBL_PATH=$(which subl) && export EDITOR=$SUBL_PATH
 export LD_LIBRARY_PATH=$XDG_CONFIG_HOME/lib:$LD_LIBRARY_PATH
 
 # Bin paths
-export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH_BASE/bin
+export PATH=$XDG_CONFIG_HOME/bin:$PATH:$GOPATH/bin

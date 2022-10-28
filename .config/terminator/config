@@ -1,9 +1,22 @@
 [global_config]
 [keybindings]
-  go_up = ""
-  go_down = ""
-  go_left = ""
-  go_right = ""
+  go_next = ""
+  go_prev = ""
+  go_up = <Primary><Alt>Up
+  go_down = <Primary><Alt>Down
+  go_left = <Primary><Alt>Left
+  go_right = <Primary><Alt>Right
+  rotate_cw = ""
+  rotate_ccw = ""
+  split_horiz = <Alt>minus
+  split_vert = <Alt>backslash
+  group_all = ""
+  ungroup_all = ""
+  group_tab = ""
+  ungroup_tab = ""
+  insert_number = ""
+  insert_padded = ""
+  layout_launcher = ""
 [profiles]
   [[default]]
     background_color = "#002b36"
