@@ -24,3 +24,14 @@ Rows=1
 
 [NightColor]
 Active=true
+LatitudeFixed=59
+LongitudeFixed=30
+Mode=Location
+NightTemperature=4400
+
+[TabBox]
+DesktopMode=2
+LayoutName=compact
+
+[Windows]
+FocusStealingPreventionLevel=0
