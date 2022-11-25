@@ -106,6 +106,7 @@
     "dart.debugSdkLibraries": true,
     "dart.debugExternalPackageLibraries": true,
     "git.showProgress": false,
+    "git.mergeEditor": true,
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",

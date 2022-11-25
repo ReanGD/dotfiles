@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<doublecmd DCVersion="1.0.1 beta" ConfigVersion="12">
+<doublecmd DCVersion="1.0.8" ConfigVersion="12">
   <Configuration Save="True" SortOrder="0" TreeType="0">
     <UseConfigInProgramDir>False</UseConfigInProgramDir>
     <FolderTabs Save="True"/>
@@ -677,6 +677,7 @@
     <FilenameStyle>0</FilenameStyle>
     <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
     <PathModifierElements>0</PathModifierElements>
+    <DefaultTextEncoding>none</DefaultTextEncoding>
   </Miscellaneous>
   <Thumbnails Save="True">
     <Width>128</Width>
@@ -726,6 +727,8 @@
     <MaxTextWidth>1024</MaxTextWidth>
     <PrintMargins>200|200|200|200</PrintMargins>
     <ShowCaret>False</ShowCaret>
+    <LeftMargin>4</LeftMargin>
+    <ExtraLineSpan>0</ExtraLineSpan>
   </Viewer>
   <Editor>
     <EditWaitTime>2000</EditWaitTime>
@@ -853,8 +856,28 @@
   <SearchTemplates/>
   <ColumnsSets DefaultTitleHash="1848642058"/>
   <MultiRenamePresets>
-    <LastPreset/>
-    <Presets/>
+    <LastPreset>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</LastPreset>
+    <Presets>
+      <Preset>
+        <Name>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</Name>
+        <Filename>[N]</Filename>
+        <Extension>[E]</Extension>
+        <FilenameStyle>0</FilenameStyle>
+        <ExtensionStyle>0</ExtensionStyle>
+        <Find/>
+        <Replace/>
+        <RegExp>False</RegExp>
+        <UseSubs>False</UseSubs>
+        <Counter>1</Counter>
+        <Interval>1</Interval>
+        <Width>0</Width>
+        <Log>
+          <Enabled>False</Enabled>
+          <Append>False</Append>
+          <File/>
+        </Log>
+      </Preset>
+    </Presets>
   </MultiRenamePresets>
   <Differ>
     <Colors>
