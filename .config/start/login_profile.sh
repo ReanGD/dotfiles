@@ -12,6 +12,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Go
 export GOPATH=$XDG_DATA_HOME/go
+export GOPROXY="https://mdcnexus.stageoffice.ru/repository/goproxy/|https://proxy.golang.org|direct"
+export GOPRIVATE=gitlab.stageoffice.ru
 
 # Rust
 export CARGO_HOME=$XDG_DATA_HOME/cargo

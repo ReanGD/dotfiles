@@ -103,6 +103,7 @@
     "go.toolsManagement.autoUpdate": false,
     "python.analysis.autoImportCompletions": true,
     "jupyter.askForKernelRestart": false,
+    "jupyter.debugJustMyCode": false,
     "dart.debugSdkLibraries": true,
     "dart.debugExternalPackageLibraries": true,
     "git.showProgress": false,
