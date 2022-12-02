@@ -153,7 +153,10 @@
     "ansible.ansibleLint.arguments": "-x risky-shell-pipe -x meta-no-info",
     "redhat.telemetry.enabled": false,
     "github.copilot.enable": {
-        "*": true
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
     },
     "projectManager.projectsLocation": "$home/projects/workspases",
     "projectManager.supportSymlinksOnBaseFolders": true,

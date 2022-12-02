@@ -48,8 +48,8 @@
 !/.local/share/applications/dropbox.desktop
 !/.local/share/applications/firefox.desktop
 !/.local/share/applications/google-chrome.desktop
-!/.local/share/applications/visual-studio-code.desktop
-!/.local/share/applications/visual-studio-code-url-handler.desktop
+!/.local/share/applications/code.desktop
+!/.local/share/applications/code-url-handler.desktop
 
 # zsh
 **/.zinit/*
