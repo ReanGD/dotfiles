@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. "$HOME/.config/start/set_hidden_params.sh"
+
 export LANG=ru_RU.UTF-8
 
 # XDG
@@ -14,6 +16,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export GOPATH=$XDG_DATA_HOME/go
 export GOPROXY="https://mdcnexus.stageoffice.ru/repository/goproxy/|https://proxy.golang.org|direct"
 export GOPRIVATE=gitlab.stageoffice.ru
+export UCS_VAULT_CREDS=$USER_WORK:pass
+export nctlog_developer=$EMAIL_WORK
 
 # Rust
 export CARGO_HOME=$XDG_DATA_HOME/cargo

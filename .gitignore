@@ -7,9 +7,6 @@
 # python
 *.pyc
 
-# qtile
-**/qtile/*.db
-
 # double commander
 **/doublecmd/doublecmd.err
 **/doublecmd/history.xml
@@ -54,5 +51,6 @@
 # zsh
 **/.zinit/*
 
-# git
+# config others
 /.config/git/user.*
+/.config/start/set_hidden_params.sh
