@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<doublecmd DCVersion="1.0.8" ConfigVersion="12">
+<doublecmd DCVersion="1.0.10" ConfigVersion="13">
   <Configuration Save="True" SortOrder="0" TreeType="0">
-    <UseConfigInProgramDir>False</UseConfigInProgramDir>
     <FolderTabs Save="True"/>
   </Configuration>
   <Colors>
@@ -860,7 +859,7 @@
     <Presets>
       <Preset>
         <Name>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</Name>
-        <Filename>[N]</Filename>
+        <Filename>[C]</Filename>
         <Extension>[E]</Extension>
         <FilenameStyle>0</FilenameStyle>
         <ExtensionStyle>0</ExtensionStyle>
@@ -870,7 +869,7 @@
         <UseSubs>False</UseSubs>
         <Counter>1</Counter>
         <Interval>1</Interval>
-        <Width>0</Width>
+        <Width>1</Width>
         <Log>
           <Enabled>False</Enabled>
           <Append>False</Append>
@@ -893,5 +892,6 @@
     <PaintBackground>True</PaintBackground>
     <LineDifferences>False</LineDifferences>
     <IgnoreWhiteSpace>False</IgnoreWhiteSpace>
+    <AutoCompare>True</AutoCompare>
   </Differ>
 </doublecmd>

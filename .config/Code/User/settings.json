@@ -20,6 +20,7 @@
         "editor.rulers": [ 120 ],
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
+        "editor.formatOnType": true,
     },
     "[lua]":  {
         "editor.rulers": [ 120 ],
@@ -70,7 +71,8 @@
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
     "security.workspace.trust.untrustedFiles": "open",
-    "mergeEditor.diffAlgorithm": "experimental",
+    "mergeEditor.diffAlgorithm": "advanced",
+    "diffEditor.experimental.useVersion2": true,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.associations": {
@@ -92,6 +94,7 @@
     },
     "telemetry.telemetryLevel": "off",
     "terminal.integrated.scrollback": 5000,
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "go.coverOnTestPackage": false,
@@ -156,12 +159,18 @@
         "*": true,
         "yaml": false,
         "plaintext": true,
-        "markdown": false
+        "markdown": true
     },
     "projectManager.projectsLocation": "$home/projects/workspases",
     "projectManager.supportSymlinksOnBaseFolders": true,
     "projectManager.tags": [
         "home",
         "work"
-    ]
+    ],
+    "yaml.customTags": [
+        "!encrypted/pkcs1-oaep scalar",
+        "!vault scalar"
+    ],
+    "http.proxySupport": "on",
+    // "http.proxyStrictSSL": false,
 }

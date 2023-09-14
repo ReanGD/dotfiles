@@ -381,5 +381,10 @@
     {
         "key": "ctrl+shift+d",
         "command": "editor.action.duplicateSelection"
+    },
+    {
+        "key": "ctrl+/",
+        "command": "-github.copilot.acceptCursorPanelSolution",
+        "when": "github.copilot.activated && github.copilot.panelVisible"
     }
 ]
