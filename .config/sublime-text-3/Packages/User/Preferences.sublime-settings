@@ -7,7 +7,7 @@
 	],
 	"theme": "Default Dark.sublime-theme",
 	"ui_scale": 1.09,
-	"color_scheme": "Packages/Monokai Gray/MonokaiGray.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	// "color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
 	"update_check": false,
 }

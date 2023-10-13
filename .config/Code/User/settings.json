@@ -70,6 +70,7 @@
     "window.titleBarStyle": "custom",
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
+    "window.zoomLevel": 1,
     "security.workspace.trust.untrustedFiles": "open",
     "mergeEditor.diffAlgorithm": "advanced",
     "diffEditor.experimental.useVersion2": true,
@@ -92,11 +93,12 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "telemetry.telemetryLevel": "off",
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.defaultProfile.linux": "zsh",
     "extensions.ignoreRecommendations": true,
     "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.experimental.showMoves": true,
+    "diffEditor.hideUnchangedRegions.enabled": true,
     "go.coverOnTestPackage": false,
     "go.lintTool": "golangci-lint",
     "go.lintFlags": ["--config=~/projects/work/kraang/ci/.golangci.yml"],
@@ -167,10 +169,51 @@
         "home",
         "work"
     ],
-    "yaml.customTags": [
-        "!encrypted/pkcs1-oaep scalar",
-        "!vault scalar"
-    ],
+    "http.proxy": "http://vscode:mWR4sFyfnptE2NrSPw4y@proxy.d7x.ru:4550",
+    "http.proxyStrictSSL": false,
     "http.proxySupport": "on",
-    // "http.proxyStrictSSL": false,
+    "remote.extensionKind": {
+        "gencay.vscode-chatgpt": [
+            "ui"
+        ],
+    },
+    "genieai.promptPrefix.customPrompt1": "Объясни происходящее в этой функции так, что бы это понял ребёнок 5 лет",
+    "genieai.promptPrefix.customPrompt1-enabled": true,
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "github.copilot.advanced": {
+        "slashCommands": {
+            "createWorkspace": true,
+            "createNotebook": true,
+            "search": true
+         }
+    },
+    "mdb.confirmRunAll": false
 }
