@@ -27,6 +27,7 @@ Rows=1
 Active=true
 LatitudeFixed=59
 LongitudeFixed=30
+Mode=Location
 NightTemperature=4400
 
 [TabBox]

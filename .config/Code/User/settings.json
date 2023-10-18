@@ -169,9 +169,9 @@
         "home",
         "work"
     ],
-    "http.proxy": "http://vscode:mWR4sFyfnptE2NrSPw4y@proxy.d7x.ru:4550",
-    "http.proxyStrictSSL": false,
+    "http.proxy": "http://127.0.0.1:10201",
     "http.proxySupport": "on",
+    // "http.proxyStrictSSL": false,
     "remote.extensionKind": {
         "gencay.vscode-chatgpt": [
             "ui"
