@@ -10,20 +10,34 @@ Keywords[ru]=Internet;WWW;Browser;Web;Explorer;интернет;браузер;�
 Exec=/home/rean/.config/bin/firefox %u
 Icon=firefox
 Terminal=false
-X-MultipleArgs=false
 Type=Application
-MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
 StartupNotify=true
-StartupWMClass=firefox
 Categories=Network;WebBrowser;
-Actions=new-window;new-private-window;
+Actions=new-window;new-private-window;profile-manager-window;
+StartupWMClass=firefox
+
 
 [Desktop Action new-window]
-Name=New Window
+Name=Open a New Window
+Name[en_GB]=New Window
+Name[en_US]=New Window
+Name[en_ZA]=New Window
 Name[ru]=Новое окно
 Exec=/home/rean/.config/bin/firefox --new-window %u
 
 [Desktop Action new-private-window]
-Name=New Private Window
+Name=Open a New Private Window
+Name[en_GB]=New Private Window
+Name[en_US]=New Private Window
+Name[en_ZA]=New Private Window
 Name[ru]=Новое приватное окно
 Exec=/home/rean/.config/bin/firefox --private-window %u
+
+[Desktop Action profile-manager-window]
+Name=Open the Profile Manager
+Name[cs]=Správa profilů
+Name[de]=Profilverwaltung öffnen
+Name[es]=Abrir el Gestor de Perfiles
+Name[fr]=Ouvrir le gestionnaire de profils
+Exec=/usr/lib/firefox/firefox --ProfileManager

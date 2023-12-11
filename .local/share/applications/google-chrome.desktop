@@ -2,8 +2,10 @@
 Version=1.0
 Name=Google Chrome
 GenericName=Web Browser
+GenericName[en_GB]=Web Browser
 GenericName[ru]=Веб-браузер
 Comment=Access the Internet
+Comment[en_GB]=Access the Internet
 Comment[ru]=Доступ в Интернет
 StartupWMClass=Google-chrome
 Exec=/usr/bin/google-chrome-stable --password-store=basic %U
@@ -17,12 +19,14 @@ Actions=new-window;new-private-window;
 
 [Desktop Action new-window]
 Name=New Window
+Name[en_GB]=New Window
 Name[ru]=Новое окно
 StartupWMClass=Google-chrome
 Exec=/usr/bin/google-chrome-stable --password-store=basic
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
+Name[en_GB]=New Incognito window
 Name[ru]=Новое окно в режиме инкогнито
 StartupWMClass=Google-chrome
 Exec=/usr/bin/google-chrome-stable --password-store=basic --incognito
