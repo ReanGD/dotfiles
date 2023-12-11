@@ -1,10 +1,21 @@
+from os.path import expanduser
 from libqtile.lazy import lazy
-from libqtile import bar, layout, widget
+from libqtile import qtile, hook, layout
 from libqtile.utils import guess_terminal
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 
-mod = "mod4"
+groups = [
+    Group(name="web", layout="max"),
+    Group(name="doc", layout="columns"),
+    Group(name="devel", layout="columns"),
+    Group(name="cmdr", layout="max"),
+    Group(name="media", layout="columns"),
+    Group(name="custom", layout="columns"),
+    Group(name="bg", layout="columns"),
+]
+
 terminal = guess_terminal()
+polybar_reload = expanduser("~/.config/polybar/launch.sh")
 
 modkey = "mod4"
 S = [ "shift" ]
@@ -18,7 +29,7 @@ keys = [
     # https://docs.qtile.org/en/latest/manual/config/lazy.html
 
     # Root
-    Key(SCM, "r", lazy.reload_config(),
+    Key(SCM, "r", lazy.reload_config(), lazy.spawn(polybar_reload),
         desc = "Root: Reload config"),
     Key(SCM, "q", lazy.shutdown(),
         desc = "Root: Quit"),
@@ -90,33 +101,22 @@ keys = [
         desc="Launch: Spawn a command using a prompt widget"),
 ]
 
-group_names = ["web", "doc", "devel", "cmdr", "media", "custom", "bg"]
-
-groups = [Group(name=name) for name in group_names]
-
 for num, group in enumerate(groups):
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                str(num+1),
-                lazy.group[group.name].toscreen(),
-                desc="Switch to group {}".format(group.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                str(num+1),
-                lazy.window.togroup(group.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(group.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
+    key = str(num + 1)
+    name = group.name
+    keys.extend([
+        Key(M,  key, lazy.group[group.name].toscreen(),
+            desc = f"Switch to group {name}"),
+        Key(SM, key, lazy.window.togroup(name, switch_group=True),
+            desc = f"Switch to & move focused window to group {name}",),
         ]
     )
+
+mouse = [
+    Drag(M, "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag(M, "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click(M, "Button2", lazy.window.bring_to_front()),
+]
 
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
@@ -143,47 +143,17 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
+        x11_drag_polling_rate = 60,
     ),
-]
-
-# Drag floating layouts.
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
+follow_mouse_focus = False
+follow_mouse_focus = False
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
@@ -197,11 +167,26 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="runify-ui"),  # ssh-askpass
+        Match(role="TfrmViewer"),  # ssh-askpass
+        Match(role="TfrmFindDlg"),  # ssh-askpass
     ]
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
+
+@hook.subscribe.layout_change
+def layout_change(layout, group):
+    qtile.spawn(f'polybar-msg action "#subscriber.send.{layout.name}"')
+
+
+@hook.subscribe.client_focus
+def floating_dialogs(window):
+    if not hasattr(window, 'fix') and window.window.get_wm_transient_for() is None and window.get_wm_class()[0] == 'transgui':
+        window.fix = True
+        window.floating = True
+        window.floating = False
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
