@@ -1,5 +1,6 @@
 {
     "update.mode": "manual",
+    "telemetry.telemetryLevel": "off",
     "editor.fontFamily": "Pragmata Pro",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
@@ -39,7 +40,7 @@
         "editor.suggest.snippetsPreventQuickSuggestions": false,
         "editor.suggestSelection": "first",
         "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": false,
+        "editor.wordBasedSuggestions": "off",
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -115,6 +116,7 @@
     "git.mergeEditor": true,
     "gitlens.currentLine.enabled": false,
     "gitlens.codeLens.enabled": false,
+    "git.openRepositoryInParentFolders": "never",
     "gitlens.blame.format": "${message|30?}${agoOrDate|14-}:${author|8}",
     "todo-tree.regex.regexCaseSensitive": false,
     "todo-tree.highlights.enabled": true,
@@ -157,11 +159,22 @@
     },
     "ansible.ansibleLint.arguments": "-x risky-shell-pipe -x meta-no-info",
     "redhat.telemetry.enabled": false,
+    "markdownlint.config": {
+        "MD024": false
+    },
+    "mdb.confirmRunAll": false,
     "github.copilot.enable": {
         "*": true,
         "yaml": false,
         "plaintext": true,
         "markdown": true
+    },
+    "github.copilot.advanced": {
+        "slashCommands": {
+            "createWorkspace": true,
+            "createNotebook": true,
+            "search": true
+         }
     },
     "projectManager.projectsLocation": "$home/projects/workspases",
     "projectManager.supportSymlinksOnBaseFolders": true,
@@ -207,13 +220,5 @@
         "!Select sequence",
         "!Split",
         "!Split sequence"
-    ],
-    "github.copilot.advanced": {
-        "slashCommands": {
-            "createWorkspace": true,
-            "createNotebook": true,
-            "search": true
-         }
-    },
-    "mdb.confirmRunAll": false
+    ]
 }
