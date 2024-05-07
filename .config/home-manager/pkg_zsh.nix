@@ -3,6 +3,9 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
+      # see https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+      sudo="sudo ";
+      sudoe="sudo --preserve-env ";
     };
     dotDir = ".config/zsh";
     initExtraBeforeCompInit = ''
@@ -13,7 +16,9 @@
 
       # For ohmyzsh/ohmyzsh path:plugins/colorize
       ZSH_COLORIZE_STYLE="monokai"
+      # For agkozak/zsh-z
       ZSHZ_DATA="$XDG_DATA_HOME/.z"
+      # For ohmyzsh/ohmyzsh path:plugins/alias-finder
       ZSH_ALIAS_FINDER_AUTOMATIC=true
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
       ZSH_COMPDUMP="$ZSH_DATA_DIR/.zcompdump-$HOST-$ZSH_VERSION"
