@@ -20,7 +20,9 @@
       ZSHZ_DATA="$XDG_DATA_HOME/.z"
       # For ohmyzsh/ohmyzsh path:plugins/alias-finder
       ZSH_ALIAS_FINDER_AUTOMATIC=true
+      # For zsh-users/zsh-autosuggestions
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
+      # For compinit
       ZSH_COMPDUMP="$ZSH_DATA_DIR/.zcompdump-$HOST-$ZSH_VERSION"
 
       source $ZSH_LIB_DIR/common.zsh
