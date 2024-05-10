@@ -9,7 +9,11 @@
   ];
 
   home.packages = with pkgs; [
+    # terminal
     ncdu     # disk usage analyzer
     fzf      # fuzzy search
+    # archivers
+    p7zip
+    unrar
   ];
 }

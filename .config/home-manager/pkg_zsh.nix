@@ -53,8 +53,13 @@
         "ohmyzsh/ohmyzsh path:plugins/alias-finder"
         # ccat\cless <file> - colorize file content
         "ohmyzsh/ohmyzsh path:plugins/colorize"
+        # fast cd to a directory
         "agkozak/zsh-z"
         "supercrabtree/k"
+        # echo Hello world | pbcopy
+        # echo Hello world | clip
+        # pbpaste | grep Hello
+        # clip | grep Hello
         "zpm-zsh/clipboard"
         "trystan2k/zsh-tab-title"
         "zsh-users/zsh-autosuggestions"
