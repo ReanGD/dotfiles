@@ -99,7 +99,8 @@ bindkey '^[f' delete-char
 bindkey "${key[Delete]}" delete-char
 
 bindkey '^[d' backward-delete-char
-bindkey "${key[Backspace]}" backward-delete-char
+bindkey "^?" backward-delete-char
+# bindkey "${key[Backspace]}" backward-delete-char
 
 bindkey '^[r' delete-word
 bindkey "${key[Ctrl-Delete]}" delete-word

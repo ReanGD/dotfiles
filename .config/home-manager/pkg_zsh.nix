@@ -26,9 +26,9 @@
       ZSH_COMPDUMP="$ZSH_DATA_DIR/.zcompdump-$HOST-$ZSH_VERSION"
 
       source $ZSH_LIB_DIR/common.zsh
-      source $ZSH_LIB_DIR/options.zsh
-      source $ZSH_LIB_DIR/history.zsh
-      source $ZSH_LIB_DIR/aliases.zsh
+      source $ZSH_LIB_DIR/options_nix.zsh
+      source $ZSH_LIB_DIR/history_nix.zsh
+      source $ZSH_LIB_DIR/aliases_nix.zsh
       source $ZSH_LIB_DIR/correction.zsh
       source $ZSH_LIB_DIR/prompt.zsh
       source $ZSH_LIB_DIR/key_bindings.zsh
@@ -76,6 +76,8 @@
       # OMZP::extract = thetic/extract
       # OMZP::alias-finder = sei40kr/zsh-fast-alias-tips = djui/alias-tips
     };
+    # setopt AUTO_CD\autocd - goto directory without "cd"
+    autocd = true;
     history = {
       # HISTSIZE
       size = 20000;
