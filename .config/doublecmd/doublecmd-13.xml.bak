@@ -1,0 +1,1627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doublecmd DCVersion="1.0.11" ConfigVersion="13">
+  <Configuration Save="True" SortOrder="0" TreeType="0">
+    <FolderTabs Save="True"/>
+  </Configuration>
+  <Colors>
+    <FileFilters>
+      <Filter>
+        <Name>Pascal sources</Name>
+        <FileMasks>*.pas;*.pp</FileMasks>
+        <Color>32768</Color>
+        <Attributes/>
+      </Filter>
+      <Filter>
+        <Name>Pascal binaries</Name>
+        <FileMasks>*.ppu;*.o;*.dcu</FileMasks>
+        <Color>16711680</Color>
+        <Attributes/>
+      </Filter>
+      <Filter>
+        <Name>Specified Executables</Name>
+        <FileMasks>*</FileMasks>
+        <Color>55758</Color>
+        <Attributes>-rwxrwxr*x</Attributes>
+      </Filter>
+      <Filter>
+        <Name>Executables</Name>
+        <FileMasks>*</FileMasks>
+        <Color>32768</Color>
+        <Attributes>-*x*</Attributes>
+      </Filter>
+    </FileFilters>
+    <UseCursorBorder>False</UseCursorBorder>
+    <CursorBorderColor>-2147483635</CursorBorderColor>
+    <UseFrameCursor>True</UseFrameCursor>
+    <Foreground>-2147483640</Foreground>
+    <Background>-2147483643</Background>
+    <Background2>-2147483643</Background2>
+    <Cursor>0</Cursor>
+    <CursorText>-2147483634</CursorText>
+    <Mark>8612171</Mark>
+    <InactiveCursor>-2147483645</InactiveCursor>
+    <InactiveMark>128</InactiveMark>
+    <UseInvertedSelection>True</UseInvertedSelection>
+    <UseInactiveSelColor>False</UseInactiveSelColor>
+    <AllowOverColor>True</AllowOverColor>
+    <gBorderFrameWidth>1</gBorderFrameWidth>
+    <InactivePanelBrightness>100</InactivePanelBrightness>
+    <FreeSpaceIndicator>
+      <UseGradient>True</UseGradient>
+      <ForeColor>0</ForeColor>
+      <BackColor>16777215</BackColor>
+    </FreeSpaceIndicator>
+    <LogWindow>
+      <Info>8388608</Info>
+      <Error>255</Error>
+      <Success>32768</Success>
+    </LogWindow>
+    <PathLabel>
+      <ActiveColor>-2147483635</ActiveColor>
+      <ActiveFontColor>-2147483634</ActiveFontColor>
+      <InactiveColor>-2147483633</InactiveColor>
+      <InactiveFontColor>-2147483630</InactiveFontColor>
+    </PathLabel>
+  </Colors>
+  <Plugins>
+    <WlxPlugins>
+      <WlxPlugin Enabled="True">
+        <Name>wlxMplayer</Name>
+        <Path>%commander_path%/plugins/wlx/wlxmplayer/wlxmplayer.wlx</Path>
+        <DetectString>(EXT="MPG")|(EXT="AVI")|(EXT="MPEG")|(EXT="FLV")</DetectString>
+      </WlxPlugin>
+    </WlxPlugins>
+    <DsxPlugins/>
+    <WcxPlugins>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zip</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>735</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>jar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>990</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>223</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>bz2</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tbz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>gz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tgz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>lzma</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>1</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>tlz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>xz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>txz</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>95</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zipx</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>223</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>cpio</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/cpio/cpio.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>deb</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/deb/deb.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>rpm</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/rpm/rpm.wcx</Path>
+        <Flags>4</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>rar</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/unrar/unrar.wcx</Path>
+        <Flags>607</Flags>
+      </WcxPlugin>
+      <WcxPlugin Enabled="True">
+        <ArchiveExt>zst</ArchiveExt>
+        <Path>%commander_path%/plugins/wcx/zip/zip.wcx</Path>
+        <Flags>91</Flags>
+      </WcxPlugin>
+    </WcxPlugins>
+    <WdxPlugins>
+      <WdxPlugin>
+        <Name>deb_wdx</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/deb_wdx/deb_wdx.wdx</Path>
+        <DetectString>EXT="DEB"</DetectString>
+      </WdxPlugin>
+      <WdxPlugin>
+        <Name>rpm_wdx</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/rpm_wdx/rpm_wdx.wdx</Path>
+        <DetectString>EXT="RPM"</DetectString>
+      </WdxPlugin>
+      <WdxPlugin>
+        <Name>audioinfo</Name>
+        <Path>%COMMANDER_PATH%/plugins/wdx/audioinfo/audioinfo.wdx</Path>
+        <DetectString>(EXT="MP3") | (EXT="MP2") | (EXT="MP1") | (EXT="OGG") | (EXT="WMA") | (EXT="WAV") | (EXT="VQF") | (EXT="AAC") | (EXT="APE") | (EXT="MPC") | (EXT="FLAC") | (EXT="CDA") | (EXT="TTA") | (EXT="AC3") | (EXT="DTS") | (EXT="WV") | (EXT="WVC") | (EXT="OFR") | (EXT="OFS") | (EXT="M4A") | (EXT="MP4")</DetectString>
+      </WdxPlugin>
+    </WdxPlugins>
+    <WfxPlugins>
+      <WfxPlugin Enabled="True">
+        <Name>FTP</Name>
+        <Path>%commander_path%/plugins/wfx/ftp/ftp.wfx</Path>
+      </WfxPlugin>
+      <WfxPlugin Enabled="True">
+        <Name>Windows Network</Name>
+        <Path>%commander_path%/plugins/wfx/samba/samba.wfx</Path>
+      </WfxPlugin>
+    </WfxPlugins>
+    <TweakPluginWidth0>0</TweakPluginWidth0>
+    <TweakPluginHeight0>0</TweakPluginHeight0>
+    <TweakPluginWidth1>0</TweakPluginWidth1>
+    <TweakPluginHeight1>0</TweakPluginHeight1>
+    <TweakPluginWidth2>0</TweakPluginWidth2>
+    <TweakPluginHeight2>0</TweakPluginHeight2>
+    <TweakPluginWidth3>0</TweakPluginWidth3>
+    <TweakPluginHeight3>0</TweakPluginHeight3>
+    <TweakPluginWidth4>0</TweakPluginWidth4>
+    <TweakPluginHeight4>0</TweakPluginHeight4>
+    <AutoTweak>False</AutoTweak>
+    <WCXConfigViewMode>0</WCXConfigViewMode>
+    <PluginFilenameStyle>0</PluginFilenameStyle>
+    <PluginPathToBeRelativeTo>%COMMANDER_PATH%</PluginPathToBeRelativeTo>
+  </Plugins>
+  <Toolbars>
+    <MainToolbar>
+      <Row>
+        <Command>
+          <ID>{D551037C-0CA3-4F60-98D9-42910CC0BF77}</ID>
+          <Icon>cm_refresh</Icon>
+          <Command>cm_Refresh</Command>
+        </Command>
+        <Command>
+          <ID>{144F2195-6AC8-4082-848E-7A2E0D724BCD}</ID>
+          <Icon>cm_runterm</Icon>
+          <Command>cm_RunTerm</Command>
+        </Command>
+        <Command>
+          <ID>{7875C3E6-A062-4A5B-AE99-BBBCC18E6F36}</ID>
+          <Icon>cm_options</Icon>
+          <Command>cm_Options</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{6BB8807A-DB04-4938-84D7-E69507BF4D8D}</ID>
+          <Icon>cm_briefview</Icon>
+          <Command>cm_BriefView</Command>
+        </Command>
+        <Command>
+          <ID>{196C01AE-FF54-488E-BF85-D2276C5C67CC}</ID>
+          <Icon>cm_columnsview</Icon>
+          <Command>cm_ColumnsView</Command>
+        </Command>
+        <Command>
+          <ID>{E678017C-7BB2-4FFC-8DE4-671B217096B0}</ID>
+          <Icon>cm_thumbnailsview</Icon>
+          <Command>cm_ThumbnailsView</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{94B06539-D35A-4D65-A244-A62F8F49D82B}</ID>
+          <Icon>cm_flatview</Icon>
+          <Command>cm_FlatView</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{1ACDFB64-A885-4729-BFD6-469D98E5BDBA}</ID>
+          <Icon>cm_viewhistoryprev</Icon>
+          <Command>cm_ViewHistoryPrev</Command>
+        </Command>
+        <Command>
+          <ID>{152D4DCB-1089-47A7-A984-D1F7C761BAB9}</ID>
+          <Icon>cm_viewhistorynext</Icon>
+          <Command>cm_ViewHistoryNext</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{28BFBA8C-2EF0-4D72-B0F9-7821719528D4}</ID>
+          <Icon>cm_markplus</Icon>
+          <Command>cm_MarkPlus</Command>
+        </Command>
+        <Command>
+          <ID>{2894BE05-C767-468F-B759-C02D777A389D}</ID>
+          <Icon>cm_markminus</Icon>
+          <Command>cm_MarkMinus</Command>
+        </Command>
+        <Command>
+          <ID>{8C1D7B9A-798B-4669-8B4A-F4C95425D2B6}</ID>
+          <Icon>cm_markinvert</Icon>
+          <Command>cm_MarkInvert</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{104640A7-3637-42AE-B40D-ED71023D5B9A}</ID>
+          <Icon>cm_packfiles</Icon>
+          <Command>cm_PackFiles</Command>
+        </Command>
+        <Command>
+          <ID>{F0245EA7-7B02-4384-AE58-A4FBE79263E4}</ID>
+          <Icon>cm_extractfiles</Icon>
+          <Command>cm_ExtractFiles</Command>
+        </Command>
+        <Separator/>
+        <Command>
+          <ID>{DD74AE2C-0541-47F8-89EE-A4B451FCF688}</ID>
+          <Icon>cm_search</Icon>
+          <Command>cm_Search</Command>
+        </Command>
+        <Command>
+          <ID>{78031614-3569-4401-BB23-83A4F9DCD15C}</ID>
+          <Icon>cm_multirename</Icon>
+          <Command>cm_MultiRename</Command>
+        </Command>
+        <Command>
+          <ID>{E1729EA2-4AF7-47AC-813B-D2FD37BFB096}</ID>
+          <Icon>cm_syncdirs</Icon>
+          <Command>cm_SyncDirs</Command>
+        </Command>
+        <Command>
+          <ID>{530118BF-0B57-49CF-863E-32407A554ECD}</ID>
+          <Icon>cm_copyfullnamestoclip</Icon>
+          <Command>cm_CopyFullNamesToClip</Command>
+        </Command>
+      </Row>
+    </MainToolbar>
+    <MiddleToolbar>
+      <Row>
+        <Command>
+          <ID>{307E1BF0-3AC6-4CEF-930D-80A7D9C7D719}</ID>
+          <Icon>cm_view</Icon>
+          <Command>cm_View</Command>
+        </Command>
+        <Command>
+          <ID>{8D904AE0-023B-42F8-B778-DE5AD2BAB1A6}</ID>
+          <Icon>cm_edit</Icon>
+          <Command>cm_Edit</Command>
+        </Command>
+        <Command>
+          <ID>{731E9E0B-B788-4ADF-A478-135344C46E60}</ID>
+          <Icon>cm_copy</Icon>
+          <Command>cm_Copy</Command>
+        </Command>
+        <Command>
+          <ID>{2C60BED4-F418-4032-86A0-AB27C86F22F8}</ID>
+          <Icon>cm_rename</Icon>
+          <Command>cm_Rename</Command>
+        </Command>
+        <Separator>
+          <Style>True</Style>
+        </Separator>
+        <Command>
+          <ID>{13191399-41EE-4B2D-B413-947BC1ADE8A6}</ID>
+          <Icon>cm_packfiles</Icon>
+          <Command>cm_PackFiles</Command>
+        </Command>
+        <Command>
+          <ID>{2E652C3B-1A1F-4D2B-9D64-FA1B232AC7E7}</ID>
+          <Icon>cm_makedir</Icon>
+          <Command>cm_MakeDir</Command>
+        </Command>
+      </Row>
+    </MiddleToolbar>
+  </Toolbars>
+  <MainWindow>
+    <Position Save="True">
+      <Left>0</Left>
+      <Top>44</Top>
+      <Width>2560</Width>
+      <Height>1360</Height>
+      <PixelsPerInch>120</PixelsPerInch>
+      <Maximized>True</Maximized>
+      <Splitter>50</Splitter>
+    </Position>
+  </MainWindow>
+  <Language>
+    <POFileName>doublecmd.ru.po</POFileName>
+  </Language>
+  <Behaviours>
+    <GoToRoot>False</GoToRoot>
+    <ShowCurDirTitleBar>False</ShowCurDirTitleBar>
+    <ActiveRight>False</ActiveRight>
+    <RunInTerminalStayOpenCmd>xterm</RunInTerminalStayOpenCmd>
+    <RunInTerminalStayOpenParams>-e sh -c '{command}; echo -n Press ENTER to exit... ; read a'</RunInTerminalStayOpenParams>
+    <RunInTerminalCloseCmd>xterm</RunInTerminalCloseCmd>
+    <RunInTerminalCloseParams>-e sh -c {command}</RunInTerminalCloseParams>
+    <JustRunTerminal>xterm</JustRunTerminal>
+    <JustRunTermParams/>
+    <OnlyOneAppInstance>True</OnlyOneAppInstance>
+    <LynxLike>True</LynxLike>
+    <FileSizeFormat>0</FileSizeFormat>
+    <OperationSizeFormat>0</OperationSizeFormat>
+    <HeaderSizeFormat>0</HeaderSizeFormat>
+    <FooterSizeFormat>0</FooterSizeFormat>
+    <FileSizeDigits>1</FileSizeDigits>
+    <HeaderDigits>1</HeaderDigits>
+    <FooterDigits>1</FooterDigits>
+    <OperationSizeDigits>1</OperationSizeDigits>
+    <PersonalizedByte>Б</PersonalizedByte>
+    <PersonalizedKilo>Кб</PersonalizedKilo>
+    <PersonalizedMega>Мб</PersonalizedMega>
+    <PersonalizedGiga>Гб</PersonalizedGiga>
+    <PersonalizedTera>Тб</PersonalizedTera>
+    <MinimizeToTray>False</MinimizeToTray>
+    <AlwaysShowTrayIcon>False</AlwaysShowTrayIcon>
+    <Mouse>
+      <Selection Enabled="True">
+        <Button>0</Button>
+        <IconClick>0</IconClick>
+      </Selection>
+      <SingleClickStart>0</SingleClickStart>
+      <ScrollMode>1</ScrollMode>
+      <WheelScrollLines>3</WheelScrollLines>
+    </Mouse>
+    <AutoFillColumns>False</AutoFillColumns>
+    <AutoSizeColumn>1</AutoSizeColumn>
+    <CustomColumnsChangeAllColumns>False</CustomColumnsChangeAllColumns>
+    <BriefViewFileExtAligned>False</BriefViewFileExtAligned>
+    <DateTimeFormat>dd.mm.yyyy hh:nn:ss</DateTimeFormat>
+    <CutTextToColumnWidth>True</CutTextToColumnWidth>
+    <ExtendCellWidth>False</ExtendCellWidth>
+    <ShowSystemFiles>True</ShowSystemFiles>
+    <ListFilesInThread>True</ListFilesInThread>
+    <LoadIconsSeparately>True</LoadIconsSeparately>
+    <DelayLoadingTabs>True</DelayLoadingTabs>
+    <HighlightUpdatedFiles>True</HighlightUpdatedFiles>
+    <DriveBlackList/>
+    <DriveBlackListUnmounted>False</DriveBlackListUnmounted>
+  </Behaviours>
+  <Tools>
+    <Viewer Enabled="False">
+      <Path/>
+      <Parameters/>
+      <RunInTerminal>False</RunInTerminal>
+      <KeepTerminalOpen>False</KeepTerminalOpen>
+    </Viewer>
+    <Editor Enabled="True">
+      <Path>/opt/sublime_text_3/sublime_text</Path>
+      <Parameters/>
+      <RunInTerminal>False</RunInTerminal>
+      <KeepTerminalOpen>False</KeepTerminalOpen>
+    </Editor>
+    <Differ Enabled="True">
+      <Path>/usr/bin/meld</Path>
+      <Parameters/>
+      <RunInTerminal>False</RunInTerminal>
+      <KeepTerminalOpen>False</KeepTerminalOpen>
+      <FramePosAfterComp>0</FramePosAfterComp>
+    </Differ>
+  </Tools>
+  <Fonts>
+    <Main>
+      <Name>default</Name>
+      <Size>8</Size>
+      <Style>1</Style>
+      <Quality>0</Quality>
+    </Main>
+    <Editor>
+      <Name>Monospace</Name>
+      <Size>13</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Editor>
+    <Viewer>
+      <Name>Monospace</Name>
+      <Size>13</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Viewer>
+    <OptionsTree>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </OptionsTree>
+    <OptionsMain>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </OptionsMain>
+    <SearchResults>
+      <Name>default</Name>
+      <Size>9</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </SearchResults>
+    <PathEdit>
+      <Name>default</Name>
+      <Size>7</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </PathEdit>
+    <FunctionButtons>
+      <Name>default</Name>
+      <Size>8</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </FunctionButtons>
+    <Log>
+      <Name>Monospace</Name>
+      <Size>11</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Log>
+    <ViewerBook>
+      <Name>default</Name>
+      <Size>15</Size>
+      <Style>1</Style>
+      <Quality>0</Quality>
+    </ViewerBook>
+    <Console>
+      <Name>Monospace</Name>
+      <Size>11</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </Console>
+    <TreeViewMenu>
+      <Name>default</Name>
+      <Size>10</Size>
+      <Style>0</Style>
+      <Quality>0</Quality>
+    </TreeViewMenu>
+  </Fonts>
+  <ToolTips>
+    <ShowToolTipMode>True</ShowToolTipMode>
+    <CustomFields/>
+    <ActualToolTipMode>0</ActualToolTipMode>
+    <ToolTipHideTimeOut>0</ToolTipHideTimeOut>
+  </ToolTips>
+  <Layout>
+    <MainMenu>True</MainMenu>
+    <ButtonBar Enabled="False">
+      <FlatIcons>True</FlatIcons>
+      <ButtonHeight>24</ButtonHeight>
+      <IconSize>16</IconSize>
+      <ShowCaptions>False</ShowCaptions>
+      <ReportErrorWithCommands>False</ReportErrorWithCommands>
+      <FilenameStyle>0</FilenameStyle>
+      <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+      <PathModifierElements>0</PathModifierElements>
+    </ButtonBar>
+    <MiddleBar Enabled="False">
+      <FlatIcons>True</FlatIcons>
+      <ButtonHeight>24</ButtonHeight>
+      <IconSize>16</IconSize>
+      <ShowCaptions>False</ShowCaptions>
+      <ReportErrorWithCommands>False</ReportErrorWithCommands>
+    </MiddleBar>
+    <DriveBar1>False</DriveBar1>
+    <DriveBar2>True</DriveBar2>
+    <DriveBarFlat>True</DriveBarFlat>
+    <DrivesListButton Enabled="True">
+      <ShowLabel>True</ShowLabel>
+      <ShowFileSystem>True</ShowFileSystem>
+      <ShowFreeSpace>True</ShowFreeSpace>
+    </DrivesListButton>
+    <SeparateTree>False</SeparateTree>
+    <DirectoryTabs>True</DirectoryTabs>
+    <CurrentDirectory>True</CurrentDirectory>
+    <TabHeader>True</TabHeader>
+    <StatusBar>True</StatusBar>
+    <CmdLine>True</CmdLine>
+    <LogWindow>False</LogWindow>
+    <TermWindow>False</TermWindow>
+    <KeyButtons>False</KeyButtons>
+    <InterfaceFlat>True</InterfaceFlat>
+    <DriveFreeSpace>True</DriveFreeSpace>
+    <DriveIndicator>False</DriveIndicator>
+    <ProgressInMenuBar>False</ProgressInMenuBar>
+    <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
+    <HorizontalFilePanels>False</HorizontalFilePanels>
+    <ShortFormatDriveInfo>True</ShortFormatDriveInfo>
+    <UppercaseDriveLetter>False</UppercaseDriveLetter>
+    <ShowColonAfterDrive>False</ShowColonAfterDrive>
+  </Layout>
+  <FilesViews>
+    <Sorting>
+      <CaseSensitivity>0</CaseSensitivity>
+      <NaturalSorting>False</NaturalSorting>
+      <SortFolderMode>1</SortFolderMode>
+      <NewFilesPosition>2</NewFilesPosition>
+      <UpdatedFilesPosition>2</UpdatedFilesPosition>
+      <SpecialSorting>False</SpecialSorting>
+    </Sorting>
+    <ColumnsView>
+      <AutoSaveWidth>True</AutoSaveWidth>
+      <TitleStyle>1</TitleStyle>
+    </ColumnsView>
+    <BriefView>
+      <FileExtAligned>False</FileExtAligned>
+      <Columns>
+        <FixedWidth>100</FixedWidth>
+        <FixedCount>2</FixedCount>
+        <AutoSize>2</AutoSize>
+      </Columns>
+    </BriefView>
+    <ExtraLineSpan>2</ExtraLineSpan>
+    <FolderPrefix>[</FolderPrefix>
+    <FolderPostfix>]</FolderPostfix>
+  </FilesViews>
+  <Keyboard>
+    <Typing>
+      <Actions>
+        <NoModifier>1</NoModifier>
+        <Alt>2</Alt>
+        <CtrlAlt>3</CtrlAlt>
+      </Actions>
+    </Typing>
+  </Keyboard>
+  <FileOperations>
+    <BufferSize>524288</BufferSize>
+    <HashBufferSize>8388608</HashBufferSize>
+    <UseMmapInSearch>False</UseMmapInSearch>
+    <PartialNameSearch>True</PartialNameSearch>
+    <InitiallyClearFileMask>True</InitiallyClearFileMask>
+    <NewSearchClearFiltersAction>0</NewSearchClearFiltersAction>
+    <ShowMenuBarInFindFiles>True</ShowMenuBarInFindFiles>
+    <WipePassNumber>1</WipePassNumber>
+    <DropReadOnlyFlag>False</DropReadOnlyFlag>
+    <ProcessComments>False</ProcessComments>
+    <RenameSelOnlyName>False</RenameSelOnlyName>
+    <ShowCopyTabSelectPanel>False</ShowCopyTabSelectPanel>
+    <UseTrash>True</UseTrash>
+    <SkipFileOpError>False</SkipFileOpError>
+    <TypeOfDuplicatedRename>0</TypeOfDuplicatedRename>
+    <ShowDialogOnDragDrop>False</ShowDialogOnDragDrop>
+    <DragAndDropTextRichtextDesireLevel>0</DragAndDropTextRichtextDesireLevel>
+    <DragAndDropTextHtmlDesireLevel>1</DragAndDropTextHtmlDesireLevel>
+    <DragAndDropTextUnicodeDesireLevel>2</DragAndDropTextUnicodeDesireLevel>
+    <DragAndDropTextSimpletextDesireLevel>3</DragAndDropTextSimpletextDesireLevel>
+    <DragAndDropAskFormatEachTime>False</DragAndDropAskFormatEachTime>
+    <DragAndDropTextAutoFilename>False</DragAndDropTextAutoFilename>
+    <DragAndDropSaveUnicodeTextInUFT8>True</DragAndDropSaveUnicodeTextInUFT8>
+    <NtfsHourTimeDelay>False</NtfsHourTimeDelay>
+    <AutoExtractOpenMask/>
+    <SearchDefaultTemplate/>
+    <ProgressKind>0</ProgressKind>
+    <Confirmations>15</Confirmations>
+    <Options>
+      <Symlink>0</Symlink>
+      <CorrectLinks>False</CorrectLinks>
+      <FileExists>0</FileExists>
+      <DirectoryExists>0</DirectoryExists>
+      <SetPropertyError>0</SetPropertyError>
+      <ReserveSpace>False</ReserveSpace>
+      <CheckFreeSpace>True</CheckFreeSpace>
+      <CopyAttributes>True</CopyAttributes>
+      <Verify>False</Verify>
+      <CopyTime>True</CopyTime>
+      <CopyOwnership>False</CopyOwnership>
+      <CopyPermissions>False</CopyPermissions>
+      <ExcludeEmptyTemplateDirectories>True</ExcludeEmptyTemplateDirectories>
+      <CopyOnWrite>2</CopyOnWrite>
+      <CopyXattributes>True</CopyXattributes>
+    </Options>
+    <Extract>
+      <Overwrite>False</Overwrite>
+    </Extract>
+    <LongNameAlert>True</LongNameAlert>
+    <MultiRename>
+      <MulRenShowMenuBarOnTop>True</MulRenShowMenuBarOnTop>
+      <MulRenInvalidCharReplacement>.</MulRenInvalidCharReplacement>
+      <MulRenLaunchBehavor>0</MulRenLaunchBehavor>
+      <MulRenExitModifiedPreset>0</MulRenExitModifiedPreset>
+      <MulRenSaveRenamingLog>0</MulRenSaveRenamingLog>
+      <MulRenLogFilename>%DC_CONFIG_PATH%/multirename.log</MulRenLogFilename>
+      <MultRenDailyIndividualDirLog>True</MultRenDailyIndividualDirLog>
+      <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
+      <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
+    </MultiRename>
+  </FileOperations>
+  <Tabs>
+    <OpenedTabs>
+      <Left>
+        <ActiveTab>3</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="data">/home/rean/projects/lovely_helper/backend/data/intent_catcher/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/backend/data/intent_catcher/data/</Path>
+                  <Path Filename="data">/home/rean/projects/lovely_helper/backend/data/intent_catcher/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/backend/data/intent_catcher/data/</Path>
+                  <Path Filename="data">/home/rean/projects/lovely_helper/backend/data/intent_catcher/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="..">/home/rean/downloads/</Path>
+                  <Path Filename="cloud">/home/rean/</Path>
+                  <Path Filename="Dropbox">/home/rean/cloud/</Path>
+                  <Path Filename="doc">/home/rean/</Path>
+                  <Path Filename="other">/home/rean/doc/</Path>
+                  <Path Filename="mi_box.txt">/home/rean/doc/other/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="..">/home/rean/tmp/</Path>
+                  <Path Filename="doc">/home/rean/</Path>
+                  <Path Filename="other">/home/rean/doc/</Path>
+                  <Path Filename="electronic-cigarette.txt">/home/rean/doc/other/</Path>
+                  <Path Filename="">/home/rean/downloads/</Path>
+                  <Path Filename="..">/home/rean/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="..">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/</Path>
+                  <Path Filename="..">/home/</Path>
+                  <Path Filename="mnt">/</Path>
+                  <Path Filename="nas">/mnt/</Path>
+                  <Path Filename="multimedia">/mnt/nas/</Path>
+                  <Path Filename="Audiobooks">/mnt/nas/multimedia/</Path>
+                  <Path Filename="Алексеев">/mnt/nas/multimedia/Audiobooks/</Path>
+                  <Path Filename="..">/mnt/nas/multimedia/Audiobooks/Алексеев/</Path>
+                  <Path Filename="Злотников">/mnt/nas/multimedia/Audiobooks/</Path>
+                  <Path Filename="..">/mnt/nas/multimedia/Audiobooks/Злотников/</Path>
+                  <Path Filename="..">/mnt/nas/multimedia/Audiobooks/</Path>
+                  <Path Filename="..">/mnt/nas/multimedia/</Path>
+                  <Path Filename="backup">/mnt/nas/</Path>
+                  <Path Filename="..">/mnt/nas/backup/</Path>
+                  <Path Filename="distrib">/mnt/nas/</Path>
+                  <Path Filename="..">/mnt/nas/distrib/</Path>
+                  <Path Filename="distrib">/mnt/nas/</Path>
+                  <Path Filename="00.png">/home/rean/doc/other/medical/</Path>
+                  <Path Filename="backup">/home/rean/doc/other/</Path>
+                  <Path Filename="отчет_иис">/home/rean/doc/other/backup/</Path>
+                  <Path Filename="..">/home/rean/doc/other/backup/отчет_иис/</Path>
+                  <Path Filename="..">/home/rean/doc/other/backup/</Path>
+                  <Path Filename="medical">/home/rean/doc/other/</Path>
+                  <Path Filename="график.todo">/home/rean/doc/other/medical/</Path>
+                  <Path Filename="medical">/home/rean/doc/other/</Path>
+                  <Path Filename="archlinux-2021.10.01-x86_64.iso">/home/rean/downloads/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="lovely_helper">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+          <Options>2</Options>
+          <LockPath>/home/rean/projects/lovely_helper/</LockPath>
+          <Title>lovely_helper</Title>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="steam_icon_292030.png">/home/rean/.local/share/icons/hicolor/128x128/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="32x32">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/32x32/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/32x32/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/32x32/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="notebook.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="redshift-status-on.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="hicolor">/home/rean/.local/share/icons/</Path>
+                  <Path Filename="icons">/home/rean/.local/share/</Path>
+                  <Path Filename="hicolor">/home/rean/.local/share/icons/</Path>
+                  <Path Filename="128x128">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/128x128/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="128x128">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/128x128/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="notebook.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/scalable/apps/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="redshift.svg">/home/rean/.local/share/icons/hicolor/status/22/22/</Path>
+                  <Path Filename="redshift.svg">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="redshift-status-on.svg">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="512x512">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/512x512/</Path>
+                  <Path Filename="redshift.svg">/home/rean/.local/share/icons/hicolor/512x512/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/512x512/</Path>
+                  <Path Filename="512x512">/home/rean/.local/share/icons/hicolor/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="autostart">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/autostart/</Path>
+                  <Path Filename="autostart">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/autostart/</Path>
+                  <Path Filename="autostart-scripts">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/autostart-scripts/</Path>
+                  <Path Filename="awesome">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/awesome/</Path>
+                  <Path Filename="bin">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/bin/</Path>
+                  <Path Filename="bin">/home/rean/.config/</Path>
+                  <Path Filename="relative">/home/rean/tmp/</Path>
+                  <Path Filename="tmp">/home/rean/</Path>
+                  <Path Filename="runify">/home/rean/downloads/</Path>
+                  <Path Filename="opt">/home/rean/downloads/runify/</Path>
+                  <Path Filename="runify">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="data">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/data/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="runify-autostart.desktop">/home/rean/downloads/runify/</Path>
+                  <Path Filename="work">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/work/</Path>
+                  <Path Filename="task">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/task/</Path>
+                  <Path Filename="other">/home/rean/doc/</Path>
+                  <Path Filename="terra">/home/rean/doc/other/</Path>
+                  <Path Filename="develop">/home/rean/doc/</Path>
+                  <Path Filename="libnoise">/home/rean/doc/develop/</Path>
+                  <Path Filename="build">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/build/</Path>
+                  <Path Filename="cmake">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/cmake/</Path>
+                  <Path Filename="doc">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/doc/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="noiseutils.h">/home/rean/doc/develop/libnoise/noiseutils/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="workspases">/home/rean/doc/develop/</Path>
+                  <Path Filename="mnt">/</Path>
+                  <Path Filename="nas">/mnt/</Path>
+                  <Path Filename="downloads">/mnt/nas/</Path>
+                  <Path Filename="mobile">/mnt/nas/downloads/</Path>
+                  <Path Filename="Сугралинов">/mnt/nas/downloads/mobile/</Path>
+                  <Path Filename="Кирпичи">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="Кирпич 13">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="Кирпичи">/home/rean/tmp/</Path>
+                  <Path Filename="Вступление">/home/rean/tmp/Кирпичи/</Path>
+                  <Path Filename="..">/home/rean/tmp/Кирпичи/Вступление/</Path>
+                  <Path Filename="10_1.mp3">/home/rean/tmp/Кирпичи/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/home/rean/.config/bin/</Path>
+                  <Path Filename="bin">/home/rean/.config/</Path>
+                  <Path Filename="relative">/home/rean/tmp/</Path>
+                  <Path Filename="tmp">/home/rean/</Path>
+                  <Path Filename="runify">/home/rean/downloads/</Path>
+                  <Path Filename="opt">/home/rean/downloads/runify/</Path>
+                  <Path Filename="runify">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="data">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/data/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="runify-autostart.desktop">/home/rean/downloads/runify/</Path>
+                  <Path Filename="work">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/work/</Path>
+                  <Path Filename="task">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/task/</Path>
+                  <Path Filename="other">/home/rean/doc/</Path>
+                  <Path Filename="terra">/home/rean/doc/other/</Path>
+                  <Path Filename="develop">/home/rean/doc/</Path>
+                  <Path Filename="libnoise">/home/rean/doc/develop/</Path>
+                  <Path Filename="build">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/build/</Path>
+                  <Path Filename="cmake">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/cmake/</Path>
+                  <Path Filename="doc">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/doc/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="noiseutils.h">/home/rean/doc/develop/libnoise/noiseutils/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="workspases">/home/rean/doc/develop/</Path>
+                  <Path Filename="mnt">/</Path>
+                  <Path Filename="nas">/mnt/</Path>
+                  <Path Filename="downloads">/mnt/nas/</Path>
+                  <Path Filename="mobile">/mnt/nas/downloads/</Path>
+                  <Path Filename="Сугралинов">/mnt/nas/downloads/mobile/</Path>
+                  <Path Filename="Кирпичи">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="..">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="Кирпичи">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="Вступление">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="..">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/Вступление/</Path>
+                  <Path Filename="Вступление">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="0_2.mp3">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/Вступление/</Path>
+                  <Path Filename="Вступление">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="Кирпичи2">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="..">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи2/</Path>
+                  <Path Filename="Кирпичи2">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="-wp-content-uploads-2014-02-Данияр-Сургалинов.-Кирпичи.pdf">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи2/</Path>
+                  <Path Filename="Кирпичи2">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="..">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи2/</Path>
+                  <Path Filename="Кирпичи">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Left>
+      <Right>
+        <ActiveTab>2</ActiveTab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="audio.json">/home/rean/tmp/video/</Path>
+                  <Path Filename="video">/home/rean/tmp/</Path>
+                  <Path Filename="audio.mp4">/home/rean/tmp/video/</Path>
+                  <Path Filename="video">/home/rean/tmp/</Path>
+                  <Path Filename="video">/home/rean/tmp/video/</Path>
+                  <Path Filename="video.mp4">/home/rean/tmp/video/video/</Path>
+                  <Path Filename="video">/home/rean/tmp/video/</Path>
+                  <Path Filename=".gitignore">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="kde2">/home/rean/tmp/</Path>
+                  <Path Filename="models">/home/rean/projects/lovely_helper/agents/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/agents/models/</Path>
+                  <Path Filename=".gitignore">/home/rean/projects/lovely_helper/agents/</Path>
+                  <Path Filename="agents">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="external">/home/rean/projects/</Path>
+                  <Path Filename="portaudio">/home/rean/projects/external/</Path>
+                  <Path Filename="..">/home/rean/projects/external/portaudio/</Path>
+                  <Path Filename="portaudio">/home/rean/projects/external/</Path>
+                  <Path Filename=".github">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/agents/notebook/agents/images/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/agents/notebook/agents/</Path>
+                  <Path Filename="..">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="runify">/home/rean/projects/home/</Path>
+                  <Path Filename="ci">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="..">/home/rean/projects/home/runify/ci/</Path>
+                  <Path Filename="ci">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="make_scripts">/home/rean/projects/home/runify/ci/</Path>
+                  <Path Filename="gocc.sh">/home/rean/projects/home/runify/ci/make_scripts/</Path>
+                  <Path Filename="make_scripts">/home/rean/projects/home/runify/ci/</Path>
+                  <Path Filename="ci">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="make_scripts">/home/rean/projects/home/runify/ci/</Path>
+                  <Path Filename="gocc.sh">/home/rean/projects/home/runify/ci/make_scripts/</Path>
+                  <Path Filename="ci">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="dound">/home/rean/tmp/</Path>
+                  <Path Filename="downloads">/home/rean/</Path>
+                  <Path Filename="Черновые">/home/rean/downloads/</Path>
+                  <Path Filename="Кабинет 3.jpg">/home/rean/downloads/Черновые/</Path>
+                  <Path Filename="..">/home/rean/projects/home/runify/</Path>
+                  <Path Filename="runify">/home/rean/projects/home/</Path>
+                  <Path Filename="home">/home/rean/projects/</Path>
+                  <Path Filename="projects">/home/rean/</Path>
+                  <Path Filename="rean">/home/</Path>
+                  <Path Filename="home">/</Path>
+                  <Path Filename="..">/home/</Path>
+                  <Path Filename="etc">/</Path>
+                  <Path Filename="mime.types">/etc/</Path>
+                  <Path Filename="tmp">/home/rean/</Path>
+                  <Path Filename="002">/home/rean/tmp/</Path>
+                  <Path Filename="1001.mp3">/home/rean/tmp/002/</Path>
+                  <Path Filename="kde2">/home/rean/tmp/</Path>
+                  <Path Filename="">/home/rean/projects/home/runify/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+          <Options>2</Options>
+          <LockPath>/home/rean/projects/home/runify/</LockPath>
+          <Title>runify</Title>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>1</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="paraphraser.zip">/home/rean/downloads/</Path>
+                  <Path Filename="go.mod">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="arena.git">/home/rean/projects/home/</Path>
+                  <Path Filename="..">/home/rean/projects/home/arena.git/</Path>
+                  <Path Filename="arena">/home/rean/projects/home/</Path>
+                  <Path Filename="draw">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="..">/home/rean/projects/home/arena/draw/</Path>
+                  <Path Filename="internal">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="resources">/home/rean/projects/home/arena/internal/</Path>
+                  <Path Filename="..">/home/rean/projects/home/arena/internal/resources/</Path>
+                  <Path Filename="resources">/home/rean/projects/home/arena/internal/</Path>
+                  <Path Filename="math">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="la">/home/rean/projects/home/arena/math/</Path>
+                  <Path Filename="matrix.go">/home/rean/projects/home/arena/math/la/</Path>
+                  <Path Filename="la">/home/rean/projects/home/arena/math/</Path>
+                  <Path Filename="opacha">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="..">/home/rean/projects/home/arena/opacha/</Path>
+                  <Path Filename="opacha">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="world">/home/rean/projects/home/arena/opacha/</Path>
+                  <Path Filename="opacha">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="arena">/home/rean/projects/home/</Path>
+                  <Path Filename="external">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/projects/external/</Path>
+                  <Path Filename="ai">/home/rean/projects/</Path>
+                  <Path Filename="babyagi">/home/rean/projects/ai/</Path>
+                  <Path Filename="venv">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/projects/venv/</Path>
+                  <Path Filename="test">/home/rean/projects/</Path>
+                  <Path Filename="arena_1">/home/rean/projects/test/</Path>
+                  <Path Filename="ui">/home/rean/projects/test/arena_1/</Path>
+                  <Path Filename="..">/home/rean/projects/test/arena_1/ui/</Path>
+                  <Path Filename="ui">/home/rean/projects/test/arena_1/</Path>
+                  <Path Filename="YandexStation">/home/rean/projects/test/</Path>
+                  <Path Filename="..">/home/rean/projects/test/YandexStation/</Path>
+                  <Path Filename="wal-g">/home/rean/projects/test/</Path>
+                  <Path Filename="..">/home/rean/projects/test/wal-g/</Path>
+                  <Path Filename="vscode-logfile-highlighter">/home/rean/projects/test/</Path>
+                  <Path Filename="ai">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/projects/ai/</Path>
+                  <Path Filename="terra">/home/rean/projects/</Path>
+                  <Path Filename="..">/home/rean/projects/terra/</Path>
+                  <Path Filename="lovely_helper">/home/rean/projects/</Path>
+                  <Path Filename="AI">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="..">/home/rean/projects/lovely_helper/AI/</Path>
+                  <Path Filename="AI">/home/rean/projects/lovely_helper/</Path>
+                  <Path Filename="lovely_helper">/home/rean/projects/</Path>
+                  <Path Filename="tutorial_1.ipynb">/home/rean/projects/test/deep-learning/src/</Path>
+                  <Path Filename=".vscode">/home/rean/projects/home/arena/</Path>
+                  <Path Filename="kde">/home/rean/tmp/</Path>
+                  <Path Filename="..">/home/rean/projects/home/arena/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+          <Options>2</Options>
+          <LockPath>/home/rean/projects/home/arena/</LockPath>
+          <Title>arena</Title>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="..">/home/rean/.config/awesome/</Path>
+                  <Path Filename="bin">/home/rean/.config/</Path>
+                  <Path Filename="..">/home/rean/.config/bin/</Path>
+                  <Path Filename="bin">/home/rean/.config/</Path>
+                  <Path Filename="relative">/home/rean/tmp/</Path>
+                  <Path Filename="tmp">/home/rean/</Path>
+                  <Path Filename="runify">/home/rean/downloads/</Path>
+                  <Path Filename="opt">/home/rean/downloads/runify/</Path>
+                  <Path Filename="runify">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="data">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/data/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/runify/</Path>
+                  <Path Filename="..">/home/rean/downloads/runify/opt/</Path>
+                  <Path Filename="runify-autostart.desktop">/home/rean/downloads/runify/</Path>
+                  <Path Filename="work">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/work/</Path>
+                  <Path Filename="task">/home/rean/doc/</Path>
+                  <Path Filename="..">/home/rean/doc/task/</Path>
+                  <Path Filename="other">/home/rean/doc/</Path>
+                  <Path Filename="terra">/home/rean/doc/other/</Path>
+                  <Path Filename="develop">/home/rean/doc/</Path>
+                  <Path Filename="libnoise">/home/rean/doc/develop/</Path>
+                  <Path Filename="build">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/build/</Path>
+                  <Path Filename="cmake">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/cmake/</Path>
+                  <Path Filename="doc">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="..">/home/rean/doc/develop/libnoise/doc/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="noiseutils.h">/home/rean/doc/develop/libnoise/noiseutils/</Path>
+                  <Path Filename="noiseutils">/home/rean/doc/develop/libnoise/</Path>
+                  <Path Filename="workspases">/home/rean/doc/develop/</Path>
+                  <Path Filename="mnt">/</Path>
+                  <Path Filename="nas">/mnt/</Path>
+                  <Path Filename="downloads">/mnt/nas/</Path>
+                  <Path Filename="mobile">/mnt/nas/downloads/</Path>
+                  <Path Filename="Сугралинов">/mnt/nas/downloads/mobile/</Path>
+                  <Path Filename="Кирпичи">/mnt/nas/downloads/mobile/Сугралинов/</Path>
+                  <Path Filename="Кирпич 13">/mnt/nas/downloads/mobile/Сугралинов/Кирпичи/</Path>
+                  <Path Filename="Кирпичи">/home/rean/tmp/</Path>
+                  <Path Filename="Кирпичи тяжелы (последняя глава)">/home/rean/tmp/Кирпичи/</Path>
+                  <Path Filename="14_2.mp3">/home/rean/tmp/Кирпичи/Кирпичи тяжелы (последняя глава)/</Path>
+                  <Path Filename="9_7.mp3">/home/rean/tmp/Кирпичи/</Path>
+                  <Path Filename="Кирпичи">/home/rean/tmp/</Path>
+                  <Path Filename="Вступление">/home/rean/tmp/Кирпичи/</Path>
+                  <Path Filename="..">/home/rean/tmp/Кирпичи/Вступление/</Path>
+                  <Path Filename="14_5.mp3">/home/rean/tmp/Кирпичи/</Path>
+                  <Path Filename="Кирпичи2">/home/rean/tmp/</Path>
+                  <Path Filename="..">/home/rean/tmp/Кирпичи2/</Path>
+                  <Path Filename="су">/home/rean/tmp/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+        <Tab>
+          <FileView Type="columns">
+            <Sortings>
+              <Sorting>
+                <Direction>1</Direction>
+                <Function>12</Function>
+              </Sorting>
+            </Sortings>
+            <History>
+              <Entry Active="True">
+                <FileSource Type="FileSystem"/>
+                <Paths>
+                  <Path Filename="redshift-status-on.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="hicolor">/home/rean/.local/share/icons/</Path>
+                  <Path Filename="icons">/home/rean/.local/share/</Path>
+                  <Path Filename="hicolor">/home/rean/.local/share/icons/</Path>
+                  <Path Filename="128x128">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/128x128/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="128x128">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/128x128/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/128x128/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="notebook.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/scalable/apps/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="redshift.svg">/home/rean/.local/share/icons/hicolor/status/22/22/</Path>
+                  <Path Filename="redshift.svg">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="redshift-status-on.svg">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="512x512">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/512x512/</Path>
+                  <Path Filename="chrome-pgagclmiogploholloficbiojpmaobbk-Default.png">/home/rean/.local/share/icons/hicolor/512x512/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/512x512/</Path>
+                  <Path Filename="512x512">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="hicolor">/home/rean/.local/share/icons/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="status">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="..">/home/rean/.local/share/icons/hicolor/status/22/</Path>
+                  <Path Filename="22">/home/rean/.local/share/icons/hicolor/status/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="notebook.svg">/home/rean/.local/share/icons/hicolor/scalable/apps/</Path>
+                  <Path Filename="apps">/home/rean/.local/share/icons/hicolor/scalable/</Path>
+                  <Path Filename="scalable">/home/rean/.local/share/icons/hicolor/</Path>
+                  <Path Filename="redshift-status-off.svg">/home/rean/.local/share/icons/</Path>
+                </Paths>
+              </Entry>
+            </History>
+            <ColumnsView>
+              <ColumnsSet>Default</ColumnsSet>
+            </ColumnsView>
+          </FileView>
+        </Tab>
+      </Right>
+    </OpenedTabs>
+    <Options>54033</Options>
+    <CharacterLimit>32</CharacterLimit>
+    <Position>0</Position>
+    <ActionOnDoubleClick>1</ActionOnDoubleClick>
+  </Tabs>
+  <Log Enabled="False" LogFileWithDateInName="False" Count="0">
+    <FileName>%DC_CONFIG_PATH%/doublecmd.log</FileName>
+    <Options>1023</Options>
+  </Log>
+  <History>
+    <SearchReplaceHistory Save="True"/>
+    <DirHistory Save="True"/>
+    <CmdLineHistory Save="True"/>
+    <FileMaskHistory Save="True"/>
+  </History>
+  <QuickSearch>
+    <MatchBeginning>True</MatchBeginning>
+    <MatchEnding>True</MatchEnding>
+    <Case>1</Case>
+    <Items>2</Items>
+  </QuickSearch>
+  <QuickFilter>
+    <AutoHide>True</AutoHide>
+    <SaveSessionModifications>False</SaveSessionModifications>
+  </QuickFilter>
+  <Miscellaneous>
+    <GridVertLine>False</GridVertLine>
+    <GridHorzLine>False</GridHorzLine>
+    <ShowWarningMessages>True</ShowWarningMessages>
+    <SpaceMovesDown>False</SpaceMovesDown>
+    <DirBrackets>True</DirBrackets>
+    <InplaceRename>False</InplaceRename>
+    <DblClickToParent>False</DblClickToParent>
+    <HotDirAddTargetOrNot>False</HotDirAddTargetOrNot>
+    <HotDirFullExpandOrNot>False</HotDirFullExpandOrNot>
+    <ShowPathInPopup>False</ShowPathInPopup>
+    <ShowOnlyValidEnv>True</ShowOnlyValidEnv>
+    <WhereToAddNewHotDir>2</WhereToAddNewHotDir>
+    <InplaceRenameButton>False</InplaceRenameButton>
+    <FilenameStyle>0</FilenameStyle>
+    <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+    <PathModifierElements>0</PathModifierElements>
+    <DefaultTextEncoding>none</DefaultTextEncoding>
+  </Miscellaneous>
+  <Thumbnails Save="True">
+    <Width>128</Width>
+    <Height>128</Height>
+  </Thumbnails>
+  <Description>
+    <CreateNewUnicode>True</CreateNewUnicode>
+    <DefaultEncoding>2</DefaultEncoding>
+    <CreateNewEncoding>3</CreateNewEncoding>
+  </Description>
+  <AutoRefresh>
+    <Options>3</Options>
+    <ExcludeDirs/>
+    <Mode>1</Mode>
+  </AutoRefresh>
+  <Icons>
+    <Theme>dctheme</Theme>
+    <ShowHiddenDimmed>False</ShowHiddenDimmed>
+    <ShowMode>3</ShowMode>
+    <ShowOverlays>False</ShowOverlays>
+    <Size>32</Size>
+    <DiskSize>16</DiskSize>
+    <DiskAlpha>50</DiskAlpha>
+    <Exclude>False</Exclude>
+    <ExcludeDirs/>
+    <CustomIcons>0</CustomIcons>
+    <PixelsPerInch>120</PixelsPerInch>
+    <ShowInMenus Enabled="False">
+      <Size>16</Size>
+    </ShowInMenus>
+    <ShowButtonGlyphs>0</ShowButtonGlyphs>
+    <ToolSize>24</ToolSize>
+  </Icons>
+  <IgnoreList Enabled="False">
+    <IgnoreListFile>%DC_CONFIG_PATH%/ignorelist.txt</IgnoreListFile>
+  </IgnoreList>
+  <DirectoryHotList>
+    <HotDir Name="projects" Path="/home/rean/projects/home"/>
+    <HotDir Name="tmp" Path="/home/rean/tmp"/>
+    <HotDir Name="downloads" Path="/home/rean/downloads"/>
+    <HotDir Name="doc" Path="/home/rean/doc"/>
+    <HotDir Name="config" Path="/home/rean/.config"/>
+  </DirectoryHotList>
+  <Viewer>
+    <PreviewVisible>False</PreviewVisible>
+    <ImageStretch>False</ImageStretch>
+    <ImageExifRotate>True</ImageExifRotate>
+    <ImageStretchLargeOnly>False</ImageStretchLargeOnly>
+    <ImageCenter>True</ImageCenter>
+    <CopyMovePath1/>
+    <CopyMovePath2/>
+    <CopyMovePath3/>
+    <CopyMovePath4/>
+    <CopyMovePath5/>
+    <PaintMode>0</PaintMode>
+    <PaintWidth>5</PaintWidth>
+    <NumberOfColumns>1</NumberOfColumns>
+    <ViewerMode>1</ViewerMode>
+    <PaintColor>255</PaintColor>
+    <BackgroundColor>0</BackgroundColor>
+    <FontColor>16777215</FontColor>
+    <TextPosition>0</TextPosition>
+    <TabSpaces>8</TabSpaces>
+    <MaxTextWidth>1024</MaxTextWidth>
+    <PrintMargins>200|200|200|200</PrintMargins>
+    <ShowCaret>False</ShowCaret>
+    <LeftMargin>4</LeftMargin>
+    <ExtraLineSpan>0</ExtraLineSpan>
+  </Viewer>
+  <Editor>
+    <EditWaitTime>2000</EditWaitTime>
+    <SynEditOptions>856075</SynEditOptions>
+    <SynEditTabWidth>8</SynEditTabWidth>
+    <SynEditRightEdge>80</SynEditRightEdge>
+  </Editor>
+  <SyncDirs>
+    <Subdirs>False</Subdirs>
+    <ByContent>False</ByContent>
+    <IgnoreDate>False</IgnoreDate>
+    <FilterCopyRight>True</FilterCopyRight>
+    <FilterEqual>True</FilterEqual>
+    <FilterNotEqual>True</FilterNotEqual>
+    <FilterCopyLeft>True</FilterCopyLeft>
+    <FilterDuplicates>True</FilterDuplicates>
+    <FilterSingles>True</FilterSingles>
+    <FileMask>*</FileMask>
+    <Asymmetric Save="False">False</Asymmetric>
+    <Colors>
+      <Left>32768</Left>
+      <Right>16711680</Right>
+      <Unknown>255</Unknown>
+    </Colors>
+  </SyncDirs>
+  <InternalAssociations>
+    <OfferToAddNewFileType>False</OfferToAddNewFileType>
+    <LastCustomAction>Custom action</LastCustomAction>
+    <ExpandedContextMenu>False</ExpandedContextMenu>
+    <ExecuteViaShell>False</ExecuteViaShell>
+    <OpenSystemWithTerminalClose>False</OpenSystemWithTerminalClose>
+    <OpenSystemWithTerminalStayOpen>False</OpenSystemWithTerminalStayOpen>
+    <IncludeFileAssociation>False</IncludeFileAssociation>
+    <FilenameStyle>0</FilenameStyle>
+    <PathToBeRelativeTo>%COMMANDER_PATH%</PathToBeRelativeTo>
+    <PathModifierElements>0</PathModifierElements>
+  </InternalAssociations>
+  <TreeViewMenu>
+    <UseTVMDirectoryHotlistFMC>False</UseTVMDirectoryHotlistFMC>
+    <UseTVMDirectoryHotlistFDC>False</UseTVMDirectoryHotlistFDC>
+    <UseTVMFavoriteTabsFMC>False</UseTVMFavoriteTabsFMC>
+    <UseTVMFavoriteTabsFDC>False</UseTVMFavoriteTabsFDC>
+    <UseTVMDirHistory>False</UseTVMDirHistory>
+    <UseTVMViewHistory>False</UseTVMViewHistory>
+    <UseTVMCommandLineHistory>False</UseTVMCommandLineHistory>
+    <TreeViewMenuShortcutExit>True</TreeViewMenuShortcutExit>
+    <TreeViewMenuSingleClickExit>True</TreeViewMenuSingleClickExit>
+    <TreeViewMenuDoubleClickExit>True</TreeViewMenuDoubleClickExit>
+    <Context00>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context00>
+    <Context01>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context01>
+    <Context02>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context02>
+    <Context03>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context03>
+    <Context04>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context04>
+    <Context05>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context05>
+    <Context06>
+      <CaseSensitive>False</CaseSensitive>
+      <IgnoreAccents>True</IgnoreAccents>
+      <ShowWholeBranchIfMatch>False</ShowWholeBranchIfMatch>
+    </Context06>
+    <TreeViewMenuUseKeyboardShortcut>True</TreeViewMenuUseKeyboardShortcut>
+    <BackgroundColor>-2147483617</BackgroundColor>
+    <ShortcutColor>255</ShortcutColor>
+    <NormalTextColor>-2147483640</NormalTextColor>
+    <SecondaryTextColor>-2147483642</SecondaryTextColor>
+    <FoundTextColor>-2147483635</FoundTextColor>
+    <UnselectableTextColor>-2147483631</UnselectableTextColor>
+    <CursorColor>-2147483635</CursorColor>
+    <ShortcutUnderCursor>-2147483634</ShortcutUnderCursor>
+    <NormalTextUnderCursor>-2147483634</NormalTextUnderCursor>
+    <SecondaryTextUnderCursor>-2147483628</SecondaryTextUnderCursor>
+    <FoundTextUnderCursor>65535</FoundTextUnderCursor>
+    <UnselectableUnderCursor>-2147483631</UnselectableUnderCursor>
+  </TreeViewMenu>
+  <FavoriteTabsOptions>
+    <FavoriteTabsUseRestoreExtraOptions>False</FavoriteTabsUseRestoreExtraOptions>
+    <WhereToAdd>1</WhereToAdd>
+    <Expand>True</Expand>
+    <GotoConfigAftSav>False</GotoConfigAftSav>
+    <GotoConfigAftReSav>False</GotoConfigAftReSav>
+    <DfltLeftGoTo>0</DfltLeftGoTo>
+    <DfltRightGoTo>1</DfltRightGoTo>
+    <DfltKeep>5</DfltKeep>
+    <DfltSaveDirHistory>False</DfltSaveDirHistory>
+    <FavTabsLastUniqueID>{3E789D55-6C8D-4E53-B4EA-15F5344FD9DB}</FavTabsLastUniqueID>
+  </FavoriteTabsOptions>
+  <Lua>
+    <PathToLibrary>liblua5.1.so.0</PathToLibrary>
+  </Lua>
+  <NameShortcutFile>shortcuts.scf</NameShortcutFile>
+  <HotKeySortOrder>0</HotKeySortOrder>
+  <UseEnterToCloseHotKeyEditor>True</UseEnterToCloseHotKeyEditor>
+  <LastUsedPacker>zip</LastUsedPacker>
+  <UseShellForFileOperations>False</UseShellForFileOperations>
+  <LastDoAnyCommand>cm_Refresh</LastDoAnyCommand>
+  <MarkMaskCaseSensitive>False</MarkMaskCaseSensitive>
+  <MarkMaskIgnoreAccents>False</MarkMaskIgnoreAccents>
+  <MarkMaskFilterWindows>False</MarkMaskFilterWindows>
+  <MarkShowWantedAttribute>False</MarkShowWantedAttribute>
+  <MarkDefaultWantedAttribute/>
+  <MarkLastWantedAttribute/>
+  <SearchTemplates/>
+  <ColumnsSets DefaultTitleHash="1848642058">
+    <ColumnsSet UseFrameCursor="False">
+      <Name>Default</Name>
+      <CustomView>False</CustomView>
+      <FileSystem>&lt;General&gt;</FileSystem>
+      <PixelsPerInch>120</PixelsPerInch>
+      <CursorBorder Enabled="False">
+        <Color>0</Color>
+      </CursorBorder>
+      <Columns>
+        <Column>
+          <Title>Имя</Title>
+          <FuncString>[DC().GETFILENAMENOEXT{}]</FuncString>
+          <Width>541</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>8</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>8612171</MarkColor>
+          <CursorColor>0</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>128</InactiveMarkColor>
+          <UseInvertedSelection>True</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Тип</Title>
+          <FuncString>[DC().GETFILEEXT{}]</FuncString>
+          <Width>50</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>8</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>8612171</MarkColor>
+          <CursorColor>0</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>128</InactiveMarkColor>
+          <UseInvertedSelection>True</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Размер</Title>
+          <FuncString>[DC().GETFILESIZE{}]</FuncString>
+          <Width>70</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>8</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>8612171</MarkColor>
+          <CursorColor>0</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>128</InactiveMarkColor>
+          <UseInvertedSelection>True</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Дата</Title>
+          <FuncString>[DC().GETFILETIME{}]</FuncString>
+          <Width>140</Width>
+          <Align>1</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>8</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>8612171</MarkColor>
+          <CursorColor>0</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>128</InactiveMarkColor>
+          <UseInvertedSelection>True</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+        <Column>
+          <Title>Атриб</Title>
+          <FuncString>[DC().GETFILEATTR{}]</FuncString>
+          <Width>100</Width>
+          <Align>0</Align>
+          <Font>
+            <Name>default</Name>
+            <Size>8</Size>
+            <Style>1</Style>
+            <Quality>0</Quality>
+          </Font>
+          <TextColor>-2147483640</TextColor>
+          <Background>-2147483643</Background>
+          <Background2>-2147483643</Background2>
+          <MarkColor>8612171</MarkColor>
+          <CursorColor>0</CursorColor>
+          <CursorText>-2147483634</CursorText>
+          <InactiveCursorColor>-2147483645</InactiveCursorColor>
+          <InactiveMarkColor>128</InactiveMarkColor>
+          <UseInvertedSelection>True</UseInvertedSelection>
+          <UseInactiveSelColor>False</UseInactiveSelColor>
+          <Overcolor>True</Overcolor>
+        </Column>
+      </Columns>
+    </ColumnsSet>
+  </ColumnsSets>
+  <MultiRenamePresets>
+    <LastPreset>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</LastPreset>
+    <Presets>
+      <Preset>
+        <Name>{BC322BF1-2185-47F6-9F99-D27ED1E23E53}</Name>
+        <Filename>0[N1]_[N3]</Filename>
+        <Extension>[E]</Extension>
+        <FilenameStyle>0</FilenameStyle>
+        <ExtensionStyle>0</ExtensionStyle>
+        <Find/>
+        <Replace/>
+        <RegExp>False</RegExp>
+        <UseSubs>False</UseSubs>
+        <Counter>1</Counter>
+        <Interval>1</Interval>
+        <Width>2</Width>
+        <Log>
+          <Enabled>False</Enabled>
+          <Append>False</Append>
+          <File/>
+        </Log>
+      </Preset>
+    </Presets>
+  </MultiRenamePresets>
+  <Differ>
+    <Colors>
+      <Added>11206570</Added>
+      <Deleted>11184895</Deleted>
+      <Modified>16755370</Modified>
+      <Binary>
+        <Modified>255</Modified>
+      </Binary>
+    </Colors>
+    <IgnoreCase>False</IgnoreCase>
+    <KeepScrolling>True</KeepScrolling>
+    <PaintBackground>True</PaintBackground>
+    <LineDifferences>False</LineDifferences>
+    <IgnoreWhiteSpace>False</IgnoreWhiteSpace>
+    <AutoCompare>True</AutoCompare>
+  </Differ>
+</doublecmd>

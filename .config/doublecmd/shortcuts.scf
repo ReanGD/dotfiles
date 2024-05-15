@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doublecmd DCVersion="1.0.2 beta">
-  <Hotkeys Version="53">
+<doublecmd DCVersion="1.1.12 gamma">
+  <Hotkeys Version="63">
     <Form Name="Main">
       <Hotkey>
         <Shortcut>F2</Shortcut>
@@ -9,10 +9,6 @@
       <Hotkey>
         <Shortcut>Shift+F6</Shortcut>
         <Command>cm_RenameOnly</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>F3</Shortcut>
-        <Command>cm_View</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>F4</Shortcut>
@@ -375,12 +371,25 @@
         <Param>index=9</Param>
       </Hotkey>
       <Hotkey>
-        <Shortcut>F1</Shortcut>
-        <Command>cm_About</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>Ctrl+Shift+B</Shortcut>
         <Command>cm_FlatViewSel</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F1</Shortcut>
+        <Command>cm_HelpIndex</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Shift+A</Shortcut>
+        <Command>cm_ShowTabsList</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F3</Shortcut>
+        <Command>cm_View</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Shift+F3</Shortcut>
+        <Command>cm_View</Command>
+        <Param>cursor=1</Param>
       </Hotkey>
       <Hotkey>
         <Shortcut>Del</Shortcut>
@@ -499,10 +508,6 @@
         <Command>cm_ShowAsHex</Command>
       </Hotkey>
       <Hotkey>
-        <Shortcut>4</Shortcut>
-        <Command>cm_ShowAsWrapText</Command>
-      </Hotkey>
-      <Hotkey>
         <Shortcut>5</Shortcut>
         <Command>cm_ShowAsBook</Command>
       </Hotkey>
@@ -521,10 +526,6 @@
       <Hotkey>
         <Shortcut>Esc</Shortcut>
         <Command>cm_ExitViewer</Command>
-      </Hotkey>
-      <Hotkey>
-        <Shortcut>F</Shortcut>
-        <Command>cm_Find</Command>
       </Hotkey>
       <Hotkey>
         <Shortcut>Ctrl+F</Shortcut>
@@ -594,6 +595,42 @@
         <Shortcut>Ctrl+P</Shortcut>
         <Command>cm_Print</Command>
       </Hotkey>
+      <Hotkey>
+        <Shortcut>4</Shortcut>
+        <Command>cm_ShowAsDec</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>8</Shortcut>
+        <Command>cm_ShowOffice</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>9</Shortcut>
+        <Command>cm_ShowCode</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>C</Shortcut>
+        <Command>cm_ImageCenter</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F</Shortcut>
+        <Command>cm_StretchImage</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>L</Shortcut>
+        <Command>cm_StretchOnlyLarge</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>W</Shortcut>
+        <Command>cm_WrapText</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+G</Shortcut>
+        <Command>cm_GotoLine</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+Z</Shortcut>
+        <Command>cm_Undo</Command>
+      </Hotkey>
     </Form>
     <Form Name="Differ">
       <Hotkey>
@@ -627,6 +664,26 @@
       <Hotkey>
         <Shortcut>Alt+Right</Shortcut>
         <Command>cm_CopyLeftToRight</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+F</Shortcut>
+        <Command>cm_Find</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F7</Shortcut>
+        <Command>cm_Find</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>F3</Shortcut>
+        <Command>cm_FindNext</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Shift+F3</Shortcut>
+        <Command>cm_FindPrev</Command>
+      </Hotkey>
+      <Hotkey>
+        <Shortcut>Ctrl+G</Shortcut>
+        <Command>cm_GotoLine</Command>
       </Hotkey>
     </Form>
     <Form Name="Copy/Move Dialog">
@@ -971,6 +1028,12 @@
       <Hotkey>
         <Shortcut>Ctrl+Shift+F1</Shortcut>
         <Command>cm_PlgnExtMask</Command>
+      </Hotkey>
+    </Form>
+    <Form Name="Confirmation">
+      <Hotkey>
+        <Shortcut>F2</Shortcut>
+        <Command>cm_AddToQueue</Command>
       </Hotkey>
     </Form>
   </Hotkeys>
