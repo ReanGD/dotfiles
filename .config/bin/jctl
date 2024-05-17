@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Function to check if the script is run with sudo
+is_sudo() {
+    if [ "$EUID" -eq 0 ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Function to determine if sudo is needed for the given journalctl command
+needs_sudo() {
+    case "$1" in
+        --flush|--header|--list-boots|--setup-keys|--update-catalog|--rotate|--vacuum-size|--vacuum-time|--vacuum-files)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+# Main logic
+if is_sudo; then
+    # If the script is run with sudo, just pass all arguments to journalctl
+    journalctl "$@"
+else
+    # If the script is not run with sudo, check if sudo is needed
+    if needs_sudo "$1"; then
+        sudo journalctl "$@"
+    else
+        journalctl "$@"
+    fi
+fi

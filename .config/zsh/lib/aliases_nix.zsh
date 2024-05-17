@@ -29,8 +29,6 @@ alias mount='_show_which mount && sudo mount'
 alias df='_show_which df && df -k --print-type --human-readable'
 alias du='_show_which du && du -k --total --human-readable'
 alias wifi-menu='_show_which wifi-menu && sudo wifi-menu'
-alias journalctl='_show_which journalctl && sudo journalctl'
-alias systemctl='_show_which systemctl && sudo systemctl'
 
 # remove colorize
 alias uncolor='sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,3})*)?[mGK]//g"'
