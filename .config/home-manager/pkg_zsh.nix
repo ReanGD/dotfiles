@@ -61,6 +61,7 @@
         # pbpaste | grep Hello
         # clip | grep Hello
         "zpm-zsh/clipboard"
+        # set title of terminal tab
         "trystan2k/zsh-tab-title"
         "zsh-users/zsh-autosuggestions"
         "zsh-users/zsh-completions"
@@ -78,6 +79,9 @@
     };
     # setopt AUTO_CD\autocd - goto directory without "cd"
     autocd = true;
+    envExtra = ''
+      fpath=(${config.xdg.configHome}/zsh/lib/funcs $fpath)
+    '';
     history = {
       # HISTSIZE
       size = 20000;

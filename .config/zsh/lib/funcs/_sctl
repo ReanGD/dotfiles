@@ -1,0 +1,9 @@
+#compdef sctl=systemctl
+
+if (( ! $+functions[_systemctl] )); then
+  autoload -U _systemctl
+fi
+
+_sctl() {
+  _systemctl
+}

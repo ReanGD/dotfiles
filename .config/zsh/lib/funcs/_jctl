@@ -1,0 +1,9 @@
+#compdef jctl=journalctl
+
+if (( ! $+functions[_journalctl] )); then
+  autoload -U _journalctl
+fi
+
+_jctl() {
+  _journalctl
+}
