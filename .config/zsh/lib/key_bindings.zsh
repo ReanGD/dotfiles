@@ -132,9 +132,18 @@ bindkey "${key[Tab]}" expand-or-complete
 # bindkey "${key[Tab]}" menu-expand-or-complete
 bindkey "${key[Shift-Tab]}" reverse-menu-complete
 
-zle -N _history_widget
-bindkey '^R' _history_widget
+_atuin_search_dir() {
+  _atuin_search --filter-mode directory
+}
 
+if (( $+functions[_atuin_search] )); then
+  zle -N _atuin_search_dir_widget _atuin_search_dir
+  bindkey '^R' _atuin_search_widget
+  bindkey '^[^R' _atuin_search_dir_widget
+else
+  zle -N _history_widget
+  bindkey '^R' _history_widget
+fi
 
 # Widgets
 zle -N _bookmarks_widget

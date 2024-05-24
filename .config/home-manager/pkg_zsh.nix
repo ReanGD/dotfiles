@@ -1,5 +1,15 @@
 { config, lib, pkgs, ... }:
 {
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = false;
+    settings = {
+      auto_sync = false;
+      update_check = false;
+      # search_mode = "prefix";
+    };
+  };
+
   programs.zsh = {
     enable = true;
     shellAliases = {
@@ -24,6 +34,8 @@
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
       # For compinit
       ZSH_COMPDUMP="$ZSH_DATA_DIR/.zcompdump-$HOST-$ZSH_VERSION"
+      # For atuin
+      ATUIN_NOBIND="true"
 
       source $ZSH_LIB_DIR/common.zsh
       source $ZSH_LIB_DIR/options_nix.zsh
@@ -31,8 +43,13 @@
       source $ZSH_LIB_DIR/aliases_nix.zsh
       source $ZSH_LIB_DIR/correction.zsh
       source $ZSH_LIB_DIR/prompt.zsh
-      source $ZSH_LIB_DIR/key_bindings.zsh
       source $ZSH_LIB_DIR/completion.zsh
+
+      if [[ $options[zle] = on ]]; then
+        eval "$(${pkgs.atuin}/bin/atuin init zsh )"
+      fi
+
+      source $ZSH_LIB_DIR/key_bindings.zsh
     '';
     completionInit = "source $ZSH_LIB_DIR/compinit.zsh";
     antidote = {
@@ -63,6 +80,7 @@
         "zpm-zsh/clipboard"
         # set title of terminal tab
         "trystan2k/zsh-tab-title"
+        # fish-like autosuggestions
         "zsh-users/zsh-autosuggestions"
         "zsh-users/zsh-completions"
         "zdharma-continuum/fast-syntax-highlighting"
