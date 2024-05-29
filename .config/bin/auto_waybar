@@ -1,0 +1,13 @@
+#!/bin/sh
+
+WORKDIR="$HOME/.config/waybar"
+
+function _reload() {
+  killall -SIGUSR2 waybar
+}
+
+waybar &
+
+inotifywait --quiet --monitor --event create,modify,delete --recursive $WORKDIR | while read DIRECTORY EVENT FILE; do
+  _reload
+done

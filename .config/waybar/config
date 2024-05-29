@@ -1,0 +1,110 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "modules-left": ["hyprland/workspaces", "hyprland/language", "hyprland/submap"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "custom/gpu", "custom/mem", "cpu", "backlight", "battery", "tray"],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "format": " {name} "
+    },
+
+    "hyprland/language": {
+        "format-en": "US",
+        "format-ru": "RU",
+        "tooltip": false
+    },
+
+    "hyprland/submap": {
+        "format": "pon {}"
+    },
+
+    "clock": {
+        "interval": 10,
+        "format": "{:L%a %d %b %H:%M}",
+        "timezone": "Europe/Moscow",
+        "locale": "ru_RU.UTF-8",
+        "tooltip": true,
+        "tooltip-format": "<tt>{:L%A %d.%m.%y}</tt>"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "reverse-scrolling": 1,
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "min-length": 13
+    },
+
+    "custom/gpu": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 1,
+        "exec": "$HOME/.config/waybar/scripts/nvidia_info.sh",
+        "exec-if": "which nvidia-smi",
+        "tooltip": true
+    },
+
+    "custom/mem": {
+        "format": "{} ",
+        "interval": 3,
+        "exec": "free -h | awk '/Mem:/{printf $3}'",
+        "tooltip": false
+    },
+
+    "cpu": {
+      "interval": 2,
+      "format": "{usage}% ",
+      "min-length": 6
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": [""],
+        "min-length": 7
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+	    "on-update": "$HOME/.config/waybar/scripts/check_battery.sh",
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 0
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false
+    }
+}
