@@ -1,0 +1,29 @@
+#!/bin/sh
+
+WORKDIR="$HOME/.config/ags"
+
+function _ags_full_reload() {
+  ags -q
+  ags &
+}
+
+function _ags_scss_reload() {
+  sass -I $WORKDIR/style/material_colors.scss $WORKDIR/style/main.scss $WORKDIR/main.css
+  ags --run-js "App.resetCss(); App.applyCss('$(echo $HOME)/.config/ags/main.css');"
+}
+
+_ags_full_reload
+
+inotifywait --quiet --monitor --event create,modify,delete --recursive $WORKDIR | while read DIRECTORY EVENT FILE; do
+  file_extension=${FILE##*.}
+  case $file_extension in
+    js)
+	    echo "reload JS..."
+      _ags_full_reload
+    ;;
+    scss)
+	    echo "reload SCSS..."
+      _ags_scss_reload
+    ;;
+  esac
+done
