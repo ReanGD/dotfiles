@@ -137,6 +137,7 @@
     "testMate.cpp.log.logSentry": "disable_3",
     "workspaceExplorer.workspaceStorageDirectory": "/home/rean/projects/workspases",
     "cmake.configureOnOpen": false,
+    "cmake.showOptionsMovedNotification": false,
     "cmake.enabledOutputParsers": [
         "cmake",
         "gcc",
@@ -149,6 +150,11 @@
     "spellright.documentTypes": [
         "markdown",
         "plaintext"
+    ],
+    "spellright.ignoreFiles": [
+        "**/.gitignore",
+        "**/.spellignore",
+        "**/*.toml",
     ],
     "code-runner.executorMap": {
         "cpp": "cd $dir && clang++ $fileName -std=c++20 -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
@@ -163,9 +169,10 @@
         "MD024": false
     },
     "mdb.confirmRunAll": false,
+    "github.copilot.editor.enableAutoCompletions": true,
     "github.copilot.enable": {
         "*": true,
-        "yaml": false,
+        "yaml": true,
         "plaintext": true,
         "markdown": true
     },
