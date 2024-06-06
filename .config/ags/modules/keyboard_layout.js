@@ -25,7 +25,7 @@ export default () => {
     return Widget.Button({
         cursor: "pointer",
         child: view,
-        onClicked: () => hyprland.messageAsync("switchxkblayout " + device + " next"),
+        onClicked: () => hyprland.messageAsync(`switchxkblayout ${device} next`),
         setup: (self) => self.hook(hyprland, (self, kbName, layoutName) => {
             view.label = getLayoutName(layoutName ?? initLayoutName)
             initLayoutName = "None"
