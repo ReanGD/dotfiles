@@ -8,7 +8,7 @@ Comment=Access the Internet
 Comment[en_GB]=Access the Internet
 Comment[ru]=Доступ в Интернет
 StartupWMClass=Google-chrome
-Exec=/usr/bin/google-chrome-stable --password-store=basic %U
+Exec=/home/rean/.config/bin/google-chrome-stable %U
 StartupNotify=true
 Terminal=false
 Icon=google-chrome
@@ -22,11 +22,11 @@ Name=New Window
 Name[en_GB]=New Window
 Name[ru]=Новое окно
 StartupWMClass=Google-chrome
-Exec=/usr/bin/google-chrome-stable --password-store=basic
+Exec=/home/rean/.config/bin/google-chrome-stable
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
 Name[en_GB]=New Incognito window
 Name[ru]=Новое окно в режиме инкогнито
 StartupWMClass=Google-chrome
-Exec=/usr/bin/google-chrome-stable --password-store=basic --incognito
+Exec=/home/rean/.config/bin/google-chrome-stable --incognito

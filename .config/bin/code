@@ -4,8 +4,8 @@ export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 export CHROME_EXECUTABLE=chrome-disable-security
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    /usr/bin/code --extensions-dir ~/.local/share/vscode --disable-gpu $@
+if [ "$XDG_SESSION_TYPE" = "wayland" ] && lspci | grep -i nvidia > /dev/null; then
+    /usr/bin/code --extensions-dir ~/.local/share/vscode --disable-gpu "$@"
 else
-    /usr/bin/code --extensions-dir ~/.local/share/vscode $@
+    /usr/bin/code --extensions-dir ~/.local/share/vscode "$@"
 fi

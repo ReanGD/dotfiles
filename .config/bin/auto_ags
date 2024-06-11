@@ -8,7 +8,7 @@ function _ags_full_reload() {
 }
 
 function _ags_scss_reload() {
-  sass -I $WORKDIR/style/material_colors.scss $WORKDIR/style/main.scss $WORKDIR/main.css
+  sass -I $WORKDIR/scss $WORKDIR/scss/main.scss $WORKDIR/main.css
   ags --run-js "App.resetCss(); App.applyCss('$(echo $HOME)/.config/ags/main.css');"
 }
 
