@@ -28,7 +28,7 @@ Active=true
 LatitudeFixed=59
 LongitudeFixed=30
 Mode=Location
-NightTemperature=4400
+NightTemperature=4000
 
 [TabBox]
 LayoutName=compact
@@ -36,11 +36,20 @@ LayoutName=compact
 [Tiling]
 padding=4
 
-[Tiling][52db39f2-7571-5344-b277-0a83a7bf638c]
+[Tiling][50364ca1-0842-52b4-ad0b-42e55b7fedb6]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][52db39f2-7571-5344-b277-0a83a7bf638c]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.5},{"width":0.5}]}
 
 [Tiling][58ca410b-ce44-58d6-82b9-fefe44aba0e3]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][5b7a5ba4-43cc-5910-8e98-f358f9d54b43]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][ed395c28-0219-5f25-9520-e0da634de506]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.501171875},{"width":0.24882812499999996},{"width":0.25}]}
 
 [Tiling][f3c9c339-121a-5334-a395-4dfc41bce193]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
