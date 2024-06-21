@@ -10,6 +10,7 @@ const awesomeIcons = {
     "fan": "\uf863",
     "temperature": "\uf76b",
     "microchip": "\uf2db",
+    "network-wired": "\uf6ff",
     "telegram": "\uf2c6",
     "dropbox": "\uf16b",
 }
