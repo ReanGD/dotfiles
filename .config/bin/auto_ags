@@ -2,16 +2,21 @@
 
 WORKDIR="$HOME/.config/ags"
 
+function _ags_scss_build() {
+  sass --no-source-map -I $WORKDIR/scss $WORKDIR/scss/main.scss $WORKDIR/main.css
+}
+
 function _ags_full_reload() {
   ags -q
   ags &
 }
 
 function _ags_scss_reload() {
-  sass -I $WORKDIR/scss $WORKDIR/scss/main.scss $WORKDIR/main.css
+  _ags_scss_build
   ags --run-js "App.resetCss(); App.applyCss('$(echo $HOME)/.config/ags/main.css');"
 }
 
+_ags_scss_build
 _ags_full_reload
 
 inotifywait --quiet --monitor --event create,modify,delete --recursive $WORKDIR | while read DIRECTORY EVENT FILE; do

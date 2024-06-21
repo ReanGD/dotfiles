@@ -1,0 +1,92 @@
+
+.txt-gigantic {
+    @include mainfont;
+    font-size: 3rem;
+}
+
+.txt-massive {
+    @include mainfont;
+    font-size: 2.7273rem;
+}
+
+.txt-hugerass {
+    @include mainfont;
+    font-size: 2.045rem;
+}
+
+.txt-hugeass {
+    @include mainfont;
+    font-size: 1.8182rem;
+}
+
+.txt-larger {
+    @include mainfont;
+    font-size: 1.6363rem;
+}
+
+.txt-large {
+    //16pt
+    @include mainfont;
+    font-size: 1.4545rem;
+}
+
+.txt-norm {
+    //14pt
+    @include mainfont;
+    font-size: 1.2727rem;
+}
+
+.txt-small {
+    //12pt
+    @include mainfont;
+    font-size: 1.0909rem;
+}
+
+.txt-smallie {
+    //11pt
+    @include mainfont;
+    font-size: 1rem;
+}
+
+.txt-smaller {
+    //10pt
+    @include mainfont;
+    font-size: 0.9091rem;
+}
+
+.txt-tiny {
+    @include mainfont;
+    font-size: 0.7273rem;
+}
+
+.txt-poof {
+    font-size: 0px;
+}
+
+.titlefont {
+    @include titlefont;
+}
+
+.mainfont {
+    @include mainfont;
+}
+
+.icon-material {
+    @include icon-material;
+}
+
+.icon-awesome-solid {
+    @include icon-awesome-solid;
+}
+
+.icon-awesome-regular {
+    @include icon-awesome-regular;
+}
+
+.icon-awesome-thin {
+    @include icon-awesome-thin;
+}
+
+.icon-awesome-light {
+    @include icon-awesome-light;
+}
