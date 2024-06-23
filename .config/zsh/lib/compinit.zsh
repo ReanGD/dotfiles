@@ -45,4 +45,5 @@ EOD
 
 autoload -U compaudit compinit
 handle_completion_insecurities
-compinit -i -C -d "${ZSH_COMPDUMP}"
+# compinit -i -C -d "${ZSH_COMPDUMP}"
+compinit -i -d "${ZSH_COMPDUMP}"

@@ -48,6 +48,7 @@
 !/.local/share/applications/google-chrome.desktop
 !/.local/share/applications/code.desktop
 !/.local/share/applications/code-url-handler.desktop
+!/.local/share/applications/io.element.Element.desktop
 
 # zsh
 **/.zinit/*
