@@ -49,6 +49,7 @@
 !/.local/share/applications/code.desktop
 !/.local/share/applications/code-url-handler.desktop
 !/.local/share/applications/io.element.Element.desktop
+!/.local/share/applications/obsidian.desktop
 
 # zsh
 **/.zinit/*
