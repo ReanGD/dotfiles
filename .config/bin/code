@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 export CHROME_EXECUTABLE=chrome-disable-security

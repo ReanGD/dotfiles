@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # -proxy-log
 rofi -show-icons -theme "awesome" -modi proxy -show proxy -proxy-cmd "$XDG_CONFIG_HOME/rofi/scripts/proxy/main.py translate"

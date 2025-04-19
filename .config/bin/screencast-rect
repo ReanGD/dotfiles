@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ARGUMENTS=$(xrectsel "--x=%x --y=%y --width=%w --height=%h") || exit -1
 path=~/tmp/image-$(date +%FT%H-%M-%S).gif

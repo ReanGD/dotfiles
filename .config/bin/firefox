@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROFILE=$XDG_DATA_HOME/firefox/.mozilla/firefox/rean.default-release
 HOME=$HOME/.local/share/firefox /usr/bin/firefox --profile $PROFILE $@

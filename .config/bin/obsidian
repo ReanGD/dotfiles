@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ] && lspci | grep -i nvidia > /dev/null; then
     /usr/bin/obsidian --disable-gpu "$@"
