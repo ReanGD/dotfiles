@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $(basename "$0") <file>"
+    exit 1
+fi
+
+FILE="$1"
+
+if [ ! -f "$FILE" ]; then
+    echo "Error: File '$FILE' not found"
+    exit 1
+fi
+
+FIRST_LINE=$(head -n 1 "$FILE")
+
+if [[ "$FIRST_LINE" == \$ANSIBLE_VAULT* ]]; then
+    echo "Файл зашифрован. Расшифровываю..."
+    ansible-vault decrypt "$FILE"
+else
+    echo "Файл содержит обычный текст. Зашифровываю..."
+    ansible-vault encrypt "$FILE"
+fi
