@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case "$1" in
+    --area)
+        grim -g "$(slurp)" - | swappy -f -
+        ;;
+    --window)
+        geom=$(hyprctl activewindow -j | jq -r '.at[0], .at[1], .size[0], .size[1]' | xargs | awk '{print $1","$2" "$3"x"$4}')
+        grim -g "$geom" - | swappy -f -
+        ;;
+    --screen)
+        grim - | swappy -f -
+        ;;
+esac
