@@ -17,8 +17,8 @@
       sudo="sudo ";
       sudoe="sudo --preserve-env ";
     };
-    dotDir = ".config/zsh";
-    initExtraBeforeCompInit = ''
+    dotDir = "${config.xdg.configHome}/zsh";
+    initContent = lib.mkOrder 550 ''
       ZSH_DATA_DIR="${config.xdg.dataHome}/zsh"
       ZSH_CACHE_DIR="${config.xdg.cacheHome}/zsh"
       ZSH_CONFIG_DIR="${config.xdg.configHome}/zsh"
