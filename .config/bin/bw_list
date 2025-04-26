@@ -16,7 +16,15 @@ if p.wait() != 0:
 items = []
 now = datetime.now().date()
 for it in loads(json_data):
-    if it["folderId"] in ["c96de4ee-0139-4501-8e63-ade800044ada", "4d8c589e-ca25-40d7-b536-ae0b01462964"]:
+    item_type = it["type"]
+    if item_type == 3:  # card
+        continue
+
+    folderId = it["folderId"]
+    if folderId in [
+        "c96de4ee-0139-4501-8e63-ade800044ada",
+        "4d8c589e-ca25-40d7-b536-ae0b01462964",
+    ]:
         continue
 
     name = it["name"]
@@ -35,4 +43,3 @@ for it in loads(json_data):
 
 for dt, date, name, login in sorted(items, key=lambda item: item[0]):
     print(f"{date} ({dt} days) {name} {login}")
-
