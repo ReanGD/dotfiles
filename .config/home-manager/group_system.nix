@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./pkg_fd.nix            # fast find alternative
     ./pkg_ripgrep.nix       # fast grep alternative
     ./pkg_zsh.nix           # modern ls alternative (old exa)
     ./pkg_eza.nix           # shell
@@ -13,6 +12,7 @@
     # terminal
     ncdu     # disk usage analyzer
     fzf      # fuzzy search
+    fd       # fast find alternative
     # archivers
     p7zip
     unrar

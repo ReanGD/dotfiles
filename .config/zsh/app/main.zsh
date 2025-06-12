@@ -22,5 +22,6 @@ _source_if_exists() {
   fi
 }
 
+_source_if_exists fd $ZSH_APP_DIR/fd.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
 
