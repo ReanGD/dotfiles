@@ -46,16 +46,6 @@ alias uncolor='sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,3})*)?[mGK]//g"'
 # disable beep in less
 alias less='less -Q'
 
-# git aliases
-alias g='git'
-alias ga='git add'
-alias gci='git commit'
-alias gco='git checkout'
-alias gst='git status'
-alias gfa='git fetch --all --prune'
-alias ggpull='git pull origin "$(_git_current_branch)"'
-alias ggpush='git push origin "$(_git_current_branch)"'
-
 # auto add sudo and rehash
 pacman() {
   /usr/bin/sudo /usr/bin/pacman $* && echo "$*" | grep -q "S\|R" && rehash

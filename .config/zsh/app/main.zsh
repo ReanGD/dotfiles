@@ -22,7 +22,8 @@ _source_if_exists() {
   fi
 }
 
-_source_if_exists fd $ZSH_APP_DIR/fd.zsh
 _source_if_exists chezmoi $ZSH_APP_DIR/chezmoi.zsh
+_source_if_exists fd $ZSH_APP_DIR/fd.zsh
+_source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
 
