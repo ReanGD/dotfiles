@@ -36,16 +36,6 @@ alias uncolor='sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,3})*)?[mGK]//g"'
 # disable beep in less
 alias less='less -Q'
 
-# auto add sudo and rehash
-pacman() {
-  /usr/bin/sudo /usr/bin/pacman $* && echo "$*" | grep -q "S\|R" && rehash
-}
-
-# auto rehash
-yay() {
-  /usr/bin/yay $* && echo "$*" | grep -q "S\|R" && rehash
-}
-
 # Select and kill process - list only the ones you can kill
 fkill() {
     local pid
