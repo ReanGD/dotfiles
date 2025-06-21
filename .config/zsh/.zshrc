@@ -28,13 +28,10 @@ source $ZSH_LIB_DIR/key_bindings.zsh
 source $ZSH_LIB_DIR/completion.zsh
 
 zinit snippet OMZP::extract
-zinit ice atinit'ZSH_ALIAS_FINDER_AUTOMATIC=true'
-zinit snippet OMZP::alias-finder
 zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
 zinit snippet OMZP::colorize
 zinit ice atinit'ZSHZ_DATA="$XDG_DATA_HOME/.z"'
 zinit load agkozak/zsh-z
-zinit load supercrabtree/k
 zinit load zpm-zsh/clipboard
 zinit load trystan2k/zsh-tab-title
 zinit load zsh-users/zsh-autosuggestions
@@ -53,6 +50,5 @@ zinit load zdharma-continuum/fast-syntax-highlighting
 # alternative
 # OMZP::extract = thetic/extract
 # OMZP::alias-finder = sei40kr/zsh-fast-alias-tips = djui/alias-tips
-
 
 source $ZSH_LIB_DIR/compinit.zsh

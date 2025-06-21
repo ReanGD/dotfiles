@@ -28,8 +28,6 @@
       ZSH_COLORIZE_STYLE="monokai"
       # For agkozak/zsh-z
       ZSHZ_DATA="$XDG_DATA_HOME/.z"
-      # For ohmyzsh/ohmyzsh path:plugins/alias-finder
-      ZSH_ALIAS_FINDER_AUTOMATIC=true
       # For zsh-users/zsh-autosuggestions
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
       # For compinit
@@ -66,13 +64,10 @@
         "ohmyzsh/ohmyzsh path:plugins/copypath"
         # extract "x ./tmp.zip"
         "ohmyzsh/ohmyzsh path:plugins/extract"
-        # learning new aliases
-        "ohmyzsh/ohmyzsh path:plugins/alias-finder"
         # ccat\cless <file> - colorize file content
         "ohmyzsh/ohmyzsh path:plugins/colorize"
         # fast cd to a directory
         "agkozak/zsh-z"
-        "supercrabtree/k"
         # echo Hello world | pbcopy
         # echo Hello world | clip
         # pbpaste | grep Hello
