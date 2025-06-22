@@ -32,7 +32,6 @@ zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
 zinit snippet OMZP::colorize
 zinit ice atinit'ZSHZ_DATA="$XDG_DATA_HOME/.z"'
 zinit load agkozak/zsh-z
-zinit load zpm-zsh/clipboard
 zinit load trystan2k/zsh-tab-title
 zinit load zsh-users/zsh-autosuggestions
 zinit load zsh-users/zsh-completions

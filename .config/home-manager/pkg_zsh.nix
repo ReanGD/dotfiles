@@ -53,26 +53,12 @@
     antidote = {
       enable = true;
       plugins = [
-        # deps for ohmyzsh plugins
-        "ohmyzsh/ohmyzsh path:lib/clipboard.zsh"
-        # ctrl-o - copy current text in the command line to the system clipboard
-        "ohmyzsh/ohmyzsh path:plugins/copybuffer"
-        # copyfile <filename> to copy the file named filename
-        "ohmyzsh/ohmyzsh path:plugins/copyfile"
-        # copypath: copies the absolute path of the current directory.
-        # copypath <file_or_directory>: copies the absolute path of the given file.
-        "ohmyzsh/ohmyzsh path:plugins/copypath"
         # extract "x ./tmp.zip"
         "ohmyzsh/ohmyzsh path:plugins/extract"
         # ccat\cless <file> - colorize file content
         "ohmyzsh/ohmyzsh path:plugins/colorize"
         # fast cd to a directory
         "agkozak/zsh-z"
-        # echo Hello world | pbcopy
-        # echo Hello world | clip
-        # pbpaste | grep Hello
-        # clip | grep Hello
-        "zpm-zsh/clipboard"
         # set title of terminal tab
         "trystan2k/zsh-tab-title"
         # fish-like autosuggestions
