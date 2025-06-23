@@ -53,8 +53,6 @@
     antidote = {
       enable = true;
       plugins = [
-        # extract "x ./tmp.zip"
-        "ohmyzsh/ohmyzsh path:plugins/extract"
         # ccat\cless <file> - colorize file content
         "ohmyzsh/ohmyzsh path:plugins/colorize"
         # fast cd to a directory
