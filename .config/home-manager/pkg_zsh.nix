@@ -24,8 +24,6 @@
       ZSH_CONFIG_DIR="${config.xdg.configHome}/zsh"
       ZSH_LIB_DIR=$ZSH_CONFIG_DIR/lib
 
-      # For ohmyzsh/ohmyzsh path:plugins/colorize
-      ZSH_COLORIZE_STYLE="monokai"
       # For agkozak/zsh-z
       ZSHZ_DATA="$XDG_DATA_HOME/.z"
       # For zsh-users/zsh-autosuggestions
@@ -53,8 +51,6 @@
     antidote = {
       enable = true;
       plugins = [
-        # ccat\cless <file> - colorize file content
-        "ohmyzsh/ohmyzsh path:plugins/colorize"
         # fast cd to a directory
         "agkozak/zsh-z"
         # set title of terminal tab
@@ -71,8 +67,6 @@
 
       # alternative
       # mattmc3/zman = my fman
-      # OMZP::extract = thetic/extract
-      # OMZP::alias-finder = sei40kr/zsh-fast-alias-tips = djui/alias-tips
     };
     # setopt AUTO_CD\autocd - goto directory without "cd"
     autocd = true;

@@ -27,8 +27,6 @@ source $ZSH_LIB_DIR/prompt.zsh
 source $ZSH_LIB_DIR/key_bindings.zsh
 source $ZSH_LIB_DIR/completion.zsh
 
-zinit ice atinit'ZSH_COLORIZE_STYLE="monokai"'
-zinit snippet OMZP::colorize
 zinit ice atinit'ZSHZ_DATA="$XDG_DATA_HOME/.z"'
 zinit load agkozak/zsh-z
 zinit load trystan2k/zsh-tab-title
@@ -44,9 +42,5 @@ zinit load zdharma-continuum/fast-syntax-highlighting
 # Aloxaf/fzf-tab
 # OMZP::docker
 # OMZP::compleat = mbrubeck/compleat
-
-# alternative
-# OMZP::extract = thetic/extract
-# OMZP::alias-finder = sei40kr/zsh-fast-alias-tips = djui/alias-tips
 
 source $ZSH_LIB_DIR/compinit.zsh
