@@ -1,23 +1,31 @@
-HISTFILE=$ZSH_DATA_DIR/zsh_history
+# =============================================================================
+# History
+# =============================================================================
+
+HISTFILE="$ZSH_DATA_DIR/zsh_history"
 HISTSIZE=20000
 SAVEHIST=20000
-HISTORY_IGNORE="(ls|cd|pwd|exit)"
+HISTORY_IGNORE='(ls|ll|la|pwd|history|exit|clear|cd|cd ..|cd -|ps|ps aux|top|htop|df|du *|free|uname *|whoami|date|time|gst|g df|python|python3)'
 
-setopt BANG_HIST                 # Support '!' commands (e.g. !!)
-setopt EXTENDED_HISTORY          # Ext info in the history file ":start:elapsed;command".
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_FIND_NO_DUPS         # Ignore duplicates when searching
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
-setopt HIST_BEEP                 # Beep when accessing nonexistent history.
-setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt NO_SHARE_HISTORY          # Disable share history between all sessions.
+mkdir -p "$(dirname "$HISTFILE")"
 
-## History wrapper
+setopt BANG_HIST              # Поддержка '!' (например !!)
+setopt EXTENDED_HISTORY       # Писать timestamp и длительность команды в HISTFILE
+setopt INC_APPEND_HISTORY     # Писать в HISTFILE сразу, не ждать закрытия сессии
+setopt HIST_EXPIRE_DUPS_FIRST # При переполнении удалять дубликаты первыми
+setopt HIST_IGNORE_ALL_DUPS   # Удалять старые вхождения команды при добавлении дубликата
+setopt HIST_IGNORE_SPACE      # Не писать команды начинающиеся с пробела
+setopt HIST_REDUCE_BLANKS     # Убирать лишние пробелы перед записью
+setopt HIST_VERIFY            # Показывать команду после подстановки из истории, не выполнять сразу
+setopt HIST_FCNTL_LOCK        # Надёжная блокировка файла истории через fcntl()
+setopt HIST_SAVE_NO_DUPS      # Не писать дубликаты в HISTFILE при сохранении
+setopt NO_SHARE_HISTORY       # Не шарить историю между терминалами — Atuin делает это сам
+setopt NO_APPEND_HISTORY      # Отключаем — используем INC_APPEND_HISTORY
+setopt NO_HIST_FIND_NO_DUPS   # Не нужно — дубликатов нет благодаря HIST_IGNORE_ALL_DUPS
+setopt NO_HIST_IGNORE_DUPS    # Избыточно при HIST_IGNORE_ALL_DUPS, который полностью покрывает эту логику
+setopt NO_HIST_BEEP           # Не бипать при достижении конца истории
+
+## History wrapper — нормализует вывод fc -l
 history() {
   [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
 }

@@ -35,7 +35,7 @@
 
       source $ZSH_LIB_DIR/common.zsh
       source $ZSH_LIB_DIR/options_nix.zsh
-      source $ZSH_LIB_DIR/history_nix.zsh
+      source $ZSH_LIB_DIR/history.zsh
       source $ZSH_LIB_DIR/aliases_nix.zsh
       source $ZSH_LIB_DIR/correction.zsh
       source $ZSH_LIB_DIR/prompt.zsh
@@ -62,9 +62,6 @@
       ];
       # need test
       # Aloxaf/fzf-tab
-      # OMZP::docker
-      # OMZP::compleat = mbrubeck/compleat
-
       # alternative
       # mattmc3/zman = my fman
     };
@@ -74,35 +71,15 @@
       fpath=(${config.xdg.configHome}/zsh/lib/funcs $fpath)
     '';
     history = {
-      # HISTSIZE
-      size = 20000;
-      # SAVEHIST
-      save = 20000;
-      # unsetopt SHARE_HISTORY
-      share = false;
-      # setopt EXTENDED_HISTORY
-      extended = true;
-      # setopt HIST_EXPIRE_DUPS_FIRST
-      expireDuplicatesFirst = true;
-      # setopt HIST_IGNORE_DUPS
-      ignoreDups = true;
-      # setopt HIST_IGNORE_ALL_DUPS
-      ignoreAllDups = true;
-      # setopt HIST_IGNORE_SPACE
-      ignoreSpace = true;
-      # HISTFILE
-      path = "$ZSH_DATA_DIR/zsh_history";
-      # HISTORY_IGNORE
-      ignorePatterns = [
-        "ls"
-        "ll"
-        "la"
-        "pwd"
-        "history"
-        "exit"
-        "clear"
-        "cd"
-      ];
+      size = 20000; # HISTSIZE
+      save = 20000; # SAVEHIST
+      share = false; # SHARE_HISTORY
+      extended = true; # EXTENDED_HISTORY
+      expireDuplicatesFirst = true; # HIST_EXPIRE_DUPS_FIRST
+      ignoreDups = false; # HIST_IGNORE_DUPS
+      ignoreAllDups = true; # HIST_IGNORE_ALL_DUPS
+      saveNoDups = true; # HIST_SAVE_NO_DUPS
+      path = "$ZSH_DATA_DIR/zsh_history"; # HISTFILE
     };
   };
 
