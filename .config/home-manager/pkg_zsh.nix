@@ -34,7 +34,7 @@
       ATUIN_NOBIND="true"
 
       source $ZSH_LIB_DIR/common.zsh
-      source $ZSH_LIB_DIR/options_nix.zsh
+      source $ZSH_LIB_DIR/options.zsh
       source $ZSH_LIB_DIR/history.zsh
       source $ZSH_LIB_DIR/aliases_nix.zsh
       source $ZSH_LIB_DIR/correction.zsh
@@ -65,8 +65,6 @@
       # alternative
       # mattmc3/zman = my fman
     };
-    # setopt AUTO_CD\autocd - goto directory without "cd"
-    autocd = true;
     envExtra = ''
       fpath=(${config.xdg.configHome}/zsh/lib/funcs $fpath)
     '';

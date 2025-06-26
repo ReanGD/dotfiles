@@ -20,7 +20,6 @@ source "$ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh"
 
 source $ZSH_LIB_DIR/common.zsh
 source $ZSH_LIB_DIR/options.zsh
-source $ZSH_LIB_DIR/history.zsh
 source $ZSH_LIB_DIR/aliases.zsh
 source $ZSH_LIB_DIR/correction.zsh
 source $ZSH_LIB_DIR/prompt.zsh
@@ -34,13 +33,5 @@ zinit load zsh-users/zsh-autosuggestions
 zinit load zsh-users/zsh-completions
 zinit ice atinit'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"'
 zinit load zdharma-continuum/fast-syntax-highlighting
-
-# not working
-# hlissner/zsh-autopair
-
-# need test
-# Aloxaf/fzf-tab
-# OMZP::docker
-# OMZP::compleat = mbrubeck/compleat
 
 source $ZSH_LIB_DIR/compinit.zsh
