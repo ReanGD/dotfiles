@@ -24,7 +24,6 @@ source $ZSH_LIB_DIR/aliases.zsh
 source $ZSH_LIB_DIR/correction.zsh
 source $ZSH_LIB_DIR/prompt.zsh
 source $ZSH_LIB_DIR/key_bindings.zsh
-source $ZSH_LIB_DIR/completion.zsh
 
 zinit ice atinit'ZSHZ_DATA="$XDG_DATA_HOME/.z"'
 zinit load agkozak/zsh-z

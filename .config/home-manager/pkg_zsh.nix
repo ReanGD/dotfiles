@@ -39,7 +39,6 @@
       source $ZSH_LIB_DIR/aliases_nix.zsh
       source $ZSH_LIB_DIR/correction.zsh
       source $ZSH_LIB_DIR/prompt.zsh
-      source $ZSH_LIB_DIR/completion.zsh
 
       if [[ $options[zle] = on ]]; then
         eval "$(${pkgs.atuin}/bin/atuin init zsh )"

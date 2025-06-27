@@ -40,3 +40,29 @@ setopt NO_HIST_BEEP           # Не бипать при достижении к
 history() {
   [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
 }
+
+# =============================================================================
+# Completion
+# =============================================================================
+
+setopt NO_MENU_COMPLETE  # Не выбирать первое совпадение автоматически, открывать меню
+
+# Интерактивное меню completions с навигацией стрелками
+zstyle ':completion:*:*:*:*:*' menu select
+
+# Case-insensitive, затем по суффиксу, затем по подстроке
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+# Не показывать . и .. в completions
+zstyle ':completion:*' special-dirs false
+
+# Подсветка процессов при kill <Tab>
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+
+# Кэширование тяжёлых completions
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR"
+
+# command-not-found
+[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
