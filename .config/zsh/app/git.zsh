@@ -4,11 +4,11 @@ _git_command() {
 
 _git_current_branch() {
   local ref
-  ref=$(_git_command symbolic-ref --quiet HEAD 2> /dev/null)
+  ref=$(_git_command symbolic-ref --quiet HEAD 2>/dev/null)
   local ret=$?
   if [[ $ret != 0 ]]; then
     [[ $ret == 128 ]] && return  # no git repo
-    ref=$(_git_command rev-parse --short HEAD 2> /dev/null) || return
+    ref=$(_git_command rev-parse --short HEAD 2>/dev/null) || return
   fi
   print -r -- "${ref#refs/heads/}"
 }
