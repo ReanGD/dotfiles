@@ -19,6 +19,10 @@ alias grep="grep --color=auto --exclude-dir=$EXC_FOLDERS"
 alias egrep="egrep --color=auto --exclude-dir=$EXC_FOLDERS"
 alias fgrep="fgrep --color=auto --exclude-dir=$EXC_FOLDERS"
 
+alias rgnh='rg --no-hidden'
+alias rgnf='rg --no-follow'
+alias rgall='RIPGREP_CONFIG_PATH= rg --hidden --follow'
+
 _show_which() {
   OUTPUT=$(which $1 | cut -d " " -f7-)
   echo "Running '$OUTPUT'" 1>&2
