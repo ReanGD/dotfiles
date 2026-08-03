@@ -7,14 +7,6 @@ if [[ -z "$LS_COLORS" ]]; then
   (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
 
-if which exa >/dev/null; then
-    alias ls='exa --grid'
-    alias ll='exa --long --group --header --links --all --git'
-else
-    alias ls='ls --color=tty'
-    alias ll='ls -la'
-fi
-
 # Take advantage of $LS_COLORS for completion as well.
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
