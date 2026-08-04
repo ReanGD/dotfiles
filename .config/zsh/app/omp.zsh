@@ -55,6 +55,7 @@ _omp() (
     "PATH=$PATH:$xdg_cache_home/.bun/bin"
     "LINK_BROWSER=chromium_ai"
     "LINK_FILTER=all"
+    "AGENT_PROFILE=$agent_profile"
     "PI_TUI_RENDER_BACKEND=app-viewport"
     "PI_CONFIG_FILES=$config_path"
   )
@@ -69,7 +70,9 @@ _omp() (
       "HERDR_AGENT=omp"
     )
 
+    # sh ждёт nono и сохраняет читаемый для Herdr HERDR_AGENT=omp; exit не даёт sh заменить себя защищённым процессом nono.
     command=(
+      sh -c '"$@"; exit $?' sh
       nono run
       --profile "$sandbox_profile"
       --
@@ -84,4 +87,5 @@ _omp() (
 
 alias ocfg='_omp cfg --sandbox profile-cfg'
 alias owork='_omp work --sandbox profile-work'
+alias ohome='_omp home --sandbox profile-home'
 alias omp='_omp host'
