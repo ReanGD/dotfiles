@@ -7,7 +7,7 @@ _git_current_branch() {
   ref=$(_git_command symbolic-ref --quiet HEAD 2>/dev/null)
   local ret=$?
   if [[ $ret != 0 ]]; then
-    [[ $ret == 128 ]] && return  # no git repo
+    [[ $ret == 128 ]] && return "$ret"  # no git repo
     ref=$(_git_command rev-parse --short HEAD 2>/dev/null) || return
   fi
   print -r -- "${ref#refs/heads/}"
@@ -19,7 +19,7 @@ _ggpull() {
   git pull origin "$branch"
 }
 
-ggpush() {
+_ggpush() {
   local branch
   branch=$(_git_current_branch) || { echo "Not a git repo"; return 1; }
   git push origin "$branch"
