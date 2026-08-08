@@ -1,17 +1,39 @@
-_PROXY_HOST="127.0.0.1"
-_PROXY_PORT="10202"
+# Usage: _with_proxy_endpoint HOST PORT COMMAND [ARG...]; pass IPv6 hosts without brackets.
+# Environment hints only: HTTP(S), SOCKS with remote DNS, and JVM HTTP(S) properties.
+# Existing JVM options stay first; this endpoint wins over earlier proxy properties.
+_with_proxy_endpoint() {
+  if (( $# < 3 )); then
+    print -u2 -- 'Usage: _with_proxy_endpoint HOST PORT COMMAND [ARG...]'
+    return 2
+  fi
+  local proxy_host="$1" proxy_port="$2"
+  shift 2
+  local proxy_url_host="$proxy_host"
+  [[ "$proxy_host" == *:* ]] && proxy_url_host="[$proxy_host]"
+  local proxy_http="http://${proxy_url_host}:${proxy_port}"
+  local proxy_socks="socks5h://${proxy_url_host}:${proxy_port}"
+  local proxy_bypass='localhost,127.0.0.1,127.0.0.0/8,::1,[::1]'
+  local proxy_java="-Dhttp.proxyHost=${proxy_host} -Dhttp.proxyPort=${proxy_port} -Dhttps.proxyHost=${proxy_host} -Dhttps.proxyPort=${proxy_port}"
+
+  http_proxy="$proxy_http" \
+  https_proxy="$proxy_http" \
+  HTTP_PROXY="$proxy_http" \
+  HTTPS_PROXY="$proxy_http" \
+  all_proxy="$proxy_socks" \
+  ALL_PROXY="$proxy_socks" \
+  JAVA_OPTS="${JAVA_OPTS:+${JAVA_OPTS} }${proxy_java}" \
+  JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:+${JAVA_TOOL_OPTIONS} }${proxy_java}" \
+  no_proxy="$proxy_bypass" \
+  NO_PROXY="$proxy_bypass" \
+  "$@"
+}
 
 _with_proxy() {
-  http_proxy="http://${_PROXY_HOST}:${_PROXY_PORT}" \
-  https_proxy="http://${_PROXY_HOST}:${_PROXY_PORT}" \
-  HTTP_PROXY="http://${_PROXY_HOST}:${_PROXY_PORT}" \
-  HTTPS_PROXY="http://${_PROXY_HOST}:${_PROXY_PORT}" \
-  all_proxy="socks5://${_PROXY_HOST}:${_PROXY_PORT}" \
-  ALL_PROXY="socks5://${_PROXY_HOST}:${_PROXY_PORT}" \
-  JAVA_OPTS="-Dhttp.proxyHost=${_PROXY_HOST} -Dhttp.proxyPort=${_PROXY_PORT} -Dhttps.proxyHost=${_PROXY_HOST} -Dhttps.proxyPort=${_PROXY_PORT}" \
-  no_proxy="localhost,127.0.0.0/8,::1" \
-  NO_PROXY="localhost,127.0.0.0/8,::1" \
-  "$@"
+  _with_proxy_endpoint 127.0.0.1 10202 "$@"
+}
+
+_with_proxy_ai() {
+  _with_proxy_endpoint 127.0.0.1 10301 "$@"
 }
 
 _source_if_exists() {
@@ -23,12 +45,16 @@ _source_if_exists() {
 }
 
 typeset -ga _post_compinit
+typeset _omp_bin="${XDG_CACHE_HOME:-$HOME/.cache}/.bun/bin/omp"
 
 source $ZSH_APP_DIR/_system.zsh
 _source_if_exists chezmoi $ZSH_APP_DIR/chezmoi.zsh
 _source_if_exists fd $ZSH_APP_DIR/fd.zsh
 _source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
-_source_if_exists ~/.cache/.bun/bin/omp $ZSH_APP_DIR/omp.zsh
+_source_if_exists "$_omp_bin" "$ZSH_APP_DIR/omp.zsh"
 _source_if_exists eza $ZSH_APP_DIR/eza.zsh
+_source_if_exists rg $ZSH_APP_DIR/rg.zsh
+unset _omp_bin
 
+eval "$(mise activate zsh)"
