@@ -1,4 +1,6 @@
 _omp() (
+  local omp_bin="${XDG_CACHE_HOME:-$HOME/.cache}/.bun/bin/omp"
+
   if (( $# == 0 )) || [[ -z "$1" ]]; then
     print -u2 'Использование: _omp <agent-profile> [--sandbox <sandbox-profile>] [аргументы omp...]'
     return 1
@@ -20,7 +22,6 @@ _omp() (
   fi
 
   local xdg_config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
-  local xdg_cache_home="${XDG_CACHE_HOME:-$HOME/.cache}"
 
   local omp_root="$xdg_config_home/omp"
   local profiles_root="$omp_root/profiles"
@@ -52,7 +53,6 @@ _omp() (
   local config_path="${(j.:.)config_files}"
 
   local -a env_args=(
-    "PATH=$PATH:$xdg_cache_home/.bun/bin"
     "LINK_BROWSER=chromium_ai"
     "LINK_FILTER=all"
     "AGENT_PROFILE=$agent_profile"
@@ -61,7 +61,7 @@ _omp() (
   )
 
   local -a command=(
-    omp
+    "$omp_bin"
     "$@"
   )
 
