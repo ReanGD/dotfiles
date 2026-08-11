@@ -48,7 +48,7 @@ typeset -ga _post_compinit
 typeset _omp_bin="${XDG_CACHE_HOME:-$HOME/.cache}/.bun/bin/omp"
 
 source $ZSH_APP_DIR/_system.zsh
-_source_if_exists chezmoi $ZSH_APP_DIR/chezmoi.zsh
+source $ZSH_APP_DIR/_aliases.zsh
 _source_if_exists fd $ZSH_APP_DIR/fd.zsh
 _source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh

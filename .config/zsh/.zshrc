@@ -20,7 +20,6 @@ source "$ZSH_CONFIG_DIR/.zinit/bin/zinit.zsh"
 
 source $ZSH_LIB_DIR/common.zsh
 source $ZSH_LIB_DIR/options.zsh
-source $ZSH_LIB_DIR/aliases.zsh
 source $ZSH_LIB_DIR/correction.zsh
 source $ZSH_LIB_DIR/prompt.zsh
 source $ZSH_LIB_DIR/key_bindings.zsh

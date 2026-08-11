@@ -12,11 +12,6 @@
 
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      # see https://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
-      sudo="sudo ";
-      sudoe="sudo --preserve-env ";
-    };
     dotDir = "${config.xdg.configHome}/zsh";
     initContent = lib.mkOrder 550 ''
       ZSH_DATA_DIR="${config.xdg.dataHome}/zsh"
@@ -35,8 +30,7 @@
 
       source $ZSH_LIB_DIR/common.zsh
       source $ZSH_LIB_DIR/options.zsh
-      source $ZSH_LIB_DIR/history.zsh
-      source $ZSH_LIB_DIR/aliases_nix.zsh
+      source $ZSH_APP_DIR/main.zsh
       source $ZSH_LIB_DIR/correction.zsh
       source $ZSH_LIB_DIR/prompt.zsh
 
