@@ -50,6 +50,8 @@ typeset _omp_bin="${XDG_CACHE_HOME:-$HOME/.cache}/.bun/bin/omp"
 source $ZSH_APP_DIR/_system.zsh
 source $ZSH_APP_DIR/_aliases.zsh
 _source_if_exists fd $ZSH_APP_DIR/fd.zsh
+_source_if_exists rg $ZSH_APP_DIR/rg.zsh
+_source_if_exists man $ZSH_APP_DIR/man.zsh
 _source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
 _source_if_exists "$_omp_bin" "$ZSH_APP_DIR/omp.zsh"
