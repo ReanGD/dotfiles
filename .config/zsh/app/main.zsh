@@ -1,6 +1,3 @@
-# Usage: _with_proxy_endpoint HOST PORT COMMAND [ARG...]; pass IPv6 hosts without brackets.
-# Environment hints only: HTTP(S), SOCKS with remote DNS, and JVM HTTP(S) properties.
-# Existing JVM options stay first; this endpoint wins over earlier proxy properties.
 _with_proxy_endpoint() {
   if (( $# < 3 )); then
     print -u2 -- 'Usage: _with_proxy_endpoint HOST PORT COMMAND [ARG...]'
@@ -53,10 +50,11 @@ _source_if_exists fd $ZSH_APP_DIR/fd.zsh
 _source_if_exists rg $ZSH_APP_DIR/rg.zsh
 _source_if_exists man $ZSH_APP_DIR/man.zsh
 _source_if_exists git $ZSH_APP_DIR/git.zsh
+_source_if_exists eza $ZSH_APP_DIR/eza.zsh
+_source_if_exists fzf $ZSH_APP_DIR/fkill.zsh
+_source_if_exists chezmoi $ZSH_APP_DIR/chezmoi.zsh
 _source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
 _source_if_exists "$_omp_bin" "$ZSH_APP_DIR/omp.zsh"
-_source_if_exists eza $ZSH_APP_DIR/eza.zsh
-_source_if_exists rg $ZSH_APP_DIR/rg.zsh
 unset _omp_bin
 
 eval "$(mise activate zsh)"
