@@ -52,10 +52,11 @@ _source_if_exists man $ZSH_APP_DIR/man.zsh
 _source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists eza $ZSH_APP_DIR/eza.zsh
 _source_if_exists fzf $ZSH_APP_DIR/fkill.zsh
+_source_if_exists mise "$ZSH_APP_DIR/mise.zsh"
 _source_if_exists tv $ZSH_APP_DIR/television.zsh
 _source_if_exists chezmoi $ZSH_APP_DIR/chezmoi.zsh
-_source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
 _source_if_exists "$_omp_bin" "$ZSH_APP_DIR/omp.zsh"
+_source_if_exists opencode $ZSH_APP_DIR/opencode.zsh
+
 unset _omp_bin
 
-eval "$(mise activate zsh)"
