@@ -53,6 +53,7 @@ _source_if_exists git $ZSH_APP_DIR/git.zsh
 _source_if_exists eza $ZSH_APP_DIR/eza.zsh
 _source_if_exists fzf $ZSH_APP_DIR/fkill.zsh
 _source_if_exists mise $ZSH_APP_DIR/mise.zsh
+_source_if_exists ouch $ZSH_APP_DIR/ouch.zsh
 _source_if_exists atuin $ZSH_APP_DIR/atuin.zsh
 _source_if_exists zoxide $ZSH_APP_DIR/zoxide.zsh
 _source_if_exists tv $ZSH_APP_DIR/television.zsh
