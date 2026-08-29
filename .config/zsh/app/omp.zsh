@@ -36,6 +36,7 @@ _omp() (
   local -a config_files=(
     "$profiles_root/common/ui.yml"
     "$profiles_root/common/model_settings.yml"
+    "$profiles_root/common/other.yml"
     "$permissions_file"
   )
 
