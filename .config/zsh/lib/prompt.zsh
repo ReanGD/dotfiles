@@ -30,8 +30,10 @@ _prompt_dir() {
 }
 
 _git_dirty() {
-  _git_command diff --quiet 2>/dev/null && \
-  _git_command diff --cached --quiet 2>/dev/null
+  local changes
+  # Clean means no tracked changes or non-ignored untracked files.
+  changes=$(_git_command status --porcelain --untracked-files=normal 2>/dev/null) || return 1
+  [[ -z "$changes" ]]
 }
 
 _prompt_git() {
@@ -51,7 +53,7 @@ _prompt_git() {
   _print_with_color white "on "
   _print_reset_color "git:"
   _print_with_color "$label_color" "$label "
-  _print_with_color cyan "$branch "
+  _print_with_color cyan "${branch//\%/%%} "
 
   if _git_dirty; then
     _print_with_color green "✓ "
