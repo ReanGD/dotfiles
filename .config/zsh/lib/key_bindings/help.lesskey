@@ -1,0 +1,55 @@
+#command
+\e[27u quit
+\e[27;1u quit
+\e[27;65u quit
+\e[27;129u quit
+\e[27;193u quit
+\e[A back-line
+\e[B forw-line
+\e[C right-scroll
+\e[D left-scroll
+\e[H goto-line
+\e[F goto-end
+# Функциональные клавиши: 1 + CapsLock(64) + NumLock(128).
+\e[1;1A back-line
+\e[1;1B forw-line
+\e[1;1C right-scroll
+\e[1;1D left-scroll
+\e[1;1H goto-line
+\e[1;1F goto-end
+\e[1;65A back-line
+\e[1;65B forw-line
+\e[1;65C right-scroll
+\e[1;65D left-scroll
+\e[1;65H goto-line
+\e[1;65F goto-end
+\e[1;129A back-line
+\e[1;129B forw-line
+\e[1;129C right-scroll
+\e[1;129D left-scroll
+\e[1;129H goto-line
+\e[1;129F goto-end
+\e[1;193A back-line
+\e[1;193B forw-line
+\e[1;193C right-scroll
+\e[1;193D left-scroll
+\e[1;193H goto-line
+\e[1;193F goto-end
+# PgUp/PgDn принимаем явно, независимо от terminfo.
+\e[5~ back-screen
+\e[6~ forw-screen
+\e[5;1~ back-screen
+\e[6;1~ forw-screen
+\e[5;65~ back-screen
+\e[6;65~ forw-screen
+\e[5;129~ back-screen
+\e[6;129~ forw-screen
+\e[5;193~ back-screen
+\e[6;193~ forw-screen
+q quit
+#line-edit
+\e[27u abort
+\e[27;1u abort
+\e[27;65u abort
+\e[27;129u abort
+\e[27;193u abort
