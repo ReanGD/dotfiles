@@ -1,0 +1,8 @@
+# Terminal tab title
+trystan2k/zsh-tab-title
+# Fish-like autosuggestions
+zsh-users/zsh-autosuggestions
+# Add completion functions before our compinit, without initializing it twice.
+zsh-users/zsh-completions kind:fpath path:src
+# Load after local ZLE widgets and the other plugins.
+zdharma-continuum/fast-syntax-highlighting
